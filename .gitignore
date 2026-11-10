@@ -30,3 +30,6 @@ tools/spectre/*.json
 *.fdb_latexmk
 *.synctex.gz
 .DS_Store
+
+# local settings of the coding assistant
+.claude/

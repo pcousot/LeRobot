@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LeRobot</title>
+<style>
+  :root {
+    --bg: #f4f4f1; --panel: #ffffff; --ink: #1d1d1b; --muted: #6b6b66;
+    --line: #d6d6d0; --accent: #1f5fbf; --key: #ececE7; --key-ink: #1d1d1b;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #1b1b1a; --panel: #262624; --ink: #ececea; --muted: #a0a09a;
+            --line: #3a3a37; --accent: #7aa7ff; --key: #33332f; --key-ink: #ececea; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 15px/1.4 -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; }
+  header { display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+           padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--panel); }
+  header h1 { font-size: 18px; margin: 0 12px 0 0; }
+  select, button, input { font: inherit; }
+  select { max-width: 340px; padding: 6px 8px; border-radius: 8px; border: 1px solid var(--line);
+           background: var(--panel); color: var(--ink); }
+  button { padding: 7px 14px; border-radius: 8px; border: 1px solid var(--line);
+           background: var(--key); color: var(--key-ink); cursor: pointer; touch-action: manipulation; }
+  button.main { background: var(--accent); color: #fff; border-color: var(--accent); }
+  button:disabled { opacity: .45; cursor: default; }
+  #etat { color: var(--muted); font-size: 13px; margin-left: auto; }
+  main { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 14px; padding: 14px 16px; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  #fenetre { position: relative; width: 100%; aspect-ratio: 800 / 700; background: #fff;
+             border: 1px solid var(--line); border-radius: 6px; overflow: hidden; touch-action: none; }
+  #fenetre canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #titre { font-size: 13px; color: var(--muted); margin: 0 0 6px; min-height: 18px; }
+  .touches { display: grid; grid-template-columns: repeat(8, minmax(0, 1fr)); gap: 6px; margin-top: 10px; }
+  .touches button { padding: 10px 0; font-size: 17px; font-family: Menlo, monospace; }
+  .touches button small { display: block; font-size: 10px; color: var(--muted);
+                          font-family: -apple-system, sans-serif; }
+  .ligne { display: flex; gap: 8px; margin-top: 8px; align-items: center; }
+  #clavier { flex: 1; padding: 8px; border-radius: 8px; border: 1px solid var(--line);
+             background: var(--panel); color: var(--ink); }
+  textarea { width: 100%; height: 360px; resize: vertical; padding: 10px; border-radius: 8px;
+             border: 1px solid var(--line); background: var(--panel); color: var(--ink);
+             font: 13px/1.45 Menlo, Consolas, monospace; tab-size: 4; }
+  pre#console { margin: 8px 0 0; height: 150px; overflow: auto; padding: 8px 10px; border-radius: 8px;
+                border: 1px solid var(--line); background: var(--panel);
+                font: 12px/1.4 Menlo, Consolas, monospace; white-space: pre-wrap; }
+  pre#console .err { color: #c0392b; }
+  .aide { color: var(--muted); font-size: 13px; margin-top: 8px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>LeRobot</h1>
+  <select id="programmes" aria-label="Program"></select>
+  <button id="lancer" class="main" disabled>&#9654; Run</button>
+  <button id="arreter" disabled>&#9632; Stop</button>
+  <button id="dessiner" disabled>&#9998; Draw</button>
+  <span id="etat">Loading Python…</span>
+</header>
+<main>
+  <section>
+    <p id="titre"></p>
+    <div id="fenetre">
+      <canvas id="image" width="800" height="700"></canvas>
+      <canvas id="dessus" width="800" height="700"></canvas>
+    </div>
+    <div class="touches" id="touches"></div>
+    <div class="ligne">
+      <input id="clavier" placeholder="Tap here to type (answers, keys)" autocomplete="off"
+             autocorrect="off" autocapitalize="off" spellcheck="false">
+    </div>
+    <p class="aide">Touch the grid to move the robot without drawing. Esc stops the robot;
+      at the end of a program, + / − change the speed, another key redraws.</p>
+  </section>
+  <section>
+    <textarea id="code" spellcheck="false" aria-label="Program"></textarea>
+    <pre id="console" aria-live="polite"></pre>
+  </section>
+</main>
+<script>
+"use strict";
+const LIB = "../LeRobot_Python_EN/";
+
+// ---- cross-origin isolation (needed for SharedArrayBuffer) -------------
+if (!window.crossOriginIsolated) {
+  if ("serviceWorker" in navigator && !sessionStorage.getItem("lerobot-sw")) {
+    sessionStorage.setItem("lerobot-sw", "1");
+    navigator.serviceWorker.register("sw.js").then(() => location.reload());
+  } else {
+    document.getElementById("etat").textContent =
+      "This browser cannot isolate the page (SharedArrayBuffer): try reloading.";
+  }
+} else {
+  sessionStorage.removeItem("lerobot-sw");
+  demarrer();
+}
+
+function demarrer() {
+  const $ = (id) => document.getElementById(id);
+  const image = $("image").getContext("2d");
+  const dessus = $("dessus").getContext("2d");
+  let W = 800, H = 700;
+  let etatDessus = { texts: [], icons: [] };
+  const icones = new Map();
+  let enCours = false, nomCourant = "Program.py";
+
+  // ---- shared memory: events for the worker, and its stop button ----------
+  const N = 512;
+  const ev = new Int32Array(new SharedArrayBuffer(4 * (4 + N * 4)));
+  const interruption = new Uint8Array(new SharedArrayBuffer(1));
+  function envoyer(sorte, a, b, c) {
+    const i = Atomics.load(ev, 0);
+    const k = 4 + (i % N) * 4;
+    ev[k] = sorte; ev[k + 1] = a | 0; ev[k + 2] = b | 0; ev[k + 3] = c | 0;
+    Atomics.store(ev, 0, i + 1);
+    Atomics.notify(ev, 0);
+  }
+  const touche = (c) => envoyer(1, c.codePointAt(0), 0, 0);
+
+  // ---- the worker -----------------------------------------------------------
+  const worker = new Worker("worker.js");
+  worker.postMessage({ type: "start", events: ev.buffer, interrupt: interruption.buffer });
+  worker.onmessage = (e) => {
+    const m = e.data;
+    switch (m.type) {
+      case "ready": pret(); break;
+      case "open":
+        W = m.w; H = m.h;
+        for (const c of [$("image"), $("dessus")]) { c.width = W; c.height = H; }
+        $("fenetre").style.aspectRatio = W + " / " + H;
+        image.fillStyle = "#fff"; image.fillRect(0, 0, W, H);
+        etatDessus = { texts: [], icons: [] }; redessiner();
+        $("titre").textContent = m.titre; break;
+      case "title": $("titre").textContent = m.titre; break;
+      case "frame": {
+        const d = image.createImageData(m.w, m.h);
+        for (let i = 0, j = 0; i < m.rgb.length; i += 3, j += 4) {
+          d.data[j] = m.rgb[i]; d.data[j + 1] = m.rgb[i + 1]; d.data[j + 2] = m.rgb[i + 2]; d.data[j + 3] = 255;
+        }
+        image.putImageData(d, m.x, m.y); break;
+      }
+      case "overlay": etatDessus = JSON.parse(m.json); redessiner(); break;
+      case "icon": icones.set(m.id, faireIcone(m.w, m.h, JSON.parse(m.json))); redessiner(); break;
+      case "close": $("titre").textContent += " (closed)"; break;
+      case "out": ecrire(m.s + "\n"); break;
+      case "err": ecrire(m.s + "\n", true); break;
+      case "beep": son(880, 0.08, 0.3); setTimeout(() => son(880, 0.08, 0.3), 140); break;
+      case "tone": son(m.f, m.d, 0.25); break;
+      case "end": fin(m.dessin); break;
+    }
+  };
+
+  function faireIcone(w, h, couleurs) {
+    const c = new OffscreenCanvas(w, h), ctx = c.getContext("2d"), d = ctx.createImageData(w, h);
+    couleurs.forEach((v, i) => {
+      if (v >= 0) { d.data[4 * i] = v >> 16 & 255; d.data[4 * i + 1] = v >> 8 & 255; d.data[4 * i + 2] = v & 255; d.data[4 * i + 3] = 255; }
+    });
+    ctx.putImageData(d, 0, 0);
+    return c;
+  }
+  function redessiner() {
+    dessus.clearRect(0, 0, W, H);
+    dessus.font = "13px Helvetica, Arial, sans-serif";
+    dessus.textBaseline = "bottom";
+    for (const [x, y, s, c] of etatDessus.texts) { dessus.fillStyle = c; dessus.fillText(s, x, y); }
+    for (const [id, x, y] of etatDessus.icons) { const ic = icones.get(id); if (ic) dessus.drawImage(ic, x, y); }
+  }
+
+  // ---- sound ----------------------------------------------------------------
+  let audio = null;
+  function son(f, d, v) {
+    if (!audio) return;
+    const o = audio.createOscillator(), g = audio.createGain();
+    o.frequency.value = f; g.gain.value = v; o.connect(g).connect(audio.destination);
+    o.start(); o.stop(audio.currentTime + d);
+  }
+  document.addEventListener("pointerdown", () => {
+    if (!audio) { try { audio = new AudioContext(); } catch (e) {} }
+  }, { once: true });
+
+  // ---- console ----------------------------------------------------------------
+  function ecrire(s, err) {
+    const span = document.createElement("span");
+    if (err) span.className = "err";
+    span.textContent = s;
+    $("console").appendChild(span);
+    $("console").scrollTop = $("console").scrollHeight;
+  }
+
+  // ---- programs ---------------------------------------------------------------
+  async function pret() {
+    $("etat").textContent = "Ready";
+    const liste = await (await fetch("programs.json")).json();
+    const sel = $("programmes");
+    const groupes = new Map();
+    for (const p of liste) {
+      if (!groupes.has(p.group)) {
+        const og = document.createElement("optgroup"); og.label = p.group;
+        groupes.set(p.group, og); sel.appendChild(og);
+      }
+      const o = document.createElement("option");
+      o.value = p.path; o.textContent = p.name;
+      groupes.get(p.group).appendChild(o);
+    }
+    sel.onchange = () => charger(sel.value);
+    sel.value = "book/03_programming/Square.py";
+    await charger(sel.value);
+    for (const b of ["lancer", "dessiner"]) $(b).disabled = false;
+  }
+  async function charger(chemin) {
+    $("code").value = await (await fetch(LIB + chemin)).text();
+    nomCourant = chemin.split("/").pop();
+  }
+  function lancer(code, nom) {
+    if (enCours) return;
+    enCours = true; interruption[0] = 0;
+    $("lancer").disabled = $("dessiner").disabled = true; $("arreter").disabled = false;
+    $("etat").textContent = "Running " + nom;
+    worker.postMessage({ type: "run", nom, code });
+  }
+  function fin(dessin) {
+    enCours = false;
+    $("lancer").disabled = $("dessiner").disabled = false; $("arreter").disabled = true;
+    $("etat").textContent = "Ready";
+    if (dessin) {
+      $("code").value = dessin; nomCourant = "my_drawing.py";
+      ecrire("The drawing was saved in my_drawing.py: it is now in the editor (Run replays it).\n");
+    }
+  }
+  $("lancer").onclick = () => lancer($("code").value, nomCourant);
+  $("dessiner").onclick = async () => {
+    lancer(await (await fetch(LIB + "Draw.py")).text(), "Draw.py");
+  };
+  $("arreter").onclick = () => { touche("\x1b"); setTimeout(() => { if (enCours) interruption[0] = 2; }, 300); };
+
+  // ---- keys: on-screen buttons, keyboard, typing field ------------------------
+  const TOUCHES = [
+    ["f", "fd"], ["+", "qtr"], ["-", "qtl"], ["r", "etr"], ["l", "etl"], ["(", "cl"], [")", "cr"], [".", "dg"],
+    ["d", "pd"], ["u", "pu"], ["p", "dp"], ["c", "dc"], ["*", "pc"], ["w", "paint"], ["\b", "undo", "⌫"], ["\r", "end", "⏎"],
+    ["\x1c", "", "←"], ["\x1e", "", "↑"], ["\x1f", "", "↓"], ["\x1d", "", "→"], ["y", "yes"], ["n", "no"], [" ", "redraw", "␣"], ["\x1b", "stop", "Esc"],
+  ];
+  for (const [c, aide, vu] of TOUCHES) {
+    const b = document.createElement("button");
+    b.innerHTML = (vu || c) + "<small>" + (aide || "&nbsp;") + "</small>";
+    b.onclick = () => touche(c);
+    $("touches").appendChild(b);
+  }
+  const FLECHES = { ArrowLeft: "\x1c", ArrowRight: "\x1d", ArrowUp: "\x1e", ArrowDown: "\x1f",
+                    Enter: "\r", Backspace: "\b", Delete: "\x7f", Escape: "\x1b", Tab: "\t" };
+  document.addEventListener("keydown", (e) => {
+    const t = e.target.tagName;
+    if (t === "TEXTAREA" || t === "SELECT" || (t === "INPUT" && e.target.id !== "clavier")) return;
+    if (e.metaKey || e.ctrlKey) return;
+    // in the typing field, the characters come through the input event
+    // (the iPad's keyboard does not always give them to keydown)
+    const c = FLECHES[e.key] || (e.key.length === 1 && t !== "INPUT" ? e.key : null);
+    if (c && enCours) { touche(c); e.preventDefault(); }
+  });
+  $("clavier").addEventListener("input", (e) => {
+    if (enCours) for (const c of e.target.value) touche(c);
+    e.target.value = "";
+  });
+
+  // ---- mouse and touch ---------------------------------------------------------
+  const zone = $("dessus");
+  function xy(e) {
+    const r = zone.getBoundingClientRect();
+    return [Math.round((e.clientX - r.left) * W / r.width), Math.round((e.clientY - r.top) * H / r.height)];
+  }
+  zone.addEventListener("pointerdown", (e) => { zone.setPointerCapture(e.pointerId); const [x, y] = xy(e); envoyer(3, x, y, 0); });
+  zone.addEventListener("pointermove", (e) => { const [x, y] = xy(e); envoyer(2, x, y, 0); });
+  zone.addEventListener("pointerup", (e) => { const [x, y] = xy(e); envoyer(4, x, y, 0); });
+}
+</script>
+</body>
+</html>

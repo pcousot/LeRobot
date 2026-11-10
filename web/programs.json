@@ -1,0 +1,2057 @@
+[
+{
+"group": "LeRobot",
+"name": "my_drawing",
+"path": "my_drawing.py"
+},
+{
+"group": "01_specification",
+"name": "Alphabet",
+"path": "book/01_specification/Alphabet.py"
+},
+{
+"group": "01_specification",
+"name": "Barge",
+"path": "book/01_specification/Barge.py"
+},
+{
+"group": "01_specification",
+"name": "Club",
+"path": "book/01_specification/Club.py"
+},
+{
+"group": "01_specification",
+"name": "Diamond",
+"path": "book/01_specification/Diamond.py"
+},
+{
+"group": "01_specification",
+"name": "DiamondInSquare",
+"path": "book/01_specification/DiamondInSquare.py"
+},
+{
+"group": "01_specification",
+"name": "Digit8",
+"path": "book/01_specification/Digit8.py"
+},
+{
+"group": "01_specification",
+"name": "DigitalWatchDigits",
+"path": "book/01_specification/DigitalWatchDigits.py"
+},
+{
+"group": "01_specification",
+"name": "DogToComplete",
+"path": "book/01_specification/DogToComplete.py"
+},
+{
+"group": "01_specification",
+"name": "FortifiedCastle",
+"path": "book/01_specification/FortifiedCastle.py"
+},
+{
+"group": "01_specification",
+"name": "Heart",
+"path": "book/01_specification/Heart.py"
+},
+{
+"group": "01_specification",
+"name": "Helicopter",
+"path": "book/01_specification/Helicopter.py"
+},
+{
+"group": "01_specification",
+"name": "Hopscotch",
+"path": "book/01_specification/Hopscotch.py"
+},
+{
+"group": "01_specification",
+"name": "House",
+"path": "book/01_specification/House.py"
+},
+{
+"group": "01_specification",
+"name": "LetterH",
+"path": "book/01_specification/LetterH.py"
+},
+{
+"group": "01_specification",
+"name": "LittleMan",
+"path": "book/01_specification/LittleMan.py"
+},
+{
+"group": "01_specification",
+"name": "ParachuteInSquare",
+"path": "book/01_specification/ParachuteInSquare.py"
+},
+{
+"group": "01_specification",
+"name": "Quadrilaterals",
+"path": "book/01_specification/Quadrilaterals.py"
+},
+{
+"group": "01_specification",
+"name": "SailingBoatToComplete",
+"path": "book/01_specification/SailingBoatToComplete.py"
+},
+{
+"group": "01_specification",
+"name": "SmallTangentCircles",
+"path": "book/01_specification/SmallTangentCircles.py"
+},
+{
+"group": "01_specification",
+"name": "Spade",
+"path": "book/01_specification/Spade.py"
+},
+{
+"group": "01_specification",
+"name": "StylizedFlower1",
+"path": "book/01_specification/StylizedFlower1.py"
+},
+{
+"group": "01_specification",
+"name": "Train",
+"path": "book/01_specification/Train.py"
+},
+{
+"group": "01_specification",
+"name": "Truck",
+"path": "book/01_specification/Truck.py"
+},
+{
+"group": "02_interaction",
+"name": "CirclesOf2Sizes",
+"path": "book/02_interaction/CirclesOf2Sizes.py"
+},
+{
+"group": "02_interaction",
+"name": "CompassRose8Directions",
+"path": "book/02_interaction/CompassRose8Directions.py"
+},
+{
+"group": "02_interaction",
+"name": "Digit4",
+"path": "book/02_interaction/Digit4.py"
+},
+{
+"group": "02_interaction",
+"name": "Digit9",
+"path": "book/02_interaction/Digit9.py"
+},
+{
+"group": "02_interaction",
+"name": "LetterF",
+"path": "book/02_interaction/LetterF.py"
+},
+{
+"group": "02_interaction",
+"name": "LetterT",
+"path": "book/02_interaction/LetterT.py"
+},
+{
+"group": "02_interaction",
+"name": "MaximalDrawing",
+"path": "book/02_interaction/MaximalDrawing.py"
+},
+{
+"group": "02_interaction",
+"name": "Octagon",
+"path": "book/02_interaction/Octagon.py"
+},
+{
+"group": "03_programming",
+"name": "LetterE",
+"path": "book/03_programming/LetterE.py"
+},
+{
+"group": "03_programming",
+"name": "LetterEWithBugs",
+"path": "book/03_programming/LetterEWithBugs.py"
+},
+{
+"group": "03_programming",
+"name": "Square",
+"path": "book/03_programming/Square.py"
+},
+{
+"group": "03_programming",
+"name": "Unknown",
+"path": "book/03_programming/Unknown.py"
+},
+{
+"group": "04_writing_running",
+"name": "Dog",
+"path": "book/04_writing_running/Dog.py"
+},
+{
+"group": "04_writing_running",
+"name": "IsoscelesTrapezoid",
+"path": "book/04_writing_running/IsoscelesTrapezoid.py"
+},
+{
+"group": "04_writing_running",
+"name": "LeaveTheFrame",
+"path": "book/04_writing_running/LeaveTheFrame.py"
+},
+{
+"group": "04_writing_running",
+"name": "PaperHen",
+"path": "book/04_writing_running/PaperHen.py"
+},
+{
+"group": "04_writing_running",
+"name": "Parallelogram",
+"path": "book/04_writing_running/Parallelogram.py"
+},
+{
+"group": "04_writing_running",
+"name": "RobotPenDown",
+"path": "book/04_writing_running/RobotPenDown.py"
+},
+{
+"group": "04_writing_running",
+"name": "RobotPenUp",
+"path": "book/04_writing_running/RobotPenUp.py"
+},
+{
+"group": "04_writing_running",
+"name": "Stegosaurus",
+"path": "book/04_writing_running/Stegosaurus.py"
+},
+{
+"group": "04_writing_running",
+"name": "UnreadableStegosaurus",
+"path": "book/04_writing_running/UnreadableStegosaurus.py"
+},
+{
+"group": "04_writing_running",
+"name": "WrongPaperHen",
+"path": "book/04_writing_running/WrongPaperHen.py"
+},
+{
+"group": "04_writing_running",
+"name": "WrongStegosaurus",
+"path": "book/04_writing_running/WrongStegosaurus.py"
+},
+{
+"group": "05_procedures",
+"name": "AstroidStar",
+"path": "book/05_procedures/AstroidStar.py"
+},
+{
+"group": "05_procedures",
+"name": "CrossBottony",
+"path": "book/05_procedures/CrossBottony.py"
+},
+{
+"group": "05_procedures",
+"name": "CrossPotent",
+"path": "book/05_procedures/CrossPotent.py"
+},
+{
+"group": "05_procedures",
+"name": "DoubleCross",
+"path": "book/05_procedures/DoubleCross.py"
+},
+{
+"group": "05_procedures",
+"name": "GreekCross_1",
+"path": "book/05_procedures/GreekCross_1.py"
+},
+{
+"group": "05_procedures",
+"name": "GreekCross_2",
+"path": "book/05_procedures/GreekCross_2.py"
+},
+{
+"group": "05_procedures",
+"name": "MagnifyingGlass",
+"path": "book/05_procedures/MagnifyingGlass.py"
+},
+{
+"group": "05_procedures",
+"name": "NotchedDoubleSquare",
+"path": "book/05_procedures/NotchedDoubleSquare.py"
+},
+{
+"group": "05_procedures",
+"name": "Number888_1",
+"path": "book/05_procedures/Number888_1.py"
+},
+{
+"group": "05_procedures",
+"name": "Number888_2",
+"path": "book/05_procedures/Number888_2.py"
+},
+{
+"group": "05_procedures",
+"name": "Number888_3",
+"path": "book/05_procedures/Number888_3.py"
+},
+{
+"group": "05_procedures",
+"name": "PapalCross",
+"path": "book/05_procedures/PapalCross.py"
+},
+{
+"group": "05_procedures",
+"name": "RobotTurns",
+"path": "book/05_procedures/RobotTurns.py"
+},
+{
+"group": "05_procedures",
+"name": "SaintAndrewsCross",
+"path": "book/05_procedures/SaintAndrewsCross.py"
+},
+{
+"group": "06_jumps_to_the_edge",
+"name": "CornerCrosses",
+"path": "book/06_jumps_to_the_edge/CornerCrosses.py"
+},
+{
+"group": "07_for",
+"name": "Arrow",
+"path": "book/07_for/Arrow.py"
+},
+{
+"group": "07_for",
+"name": "FriezeOfN_1",
+"path": "book/07_for/FriezeOfN_1.py"
+},
+{
+"group": "07_for",
+"name": "FriezeOfN_2",
+"path": "book/07_for/FriezeOfN_2.py"
+},
+{
+"group": "07_for",
+"name": "FriezeOfSpikes",
+"path": "book/07_for/FriezeOfSpikes.py"
+},
+{
+"group": "07_for",
+"name": "FriezeOfTildes",
+"path": "book/07_for/FriezeOfTildes.py"
+},
+{
+"group": "07_for",
+"name": "FriezeOfTildesWrong1",
+"path": "book/07_for/FriezeOfTildesWrong1.py"
+},
+{
+"group": "07_for",
+"name": "FriezeOfTildesWrong2",
+"path": "book/07_for/FriezeOfTildesWrong2.py"
+},
+{
+"group": "07_for",
+"name": "SquareSpiral_1",
+"path": "book/07_for/SquareSpiral_1.py"
+},
+{
+"group": "07_for",
+"name": "SquareSpiral_2",
+"path": "book/07_for/SquareSpiral_2.py"
+},
+{
+"group": "07_for",
+"name": "Square_1",
+"path": "book/07_for/Square_1.py"
+},
+{
+"group": "07_for",
+"name": "Square_2",
+"path": "book/07_for/Square_2.py"
+},
+{
+"group": "07_for/Figures_p_78",
+"name": "ConcentricSquares",
+"path": "book/07_for/Figures_p_78/ConcentricSquares.py"
+},
+{
+"group": "07_for/Figures_p_78",
+"name": "OrganPipes",
+"path": "book/07_for/Figures_p_78/OrganPipes.py"
+},
+{
+"group": "07_for/Figures_p_78",
+"name": "OverlappingSquares",
+"path": "book/07_for/Figures_p_78/OverlappingSquares.py"
+},
+{
+"group": "07_for/Figures_p_78",
+"name": "RhombusSpiral",
+"path": "book/07_for/Figures_p_78/RhombusSpiral.py"
+},
+{
+"group": "07_for/Figures_p_78",
+"name": "TilingSquaresTrianglesCircles",
+"path": "book/07_for/Figures_p_78/TilingSquaresTrianglesCircles.py"
+},
+{
+"group": "07_for/Figures_p_78",
+"name": "TriangleOfBands",
+"path": "book/07_for/Figures_p_78/TriangleOfBands.py"
+},
+{
+"group": "07_for/Figures_p_78",
+"name": "TriangularGrid",
+"path": "book/07_for/Figures_p_78/TriangularGrid.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "FlutedFrieze",
+"path": "book/07_for/Friezes_1_p_79/FlutedFrieze.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "FriezeOfBraces",
+"path": "book/07_for/Friezes_1_p_79/FriezeOfBraces.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "FriezeOfHearts",
+"path": "book/07_for/Friezes_1_p_79/FriezeOfHearts.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "FriezeOfIntersectingCircles",
+"path": "book/07_for/Friezes_1_p_79/FriezeOfIntersectingCircles.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "FriezeOfLyingDollars",
+"path": "book/07_for/Friezes_1_p_79/FriezeOfLyingDollars.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "FriezeOfMAndInvertedM",
+"path": "book/07_for/Friezes_1_p_79/FriezeOfMAndInvertedM.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "FriezeOfOpenRectangles",
+"path": "book/07_for/Friezes_1_p_79/FriezeOfOpenRectangles.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "FriezeOfPodiums",
+"path": "book/07_for/Friezes_1_p_79/FriezeOfPodiums.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "FriezeOfRhombusesAndZ",
+"path": "book/07_for/Friezes_1_p_79/FriezeOfRhombusesAndZ.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "FriezeOfRhombusesInBand",
+"path": "book/07_for/Friezes_1_p_79/FriezeOfRhombusesInBand.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "FriezeOfSlantedX",
+"path": "book/07_for/Friezes_1_p_79/FriezeOfSlantedX.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "FriezeOfT",
+"path": "book/07_for/Friezes_1_p_79/FriezeOfT.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "FriezeOfZ",
+"path": "book/07_for/Friezes_1_p_79/FriezeOfZ.py"
+},
+{
+"group": "07_for/Friezes_1_p_79",
+"name": "NotchedFrieze",
+"path": "book/07_for/Friezes_1_p_79/NotchedFrieze.py"
+},
+{
+"group": "07_for/Friezes_2_p_80",
+"name": "CrenellatedFrieze",
+"path": "book/07_for/Friezes_2_p_80/CrenellatedFrieze.py"
+},
+{
+"group": "07_for/Friezes_2_p_80",
+"name": "CrossedSerpentineFrieze",
+"path": "book/07_for/Friezes_2_p_80/CrossedSerpentineFrieze.py"
+},
+{
+"group": "07_for/Friezes_2_p_80",
+"name": "FenceFrieze",
+"path": "book/07_for/Friezes_2_p_80/FenceFrieze.py"
+},
+{
+"group": "07_for/Friezes_2_p_80",
+"name": "FriezeOfArrowsAndSquares",
+"path": "book/07_for/Friezes_2_p_80/FriezeOfArrowsAndSquares.py"
+},
+{
+"group": "07_for/Friezes_2_p_80",
+"name": "FriezeOfChainedParallelograms",
+"path": "book/07_for/Friezes_2_p_80/FriezeOfChainedParallelograms.py"
+},
+{
+"group": "07_for/Friezes_2_p_80",
+"name": "FriezeOfCrossedNotches",
+"path": "book/07_for/Friezes_2_p_80/FriezeOfCrossedNotches.py"
+},
+{
+"group": "07_for/Friezes_2_p_80",
+"name": "FriezeOfDiamondPoints",
+"path": "book/07_for/Friezes_2_p_80/FriezeOfDiamondPoints.py"
+},
+{
+"group": "07_for/Friezes_2_p_80",
+"name": "FriezeOfDoubleNotches",
+"path": "book/07_for/Friezes_2_p_80/FriezeOfDoubleNotches.py"
+},
+{
+"group": "07_for/Friezes_2_p_80",
+"name": "FriezeOfInterlockingSquares",
+"path": "book/07_for/Friezes_2_p_80/FriezeOfInterlockingSquares.py"
+},
+{
+"group": "07_for/Friezes_2_p_80",
+"name": "FriezeOfRhombuses",
+"path": "book/07_for/Friezes_2_p_80/FriezeOfRhombuses.py"
+},
+{
+"group": "07_for/Friezes_2_p_80",
+"name": "FriezeOfSpectacles",
+"path": "book/07_for/Friezes_2_p_80/FriezeOfSpectacles.py"
+},
+{
+"group": "07_for/Friezes_2_p_80",
+"name": "FriezeOfSquares",
+"path": "book/07_for/Friezes_2_p_80/FriezeOfSquares.py"
+},
+{
+"group": "07_for/Rosettes_friezes_tilings_p_81",
+"name": "FriezeOfFlowers",
+"path": "book/07_for/Rosettes_friezes_tilings_p_81/FriezeOfFlowers.py"
+},
+{
+"group": "07_for/Rosettes_friezes_tilings_p_81",
+"name": "FriezeOfHalfDiamondPoints",
+"path": "book/07_for/Rosettes_friezes_tilings_p_81/FriezeOfHalfDiamondPoints.py"
+},
+{
+"group": "07_for/Rosettes_friezes_tilings_p_81",
+"name": "FriezeOfLyingS",
+"path": "book/07_for/Rosettes_friezes_tilings_p_81/FriezeOfLyingS.py"
+},
+{
+"group": "07_for/Rosettes_friezes_tilings_p_81",
+"name": "FriezeTrSqTlSq",
+"path": "book/07_for/Rosettes_friezes_tilings_p_81/FriezeTrSqTlSq.py"
+},
+{
+"group": "07_for/Rosettes_friezes_tilings_p_81",
+"name": "Necklace",
+"path": "book/07_for/Rosettes_friezes_tilings_p_81/Necklace.py"
+},
+{
+"group": "07_for/Rosettes_friezes_tilings_p_81",
+"name": "OctagonalRosette",
+"path": "book/07_for/Rosettes_friezes_tilings_p_81/OctagonalRosette.py"
+},
+{
+"group": "07_for/Rosettes_friezes_tilings_p_81",
+"name": "RosetteOctagonAndSquares",
+"path": "book/07_for/Rosettes_friezes_tilings_p_81/RosetteOctagonAndSquares.py"
+},
+{
+"group": "07_for/Rosettes_friezes_tilings_p_81",
+"name": "SquaresAndCircles",
+"path": "book/07_for/Rosettes_friezes_tilings_p_81/SquaresAndCircles.py"
+},
+{
+"group": "07_for/Rosettes_friezes_tilings_p_81",
+"name": "TilingRoundedSquares",
+"path": "book/07_for/Rosettes_friezes_tilings_p_81/TilingRoundedSquares.py"
+},
+{
+"group": "08_integer_expressions",
+"name": "AlKarajiTiling",
+"path": "book/08_integer_expressions/AlKarajiTiling.py"
+},
+{
+"group": "08_integer_expressions",
+"name": "AlKarajiTilingExplained",
+"path": "book/08_integer_expressions/AlKarajiTilingExplained.py"
+},
+{
+"group": "08_integer_expressions",
+"name": "GolombTiling",
+"path": "book/08_integer_expressions/GolombTiling.py"
+},
+{
+"group": "08_integer_expressions",
+"name": "GolombTilingExplained",
+"path": "book/08_integer_expressions/GolombTilingExplained.py"
+},
+{
+"group": "08_integer_expressions",
+"name": "NicomachusTiling",
+"path": "book/08_integer_expressions/NicomachusTiling.py"
+},
+{
+"group": "08_integer_expressions",
+"name": "Pyramid",
+"path": "book/08_integer_expressions/Pyramid.py"
+},
+{
+"group": "08_integer_expressions",
+"name": "SawtoothStakes",
+"path": "book/08_integer_expressions/SawtoothStakes.py"
+},
+{
+"group": "08_integer_expressions",
+"name": "Sum1p2p3EtcExplained",
+"path": "book/08_integer_expressions/Sum1p2p3EtcExplained.py"
+},
+{
+"group": "08_integer_expressions",
+"name": "WavesOfStakes",
+"path": "book/08_integer_expressions/WavesOfStakes.py"
+},
+{
+"group": "08_integer_expressions/Greek_key_spirals_tiling_p_92",
+"name": "FringedSquare",
+"path": "book/08_integer_expressions/Greek_key_spirals_tiling_p_92/FringedSquare.py"
+},
+{
+"group": "08_integer_expressions/Greek_key_spirals_tiling_p_92",
+"name": "GreekKeyFrieze_1",
+"path": "book/08_integer_expressions/Greek_key_spirals_tiling_p_92/GreekKeyFrieze_1.py"
+},
+{
+"group": "08_integer_expressions/Greek_key_spirals_tiling_p_92",
+"name": "GreekKeyFrieze_2",
+"path": "book/08_integer_expressions/Greek_key_spirals_tiling_p_92/GreekKeyFrieze_2.py"
+},
+{
+"group": "08_integer_expressions/Greek_key_spirals_tiling_p_92",
+"name": "PyramidalGrid",
+"path": "book/08_integer_expressions/Greek_key_spirals_tiling_p_92/PyramidalGrid.py"
+},
+{
+"group": "08_integer_expressions/Greek_key_spirals_tiling_p_92",
+"name": "SolidSpiral",
+"path": "book/08_integer_expressions/Greek_key_spirals_tiling_p_92/SolidSpiral.py"
+},
+{
+"group": "08_integer_expressions/Greek_key_spirals_tiling_p_92",
+"name": "TrapezoidalSpiral",
+"path": "book/08_integer_expressions/Greek_key_spirals_tiling_p_92/TrapezoidalSpiral.py"
+},
+{
+"group": "09_calling_procedures",
+"name": "Arabesque1",
+"path": "book/09_calling_procedures/Arabesque1.py"
+},
+{
+"group": "09_calling_procedures",
+"name": "Crystal8Branches",
+"path": "book/09_calling_procedures/Crystal8Branches.py"
+},
+{
+"group": "09_calling_procedures",
+"name": "CubeInPerspective",
+"path": "book/09_calling_procedures/CubeInPerspective.py"
+},
+{
+"group": "09_calling_procedures",
+"name": "Glasses",
+"path": "book/09_calling_procedures/Glasses.py"
+},
+{
+"group": "09_calling_procedures",
+"name": "JacobsLadder",
+"path": "book/09_calling_procedures/JacobsLadder.py"
+},
+{
+"group": "09_calling_procedures",
+"name": "OctagonalStripes",
+"path": "book/09_calling_procedures/OctagonalStripes.py"
+},
+{
+"group": "09_calling_procedures",
+"name": "PenPosition",
+"path": "book/09_calling_procedures/PenPosition.py"
+},
+{
+"group": "09_calling_procedures",
+"name": "PenWidth",
+"path": "book/09_calling_procedures/PenWidth.py"
+},
+{
+"group": "09_calling_procedures",
+"name": "Spirolateral90degOrder5",
+"path": "book/09_calling_procedures/Spirolateral90degOrder5.py"
+},
+{
+"group": "09_calling_procedures",
+"name": "Spirolateral90degOrder7",
+"path": "book/09_calling_procedures/Spirolateral90degOrder7.py"
+},
+{
+"group": "09_calling_procedures",
+"name": "Spirolateral90degOrder9",
+"path": "book/09_calling_procedures/Spirolateral90degOrder9.py"
+},
+{
+"group": "10_grid",
+"name": "Ellipses",
+"path": "book/10_grid/Ellipses.py"
+},
+{
+"group": "10_grid",
+"name": "ExplainRectangularGrid",
+"path": "book/10_grid/ExplainRectangularGrid.py"
+},
+{
+"group": "10_grid",
+"name": "OverlappingSquares2",
+"path": "book/10_grid/OverlappingSquares2.py"
+},
+{
+"group": "10_grid",
+"name": "Parallelograms",
+"path": "book/10_grid/Parallelograms.py"
+},
+{
+"group": "10_grid",
+"name": "RectangleAndEllipse",
+"path": "book/10_grid/RectangleAndEllipse.py"
+},
+{
+"group": "10_grid/Figures_p_115",
+"name": "CircularSpiral",
+"path": "book/10_grid/Figures_p_115/CircularSpiral.py"
+},
+{
+"group": "10_grid/Figures_p_115",
+"name": "DoubleNotchedFrieze",
+"path": "book/10_grid/Figures_p_115/DoubleNotchedFrieze.py"
+},
+{
+"group": "10_grid/Figures_p_115",
+"name": "DrawConcentricCircles",
+"path": "book/10_grid/Figures_p_115/DrawConcentricCircles.py"
+},
+{
+"group": "10_grid/Figures_p_115",
+"name": "GeometricSpiral",
+"path": "book/10_grid/Figures_p_115/GeometricSpiral.py"
+},
+{
+"group": "10_grid/Figures_p_115",
+"name": "OctagonalSpiral",
+"path": "book/10_grid/Figures_p_115/OctagonalSpiral.py"
+},
+{
+"group": "10_grid/Figures_p_116",
+"name": "Ball",
+"path": "book/10_grid/Figures_p_116/Ball.py"
+},
+{
+"group": "10_grid/Figures_p_116",
+"name": "Logo40",
+"path": "book/10_grid/Figures_p_116/Logo40.py"
+},
+{
+"group": "10_grid/Figures_p_116",
+"name": "Propeller",
+"path": "book/10_grid/Figures_p_116/Propeller.py"
+},
+{
+"group": "10_grid/Figures_p_116",
+"name": "Snail1",
+"path": "book/10_grid/Figures_p_116/Snail1.py"
+},
+{
+"group": "10_grid/Figures_p_116",
+"name": "Snail2",
+"path": "book/10_grid/Figures_p_116/Snail2.py"
+},
+{
+"group": "10_grid/Figures_p_116",
+"name": "StegosaurusAndBaby",
+"path": "book/10_grid/Figures_p_116/StegosaurusAndBaby.py"
+},
+{
+"group": "10_grid/Figures_p_117",
+"name": "Bicycle",
+"path": "book/10_grid/Figures_p_117/Bicycle.py"
+},
+{
+"group": "10_grid/Figures_p_117",
+"name": "DogsAndPuppies",
+"path": "book/10_grid/Figures_p_117/DogsAndPuppies.py"
+},
+{
+"group": "10_grid/Figures_p_117",
+"name": "OverlappingDiamondsFrieze",
+"path": "book/10_grid/Figures_p_117/OverlappingDiamondsFrieze.py"
+},
+{
+"group": "10_grid/Figures_p_117",
+"name": "VanDeVechtPattern",
+"path": "book/10_grid/Figures_p_117/VanDeVechtPattern.py"
+},
+{
+"group": "10_grid/Tilings_after_van_de_Vecht",
+"name": "VdVTiling1Limit",
+"path": "book/10_grid/Tilings_after_van_de_Vecht/VdVTiling1Limit.py"
+},
+{
+"group": "10_grid/Tilings_after_van_de_Vecht",
+"name": "VdVTiling1LimitPainted",
+"path": "book/10_grid/Tilings_after_van_de_Vecht/VdVTiling1LimitPainted.py"
+},
+{
+"group": "10_grid/Tilings_after_van_de_Vecht",
+"name": "VdVTiling2Limits",
+"path": "book/10_grid/Tilings_after_van_de_Vecht/VdVTiling2Limits.py"
+},
+{
+"group": "10_grid/Tilings_after_van_de_Vecht",
+"name": "VdVTiling2LimitsPainted",
+"path": "book/10_grid/Tilings_after_van_de_Vecht/VdVTiling2LimitsPainted.py"
+},
+{
+"group": "10_grid/Tilings_after_van_de_Vecht",
+"name": "VdVTiling4Limits",
+"path": "book/10_grid/Tilings_after_van_de_Vecht/VdVTiling4Limits.py"
+},
+{
+"group": "10_grid/Tilings_after_van_de_Vecht",
+"name": "VdVTiling4LimitsPainted",
+"path": "book/10_grid/Tilings_after_van_de_Vecht/VdVTiling4LimitsPainted.py"
+},
+{
+"group": "10_grid/Tilings_after_van_de_Vecht",
+"name": "VdVTilingRegular",
+"path": "book/10_grid/Tilings_after_van_de_Vecht/VdVTilingRegular.py"
+},
+{
+"group": "10_grid/Tilings_after_van_de_Vecht",
+"name": "VdVTilingRegularPainted",
+"path": "book/10_grid/Tilings_after_van_de_Vecht/VdVTilingRegularPainted.py"
+},
+{
+"group": "11_constants",
+"name": "Duckling",
+"path": "book/11_constants/Duckling.py"
+},
+{
+"group": "11_constants",
+"name": "MalteseCross_1",
+"path": "book/11_constants/MalteseCross_1.py"
+},
+{
+"group": "11_constants",
+"name": "SingularPropeller",
+"path": "book/11_constants/SingularPropeller.py"
+},
+{
+"group": "11_constants",
+"name": "SixMalteseCrosses",
+"path": "book/11_constants/SixMalteseCrosses.py"
+},
+{
+"group": "12_painting",
+"name": "Colours",
+"path": "book/12_painting/Colours.py"
+},
+{
+"group": "12_painting",
+"name": "DisjointSquaresTilingColour",
+"path": "book/12_painting/DisjointSquaresTilingColour.py"
+},
+{
+"group": "12_painting",
+"name": "PaintingADrawing",
+"path": "book/12_painting/PaintingADrawing.py"
+},
+{
+"group": "12_painting",
+"name": "StylizedFlowerColour",
+"path": "book/12_painting/StylizedFlowerColour.py"
+},
+{
+"group": "12_painting",
+"name": "WavyHexagonalTiling",
+"path": "book/12_painting/WavyHexagonalTiling.py"
+},
+{
+"group": "12_painting",
+"name": "WavyHexagonalTilingMotif",
+"path": "book/12_painting/WavyHexagonalTilingMotif.py"
+},
+{
+"group": "12_painting",
+"name": "YinYang",
+"path": "book/12_painting/YinYang.py"
+},
+{
+"group": "12_painting/Painting_p_135",
+"name": "AlhambraMosaic1",
+"path": "book/12_painting/Painting_p_135/AlhambraMosaic1.py"
+},
+{
+"group": "12_painting/Painting_p_135",
+"name": "AlhambraMosaic2",
+"path": "book/12_painting/Painting_p_135/AlhambraMosaic2.py"
+},
+{
+"group": "12_painting/Painting_p_135",
+"name": "AlhambraMosaic3",
+"path": "book/12_painting/Painting_p_135/AlhambraMosaic3.py"
+},
+{
+"group": "12_painting/Painting_p_135",
+"name": "AlhambraMosaic4",
+"path": "book/12_painting/Painting_p_135/AlhambraMosaic4.py"
+},
+{
+"group": "12_painting/Painting_p_135",
+"name": "ColourBall",
+"path": "book/12_painting/Painting_p_135/ColourBall.py"
+},
+{
+"group": "12_painting/Painting_p_135",
+"name": "ThreeColourTiles",
+"path": "book/12_painting/Painting_p_135/ThreeColourTiles.py"
+},
+{
+"group": "12_painting/Tiling_of_the_square_p_134",
+"name": "Chessboard1",
+"path": "book/12_painting/Tiling_of_the_square_p_134/Chessboard1.py"
+},
+{
+"group": "12_painting/Tiling_of_the_square_p_134",
+"name": "RhombicRings",
+"path": "book/12_painting/Tiling_of_the_square_p_134/RhombicRings.py"
+},
+{
+"group": "12_painting/Tiling_of_the_square_p_134",
+"name": "TriangularTilingOfTheSquare",
+"path": "book/12_painting/Tiling_of_the_square_p_134/TriangularTilingOfTheSquare.py"
+},
+{
+"group": "13_declaring_procedures",
+"name": "Arabesque",
+"path": "book/13_declaring_procedures/Arabesque.py"
+},
+{
+"group": "13_declaring_procedures",
+"name": "Canoe",
+"path": "book/13_declaring_procedures/Canoe.py"
+},
+{
+"group": "13_declaring_procedures",
+"name": "Caterpillar",
+"path": "book/13_declaring_procedures/Caterpillar.py"
+},
+{
+"group": "13_declaring_procedures",
+"name": "ColourLogo",
+"path": "book/13_declaring_procedures/ColourLogo.py"
+},
+{
+"group": "13_declaring_procedures",
+"name": "ColourPropeller",
+"path": "book/13_declaring_procedures/ColourPropeller.py"
+},
+{
+"group": "13_declaring_procedures",
+"name": "CrossWith3Arms",
+"path": "book/13_declaring_procedures/CrossWith3Arms.py"
+},
+{
+"group": "13_declaring_procedures",
+"name": "DottedSquare",
+"path": "book/13_declaring_procedures/DottedSquare.py"
+},
+{
+"group": "13_declaring_procedures",
+"name": "InscribedSquares",
+"path": "book/13_declaring_procedures/InscribedSquares.py"
+},
+{
+"group": "13_declaring_procedures",
+"name": "MacintoshSE",
+"path": "book/13_declaring_procedures/MacintoshSE.py"
+},
+{
+"group": "13_declaring_procedures",
+"name": "PaintedInscribedSquares",
+"path": "book/13_declaring_procedures/PaintedInscribedSquares.py"
+},
+{
+"group": "13_declaring_procedures",
+"name": "SegmentedSpiral",
+"path": "book/13_declaring_procedures/SegmentedSpiral.py"
+},
+{
+"group": "14_cartesian_coordinates",
+"name": "AlhambraMosaic5",
+"path": "book/14_cartesian_coordinates/AlhambraMosaic5.py"
+},
+{
+"group": "14_cartesian_coordinates",
+"name": "Learn_Coordinates",
+"path": "book/14_cartesian_coordinates/Learn_Coordinates.py"
+},
+{
+"group": "14_cartesian_coordinates",
+"name": "Learn_Translation",
+"path": "book/14_cartesian_coordinates/Learn_Translation.py"
+},
+{
+"group": "14_cartesian_coordinates",
+"name": "QuadrilateralTiling",
+"path": "book/14_cartesian_coordinates/QuadrilateralTiling.py"
+},
+{
+"group": "14_cartesian_coordinates",
+"name": "QuadrilateralTilingMotif",
+"path": "book/14_cartesian_coordinates/QuadrilateralTilingMotif.py"
+},
+{
+"group": "14_cartesian_coordinates",
+"name": "RowOfSquares1",
+"path": "book/14_cartesian_coordinates/RowOfSquares1.py"
+},
+{
+"group": "14_cartesian_coordinates",
+"name": "RowOfSquares2",
+"path": "book/14_cartesian_coordinates/RowOfSquares2.py"
+},
+{
+"group": "14_cartesian_coordinates/Tilings_of_6x6_patterns_p_156",
+"name": "BevelledCrossTiling",
+"path": "book/14_cartesian_coordinates/Tilings_of_6x6_patterns_p_156/BevelledCrossTiling.py"
+},
+{
+"group": "14_cartesian_coordinates/Tilings_of_6x6_patterns_p_156",
+"name": "CrossesOnSquaresTiling",
+"path": "book/14_cartesian_coordinates/Tilings_of_6x6_patterns_p_156/CrossesOnSquaresTiling.py"
+},
+{
+"group": "14_cartesian_coordinates/Tilings_of_6x6_patterns_p_156",
+"name": "CrystalTiling",
+"path": "book/14_cartesian_coordinates/Tilings_of_6x6_patterns_p_156/CrystalTiling.py"
+},
+{
+"group": "14_cartesian_coordinates/Tilings_of_6x6_patterns_p_156",
+"name": "PropellerTiling",
+"path": "book/14_cartesian_coordinates/Tilings_of_6x6_patterns_p_156/PropellerTiling.py"
+},
+{
+"group": "14_cartesian_coordinates/Tilings_of_6x6_patterns_p_156",
+"name": "SwissCrossTiling",
+"path": "book/14_cartesian_coordinates/Tilings_of_6x6_patterns_p_156/SwissCrossTiling.py"
+},
+{
+"group": "14_cartesian_coordinates/Tilings_of_6x6_patterns_p_156",
+"name": "WavySwissCrossTiling",
+"path": "book/14_cartesian_coordinates/Tilings_of_6x6_patterns_p_156/WavySwissCrossTiling.py"
+},
+{
+"group": "15_if",
+"name": "CombFrieze",
+"path": "book/15_if/CombFrieze.py"
+},
+{
+"group": "15_if",
+"name": "FacingNorth",
+"path": "book/15_if/FacingNorth.py"
+},
+{
+"group": "15_if",
+"name": "FriezeOfCircles",
+"path": "book/15_if/FriezeOfCircles.py"
+},
+{
+"group": "15_if",
+"name": "FriezeOfOctagons",
+"path": "book/15_if/FriezeOfOctagons.py"
+},
+{
+"group": "15_if",
+"name": "FriezeOfRipples",
+"path": "book/15_if/FriezeOfRipples.py"
+},
+{
+"group": "15_if",
+"name": "JuxtaposedOctagonsTiling",
+"path": "book/15_if/JuxtaposedOctagonsTiling.py"
+},
+{
+"group": "15_if",
+"name": "SawtoothFrieze",
+"path": "book/15_if/SawtoothFrieze.py"
+},
+{
+"group": "15_if",
+"name": "SemiOctagonalFrieze",
+"path": "book/15_if/SemiOctagonalFrieze.py"
+},
+{
+"group": "16_boolean_expressions",
+"name": "AlhambraMosaic6",
+"path": "book/16_boolean_expressions/AlhambraMosaic6.py"
+},
+{
+"group": "16_boolean_expressions",
+"name": "CogwheelsTiling",
+"path": "book/16_boolean_expressions/CogwheelsTiling.py"
+},
+{
+"group": "16_boolean_expressions",
+"name": "DefinitionFdn",
+"path": "book/16_boolean_expressions/DefinitionFdn.py"
+},
+{
+"group": "16_boolean_expressions",
+"name": "DoubleCombFrieze",
+"path": "book/16_boolean_expressions/DoubleCombFrieze.py"
+},
+{
+"group": "16_boolean_expressions",
+"name": "EgyptianCarpet",
+"path": "book/16_boolean_expressions/EgyptianCarpet.py"
+},
+{
+"group": "16_boolean_expressions",
+"name": "GoldenFrieze",
+"path": "book/16_boolean_expressions/GoldenFrieze.py"
+},
+{
+"group": "16_boolean_expressions",
+"name": "GridOfCrosses",
+"path": "book/16_boolean_expressions/GridOfCrosses.py"
+},
+{
+"group": "16_boolean_expressions",
+"name": "InterlacedHexagonsTiling",
+"path": "book/16_boolean_expressions/InterlacedHexagonsTiling.py"
+},
+{
+"group": "16_boolean_expressions",
+"name": "PyramidalSerpentine",
+"path": "book/16_boolean_expressions/PyramidalSerpentine.py"
+},
+{
+"group": "16_boolean_expressions",
+"name": "Streamer",
+"path": "book/16_boolean_expressions/Streamer.py"
+},
+{
+"group": "16_boolean_expressions",
+"name": "ZebraSquare",
+"path": "book/16_boolean_expressions/ZebraSquare.py"
+},
+{
+"group": "17_while",
+"name": "DrawFrame",
+"path": "book/17_while/DrawFrame.py"
+},
+{
+"group": "17_while",
+"name": "FdWithoutLeavingTheFrame",
+"path": "book/17_while/FdWithoutLeavingTheFrame.py"
+},
+{
+"group": "17_while",
+"name": "FriezeOfTriangles",
+"path": "book/17_while/FriezeOfTriangles.py"
+},
+{
+"group": "17_while",
+"name": "GlGrGtGb",
+"path": "book/17_while/GlGrGtGb.py"
+},
+{
+"group": "17_while",
+"name": "HorizontalLine",
+"path": "book/17_while/HorizontalLine.py"
+},
+{
+"group": "17_while",
+"name": "Loop1",
+"path": "book/17_while/Loop1.py"
+},
+{
+"group": "17_while",
+"name": "Loop2",
+"path": "book/17_while/Loop2.py"
+},
+{
+"group": "17_while",
+"name": "SquareGrid",
+"path": "book/17_while/SquareGrid.py"
+},
+{
+"group": "17_while",
+"name": "StoppingPoints",
+"path": "book/17_while/StoppingPoints.py"
+},
+{
+"group": "17_while",
+"name": "WireMesh",
+"path": "book/17_while/WireMesh.py"
+},
+{
+"group": "18_coding",
+"name": "AuClairDeLaLune",
+"path": "book/18_coding/AuClairDeLaLune.py"
+},
+{
+"group": "18_coding",
+"name": "BinaryConversions",
+"path": "book/18_coding/BinaryConversions.py"
+},
+{
+"group": "18_coding",
+"name": "ChappeTelegraph",
+"path": "book/18_coding/ChappeTelegraph.py"
+},
+{
+"group": "18_coding",
+"name": "ChappeTelegraphCode",
+"path": "book/18_coding/ChappeTelegraphCode.py"
+},
+{
+"group": "18_coding",
+"name": "ChappeTelegraphTranslated",
+"path": "book/18_coding/ChappeTelegraphTranslated.py"
+},
+{
+"group": "18_coding",
+"name": "Coding123456789",
+"path": "book/18_coding/Coding123456789.py"
+},
+{
+"group": "18_coding",
+"name": "Decryption",
+"path": "book/18_coding/Decryption.py"
+},
+{
+"group": "18_coding",
+"name": "Encryption",
+"path": "book/18_coding/Encryption.py"
+},
+{
+"group": "18_coding",
+"name": "Greensleeves",
+"path": "book/18_coding/Greensleeves.py"
+},
+{
+"group": "18_coding",
+"name": "MorseCode1",
+"path": "book/18_coding/MorseCode1.py"
+},
+{
+"group": "18_coding",
+"name": "MorseCode2",
+"path": "book/18_coding/MorseCode2.py"
+},
+{
+"group": "18_coding",
+"name": "MorseCodeTranslated",
+"path": "book/18_coding/MorseCodeTranslated.py"
+},
+{
+"group": "18_coding",
+"name": "OTannenbaum",
+"path": "book/18_coding/OTannenbaum.py"
+},
+{
+"group": "18_coding",
+"name": "PhoneticAlphabet",
+"path": "book/18_coding/PhoneticAlphabet.py"
+},
+{
+"group": "18_coding",
+"name": "PhoneticAlphabetTable",
+"path": "book/18_coding/PhoneticAlphabetTable.py"
+},
+{
+"group": "18_coding",
+"name": "StaffAndNotesOnComputer",
+"path": "book/18_coding/StaffAndNotesOnComputer.py"
+},
+{
+"group": "18_coding",
+"name": "WriteAndPlayIlCourtLeFuret",
+"path": "book/18_coding/WriteAndPlayIlCourtLeFuret.py"
+},
+{
+"group": "18_coding",
+"name": "WriteAndPlayMusic",
+"path": "book/18_coding/WriteAndPlayMusic.py"
+},
+{
+"group": "18_coding/songs",
+"name": "ALaClaireFontaine",
+"path": "book/18_coding/songs/ALaClaireFontaine.py"
+},
+{
+"group": "18_coding/songs",
+"name": "AlohaOe",
+"path": "book/18_coding/songs/AlohaOe.py"
+},
+{
+"group": "18_coding/songs",
+"name": "Alouette",
+"path": "book/18_coding/songs/Alouette.py"
+},
+{
+"group": "18_coding/songs",
+"name": "CadetRoussel",
+"path": "book/18_coding/songs/CadetRoussel.py"
+},
+{
+"group": "18_coding/songs",
+"name": "ChevaliersDeLaTableRonde",
+"path": "book/18_coding/songs/ChevaliersDeLaTableRonde.py"
+},
+{
+"group": "18_coding/songs",
+"name": "CielitoLindo",
+"path": "book/18_coding/songs/CielitoLindo.py"
+},
+{
+"group": "18_coding/songs",
+"name": "DeLosCuatroMuleros",
+"path": "book/18_coding/songs/DeLosCuatroMuleros.py"
+},
+{
+"group": "18_coding/songs",
+"name": "EnPassantParLaLorraine",
+"path": "book/18_coding/songs/EnPassantParLaLorraine.py"
+},
+{
+"group": "18_coding/songs",
+"name": "FrereJacques",
+"path": "book/18_coding/songs/FrereJacques.py"
+},
+{
+"group": "18_coding/songs",
+"name": "JaiDuBonTabac",
+"path": "book/18_coding/songs/JaiDuBonTabac.py"
+},
+{
+"group": "18_coding/songs",
+"name": "Kalinka",
+"path": "book/18_coding/songs/Kalinka.py"
+},
+{
+"group": "18_coding/songs",
+"name": "LePontDAvignon",
+"path": "book/18_coding/songs/LePontDAvignon.py"
+},
+{
+"group": "18_coding/songs",
+"name": "MaNormandie",
+"path": "book/18_coding/songs/MaNormandie.py"
+},
+{
+"group": "18_coding/songs",
+"name": "OhMyDarlingClementine",
+"path": "book/18_coding/songs/OhMyDarlingClementine.py"
+},
+{
+"group": "18_coding/songs",
+"name": "SantaLucia",
+"path": "book/18_coding/songs/SantaLucia.py"
+},
+{
+"group": "18_coding/songs",
+"name": "WhenTheSaintsGoMarchingIn",
+"path": "book/18_coding/songs/WhenTheSaintsGoMarchingIn.py"
+},
+{
+"group": "19_rational_expressions",
+"name": "ArithmeticSpiral",
+"path": "book/19_rational_expressions/ArithmeticSpiral.py"
+},
+{
+"group": "19_rational_expressions",
+"name": "BaravelleSpiral",
+"path": "book/19_rational_expressions/BaravelleSpiral.py"
+},
+{
+"group": "19_rational_expressions",
+"name": "BeardPattern",
+"path": "book/19_rational_expressions/BeardPattern.py"
+},
+{
+"group": "19_rational_expressions",
+"name": "GoldenSpiral",
+"path": "book/19_rational_expressions/GoldenSpiral.py"
+},
+{
+"group": "19_rational_expressions",
+"name": "PaintedNestedSquares",
+"path": "book/19_rational_expressions/PaintedNestedSquares.py"
+},
+{
+"group": "19_rational_expressions",
+"name": "RoundingErrors",
+"path": "book/19_rational_expressions/RoundingErrors.py"
+},
+{
+"group": "19_rational_expressions",
+"name": "RoundingErrorsAddition",
+"path": "book/19_rational_expressions/RoundingErrorsAddition.py"
+},
+{
+"group": "20_polar_grid",
+"name": "ChristieCubeTiling",
+"path": "book/20_polar_grid/ChristieCubeTiling.py"
+},
+{
+"group": "20_polar_grid",
+"name": "CircularVoderbergTiling",
+"path": "book/20_polar_grid/CircularVoderbergTiling.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Cosine",
+"path": "book/20_polar_grid/Cosine.py"
+},
+{
+"group": "20_polar_grid",
+"name": "CrossInSquare",
+"path": "book/20_polar_grid/CrossInSquare.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Cube",
+"path": "book/20_polar_grid/Cube.py"
+},
+{
+"group": "20_polar_grid",
+"name": "DiscTiling",
+"path": "book/20_polar_grid/DiscTiling.py"
+},
+{
+"group": "20_polar_grid",
+"name": "EquilateralTriangle",
+"path": "book/20_polar_grid/EquilateralTriangle.py"
+},
+{
+"group": "20_polar_grid",
+"name": "EquilateralTrianglesTiling",
+"path": "book/20_polar_grid/EquilateralTrianglesTiling.py"
+},
+{
+"group": "20_polar_grid",
+"name": "EscherTriangleTiling",
+"path": "book/20_polar_grid/EscherTriangleTiling.py"
+},
+{
+"group": "20_polar_grid",
+"name": "EscherTriangleTilingPainted",
+"path": "book/20_polar_grid/EscherTriangleTilingPainted.py"
+},
+{
+"group": "20_polar_grid",
+"name": "FivePointedStar",
+"path": "book/20_polar_grid/FivePointedStar.py"
+},
+{
+"group": "20_polar_grid",
+"name": "GreatRhombicuboctahedron",
+"path": "book/20_polar_grid/GreatRhombicuboctahedron.py"
+},
+{
+"group": "20_polar_grid",
+"name": "GsrtExplained",
+"path": "book/20_polar_grid/GsrtExplained.py"
+},
+{
+"group": "20_polar_grid",
+"name": "HexagonsRosette",
+"path": "book/20_polar_grid/HexagonsRosette.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Honeycomb",
+"path": "book/20_polar_grid/Honeycomb.py"
+},
+{
+"group": "20_polar_grid",
+"name": "HoremisPattern1",
+"path": "book/20_polar_grid/HoremisPattern1.py"
+},
+{
+"group": "20_polar_grid",
+"name": "HoremisPattern2",
+"path": "book/20_polar_grid/HoremisPattern2.py"
+},
+{
+"group": "20_polar_grid",
+"name": "IsoscelesTriangle",
+"path": "book/20_polar_grid/IsoscelesTriangle.py"
+},
+{
+"group": "20_polar_grid",
+"name": "IsoscelesTriangleExplained",
+"path": "book/20_polar_grid/IsoscelesTriangleExplained.py"
+},
+{
+"group": "20_polar_grid",
+"name": "IsoscelesTrianglesInCircle",
+"path": "book/20_polar_grid/IsoscelesTrianglesInCircle.py"
+},
+{
+"group": "20_polar_grid",
+"name": "IsoscelesTrianglesInSpiral",
+"path": "book/20_polar_grid/IsoscelesTrianglesInSpiral.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Jolygon015",
+"path": "book/20_polar_grid/Jolygon015.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Jolygon060",
+"path": "book/20_polar_grid/Jolygon060.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Jolygon072",
+"path": "book/20_polar_grid/Jolygon072.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Jolygon076",
+"path": "book/20_polar_grid/Jolygon076.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Jolygon089",
+"path": "book/20_polar_grid/Jolygon089.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Jolygon092",
+"path": "book/20_polar_grid/Jolygon092.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Jolygon118",
+"path": "book/20_polar_grid/Jolygon118.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Jolygon144",
+"path": "book/20_polar_grid/Jolygon144.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Jolygon175",
+"path": "book/20_polar_grid/Jolygon175.py"
+},
+{
+"group": "20_polar_grid",
+"name": "LimaconOfPascal",
+"path": "book/20_polar_grid/LimaconOfPascal.py"
+},
+{
+"group": "20_polar_grid",
+"name": "MalteseCross_2",
+"path": "book/20_polar_grid/MalteseCross_2.py"
+},
+{
+"group": "20_polar_grid",
+"name": "MoritzCurve",
+"path": "book/20_polar_grid/MoritzCurve.py"
+},
+{
+"group": "20_polar_grid",
+"name": "OctagonRectanglesCircles",
+"path": "book/20_polar_grid/OctagonRectanglesCircles.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Pentagon_1",
+"path": "book/20_polar_grid/Pentagon_1.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Pentagon_2",
+"path": "book/20_polar_grid/Pentagon_2.py"
+},
+{
+"group": "20_polar_grid",
+"name": "PentagonsRosette",
+"path": "book/20_polar_grid/PentagonsRosette.py"
+},
+{
+"group": "20_polar_grid",
+"name": "PolygonalGreekKey",
+"path": "book/20_polar_grid/PolygonalGreekKey.py"
+},
+{
+"group": "20_polar_grid",
+"name": "PolygonalGreekKeyPattern",
+"path": "book/20_polar_grid/PolygonalGreekKeyPattern.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Protractor",
+"path": "book/20_polar_grid/Protractor.py"
+},
+{
+"group": "20_polar_grid",
+"name": "RectanglesRosette",
+"path": "book/20_polar_grid/RectanglesRosette.py"
+},
+{
+"group": "20_polar_grid",
+"name": "RegularDodecahedron",
+"path": "book/20_polar_grid/RegularDodecahedron.py"
+},
+{
+"group": "20_polar_grid",
+"name": "RegularIcosahedron",
+"path": "book/20_polar_grid/RegularIcosahedron.py"
+},
+{
+"group": "20_polar_grid",
+"name": "RegularOctahedron",
+"path": "book/20_polar_grid/RegularOctahedron.py"
+},
+{
+"group": "20_polar_grid",
+"name": "RegularPolygon",
+"path": "book/20_polar_grid/RegularPolygon.py"
+},
+{
+"group": "20_polar_grid",
+"name": "RegularPolygons",
+"path": "book/20_polar_grid/RegularPolygons.py"
+},
+{
+"group": "20_polar_grid",
+"name": "RegularTetrahedron",
+"path": "book/20_polar_grid/RegularTetrahedron.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Rhodonea",
+"path": "book/20_polar_grid/Rhodonea.py"
+},
+{
+"group": "20_polar_grid",
+"name": "RotExplained",
+"path": "book/20_polar_grid/RotExplained.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Sine",
+"path": "book/20_polar_grid/Sine.py"
+},
+{
+"group": "20_polar_grid",
+"name": "SixPointedStar",
+"path": "book/20_polar_grid/SixPointedStar.py"
+},
+{
+"group": "20_polar_grid",
+"name": "SmallRhombicuboctahedron",
+"path": "book/20_polar_grid/SmallRhombicuboctahedron.py"
+},
+{
+"group": "20_polar_grid",
+"name": "SpiderWeb",
+"path": "book/20_polar_grid/SpiderWeb.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Spirolateral135Order3",
+"path": "book/20_polar_grid/Spirolateral135Order3.py"
+},
+{
+"group": "20_polar_grid",
+"name": "SquaresRosette",
+"path": "book/20_polar_grid/SquaresRosette.py"
+},
+{
+"group": "20_polar_grid",
+"name": "StarTiling",
+"path": "book/20_polar_grid/StarTiling.py"
+},
+{
+"group": "20_polar_grid",
+"name": "Stars",
+"path": "book/20_polar_grid/Stars.py"
+},
+{
+"group": "20_polar_grid",
+"name": "SuccessiveRots",
+"path": "book/20_polar_grid/SuccessiveRots.py"
+},
+{
+"group": "20_polar_grid",
+"name": "TrianglesSquaresTiling",
+"path": "book/20_polar_grid/TrianglesSquaresTiling.py"
+},
+{
+"group": "20_polar_grid",
+"name": "TrianglesStarsTiling",
+"path": "book/20_polar_grid/TrianglesStarsTiling.py"
+},
+{
+"group": "20_polar_grid",
+"name": "TruncatedTetrahedron",
+"path": "book/20_polar_grid/TruncatedTetrahedron.py"
+},
+{
+"group": "20_polar_grid",
+"name": "VoderbergDoubleSpiral",
+"path": "book/20_polar_grid/VoderbergDoubleSpiral.py"
+},
+{
+"group": "20_polar_grid",
+"name": "VoderbergTile",
+"path": "book/20_polar_grid/VoderbergTile.py"
+},
+{
+"group": "20_polar_grid",
+"name": "VoderbergTripleSpiral",
+"path": "book/20_polar_grid/VoderbergTripleSpiral.py"
+},
+{
+"group": "21_recursion",
+"name": "BinaryTree",
+"path": "book/21_recursion/BinaryTree.py"
+},
+{
+"group": "21_recursion",
+"name": "DecimalToBinary",
+"path": "book/21_recursion/DecimalToBinary.py"
+},
+{
+"group": "21_recursion",
+"name": "DecimalToHexadecimal",
+"path": "book/21_recursion/DecimalToHexadecimal.py"
+},
+{
+"group": "21_recursion",
+"name": "DecimalToOctal",
+"path": "book/21_recursion/DecimalToOctal.py"
+},
+{
+"group": "21_recursion",
+"name": "DecimalToTernary",
+"path": "book/21_recursion/DecimalToTernary.py"
+},
+{
+"group": "21_recursion",
+"name": "DragonCurve",
+"path": "book/21_recursion/DragonCurve.py"
+},
+{
+"group": "21_recursion",
+"name": "DragonCurves",
+"path": "book/21_recursion/DragonCurves.py"
+},
+{
+"group": "21_recursion",
+"name": "HilbertCurve",
+"path": "book/21_recursion/HilbertCurve.py"
+},
+{
+"group": "21_recursion",
+"name": "HilbertCurves",
+"path": "book/21_recursion/HilbertCurves.py"
+},
+{
+"group": "21_recursion",
+"name": "InscribedPolygons1_2",
+"path": "book/21_recursion/InscribedPolygons1_2.py"
+},
+{
+"group": "21_recursion",
+"name": "InscribedPolygons1_3",
+"path": "book/21_recursion/InscribedPolygons1_3.py"
+},
+{
+"group": "21_recursion",
+"name": "InterlacedSquares",
+"path": "book/21_recursion/InterlacedSquares.py"
+},
+{
+"group": "21_recursion",
+"name": "NonTermination",
+"path": "book/21_recursion/NonTermination.py"
+},
+{
+"group": "21_recursion",
+"name": "PeanoCurve",
+"path": "book/21_recursion/PeanoCurve.py"
+},
+{
+"group": "21_recursion",
+"name": "PeanoCurves",
+"path": "book/21_recursion/PeanoCurves.py"
+},
+{
+"group": "21_recursion",
+"name": "Plant1",
+"path": "book/21_recursion/Plant1.py"
+},
+{
+"group": "21_recursion",
+"name": "Plant2",
+"path": "book/21_recursion/Plant2.py"
+},
+{
+"group": "21_recursion",
+"name": "Plants1",
+"path": "book/21_recursion/Plants1.py"
+},
+{
+"group": "21_recursion",
+"name": "Plants2",
+"path": "book/21_recursion/Plants2.py"
+},
+{
+"group": "21_recursion",
+"name": "RecursivePavingStones",
+"path": "book/21_recursion/RecursivePavingStones.py"
+},
+{
+"group": "21_recursion",
+"name": "RecursiveSerpentine",
+"path": "book/21_recursion/RecursiveSerpentine.py"
+},
+{
+"group": "21_recursion",
+"name": "SedgewickFractalStar1",
+"path": "book/21_recursion/SedgewickFractalStar1.py"
+},
+{
+"group": "21_recursion",
+"name": "SedgewickFractalStar2",
+"path": "book/21_recursion/SedgewickFractalStar2.py"
+},
+{
+"group": "21_recursion",
+"name": "SedgewickFractalStar3",
+"path": "book/21_recursion/SedgewickFractalStar3.py"
+},
+{
+"group": "21_recursion",
+"name": "SierpinskiPentagon",
+"path": "book/21_recursion/SierpinskiPentagon.py"
+},
+{
+"group": "21_recursion",
+"name": "SierpinskiPentagons",
+"path": "book/21_recursion/SierpinskiPentagons.py"
+},
+{
+"group": "21_recursion",
+"name": "SierpinskiSquare",
+"path": "book/21_recursion/SierpinskiSquare.py"
+},
+{
+"group": "21_recursion",
+"name": "SierpinskiSquares",
+"path": "book/21_recursion/SierpinskiSquares.py"
+},
+{
+"group": "21_recursion",
+"name": "SierpinskiTriangle",
+"path": "book/21_recursion/SierpinskiTriangle.py"
+},
+{
+"group": "21_recursion",
+"name": "SierpinskiTriangles",
+"path": "book/21_recursion/SierpinskiTriangles.py"
+},
+{
+"group": "21_recursion",
+"name": "StarPentagons",
+"path": "book/21_recursion/StarPentagons.py"
+},
+{
+"group": "21_recursion",
+"name": "TernarySnowflake",
+"path": "book/21_recursion/TernarySnowflake.py"
+},
+{
+"group": "21_recursion",
+"name": "TournamentBracket",
+"path": "book/21_recursion/TournamentBracket.py"
+},
+{
+"group": "21_recursion",
+"name": "TreeSquares",
+"path": "book/21_recursion/TreeSquares.py"
+},
+{
+"group": "21_recursion",
+"name": "TwoToThePower",
+"path": "book/21_recursion/TwoToThePower.py"
+},
+{
+"group": "21_recursion",
+"name": "VonKochSegment",
+"path": "book/21_recursion/VonKochSegment.py"
+},
+{
+"group": "21_recursion",
+"name": "VonKochSegments",
+"path": "book/21_recursion/VonKochSegments.py"
+},
+{
+"group": "21_recursion",
+"name": "VonKochSnowflake1",
+"path": "book/21_recursion/VonKochSnowflake1.py"
+},
+{
+"group": "21_recursion",
+"name": "VonKochSnowflake2",
+"path": "book/21_recursion/VonKochSnowflake2.py"
+},
+{
+"group": "21_recursion",
+"name": "VonKochSnowflake3",
+"path": "book/21_recursion/VonKochSnowflake3.py"
+},
+{
+"group": "21_recursion",
+"name": "VonKochSnowflake4",
+"path": "book/21_recursion/VonKochSnowflake4.py"
+},
+{
+"group": "21_recursion",
+"name": "VonKochSnowflake5",
+"path": "book/21_recursion/VonKochSnowflake5.py"
+},
+{
+"group": "21_recursion",
+"name": "VonKochSnowflake6",
+"path": "book/21_recursion/VonKochSnowflake6.py"
+},
+{
+"group": "22_variables",
+"name": "BabylonianNumeration",
+"path": "book/22_variables/BabylonianNumeration.py"
+},
+{
+"group": "22_variables",
+"name": "ComputeRobotWindowSize",
+"path": "book/22_variables/ComputeRobotWindowSize.py"
+},
+{
+"group": "22_variables",
+"name": "DogComplete",
+"path": "book/22_variables/DogComplete.py"
+},
+{
+"group": "22_variables",
+"name": "DrawFrameAtEdge",
+"path": "book/22_variables/DrawFrameAtEdge.py"
+},
+{
+"group": "22_variables",
+"name": "Ducks",
+"path": "book/22_variables/Ducks.py"
+},
+{
+"group": "22_variables",
+"name": "EgyptianNumeration",
+"path": "book/22_variables/EgyptianNumeration.py"
+},
+{
+"group": "22_variables",
+"name": "Factorial",
+"path": "book/22_variables/Factorial.py"
+},
+{
+"group": "22_variables",
+"name": "GreekNumeration",
+"path": "book/22_variables/GreekNumeration.py"
+},
+{
+"group": "22_variables",
+"name": "MagicSquare",
+"path": "book/22_variables/MagicSquare.py"
+},
+{
+"group": "22_variables",
+"name": "RomanNumeration",
+"path": "book/22_variables/RomanNumeration.py"
+},
+{
+"group": "22_variables",
+"name": "SailingBoatComplete",
+"path": "book/22_variables/SailingBoatComplete.py"
+},
+{
+"group": "22_variables",
+"name": "SierpinskiCurve",
+"path": "book/22_variables/SierpinskiCurve.py"
+},
+{
+"group": "22_variables",
+"name": "SierpinskiCurves",
+"path": "book/22_variables/SierpinskiCurves.py"
+},
+{
+"group": "tutorials_and_games",
+"name": "AdditionToComplete",
+"path": "book/tutorials_and_games/AdditionToComplete.py"
+},
+{
+"group": "tutorials_and_games",
+"name": "DigitalClock",
+"path": "book/tutorials_and_games/DigitalClock.py"
+},
+{
+"group": "tutorials_and_games",
+"name": "FreeDrawing",
+"path": "book/tutorials_and_games/FreeDrawing.py"
+},
+{
+"group": "tutorials_and_games",
+"name": "HatTile",
+"path": "book/tutorials_and_games/HatTile.py"
+},
+{
+"group": "tutorials_and_games",
+"name": "HatTiling",
+"path": "book/tutorials_and_games/HatTiling.py"
+},
+{
+"group": "tutorials_and_games",
+"name": "RandomWalk",
+"path": "book/tutorials_and_games/RandomWalk.py"
+},
+{
+"group": "tutorials_and_games",
+"name": "Spectre",
+"path": "book/tutorials_and_games/Spectre.py"
+},
+{
+"group": "tutorials_and_games",
+"name": "SpectreTiling",
+"path": "book/tutorials_and_games/SpectreTiling.py"
+}
+]

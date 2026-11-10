@@ -26,6 +26,9 @@ The folders `tutorials_and_games` / `Didactitiels_et_jeux` also contain
 the "hat" and the "Spectre", the aperiodic monotiles discovered in 2023,
 with tilings of the window (see their README).
 
+**Try it in the browser** (iPad, tablet or computer, nothing to install):
+<https://pcousot.github.io/LeRobot/web/> (prototype, English names).
+
 ## Installing (macOS)
 
 1. Get the repository: with git,
@@ -89,6 +92,10 @@ au clavier et à la souris, puis on écrit des programmes de commandes du
 robot. Ce dépôt contient le robot en quatre langages (Python avec noms
 anglais ou français, OCaml, Free Pascal), le livre en quatre éditions et
 les manuels (voir le tableau ci-dessus).
+
+**Essayer dans le navigateur** (iPad, tablette ou ordinateur, rien à
+installer) : <https://pcousot.github.io/LeRobot/web/> (prototype, noms
+anglais).
 
 ## Installation (macOS)
 
