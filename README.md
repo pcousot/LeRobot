@@ -21,6 +21,7 @@ manuals.
 | `LeRobot Livre FR OCaml` | the book *Premières leçons de programmation en OCaml* |
 | `LeRobot Livre FR Pascal` | the 1991 book (scan) and its LaTeX sources |
 | `LeRobot_Manual_Python_EN`, `LeRobot_Manual_Python`, `LeRobot_Manual_Ocaml`, `LeRobot_Manual_FreePascal` | installation and user manuals (PDF, in English) for each version |
+| `web` | the robot in the browser, for the iPad (English names): <https://pcousot.github.io/LeRobot/web/> |
 
 The folders `tutorials_and_games` / `Didactitiels_et_jeux` also contain
 the "hat" and the "Spectre", the aperiodic monotiles discovered in 2023,
@@ -28,6 +29,35 @@ with tilings of the window (see their README).
 
 **Try it in the browser** (iPad, tablet or computer, nothing to install):
 <https://pcousot.github.io/LeRobot/web/> (prototype, English names).
+
+## On an iPad (web version)
+
+Open <https://pcousot.github.io/LeRobot/web/> in Safari (iPadOS 15.2 or
+later; Chrome, Firefox and Edge also work, on any tablet or computer).
+Nothing is installed: the robot's Python library runs inside the page
+(Pyodide). The first visit downloads Python (about 10 MB, a few seconds);
+the browser then keeps it. Safari's *Share* → *Add to Home Screen* gives
+it an icon like an app.
+
+- **Draw**: interactive drawing, with large on-screen keys labelled with
+  their commands (`f fd`, `+ qtr`, `- qtl`, `d pd`, `u pu`, `* pc`,
+  `w paint`…), arrows, ⏎ (end), Esc, y and n. Touching the grid moves
+  the robot there, as a click does on a Mac. At the end, the drawing is
+  saved as a program (`my_drawing.py`) that appears in the editor; *Run*
+  replays it.
+- **Programs**: the menu lists all the programs of the English book,
+  chapter by chapter, with the hat and Spectre tilings. Choose one, change it in the editor if you like, then *Run*; *Stop*
+  interrupts it.
+- **Questions** asked by a program (`readInt()`…) are answered in the
+  typing field, which brings up the iPad's keyboard; an external keyboard
+  works too.
+- **Messages and errors** (for example "the robot would leave the frame")
+  appear in the console under the editor. Sounds play after the first
+  touch of the page.
+
+It is a prototype: English command names only, a plain-text editor, and
+nothing is saved between visits (copy your programs elsewhere). How it
+works: [`web/README.md`](web/README.md).
 
 ## Installing (macOS)
 
@@ -96,6 +126,37 @@ les manuels (voir le tableau ci-dessus).
 **Essayer dans le navigateur** (iPad, tablette ou ordinateur, rien à
 installer) : <https://pcousot.github.io/LeRobot/web/> (prototype, noms
 anglais).
+
+## Sur un iPad (version web)
+
+Ouvrir <https://pcousot.github.io/LeRobot/web/> dans Safari (iPadOS 15.2
+ou plus récent ; Chrome, Firefox et Edge conviennent aussi, sur toute
+tablette ou ordinateur). Rien à installer : la bibliothèque Python du
+robot s'exécute dans la page (Pyodide). La première visite télécharge
+Python (environ 10 Mo, quelques secondes), que le navigateur garde
+ensuite. *Partager* → *Sur l'écran d'accueil* lui donne une icône comme
+une application.
+
+- **Draw** : le dessin interactif, avec de grandes touches à l'écran
+  marquées de leur commande (`f fd`, `+ qtr`, `- qtl`, `d pd`, `u pu`,
+  `* pc`, `w paint`…), les flèches, ⏎ (fin), Esc, y et n. Toucher la
+  grille y amène le robot, comme un clic sur Mac. À la fin, le dessin est
+  enregistré comme programme (`my_drawing.py`), qui apparaît dans
+  l'éditeur ; *Run* le rejoue.
+- **Programmes** : le menu donne tous les programmes du livre anglais,
+  chapitre par chapitre, avec les pavages du chapeau et du Spectre. En
+  choisir un, le modifier dans l'éditeur si on veut, puis *Run* ; *Stop*
+  l'interrompt.
+- **Questions** posées par un programme (`readInt()`…) : on répond dans
+  le champ de saisie, qui fait apparaître le clavier de l'iPad ; un
+  clavier externe marche aussi.
+- **Messages et erreurs** (en anglais, par exemple « the robot would
+  leave the frame ») s'affichent dans la console sous l'éditeur. Les sons sont joués après
+  le premier toucher de la page.
+
+C'est un prototype : noms anglais seulement, éditeur en texte simple, et
+rien n'est conservé d'une visite à l'autre (copier ses programmes
+ailleurs). Fonctionnement : [`web/README.md`](web/README.md).
 
 ## Installation (macOS)
 
