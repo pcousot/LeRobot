@@ -1,0 +1,27 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ stripes\ on\ the\ sides\ of\ an\ octagon}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pu();\ fdn(5);\ pd();\ gs(4)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(8):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ 10\ stripes\ of\ lengths\ 2,\ 4,\ ...,\ 20.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(1,\ 11):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Draw\ a\ stripe\ of\ length\ (2\ *\ j)\ centred}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ on\ a\ side\ of\ the\ octagon.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fdn(j);\ fdn({-}2\ *\ j);\ fdn(j)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Move\ on\ to\ the\ next\ stripe\ (without\ drawing}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ the\ side\ of\ the\ octagon).}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pu();\ qtr();\ fd();\ qtl();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Turn\ the\ robot\ perpendicular\ to\ the\ next}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ side.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt etr()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

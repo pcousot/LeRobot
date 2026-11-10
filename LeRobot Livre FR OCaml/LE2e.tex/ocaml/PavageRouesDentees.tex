@@ -1,0 +1,50 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ un\ pavage\ de\ roues\ dentées\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ tailleGrille\ =\ 10}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ nombreDeMotifsParLigne\ =\ 7}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ nombreDeLignes\ =\ 14}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Avancer\ le\ robot\ tout\ droit,\ jusqu\textquotesingle{}à\ deux\ carreaux}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt du\ bord\ nord\ du\ cadre.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ enHaut\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt eh\ ();\ pdt\ ();\ avf\ 2}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ le\ motif\ du\ pavage\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ roueDentee\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 4\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av\ ();\ pqtd\ ();\ vd\ ();\ pqtg\ ();\ vg\ ();\ pqtg\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ pavage\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ l\ =\ 1\ }{\mcl to}{\idt \ nombreDeLignes\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc\ ();\ enHaut\ ();\ ag\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt avf\ l;\ pqtg\ ();\ av\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Décalage\ en\ début\ de\ ligne\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ l\ }{\mcl mod}{\idt \ 5\ =\ 2\ }{\mcl then}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt avf\ 2}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt \ }{\mcl if}{\idt \ l\ }{\mcl mod}{\idt \ 5\ =\ 3\ }{\mcl then}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt avf\ 4}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt \ }{\mcl if}{\idt \ l\ }{\mcl mod}{\idt \ 5\ =\ 4\ }{\mcl then}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt av\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt \ }{\mcl if}{\idt \ l\ }{\mcl mod}{\idt \ 5\ =\ 0\ }{\mcl then}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt avf\ 3;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Dessiner\ une\ ligne\ de\ motifs\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtg\ ();\ bc\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ =\ 1\ }{\mcl to}{\idt \ nombreDeMotifsParLigne\ {-}\ 1\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt roueDentee\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt translater\ (5,\ 0)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt roueDentee\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lg\ (float\_of\_int\ tailleGrille);\ pavage\ ();\ st\ ()}}\par
+
+\medskip }

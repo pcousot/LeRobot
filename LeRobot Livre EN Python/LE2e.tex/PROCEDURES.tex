@@ -1,0 +1,389 @@
+\section{Copying text}
+%\label{sec:5:1:recopie}
+
+In the program {\idt GreekCross\_1} below we find the same
+sequence of commands four times, to draw the four
+iden\-ti\-cal arms of the cross and turn. Each arm breaks down into two equal sides
+of length 3 and an end of length 1 (the unit
+being the length of a side of a square of the grid).
+
+\vspace{\baselineskip}
+\vspace*{3cm}%
+\includevspacePostScript[-\baselineskip]{CroixGrecque}{0.95}{0.95}
+\vspace*{-3cm}%
+\label{prog:CroixGrecque_1}
+\input python/GreekCross_1.tex
+
+This situation, where the same sequence of commands of the \robot\ is found
+several times in a row in a program, is very frequent because
+geometric drawings are often made up of identical pieces. It is then
+very tedious to type the same text several times. This can be avoided
+by using the facilities offered by the computer for copying a text
+already recorded in its memory and pasting it elsewhere in the
+program. How to do this is explained for
+PCs (under Windows or Linux) in figure \ref{fig:PC-copier-coller}
+(page \pageref{fig:PC-copier-coller})
+and for the Macintosh in figure \ref{fig:mac-copier-coller}
+(page \pageref{fig:mac-copier-coller}).
+\input COPIER-COLLER-PC.tex
+\input COPIER-COLLER-MAC.tex
+
+Making many copies by hand takes a long time. Moreover, one can easily imagine that
+in a program several pages long, the reader has trouble finding the
+identical parts of text. This phenomenon is illustrated in the
+program {\idt Number888\_1} below. The difficulty would
+obviously be even greater if the identical parts of text were
+on different pages.
+
+\vspace{\baselineskip}
+\vspace*{2cm}%
+\includevspacePostScript[-\baselineskip]{Nombre_888}{0.95}{0.95}
+\vspace*{-2cm}%
+\input python/Number888_1.tex
+
+\section{Examples of procedures}
+%\label{sec:5:2:ex-procedures}
+
+Rather than copying texts by hand ourselves, we can
+ask the \python\ interpreter to do it for us by using
+{\em procedures}\index{Procedure}. Let us begin by rewriting the program
+{\idt GreekCross\_1} (page \pageref{prog:CroixGrecque_1}) us\-ing procedures to bring
+out the decomposition of the Greek cross into
+four iden\-ti\-cal arms, each of them breaking down into two
+equal sides of length 3 and an end of length 1.
+
+\newpage
+\vspace*{3cm}%
+\includePostScript{CroixGrecque}{0.95}{0.95}
+\vspace*{-3cm}%
+\input python/GreekCross_2.tex
+
+\noindent Using a procedure involves:
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item the {\em procedure declaration}\index{Procedure declaration}, which defines a sequence
+of instructions (called the {\em body of the procedure})\index{Procedure body} and gives it a
+name (called the {\em name of the procedure})\index{Identifier};
+\item the {\em procedure call}\index{Procedure call}, which indicates that the sequence
+of instructions mak\-ing up the body of the procedure must be copied
+in place of the name of the procedure.
+\end{list}
+
+\noindent For the reader of the program, using procedures is
+preferable to copying texts. Each time he or she sees the
+name of a procedure, the reader understands that it stands for a copy of a text
+that can be looked up in the procedure declaration. On meeting
+several calls of the same procedure, the reader need make no effort
+to understand immediately that it is the same text that is
+copied. The program is therefore clearer. Isn't that the case for the
+program {\idt Number888\_2} below, which is easier
+to understand than the program {\idt Number888\_1}?
+
+\vspace{\baselineskip}
+\vspace*{2cm}%
+\includevspacePostScript[-\baselineskip]{Nombre_888}{0.95}{0.95}
+\vspace*{-2cm}%
+\input python/Number888_2.tex
+
+\section{Declaring procedures}
+%\label{sec:5:3:decl-procedures}
+
+The declarations of the procedures\index{Procedure declaration} of a program are placed between
+the line `{\mcl from}\ {\idt LibRobot}\ {\mcl import}\ {\idt *}' and the instructions of the program.
+The structure of a \python\ program is therefore the following:
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em \python\ program:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ {\mcl from}\hspace{0.3em}\blanc\hspace{0.3em}{\idt LibRobot}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl import}\hspace{0.3em}\blanc\hspace{0.3em}{\idt *}}\par
+\mbox{\blc\ \ \ \cmt \#\ \small\rm Comment explaining what the program does}\par
+\mbox{\blc\ \ \ \small\rm  \ldots\ Declarations of the procedures of the program \ldots}\par
+\mbox{\blc\ \ \ \small\rm  \ldots\ Instructions of the program%
+\footnote{\ Including the calls of the procedures of the program.} (not indented) \ldots}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+
+\noindent In \python, a procedure declaration has the following form
+(we shall use more elaborate forms later on):
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Procedure declaration:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ \cmt \#\ \small\rm Specification: what the procedure does}\par
+\mbox{\blc\ \ \ {\mcl def}\hspace{0.3em}\blanc\hspace{0.3em}\idt procedureName():}\par
+\mbox{\blc\ \ \ \blk\blk\blk\blk\small\rm \ldots\ Body of the procedure%
+\footnote{\ Including the calls of previously declared procedures.}
+ ({\bf necessarily indented}) \ldots}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+The English word {\mcl def} is short for {\em define}.
+The {\idt  procedureName} is chosen by the programmer
+as he or she likes, so as to suggest what
+this procedure is for. The parentheses {\idt ()} that follow it indicate
+that it is a procedure, which will have to be called by writing {\idt procedureName()},
+exactly like the commands of the \robot\ {\idt fd()}, {\idt qtr()}, etc.
+Indeed, the commands of the \robot\ are procedures declared in the
+library {\idt LibRobot}. The {\mcl def} line must end with
+a colon `{\idt :}', which announces the body of the procedure.
+
+\index{Indentation}The instructions of the body of the procedure are written on the following
+lines, all shifted to the right by the same number of blanks,
+usually 4. They are said to be {\em indented}.
+As in the program, one or more instructions can be written per line, separated
+by semicolons. It is the indentation, and the indentation alone, that tells \python\
+which instructions are part of the body of the procedure: the body ends at
+the first line that is no longer indented. Blanks at the beginning of a line are therefore
+not simply a matter of layout: they are part of the syntax of \python.
+If you forget to indent the first line of the body, \python\ reports for example
+`{\tt IndentationError: expected an indented block after function definition on line 3}'.
+If on the contrary you indent an instruction of the program by mistake, it reports
+`{\tt IndentationError: unexpected indent}'. And if a line of the
+body does not have the same number of blanks as the previous ones, it reports
+`{\tt IndentationError: unindent does not match any outer indentation level}'.
+An empty line after the body
+of each procedure, as in the program {\idt Number888\_2} above,
+is not compulsory but makes the end of the procedure clearly visible.
+
+{\bf Warning:} the body of a procedure {\bf must} be indented, and
+{\bf all} its lines by the same number of blanks. A line of the body that you forget
+to indent is not always reported as an error: it is simply no longer
+part of the procedure. In the example below, {\idt qtr()} is not indented:
+\python\ executes it only once, at the beginning of the program, and not at each call of
+{\idt corner()}. Instead of a square, the \robot\ draws a straight line eight steps long, without
+any error message:
+
+{\parindent \parindentprog
+\medskip
+\noindent\begin{minipage}{\linewidth}\parindent \parindentprog
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ corner():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt qtr()}\ \ \ \ \ \ \ \ \ \ \ {\cmt \#\ Error:\ not\ indented,\ outside\ the\ procedure}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt corner();\ corner();\ corner();\ corner()}}\par
+
+\end{minipage}
+\medskip }
+
+\noindent For the \robot\ to turn at each corner, {\idt qtr()} must be indented
+like {\idt fd();\ fd()}, with the same four blanks.
+
+\medskip
+\noindent {\it Remark:} in \python, procedures are special cases of
+what are called {\em functions}\index{Function}. We shall come back to them
+later.
+
+
+\section{Identifiers}
+%\label{sec:7:2:Ident}
+The name of a procedure is called an
+{\em identifier}\index{Identifier} in \python. Here is
+a precise definition, to which you should
+refer every time we speak of iden\-ti\-fi\-ers:
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Identifier:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+An {\em identifier} is a sequence of unaccented lowercase
+or uppercase letters, digits or
+underscores `\_', which does not begin with a digit and which is different from the
+English words reserved by \python\ such as {\mcl from}, {\mcl import}, {\mcl def}, {\mcl for},
+{\mcl in}, {\mcl if}, {\mcl while}, {\mcl return}, {\mcl True}, etc.
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+For example {\idt side}, {\idt greekCross}, {\idt greek\_cross} or {\idt side2} are
+identifiers whereas {\idt 2side}, {\idt left-side} or {\idt for} are not.
+If you write `{\mcl def}\ {\idt 2side():}', \python\ answers
+`{\tt SyntaxError: invalid decimal literal}' because it thinks it is
+reading a number; for `{\mcl def}\ {\idt left-side():}' or `{\mcl def}\ {\idt for():}', it
+simply answers `{\tt SyntaxError: invalid syntax}'.
+Uppercase and lowercase letters are distinguished: {\idt Side} and {\idt side} are two
+different identifiers. If you declare `{\mcl def}\ {\idt Side():}' and then
+call {\idt side()}, \python\ answers
+`{\tt NameError: name \textquotesingle{}side\textquotesingle{} is not defined. Did you mean: \textquotesingle{}Side\textquotesingle{}?}'.
+\python\ allows an identifier to begin with an uppercase letter, but the custom is to
+begin the names of procedures with a lowercase letter. To make
+an identifier made up of several words readable, we
+put an uppercase letter at the beginning of each word except the first, as in
+{\idt saintAndrewsCross} or {\idt innerEdgeOfLens}\footnote{\ Many \python\
+programmers prefer to separate the words with underscores, as in {\idt saint\_andrews\_cross}.}.
+
+\section{Calling procedures}
+%\label{sec:5:4:app-procedures}
+
+\index{Procedure call}To call a procedure, you just write its name followed
+by {\idt ()}. The call {\idt procedureName()}
+is then replaced by the body of the procedure\index{Procedure body}, that is, by the list
+of indented instructions that follows the line `{\mcl def}\ {\idt procedureName():}' in its declaration.
+
+Note that if you declare a procedure without ever calling it, it
+is of absolutely no use.
+
+A procedure can be called in the program or in another procedure.
+For example in the program {\idt GreekCross\_2}, we call
+the procedure {\idt cross}, which calls the procedure {\idt arm}, which itself
+calls the procedures {\idt side} and {\idt end}.
+
+The rule that a procedure must
+be
+de\-clared before being called must absolutely be followed. Suppose for example that we have
+declared a pro\-ce\-dure under the name {\idt procName}. Suppose also
+that, because of a typing mistake, we have called this procedure
+under the name {\idt progName}. When execution reaches this call, the interpreter
+stops, reporting the error
+`{\tt NameError: name \textquotesingle{}progName\textquotesingle{} is not defined}'.
+Not knowing that
+we wrote {\idt progName} by mistake instead of {\idt procName}, the interpreter
+assumes that the procedure {\idt procName} has been declared but has never been used.
+This is useless but allowed. It also notes that the procedure
+{\idt progName} is called but has not been declared. This is forbidden.
+It notices, however, that the two names look alike and suggests
+`{\tt Did you mean: \textquotesingle{}procName\textquotesingle{}?}'.%
+\footnote{\ We often speak of programs in an
+anthropomorphic way, that is, by attributing to them characteristics
+proper to human beings. In fact we are thinking of the programmers who
+wrote them. For example, the computer does not make mistakes; it is its
+manufacturer who made a mistake, or the programmer who made a logical
+error in his or her program.}
+We get the same `{\tt NameError}' error if the program calls a procedure
+whose declaration is placed further on: \python\ executes the declarations in
+the order in which they are written, and at the time of the call it does not yet know the procedure.
+Like all errors discovered during execution, these errors appear
+only once the \robot\ has made the part of the drawing that precedes the faulty call.
+
+\section{Robot commands defined by procedures}
+%\label{sec:5:5:robot-cmd-procs}
+
+Some commands of the \robot\ are equivalent to a sequence
+of elementary commands and can therefore be expressed with procedures.
+For example, to turn a quarter turn, it is enough to turn an eighth of a turn twice
+in a row. We therefore have:
+\input python/Pivotements1.tex
+\noindent Here are new commands of the \robot\ that can be expressed by means of
+procedures using commands we already know:
+\input python/Pivotements2.tex
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %-------------------------------------------------------
+\begin{exercices}{
+Write \python\ programs with pro\-ce\-dures to
+draw the crosses,
+%de la figure \ref{fig:Croix},
+the astroid star, the magnifying glass or the notched double square
+%de la figure \ref{fig:EtLoCa}
+below.
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \vspace{-\baselineskip}
+ \includevspacePostScript[1.7cm]{Croix}{0.95}{0.95}
+ \caption{Cross potent, double cross, papal cross, cross botonny and Saint Andrew's cross}
+ %\label{fig:Croix}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.1cm]{EtoileLoupeCarre}{0.95}{0.95}
+ \caption{Astroid star, magnifying glass and notched double square}
+ %\label{fig:EtLoCa}
+\end{figure}
+
+
+\begin{corrige}{
+We give one example of a program ({\idt AstroidStar}), the
+others being solved in the folder {\idt book/\allowbreak 05\_procedures}.
+\input python/AstroidStar.tex
+\noindent $\Box$}\end{corrige}
+
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+The notion of procedure\index{Procedure} introduced by Von Neumann and Turing
+was used in 1949
+under the name of {\em routine} on the EDSAC ({\em Electronic Delay
+Storage Automatic Computer}), generally considered
+the first stored-program computer to have
+worked. This machine was built from 1947 at the University
+of Cambridge in England by the team of Wilkes\footnote{\ Maurice
+Wilkes, one of the inventors of radar.} and ran its first programs
+in May 1949 \cite{levy1}.
+
+Procedures illustrate the concept of {\em abstraction}\index{Abstraction}: the
+properties of an object are isolated so as to
+use them or study them separately. More precisely, a
+procedure gives a name to an algorithm for constructing part
+of a drawing. In the body of the procedure,
+we are interested in how to construct the drawing. In the calls
+we are interested only in the finished drawing, while wishing to ignore completely how
+the drawing is obtained. We thus separate the object from the way of
+constructing it, the what from the how.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+We find it useful to describe the drawing made by a procedure
+in a comment
+placed at the beginning of the procedure, called the
+ {\em specification}\index{Specification} of the procedure. Note that for a procedure
+to be usable without ever looking at its body, the
+specification of the procedure must describe which drawing it makes but
+also what the positions and orientations
+of the \robot\ are before and after the drawing is made. This brings out
+a notion of {\em invariant}\index{Invariant}, to which we shall return in the following
+chapters on iteration.
+
+Procedures are the basis of the methods
+for structuring very large programs: to be
+understandable, programs of several thousand lines
+must be split into procedures no longer than
+a few pages. Procedures are therefore an elegant means of
+dividing a program up logically. However, the concept of procedure
+is not sufficient to structure programs of several million
+lines. One then uses the notion of {\em module} (also called {\em unit})
+and of {\em library} to group together sets of procedures.
+
+Procedures grouped together in a
+{\em library} (in \python\ also called a {\em module}) can be
+supplied to programmers to help them in their tasks. To use
+a procedure, the programmer must know its name and its
+specification, without needing
+to know how it works internally. The line `{\mcl from}\ {\idt LibRobot}\ {\mcl import}\ {\idt *}' at the beginning
+of the program is there to tell the interpreter which
+library is used in this program. The commands of the \robot\ are
+procedures grouped together in libraries.
+
+Analysing geometric drawings to bring out a structure that
+can be described algorithmically by means of procedures is very
+good training for the mind. In this sense learning to program
+can play for children a formative role similar to the one
+once played by Euclidean geometry.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{empty}

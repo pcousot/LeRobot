@@ -1,0 +1,55 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ un\ arbre\ binaire}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ un\ arbre\ à\ l\ feuilles,\ la\ racine\ en\ haut,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ les\ feuilles\ en\ bas,\ en\ supposant\ que\ l\ \char62{}=\ 1,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ l\textquotesingle{}arbre\ étant\ réduit\ à\ un\ point\ quand\ l\ =\ 1.\ Avant}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ et\ après\ le\ dessin,\ le\ robot\ doit\ être\ placé\ à\ la}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ racine\ de\ l\textquotesingle{}arbre,\ orienté\ au\ nord\ avec\ son\ crayon}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ baissé.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ arbre(l):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ l\ ==\ 1:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Dessiner\ un\ arbre\ réduit\ à\ un\ seul\ point\ (sans}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ changer\ la\ position\ et\ l\textquotesingle{}orientation\ du\ robot)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt dp()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Le\ robot\ étant\ placé\ à\ la\ racine\ de\ l\textquotesingle{}arbre,}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ orienté\ au\ nord\ avec\ son\ crayon\ baissé,\ dessiner}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ la\ branche\ sud{-}ouest}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt p3htg();\ avf(l)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Orienter\ le\ robot\ au\ nord}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt p3htd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Dessiner\ le\ sous{-}arbre\ gauche\ ayant\ l\ /\ 2\ \char62{}=\ 1}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ feuilles,\ le\ robot\ étant\ placé\ à\ la\ racine\ du}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ sous{-}arbre,\ orienté\ au\ nord\ avec\ son\ crayon}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ baissé}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt arbre(l\ //\ 2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Sachant\ que\ le\ robot\ est\ placé\ à\ la\ racine\ du}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ sous{-}arbre\ gauche,\ orienté\ au\ nord\ et\ crayon}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ baissé,\ revenir\ à\ la\ racine\ de\ l\textquotesingle{}arbre,\ sans}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ rien\ dessiner}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt lc();\ phtd();\ avf(l)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Le\ robot\ étant\ placé\ à\ la\ racine\ de\ l\textquotesingle{}arbre,}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ orienté\ au\ nord{-}est\ avec\ son\ crayon\ levé,}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ dessiner\ la\ branche\ sud{-}est}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt bc();\ pqtd();\ avf(l)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Orienter\ le\ robot\ au\ nord}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt p3htg()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Dessiner\ le\ sous{-}arbre\ droit\ ayant\ l\ {-}\ l\ /\ 2\ \char62{}=\ 1}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ feuilles,\ le\ robot\ étant\ placé\ à\ la\ racine\ du}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ sous{-}arbre,\ orienté\ au\ nord\ avec\ son\ crayon}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ baissé}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt arbre(l\ {-}\ l\ //\ 2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Placer\ le\ robot\ à\ la\ racine\ de\ l\textquotesingle{}arbre,\ orienté}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ au\ nord\ avec\ son\ crayon\ baissé}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt lc();\ phtg();\ avf(l);\ phtd();\ bc()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt lgX(2);\ lgY(3);\ eh();\ arbre(32);\ st()}}\par
+
+\medskip }

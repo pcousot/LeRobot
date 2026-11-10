@@ -1,0 +1,14 @@
+from LibRobot import *
+
+# Dessiner une frise de N avec une boucle "for"
+# Nord
+ag()
+# Nord
+for j in range(16):
+    av(); av()  # Nord  # Nord
+    pdt(); vg()  # Nord  # Sud
+    vd(); pdt()  # Est  # Sud
+# Nord
+# Nord
+st()
+# Nord

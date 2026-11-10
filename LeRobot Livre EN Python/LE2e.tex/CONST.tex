@@ -1,0 +1,222 @@
+The number $1066$ immediately reminds us of the battle of Hastings and the victory of William the Conqueror, Duke of Normandy;
+$1776$ of the independence of the United States; $1789$ of the French
+Revolution. When we read $3.14159$ we know that it is an approximate value of $\pi$
+(written, as in English, with a decimal point, where French uses a comma).
+On the other hand, when we read the digit $2$, we think of nothing in particular and we are almost certain
+to wonder
+``two what?''.
+All this is to say that when we see a number in a
+program it is not always easy to understand immediately what it is about. To make it clear,
+we can, in \python, name the number with a constant declaration placed at the
+beginning of the program:
+
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\idt frenchRevolution\ =\ 1789\ \ }{\cmt \#\ Date\ of\ the\ revolution}}\par
+
+\medskip }
+
+\noindent and then use the name {\idt frenchRevolution} instead of the number
+{\small\rm 1789} in the rest of the program.
+
+
+\begin{exemple}[Maltese cross]{\rm
+In the program below, which draws a Maltese cross, we
+use a constant {\idt length} to define the length of an
+arm (that is to say the distance from its base to the centre of the cross) and
+another one, {\idt width}, to define the width of an arm
+(that is to say the distance between the ends of its base):\hfill\\[22mm]
+\includePostScript{CroixDeMalte_1}{0.95}{0.95}%
+\vspace*{-22mm}%
+\input python/MalteseCross_1.tex
+
+To choose the best possible shape for
+this cross, there is only one place in the program where these constants
+need to be changed. For example, to obtain the smallest cross shown in
+figure \ref{fig:crmadiff} below, it is enough to take:\par
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\idt width\ =\ 10\ \ }{\cmt \#\ Width\ of\ an\ arm}}\par
+\vspace{\neglskip}\mbox{\blc {\idt length\ =\ 15\ \ }{\cmt \#\ Length\ of\ an\ arm}}\par
+
+\medskip }
+\begin{figure}[htbp]
+ \includevspacePostScript[2.5cm]{CroixDeMalteDiff}{0.95}{0.95}
+ \caption{Maltese crosses $10\times 15$, $15\times 20$, $20\times 25$, $25\times 30$,
+ $10\times 35$, $35\times 35$}
+ \label{fig:crmadiff}
+\end{figure}
+\noindent $\Box$ }\end{exemple}
+
+Note that the numbers {\idt 20} and {\idt 30} (or {\idt 10} and {\idt 15})
+are {\em integer} numbers. They are used as the lengths of the sides of the
+squares of the grid in the commands {\idt gsX} and {\idt gsY} which, like the command
+{\idt gs}, also accept numbers with a decimal part, written with a point, such as {\idt 20.5},
+which are called {\em floating-point} numbers. So we could just as well have written
+`{\idt width\ =\ 20.5}'. Integers (such as {\idt 20}) and floating-point numbers
+(such as {\idt 20.5} or {\idt 20.0}) are two different kinds of numbers for \python,
+but it mixes them without difficulty in computations. We will see
+why they are different in chapter 19 on rational expressions.
+
+We indicate that we use one or sev\-er\-al {\em named constants}
+by {\em constant declarations}:\index{Constant declaration}
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Constant declaration:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ \ \idt {\small\rm identifier1}\ $=$\ {\small\rm number1}}\par
+\mbox{\blc\ \ \ \ \idt {\small\rm identifier2}\ $=$\ {\small\rm number2}}\par
+\mbox{\blc\ \ \ \ \small\rm  \ldots}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+\noindent Each constant declaration is written on one line, at the beginning of the line
+(without indentation), like `$x = 3$' in mathematics. It is customary to put a space
+\hspace{0.3em}\blanc\hspace{0.3em} before and after the $=$ sign, but it is not compulsory.
+As for procedure names, the identifier must follow the rules for
+identifiers of \python. The custom is to start it with a lower-case
+letter. Upper-case and lower-case letters are distinguished: if we declare
+`{\idt Width\ =\ 20}' and then use {\idt width}, \python\ answers
+`{\tt NameError: name 'width' is not defined. Did you mean: 'Width'?}'.
+After these declarations, we can use the constant names
+`{\small\rm identifier1}' instead of `{\small\rm number1}' and `{\small\rm identifier2}'
+instead of `{\small\rm number2}', etc.
+
+To tell the truth, \python\ has no real constants: nothing prevents us from giving, further on
+in the program, another value to the name {\idt width} (we will see in chapter 22 that this is
+how {\em variables} are used). We speak of a constant because the program
+gives a value to this name only once, at the beginning, and never changes it afterwards.
+
+In a \python\ program, a declaration defines constants (with the $=$ sign) or
+procedures (with the word {\mcl def}). We will see later that it can also define functions and
+variables:\index{Declaration}
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Declaration:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ \ \small\rm  Constant declaration}\par
+\mbox{\blc\ \ \tiny\rm  or}\par
+\mbox{\blc\ \ \ \ \small\rm  Procedure declaration}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+Constant or procedure declarations are placed, in any
+order, before the instructions of the program:\index{Program}
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em \python\ program:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ {\mcl from}\hspace{0.3em}\blanc\hspace{0.3em}{\idt LibRobot}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl import}\ {\idt *}}\par
+\mbox{\blc\ \ \ \cmt \#\ \small\rm Comment explaining what the program does}\par
+\mbox{\blc\ \ \ \small\rm  \ldots\ Declarations of the program \ldots}\par
+\mbox{\blc\ \ \ \small\rm  \ldots\ Instructions of the program\footnote{\ Using the declared constants
+and procedures.} (one per line or separated by `$;$') \ldots}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+The main rule to follow is that every identifier must be declared before it is
+used (otherwise, when the \robot\ reaches the instruction that uses it, \python\ stops with
+a {\tt NameError} error).
+
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercice}{Write \python\ programs with named constants
+to draw:
+
+\tiret the singular propeller of figure \ref{fig:hesing} below;
+
+\tiret the duckling of figure \ref{fig:canar} below.
+
+\noindent $\Box$}\end{exercice}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.6cm]{HeliceSinguliere}{0.95}{0.95}
+ \caption{Singular propeller}
+ \label{fig:hesing}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.2cm]{Canardeau}{0.95}{0.95}
+ \caption{Duckling hatching from its egg}
+ \label{fig:canar}
+\end{figure}
+\begin{corrige}{
+We give one program; the other one is in the folder {\idt book/\allowbreak 11\_constants}.
+The horizontal side of the squares of the grid of the $i$-th
+leaf of a blade is {\idt xbase * i}. It is an integer that can be given
+directly to the command {\idt gsX}:
+\input python/SingularPropeller.tex
+\noindent $\Box$}\end{corrige}
+\nopagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+Computer integers are an approximation of the \href{https://en.wikipedia.org/wiki/Integer}{integers} of mathematics (but not too large ones). Floating-point numbers (more precisely \href{https://en.wikipedia.org/wiki/Floating-point_arithmetic}{floating-point} numbers) are a subset of the \href{https://en.wikipedia.org/wiki/Rational_number}{rational numbers} (and therefore of the \href{https://en.wikipedia.org/wiki/Real_number}{real numbers}) written in \href{https://en.wikipedia.org/wiki/Floating-point_arithmetic}{floating-point} notation.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+A {\em constant declaration} {\idt name\ =\ number} gives a name
+to a particular number. Afterwards the name, which is more meaningful, can be
+used instead of the number. The immediate advantage is that to change the number it is
+enough to do so in the constant declaration, whereas otherwise one has to look for all its
+occurrences in the program.
+
+This can be compared with the notion of variable in mathematics, that is to say with the use
+of letters $x$, $y$, $z$ \ldots\ to denote arbitrary numbers. The difference is that in
+\python\ the name of a constant denotes a particular value whereas in mathematics it
+is an arbitrary value.
+
+Historically, the first mathematical problems dealt with by the Babylonians (1800 years BC)
+included an algorithmic solution given for one example and separate numerical tables
+ to solve other similar problems \cite{ritter1}.
+In the Middle Ages people used rhetorical language such as `a number added to its square
+makes 12' for `$x + x^{2} = 12$'. Chuquet\footnote{\ \href{https://en.wikipedia.org/wiki/Nicolas_Chuquet}{Nicolas Chuquet}, French
+mathematician, c.~1445--1500.}, author of the oldest treatise on algebra written by a
+Frenchman (1484), used $1^{1}$ to denote the unknown, $1^{2}$ to denote its
+square and the symbols $\bar{p}$ and $\bar{m}$ for addition and subtraction.
+He could write `$12\;\bar{p}\;3^{1}$ egaulx a $4^{2}$' (Middle French for ``equal to'') for `$12 + 3x = 4x^{2}$'.
+Viète\footnote{\ \href{https://en.wikipedia.org/wiki/François_Viète}{François Viète}, French mathematician, 1530--1603.} took an
+important step towards symbolism in algebra by introducing the use of letters to denote
+unknown quantities. Around 1590 he wrote:
+`$1\;$ QC $\;-\;15\;$QQ$\;+\;85\;$C$\;+\;225\;$Q$\;+\;274\;$N equal $120$', that is, if
+C means cube, hence $x^{3}$, Q means square, hence $x^{2}$, and N means number, hence $x$, the equation
+$x^{5} - 15x^{4} + 85x^{3} + 225x^{2} + 274x = 120$ (\cite{benoit1}). It took four French
+mathematicians,
+Desargues\footnote{\ \href{https://en.wikipedia.org/wiki/Girard_Desargues}{Girard Desargues}, French mathematician, 1591--1661.},
+Descartes\footnote{\ \href{https://en.wikipedia.org/wiki/René_Descartes}{René Descartes}, French mathematician, 1596--1650.},
+Fermat\footnote{\ \href{https://en.wikipedia.org/wiki/Pierre_de_Fermat}{Pierre de Fermat}, French mathematician, 1601--1665.} and
+Pascal\footnote{\ \href{https://en.wikipedia.org/wiki/Blaise_Pascal}{Blaise Pascal}, French mathematician, 1623--1662.} (the latter having been chosen
+by Wirth to name his programming language \pascal), to enter the modern
+era of mathematics.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

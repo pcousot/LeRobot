@@ -1,0 +1,50 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ and\ paint\ a\ stylized\ flower}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gridSize\ =\ 12}}\par
+\vspace{\neglskip}\mbox{\blc {\idt stemThickness\ =\ 3}}\par
+\vspace{\neglskip}\mbox{\blc {\idt edgeThickness\ =\ 1}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gb();\ gs(gridSize)}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Bottom\ of\ the\ stem}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pw(stemThickness);\ qtr();\ cl()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt fd();\ fd();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Right\ leaf:}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ draw\ the\ outline}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pw(edgeThickness);\ cr();\ qtr();\ cr()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ paint\ the\ inside}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pc(green);\ etl();\ paint();\ tetr()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Left\ leaf:}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ draw\ the\ outline}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pc(black);\ cl();\ qtl();\ cl()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ paint\ the\ inside}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pc(green);\ etr();\ paint();\ tetl()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Top\ of\ the\ stem}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pc(black);\ pw(stemThickness)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt fd();\ fd();\ fd();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Centre:}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ draw\ the\ outline\ of\ the\ centre}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pw(edgeThickness);\ qtr()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cl();\ cl();\ cl();\ cl()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ petals}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pc(black);\ qtr();\ cl();\ cl();\ cl()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pc(violet);\ etr();\ paint();\ etr()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pc(black);\ qtr();\ cl();\ cl();\ cl()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pc(violet);\ etr();\ paint();\ etr()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pc(black);\ qtr();\ cl();\ cl();\ cl()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pc(violet);\ etr();\ paint();\ etr()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pc(black);\ qtr();\ cl();\ cl();\ cl()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pc(violet);\ etr();\ paint();\ etr()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ paint\ the\ inside\ of\ the\ centre}}\par
+\vspace{\neglskip}\mbox{\blc {\idt qtr();\ pc(yellow);\ paint()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

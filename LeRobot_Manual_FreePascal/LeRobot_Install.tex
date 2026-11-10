@@ -1,0 +1,210 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  rulecolor=\color{gray!50},
+  backgroundcolor=\color{gray!8},
+  breaklines=true,
+  upquote=true,
+  showstringspaces=false,
+  xleftmargin=0.5em,
+  xrightmargin=0.5em
+}
+\setlength{\emergencystretch}{3em}
+\newcommand{\kbd}[1]{\texttt{#1}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+\title{LeRobot (Free Pascal) Installation Manual\\[0.3em]\large Installing LeRobot on another Mac}
+\author{}
+\date{9 November 2026}
+
+\begin{document}
+\maketitle
+
+This manual explains how to install LeRobot for Free Pascal on a Mac where
+it has never been installed. With it, the Turbo Pascal programs of the 1991
+book \emph{Premières leçons de programmation en Turbo Pascal} are compiled
+by Free Pascal and run in the robot window. Once it is done, use the
+\emph{LeRobot (Free Pascal) User Manual} (\kbd{LeRobot\_Manual.pdf}) to draw
+and to run robot programs.
+
+The robot window is the one of the Python version (an ordinary macOS window
+drawn with tkinter): the Pascal programs send their commands to it. So you
+need three things: the Free Pascal compiler, a Python with Tk 8.6, and the
+\kbd{LeRobot} folder with its \kbd{LeRobot\_FreePascal\_FR} \emph{and}
+\kbd{LeRobot\_Python\_FR} folders. No XQuartz is needed. The installation takes
+about twenty minutes. You need:
+\begin{itemize}
+\item a Mac with a recent macOS (Apple Silicon or Intel);
+\item an administrator account (the installers ask for the Mac password);
+\item an Internet connection;
+\item a copy of the \kbd{LeRobot} folder (USB key, AirDrop, cloud drive,
+  \dots).
+\end{itemize}
+
+Commands are typed in the \textbf{Terminal} application
+(\emph{Applications} $\rightarrow$ \emph{Utilities} $\rightarrow$
+\emph{Terminal}). Copy each command in one piece, paste it into the
+Terminal, and press Return.
+
+\tableofcontents
+
+%======================================================================
+\section{The Free Pascal compiler}
+
+\subsection{Command Line Tools}
+Free Pascal uses the linker of Apple's Command Line Tools. If Xcode or the
+Command Line Tools are not installed yet:
+\begin{lstlisting}[language=bash]
+xcode-select --install
+\end{lstlisting}
+and accept the installation in the window that opens (a few minutes).
+
+\subsection{Free Pascal with Homebrew}
+Homebrew (\url{https://brew.sh}) is the simplest way to install Free
+Pascal. If it is not installed, install it with the command shown on its
+home page, then:
+\begin{lstlisting}[language=bash]
+brew install fpc
+\end{lstlisting}
+Check, in a new Terminal window:
+\begin{lstlisting}[language=bash]
+fpc -iV
+\end{lstlisting}
+The answer is the version of Free Pascal (\kbd{3.2.2} or later).
+
+Free Pascal can also be installed without Homebrew, with the installer of
+\url{https://www.freepascal.org} (\emph{Download}, \emph{macOS}).
+
+\paragraph{Messages to ignore.} On recent macOS, Free Pascal 3.2.2 prints
+linker warnings such as \kbd{-macosx\_version\_min has been renamed} or
+\kbd{-multiply\_defined is obsolete}. They are harmless; \kbd{robot.sh}
+hides them.
+
+%======================================================================
+\section{Python with Tk 8.6}
+
+The robot window needs Python 3.9 or later \emph{linked to Tk 8.6 or later}.
+Tk is the library that draws the window.
+
+\textbf{The \kbd{python3} that comes with macOS is not enough.} It is
+linked to Tk 8.5, which no longer works on recent macOS: the robot window
+does not open and the program hangs. Install Python from python.org, whose
+installer includes a recent Tk:
+\begin{enumerate}
+\item Open \url{https://www.python.org/downloads/macos/} and download the
+  \emph{macOS 64-bit universal2 installer} of the latest Python 3 release.
+\item Open the downloaded \kbd{.pkg} file and follow the installer. At the
+  end, the Finder window it opens can be closed.
+\end{enumerate}
+Check, in a new Terminal window:
+\begin{lstlisting}[language=bash]
+/Library/Frameworks/Python.framework/Versions/Current/bin/python3 -c "import tkinter; print(tkinter.TkVersion)"
+\end{lstlisting}
+The answer must be \kbd{8.6} or more. You do not need to change which
+\kbd{python3} the Terminal uses: when the robot window is started with the
+macOS \kbd{python3}, it notices that its Tk is too old and starts itself
+again with the python.org Python.
+
+%======================================================================
+\section{The LeRobot folder}
+
+Copy the \kbd{LeRobot} folder anywhere, for example onto the
+\textbf{Desktop}. The Pascal programs are in its folder
+\kbd{LeRobot\_FreePascal\_FR}; the folder \kbd{LeRobot\_Python\_FR} must stay next
+to it, in the same \kbd{LeRobot} folder: it draws the robot window. The
+\kbd{LeRobotFreePascal.app} icon must stay in \kbd{LeRobot\_FreePascal\_FR},
+next to \kbd{robot.sh}. The whole \kbd{LeRobot} folder can be moved or
+renamed later: nothing in it depends on where it is.
+
+\paragraph{Commands.} The \kbd{LeRobot} folder can be anywhere (on the
+Desktop, in Documents, \dots): everything in it is found relative to it.
+The commands of this manual are typed in a Terminal window \emph{opened in
+the \kbd{LeRobot} folder}: type \kbd{cd} and a space, drag the
+\kbd{LeRobot} folder from the Finder onto the Terminal window, and press
+Return (or, in the Finder, right-click the folder and choose
+\emph{Services} $\rightarrow$ \emph{New Terminal at Folder}).
+
+If the folder comes from another Mac, make the scripts executable again (a
+copy can lose this) and remove the compiled files of the other Mac (they
+are made again when needed):
+\begin{lstlisting}[language=bash]
+cd LeRobot_FreePascal_FR && chmod +x robot.sh verifier.sh outils/*.sh outils/app/*.sh && rm -rf _build
+\end{lstlisting}
+
+%======================================================================
+\section{First launch}
+
+\begin{enumerate}
+\item Run a program of the book:
+\begin{lstlisting}[language=bash]
+cd LeRobot_FreePascal_FR
+./robot.sh livre/03_programmation/Carre.p
+\end{lstlisting}
+  The first time, \kbd{robot.sh} compiles the robot units (a few seconds),
+  then the program. The robot window ($800 \times 700$ points) opens in
+  front of the other windows. When the square is drawn, press Esc to close
+  the window.
+\item Open the interactive drawing program:
+\begin{lstlisting}[language=bash]
+./robot.sh livre/Didactitiels_et_jeux/Dessiner.p
+\end{lstlisting}
+  Press Return in the window to finish, then \kbd{n} not to save.
+\item \kbd{LeRobotFreePascal.app}, in the \kbd{LeRobot\_FreePascal\_FR}
+  folder: double-click its icon to run Dessiner; drop a \kbd{.p} program on
+  its icon to compile and run it. The program runs in a Terminal window,
+  which closes when the program ends normally and stays open if there is
+  an error (of compilation or of execution).
+
+  The first time you open \kbd{LeRobotFreePascal.app}, macOS may refuse to
+  open it because it comes from another Mac. Right-click the icon, choose
+  \emph{Open}, then confirm. Allow it to control Terminal and to access the
+  folder of \kbd{LeRobot} (Desktop, Documents, \dots) when macOS asks.
+\item If the folder was copied from another Mac and the application still
+  refuses to open, rebuild it on this Mac:
+\begin{lstlisting}[language=bash]
+cd LeRobot_FreePascal_FR && outils/app/fabriquer.sh
+\end{lstlisting}
+\end{enumerate}
+
+%======================================================================
+\section{Troubleshooting}
+
+\begin{tabularx}{\textwidth}{@{}LLL@{}}
+\toprule
+\textbf{Symptom} & \textbf{Cause} & \textbf{Fix} \\
+\midrule
+\emph{command not found: fpc} & Free Pascal is not installed, or the Terminal was opened before & \kbd{brew install fpc} (Section~1); open a new Terminal window \\
+\addlinespace
+\emph{Error: ld: \dots} or \emph{linker not found} & No Command Line Tools & \kbd{xcode-select --install} (Section~1) \\
+\addlinespace
+\emph{Can't find unit Robot1} & The robot units are not compiled (folder \kbd{\_build} removed during compilation) & Run \kbd{./robot.sh} again: it compiles them \\
+\addlinespace
+The program hangs and no window opens & Python linked to Tk 8.5 (the macOS \kbd{python3}) and no other Python found & Install Python from python.org (Section~2) \\
+\addlinespace
+\emph{can't open file '.../serveur.py'} or \emph{No module named 'LibRobot'} & The folder \kbd{LeRobot\_Python\_FR} is missing or not next to \kbd{LeRobot\_FreePascal\_FR} & Copy the whole \kbd{LeRobot} folder (Section~3) \\
+\addlinespace
+\emph{permission denied: ./robot.sh} & The scripts lost their executable mark during the copy & \kbd{chmod +x robot.sh verifier.sh} (Section~3) \\
+\addlinespace
+\emph{Ce programme doit etre lance par robot.sh} printed by a program & The compiled program was started by itself, without the robot window & Use \kbd{./robot.sh Program.p} or \kbd{LeRobotFreePascal.app} \\
+\addlinespace
+\kbd{LeRobotFreePascal.app} does not open & macOS blocks applications copied from another Mac & Right-click, \emph{Open}; or rebuild it (Section~4) \\
+\addlinespace
+To use a given Python & --- & \kbd{LEROBOT\_PYTHON=\allowbreak /path/\allowbreak to/\allowbreak python3 \allowbreak ./robot.sh Program.p} \\
+\bottomrule
+\end{tabularx}
+
+\end{document}

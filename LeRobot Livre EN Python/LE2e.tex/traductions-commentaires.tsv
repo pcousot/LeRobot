@@ -1,0 +1,568 @@
+# Définition de la commande ag	# Definition of the command ag
+# Dessiner un arbre binaire	# Draw a binary tree
+# Dessiner un arbre à l feuilles, la racine en haut,	# Draw a tree with l leaves, root at the top,
+# les feuilles en bas, en supposant que l >= 1,	# the leaves at the bottom, assuming that l >= 1,
+# l'arbre étant réduit à un point quand l = 1. Avant	# the tree being reduced to a point when l = 1. Before
+# et après le dessin, le robot doit être placé à la	# and after the drawing, the robot must be placed at the
+# racine de l'arbre, orienté au nord avec son crayon	# root of the tree, facing north with its pen
+# baissé.	# down.
+# Dessiner un arbre réduit à un seul point (sans	# Draw a tree reduced to a single point (without
+# changer la position et l'orientation du robot)	# changing the position and orientation of the robot)
+# Le robot étant placé à la racine de l'arbre,	# With the robot placed at the root of the tree,
+# orienté au nord avec son crayon baissé, dessiner	# facing north with its pen down, draw
+# la branche sud-ouest	# the south-west branch
+# Orienter le robot au nord	# Turn the robot to face north
+# Dessiner le sous-arbre gauche ayant l / 2 >= 1	# Draw the left subtree having l / 2 >= 1
+# feuilles, le robot étant placé à la racine du	# leaves, the robot being placed at the root of the
+# sous-arbre, orienté au nord avec son crayon	# subtree, facing north with its pen
+# baissé	# down
+# Sachant que le robot est placé à la racine du	# Given that the robot is placed at the root of the
+# sous-arbre gauche, orienté au nord et crayon	# left subtree, facing north with its pen
+# baissé, revenir à la racine de l'arbre, sans	# down, go back to the root of the tree, without
+# rien dessiner	# drawing anything
+# orienté au nord-est avec son crayon levé,	# facing north-east with its pen up,
+# dessiner la branche sud-est	# draw the south-east branch
+# Dessiner le sous-arbre droit ayant l - l / 2 >= 1	# Draw the right subtree having l - l / 2 >= 1
+# Placer le robot à la racine de l'arbre, orienté	# Place the robot at the root of the tree, facing
+# au nord avec son crayon baissé	# north with its pen down
+# Au clair de la lune (chanson attribuée à	# Au clair de la lune (song attributed to
+# Jean-Baptiste Lulli)	# Jean-Baptiste Lulli)
+# mesure 4 / 4	# time 4 / 4
+# Au clair/Prê-te	# Au clair/Prê-te
+# de la/moi ta	# de la/moi ta
+# lu-ne/plu-me	# lu-ne/plu-me
+# Mon a-/Pour é-	# Mon a-/Pour é-
+# -mi Pier-/-crire un	# -mi Pier-/-crire un
+# -rot./mot.	# -rot./mot.
+# Ma chan-	# Ma chan-
+# -delle est	# -delle est
+# mor-te.	# mor-te.
+# Je n'ai	# Je n'ai
+# plus de	# plus de
+# feu.	# feu.
+# Ou-vre	# Ou-vre
+# moi ta	# moi ta
+# por-te,	# por-te,
+# Pour l'a-	# Pour l'a-
+# -mour de	# -mour de
+# Dieu.	# Dieu.
+# Avancer si cela ne fait pas sortir le robot du cadre	# Move forward if it keeps the robot inside the frame
+# Dessiner et peindre une balle en couleur	# Draw and paint a ball in colour
+# Placer le robot dans la zone à peindre et peindre	# Place the robot in the area to paint and paint
+# Faire tourner le robot sans fin. Le corps de la boucle	# Make the robot turn forever. The body of the loop
+# comprend une commande du robot : on peut arrêter son	# contains a robot command: its execution can be
+# exécution en tapant Échap (esc), § ou # dans la fenêtre	# stopped by typing Esc, § or # in the robot's
+# du robot.	# window.
+# Boucler sans fin. Le corps de la boucle ne comprend	# Loop forever. The body of the loop contains
+# aucune commande du robot : on ne peut donc pas arrêter	# no robot command: so its execution cannot be
+# son exécution avec Échap (esc), § ou #. Il faut taper	# stopped with Esc, § or #. You must type
+# Ctrl+C dans la fenêtre de terminal.	# Ctrl+C in the terminal window.
+# Calcul de la taille de la fenêtre de déplacement du	# Compute the size of the window where the robot
+# robot	# moves
+# Dessiner des canards	# Draw ducks
+# Dessiner un canard sur une	# Draw a duck on a
+# grille de taille l sans changer	# grid of size l without changing
+# la grille originelle	# the original grid
+# Mémoriser les dimensions de la grille originelle	# Remember the dimensions of the original grid
+# Dessiner un canard avec une grille de taille l	# Draw a duck with a grid of size l
+# Ligne de flottaison	# Waterline
+# Queue	# Tail
+# Dos	# Back
+# Tête	# Head
+# Oeil	# Eye
+# Bec	# Beak
+# Poitrail	# Breast
+# Placer le robot à l'arrière du canard	# Place the robot at the rear of the duck
+# Restituer la grille originelle	# Restore the original grid
+# Dessiner un carré	# Draw a square
+# Construire un carré magique d'ordre impair	# Build a magic square of odd order
+# Lire au clavier l'ordre n (impair) du carré	# Keyboard input of the odd order n of the square
+# Placer le robot au coin inférieur gauche du carré : un	# Put the robot at the bottom left corner of the square: one
+# pas au-dessus et à droite du coin de la fenêtre	# step above and to the right of the window's corner
+# Écrire le texte s centré sur la position du robot	# Write the text s centered on the robot's position
+# (procédure technique, voir le programme complet dans	# (technical procedure, see the complete program in
+# le dossier livre/22_variables_E_S)	# the folder livre/22_variables_E_S)
+# Afficher l'élément c au centre de la case (i, j)	# Display the element c at the centre of cell (i, j)
+# Dessiner la matrice dans la fenêtre du robot	# Draw the matrix in the robot's window
+# Remplir le carré magique	# Fill in the magic square
+# Ligne i et colonne j de la case à remplir	# Row i and column j of the cell to fill
+# Dessiner un carré en pointillé	# Draw a dotted square
+# Tracer un trait pointillé de n points,	# Draw a dotted line of n dots,
+# en supposant n > 1.	# assuming n > 1.
+# Tracer un carré pointillé avec p points par côté	# Draw a dotted square with p dots per side
+# (p > 1).	# (p > 1).
+# Dessiner un carré avec des procédures	# Draw a square with procedures
+# Dessiner un côté du carré et pivoter à droite	# Draw one side of the square and turn right
+# Dessiner un carré avec des boucles "for" imbriquées	# Draw a square with nested "for" loops
+# Motif de S. Horemis, 'Optical and geometrical	# Pattern by S. Horemis, 'Optical and geometrical
+# patterns and designs', Dover, New York, 1970.	# patterns and designs', Dover, New York, 1970.
+# 2 à la puissance n	# 2 to the power n
+# Dessiner des carrés superposés en agrandissant la	# Draw overlapping squares while enlarging the
+# grille	# grid
+# Profil arrière de la patte avant	# Rear outline of the front leg
+# Ventre	# Belly
+# Patte arrière	# Hind leg
+# Oreille	# Ear
+# Museau	# Muzzle
+# Gueule	# Mouth
+# Profil avant de la patte avant	# Front outline of the front leg
+# Dessiner une cocotte en papier tournée vers l'ouest	# Draw an origami paper chicken facing west
+# Arrière	# Rear
+# Dessus	# Top
+# Avant	# Front
+# Dessous	# Bottom
+# Arrêt du robot	# Stopping the robot
+# Écrire et faire entendre des signes en code Morse	# Write and sound out signs in Morse code
+# Passer au début de la ligne suivante	# Go to the beginning of the next line
+# Point	# Dot
+# Blanc	# Blank
+# Trait	# Dash
+# Alphabet	# Alphabet
+# Chiffres	# Digits
+# Ponctuation	# Punctuation
+# Fin de mot	# End of word
+# Écrire un nombre en base 2	# Write a number in base 2
+# n >= 2	# n >= 2
+# Dessiner des croix au bord et au centre du cadre	# Draw crosses on the edge and at the frame's centre
+# au milieu du bord gauche	# middle of the left edge
+# au milieu du bord droit	# middle of the right edge
+# au milieu du bord supérieur	# middle of the top edge
+# au milieu du bord inférieur	# middle of the bottom edge
+# au coin supérieur gauche	# in the top left corner
+# au coin supérieur droit	# in the top right corner
+# au coin inférieur gauche	# in the bottom left corner
+# au coin inférieur droit	# in the bottom right corner
+# au centre	# at the centre
+# Dessiner une croix de Malte	# Draw a Maltese cross
+# Largeur d'une branche	# Width of an arm
+# Longueur d'une branche	# Length of an arm
+# Dessiner une branche verticale avec le robot	# Draw a vertical arm with the robot
+# orienté au nord ou au sud	# facing north or south
+# Dessiner une branche horizontale avec le robot	# Draw a horizontal arm with the robot
+# orienté à l'est ou à l'ouest	# facing east or west
+# Dessiner une croix grecque	# Draw a Greek cross
+# Dessiner le côté gauche, l'extrémité puis le côté	# Draw the left side, the end and then the right
+# droit d'une branche, et orienter le robot en	# side of an arm, and turn the robot towards
+# direction de la branche suivante.	# the next arm.
+# Avancer n fois si n est positif, reculer -n fois si	# Move forward n times if n is positive, back -n times if
+# n est négatif, ne pas bouger si n est nul.	# n is negative, do not move if n is zero.
+# Dessiner des ellipses sur une grille rectangulaire	# Draw ellipses on a rectangular grid
+# Définir la taille de la grille 40 x 20.	# Set the size of the grid to 40 x 20.
+# Dessiner huit ellipses en faisant pivoter leur	# Draw eight ellipses, turning their
+# grand axe d'un quart de tour autour du centre de	# major axis a quarter turn around the centre of
+# la grille.	# the grid.
+# Effet de av () avec des crayons de plus en plus	# Effect of av () with thicker and thicker
+# épais	# pens
+# Dessiner un escargot	# Draw a snail
+# Monter au centre de la coquille	# Go up to the centre of the shell
+# Coquille	# Shell
+# Corps	# Body
+# Rejoindre l'antenne	# Go to the antenna
+# Antenne	# Antenna
+# Dessiner une étoile formée de quatre astroïdes	# Draw a star made of four looped
+# à boucles	# astroids
+# Lire un entier n et écrire sa factorielle n!	# Read an integer n and write its factorial n!
+# Lire au clavier la valeur de n, en recommençant	# Read the value of n from the keyboard, repeating
+# tant que l'on n'a pas nmin <= n <= nmax	# until nmin <= n <= nmax
+# Calculer f = n!	# Compute f = n!
+# Écrire f	# Write f
+# Dessiner une flèche verticale	# Draw a vertical arrow
+# Dessiner et peindre une fleur stylisée	# Draw and paint a stylized flower
+# Bas de la tige	# Bottom of the stem
+# Feuille droite :	# Right leaf:
+# dessiner le pourtour	# draw the outline
+# peindre l'intérieur	# paint the inside
+# Feuille gauche :	# Left leaf:
+# Haut de la tige	# Top of the stem
+# Coeur :	# Centre:
+# dessiner le pourtour du coeur	# draw the outline of the centre
+# pétales	# petals
+# peindre l'intérieur du coeur	# paint the inside of the centre
+# Dessiner une frise crantée	# Draw a notched frieze
+# Dessiner le motif 'n_'	# Draw the pattern 'n_'
+# Dessiner une frise de N	# Draw a frieze of N
+# Dessiner une frise de N avec une boucle "for"	# Draw a frieze of N with a "for" loop
+# Nord	# North
+# Nord  # Nord	# North  # North
+# Nord  # Sud	# North  # South
+# Est  # Sud	# East  # South
+# Dessiner une frise de pointes	# Draw a frieze of points
+# Dessiner une frise de tildes	# Draw a frieze of tildes
+# Dessiner un motif en forme de tilde ~	# Draw a tilde-shaped pattern ~
+# Reculer au début du tilde suivant	# Back up to the next tilde's start
+# Dessiner une frise de tildes (première erreur)	# Draw a frieze of tildes (first mistake)
+# Dessiner une frise de tildes (deuxième erreur)	# Draw a frieze of tildes (second mistake)
+# Dessiner une frise de triangles d'un bord à l'autre	# Draw a frieze of triangles from one edge to the other
+# Rejoindre le bord en avançant tout droit	# Reach the edge by moving straight ahead
+# Dessiner une frise de vaguelettes	# Draw a frieze of ripples
+# Dessiner une frise d'octogones	# Draw a frieze of octagons
+# Dessiner une frise en forme de double peigne	# Draw a frieze shaped like a double comb
+# Trait horizontal	# Horizontal line
+# Dent vers le bas	# Tooth pointing down
+# Dent vers le haut	# Tooth pointing up
+# Dessiner une frise en dents de scie	# Draw a sawtooth frieze
+# Dessiner une frise en or	# Draw a golden frieze
+# Dessiner une frise en peigne	# Draw a comb-shaped frieze
+# Dessiner une grecque polygonale	# Draw a polygonal Greek key
+# Facteur de grossissement	# Magnification factor
+# Nombre de côtés	# Number of sides
+# Partie gauche	# Left part
+# Partie symétrique droite	# Symmetric right part
+# Dessiner une hélice à quatre pales en couleur	# Draw a four-bladed propeller in colour
+# Dessiner le pourtour de la pale	# Draw the outline of the blade
+# Peindre l'intérieur de la pale	# Paint the inside of the blade
+# Dessiner une hélice singulière	# Draw a peculiar propeller
+# Largeur de la grille de base	# Width of the base grid
+# Hauteur de la grille de base	# Height of the base grid
+# Feuilles d'une pale	# Leaves of a blade
+# Pales de l'hélice	# Propeller blades
+# Dessiner un quart d'ellipse, de dimension	# Draw a quarter of an ellipse, of size
+# (xbase * i, ybase * i), sans changer	# (xbase * i, ybase * i), without changing
+# l'orientation initiale du robot	# the initial orientation of the robot
+# Dessiner un jolygone à 175 degrés	# Draw a 175-degree jolygon
+# Dessiner une lettre E majuscule épaisse	# Draw a thick capital letter E
+# Ligne de carrés (deplacer)	# Row of squares (deplacer)
+# Carré de côté 1	# Square of side 1
+# Ligne de carrés (translater)	# Row of squares (translater)
+# Mosaïque de l'Alhambra	# Alhambra mosaic
+# pixels	# pixels
+# fois la taille de la grille	# times the grid size
+# motifs d'une ligne impaire	# patterns of an odd row
+# pair	# even
+# Dessiner un motif en forme de 8, en partant et en	# Draw an 8-shaped pattern, starting and
+# arrivant à l'extrémité de la pointe inférieure	# ending at the end of the lower left
+# gauche, avec le robot orienté vers le nord.	# point, with the robot facing north.
+# Côté gauche/droit (au dessus/dessous de la	# Left/right side (above/below the
+# pointe inférieure).	# lower point).
+# Dessus/dessous	# Top/bottom
+# Haut/bas du côté droit/gauche (en dessus/dessous	# Top/bottom of the right/left side (above/below
+# de la pointe supérieure/inférieure).	# the upper/lower point).
+# Colorier et tourner le robot dans l'orientation	# Colour and turn the robot to its initial
+# initiale.	# orientation.
+# Passer de la pointe inférieure gauche d'un motif à	# Go from the lower left point of a pattern to that
+# celle du motif suivant sur la même ligne	# of the next pattern on the same horizontal
+# horizontale à droite.	# row to the right.
+# Dessiner une ligne horizontale comportant	# Draw a horizontal row containing
+# tailleLigne motifs.	# tailleLigne patterns.
+# Dessiner une ligne comportant (tailleLigne - 1)	# Draw a row containing (tailleLigne - 1)
+# motifs.	# patterns.
+# Revenir sur la pointe inférieure gauche du premier	# Go back to the lower left point of the first
+# motif d'une ligne.	# pattern of a row.
+# celle du motif à la verticale sur la ligne	# that of the pattern straight below, on the
+# suivante.	# next row.
+# Paver avec un nombre de lignes égal à	# Tile with a number of rows equal to
+# nombreDeLignes.	# nombreDeLignes.
+# Placer le robot à la pointe inférieure gauche du	# Place the robot at the lower left point of the
+# motif gauche de la première ligne.	# left pattern of the first row.
+# Dessiner une mosaïque de l'Alhambra	# Draw an Alhambra mosaic
+# doit être pair	# must be even
+# Peindre	# Paint
+# Remettre le robot dans l'orientation initiale	# Put the robot back in its initial orientation
+# Motif suivant	# Next pattern
+# Motif double suivant	# Next double pattern
+# Ligne suivante	# Next row
+# Dessiner le nombre 888 dans le style	# Draw the number 888 in the style
+# des montres digitales.	# of digital watches.
+# Dessiner le 8 des centaines	# Draw the hundreds 8
+# Prévoir un espace et réorienter le robot vers le nord	# Leave a space and turn the robot back to the north
+# Dessiner le 8 des dizaines	# Draw the tens 8
+# Dessiner le 8 des unités	# Draw the units 8
+# Dessiner le nombre 888 comme sur les	# Draw the number 888 as on
+# montres digitales.	# digital watches.
+# Dessiner le chiffre 8, en partant en bas à gauche du	# Draw the digit 8, starting at the bottom left of the
+# 8 avec le robot orienté au nord et en arrivant en bas	# 8 with the robot facing north and ending at the bottom
+# à gauche du 8 avec le robot orienté à l'ouest.	# left of the 8 with the robot facing west.
+# Partant avec le robot orienté à l'ouest en bas à	# Starting with the robot facing west at the bottom
+# gauche du 8, reculer en bas à droite du 8 puis d'un	# left of the 8, back up to the bottom right of the 8 then
+# espace et réorienter le robot au nord.	# one space and turn the robot north again.
+# le 8 des centaines	# the hundreds 8
+# le 8 des dizaines	# the tens 8
+# le 8 des unités	# the units 8
+# Un programme qui ne se termine pas	# A program that does not terminate
+# Notes	# Notes
+# Altérations	# Accidentals
+# Octaves	# Octaves
+# O Tannenbaum (chanson allemande)	# O Tannenbaum (German song)
+# O	# O
+# Tan-nen-	# Tan-nen-
+# -baum,	# -baum,
+# o	# o
+# wie treu	# wie treu
+# sind dei-	# sind dei-
+# -ne	# -ne
+# Blät-ter !	# Blät-ter !
+# Du	# Du
+# grünst nicht	# grünst nicht
+# nur	# nur
+# zur Som-	# zur Som-
+# -mer-	# -mer-
+# -zeit	# -zeit
+# Nein, auch	# Nein, auch
+# im	# im
+# Win-	# Win-
+# -ter wenn	# -ter wenn
+# es schneit.	# es schneit.
+# Chanson allemande	# German song
+# Dessiner des parallélogrammes sur une grille	# Draw parallelograms on a rectangular
+# rectangulaire	# grid
+# Dessiner huit parallélogrammes en faisant pivoter	# Draw eight parallelograms, turning
+# leur coin inférieur gauche d'un quart de tour	# their lower left corner a quarter turn
+# autour du centre de la grille.	# around the centre of the grid.
+# Dessiner un pavage de carrés, triangles et cercles	# Draw a tiling of squares, triangles and circles
+# Dessiner un carré de côté de taille 2, le robot	# Draw a square with sides of size 2, the robot
+# partant du coin inférieur gauche tourné vers l'est,	# starting from the lower left corner facing east,
+# et arrivant crayon baissé au coin inférieur droit	# and arriving pen down at the lower right corner
+# également orienté à l'est.	# also facing east.
+# Dessiner le carré.	# Draw the square.
+# Avancer au coin inférieur droit.	# Advance to the lower right corner.
+# Dessiner deux triangles opposés par un sommet	# Draw two triangles joined at a vertex
+# inscrits dans un carré invisible du quadrillage de	# inscribed in an invisible square of the grid of
+# côté 2, en partant du coin inférieur gauche du carré	# side 2, starting from the lower left corner of the square
+# tourné vers l'est, et en arrivant au coin inférieur	# facing east, and arriving at the lower right
+# droit, crayon baissé et tourné vers l'est.	# corner, pen down and facing east.
+# Dessiner un cercle de rayon 1 inscrit dans un carré	# Draw a circle of radius 1 inscribed in an invisible
+# invisible du quadrillage de côté 2, en partant du	# square of the grid of side 2, starting from the
+# coin inférieur gauche du carré tourné vers l'est, et	# lower left corner of the square facing east, and
+# en arrivant au coin inférieur droit du carré, crayon	# arriving at the lower right corner of the square, pen
+# baissé et tourné vers l'est.	# down and facing east.
+# Dessiner une ligne constituée d'un motif répété 7	# Draw a row made of a pattern repeated 7
+# fois, le motif étant formé d'un carré, de triangles	# times, the pattern being made of a square, triangles
+# et d'un cercle juxtaposés, le robot partant du coin	# and a circle side by side, the robot starting from the
+# inférieur gauche de la ligne orienté vers l'est, et	# lower left corner of the row facing east, and
+# arrivant au coin inférieur droit également orienté à	# arriving at the lower right corner also facing
+# l'est.	# east.
+# Le robot est crayon baissé, à l'est, en bas à	# The robot is pen down, facing east, at the bottom
+# gauche du motif	# left of the pattern
+# Comme ligneCarre, avec le motif formé de triangles,	# Like ligneCarre, with the pattern made of triangles,
+# d'un cercle et d'un carré.	# a circle and a square.
+# Comme ligneCarre, avec le motif formé d'un cercle,	# Like ligneCarre, with the pattern made of a circle,
+# d'un carré et de triangles.	# a square and triangles.
+# Ramener le robot du coin inférieur droit d'une ligne	# Bring the robot from the lower right corner of a row
+# au coin inférieur gauche de la ligne suivante, sans	# to the lower left corner of the next row, without
+# dessiner, orienté à l'est et crayon baissé.	# drawing, facing east and pen down.
+# Paver l'écran de 11 lignes de motifs commençant par	# Tile the screen with 11 rows of patterns starting with
+# un carré, puis par des triangles, puis par un	# a square, then with triangles, then with a
+# cercle, du coin supérieur droit au coin inférieur	# circle, from the upper right corner to the lower
+# droit de l'écran, le robot étant orienté à l'est.	# right corner of the screen, the robot facing east.
+# Dessiner les lignes 1 à 9 de haut en bas.	# Draw rows 1 to 9 from top to bottom.
+# Dessiner les lignes 10 puis 11.	# Draw rows 10 then 11.
+# Aller au coin supérieur droit, orienté à l'est.	# Go to the upper right corner, facing east.
+# Paver l'écran.	# Tile the screen.
+# Paver un carré à l'aide de couronnes successives	# Tile a square with successive rings
+# constituées de carrés de tailles 1, 2, 3, ... en	# made of squares of sizes 1, 2, 3, ... starting
+# partant du centre.	# from the centre.
+# Dessiner les 4 côtés de la i-ème couronne en les	# Draw the 4 sides of the i-th ring, tiling
+# pavant avec des carrés de taille i.	# them with squares of size i.
+# Dessiner un côté de la i-ème couronne, pavé de	# Draw one side of the i-th ring, tiled with
+# i carrés de longueur de côté i, le robot	# i squares of side length i, the robot
+# partant du premier carré et arrivant au	# starting at the first square, arriving at
+# dernier carré dans le même coin et dans la	# the last square in the same corner and in the
+# même direction qu'au départ.	# same direction as at the start.
+# Dessiner i - 1 carrés de la i-ème couronne	# Draw i - 1 squares of the i-th ring
+# Dessiner un carré de longueur i, le robot	# Draw a square of length i, the robot
+# partant et arrivant au même coin et dans la	# starting and arriving at the same corner and in
+# même direction.	# the same direction.
+# Avancer jusqu'au carré suivant de la i-ème	# Move forward to the next square of the i-th
+# couronne.	# ring.
+# Dessiner le i-ème carré de longueur i de la	# Draw the i-th square of length i of the
+# i-ème couronne.	# i-th ring.
+# Pivoter d'un quart de tour pour placer le	# Turn a quarter turn to place the
+# robot au début du côté suivant de la i-ème	# robot at the start of the next side of the i-th
+# Rejoindre le point de départ de la (i + 1)-ème	# Go to the starting point of the (i + 1)-th
+# Pavage de quadrilatères produits par un motif	# Tiling of quadrilaterals produced by a pattern
+# inscrit dans un carré (6 x 6)	# inscribed in a (6 x 6) square
+# Largeur du motif	# Width of the pattern
+# Hauteur du motif	# Height of the pattern
+# Dessiner un motif dans un carré (motifX x motifY),	# Draw a pattern in a (motifX x motifY) square,
+# le robot partant et arrivant au centre du motif,	# the robot starting and ending at its centre,
+# orienté vers le nord.	# facing north.
+# Paver avec y lignes de x motifs	# Tile with y rows of x patterns
+# Décentrer le dessin à gauche de la moitié de la	# Shift the drawing to the left by half the
+# longueur d'une ligne et vers le haut de la	# length of a row and upwards by
+# moitié de la hauteur du pavage.	# half the height of the tiling.
+# Dessiner (y - 1) lignes de x motifs (avec	# Draw (y - 1) rows of x patterns (with
+# translation en bas à gauche de la ligne	# translation to the bottom left of the next
+# suivante).	# row).
+# Dessiner une ligne de x motifs (sans	# Draw a row of x patterns (without
+# translation à droite après le dernier motif	# translation to the right after the last pattern
+# de la ligne).	# of the row).
+# Passer au motif suivant à droite dans la	# Move to the next pattern on the right in the
+# même ligne.	# same row.
+# Passer au début de la ligne suivante.	# Go to the start of the next row.
+# Dessiner la dernière ligne de x motifs (sans	# Draw the last row of x patterns (without
+# Dessiner un pavage de roues dentées	# Draw a tiling of cogwheels
+# Avancer le robot tout droit, jusqu'à deux carreaux	# Move the robot straight on, up to two squares from
+# du bord nord du cadre.	# the frame's north edge.
+# Dessiner le motif du pavage	# Draw the pattern of the tiling
+# Décalage en début de ligne	# Offset at the start of the row
+# Dessiner une ligne de motifs	# Draw a row of patterns
+# Pavage irrégulier dans le style de M. C. Escher,	# Irregular tiling in the style of M. C. Escher,
+# inspiré d'un motif de N. J. van de Vecht.	# inspired by a pattern by N. J. van de Vecht.
+# Motif de N. J. van de Vecht, le robot partant en	# Pattern by N. J. van de Vecht, the robot starting at
+# haut à gauche et arrivant en bas à gauche orienté	# the top left and arriving at the bottom left facing
+# vers le nord.	# north.
+# Dessiner une colonne de motifs de hauteurs 2, 4, 6,	# Draw a column of patterns of heights 2, 4, 6,
+# 8, 10, 8, 6, 4, 2, le robot partant en haut à gauche et	# 8, 10, 8, 6, 4, 2, the robot starting at the top left and
+# arrivant en bas à droite (c'est-à-dire en bas à	# arriving at the bottom right (that is, at the bottom
+# gauche de la colonne suivante) orienté vers le nord.	# left of the next column) facing north.
+# Dessiner un pavage irrégulier constitué de colonnes	# Draw an irregular tiling made of columns
+# de largeurs 0, 2, 4, 6, ..., 14, 16, 14, ..., 2, 0.	# of widths 0, 2, 4, 6, ..., 14, 16, 14, ..., 2, 0.
+# Dessiner des pavés récursifs	# Draw recursive tiles
+# Dessiner un carré de côté 0	# Draw a square of side 0
+# Dessiner un carré de côté n	# Draw a square of side n
+# Paver l'intérieur	# Tile the inside
+# Dessiner un pentagone	# Draw a pentagon
+# Dessiner un alignement de piquets en dents de scie	# Draw a row of stakes in a sawtooth pattern
+# Fait pivoter le robot sur place d'un quart de tour	# Turns the robot on the spot a quarter turn
+#   à droite	#   to the right
+#   à gauche	#   to the left
+# Fait pivoter le robot sur place de 3 huitièmes de	# Turns the robot on the spot 3 eighths of a
+#   tour à droite	#   turn to the right
+#   tour à gauche	#   turn to the left
+# Fait pivoter le robot sur place d'un demi-tour	# Turns the robot on the spot a half turn
+# Dessiner un polygone régulier	# Draw a regular polygon
+# Dessiner un polygone régulier de n >= 1 côtés	# Draw a regular polygon with n >= 1 sides
+# Dessiner une pyramide de 5 étages.	# Draw a pyramid with 5 levels.
+# Orienter le robot à l'ouest.	# Turn the robot to face west.
+# Partant du coin inférieur gauche d'un étage avec le	# Starting from the lower left corner of a level with the
+# robot orienté à l'ouest, dessiner le coin inférieur	# robot facing west, draw the lower left corner
+# gauche de l'étage inférieur et pivoter à l'est.	# of the level below and turn to the east.
+# Dessiner le i-ème étage rectangulaire.	# Draw the i-th rectangular level.
+# Côté inférieur	# Lower side
+# Extrémité droite	# Right end
+# Côté supérieur	# Upper side
+# Redescendre au coin inférieur gauche et orienter	# Go back down to the lower left corner and turn
+# le robot à l'ouest.	# the robot to the west.
+# Dessiner un quadrillage triangulaire	# Draw a triangular grid pattern
+# Dessiner 10 lignes de carrés juxtaposés	# Draw 10 rows of squares side by side
+# horizontalement	# horizontally
+# Dessiner une ligne de i carrés juxtaposés	# Draw a row of i squares side by side
+# horizontalement, en partant en haut à gauche et	# horizontally, starting at the top left and
+# en arrivant en haut à droite, le robot étant	# arriving at the top right, the robot facing
+# dans les deux cas orienté vers l'est.	# east in both cases.
+# Dessiner un carré, en partant du coin	# Draw a square, starting from the upper
+# supérieur gauche et en arrivant au coin	# left corner and arriving at the upper
+# supérieur droit, le robot étant dans les deux	# right corner, the robot facing east in
+# cas orienté vers l'est.	# both cases.
+# Revenir, sans dessiner, au début de la ligne	# Go back, without drawing, to the start of the
+# suivante, le robot étant orienté vers l'est au	# next row, the robot facing east at
+# départ et à l'arrivée.	# departure and on arrival.
+# Dessiner un rectangle et une ellipse juxtaposés.	# Draw a rectangle and an ellipse side by side.
+# Taille de la grille	# Grid size
+# Grille	# Grid
+# Rectangle	# Rectangle
+# Décalage à droite.	# Shift to the right.
+# Ellipse	# Ellipse
+# Dessiner une rosace de dix pentagones	# Draw a rosette of ten pentagons
+# Dessiner une courbe de Von Koch	# Draw a Von Koch curve
+# Dessiner un serpentin	# Draw a streamer
+# Demi-cercle supérieur	# Upper semicircle
+# Demi-cercle inférieur	# Lower semicircle
+# Dessiner une serpentine pyramidale	# Draw a pyramidal serpentine
+# Dessiner des serpentines	# Draw serpentines
+# Construire une serpentine de hauteur n en partant de	# Build a serpentine of height n starting from
+# son coin inférieur ouest	# its lower west corner
+# Construire la base de largeur n, d'ouest en est	# Build the base of width n, from west to east
+# Construire la serpentine supérieure de hauteur	# Build the upper serpentine of height
+# n - 1 en partant de son coin inférieur est	# n - 1 starting from its lower east corner
+# son coin inférieur est	# its lower east corner
+# Construire la base de largeur n, d'est en ouest	# Build the base of width n, from east to west
+# n - 1 en partant de son coin inférieur ouest	# n - 1 starting from its lower west corner
+# Programme conduisant à une erreur à l'exécution parce qu'il fait	# Program leading to a run-time error because it makes
+# sortir le robot du cadre.	# the robot leave the frame.
+# Dessiner une spirale arithmétique	# Draw an arithmetic spiral
+# Tracer un arc de cercle de rayon l	# Draw an arc of a circle of radius l
+# Dessiner une spirale carrée	# Draw a square spiral
+# Dessiner une spirale carrée sans boucles "for"	# Draw a square spiral without "for" loops
+# Dessiner une spirale d'or	# Draw a golden spiral
+# Dessiner une spirale d'arcs de cercles de rayons	# Draw a spiral of arcs of circles of radii
+# 1, 4, 9, 16, ...	# 1, 4, 9, 16, ...
+# Dessiner une spirale segmentée	# Draw a segmented spiral
+# Tourner à gauche puis avancer le robot tout droit	# Turn left then move the robot straight ahead
+# de l fois la taille de la grille pour former un	# l times the grid size to form a
+# quart de tour.	# quarter turn.
+# Tracer deux quarts de tour successifs pour former	# Draw two successive quarter turns to form
+# un demi-tour.	# a half turn.
+# Tracer une spirale de n demi-tours	# Draw a spiral of n half turns
+# Dessiner une spirale trapézoïdale	# Draw a trapezoidal spiral
+# Dessiner le côté supérieur	# Draw the upper side
+# Dessiner un côté droit	# Draw a right side
+# Dessiner le côté inférieur	# Draw the lower side
+# Dessiner un côté gauche	# Draw a left side
+# Dessiner une courbe spirolatérale de Frank C. Odds	# Draw a spirolateral curve by Frank C. Odds
+# à 90 degrés d'ordre 9.	# at 90 degrees, of order 9.
+# Rejoindre l'extrémité de la queue	# Go to the tip of the tail
+# En bas	# Bottom
+# A droite	# On the right
+# Dessus de la queue	# Top of the tail
+# 1ère épine caudale	# 1st tail spike
+# 2ème épine caudale	# 2nd tail spike
+# Dessiner les 11 plaques osseuses dorsales d'arrière en avant	# Draw the 11 bony back plates from back to front
+# 1	# 1
+# 2	# 2
+# 3	# 3
+# 4	# 4
+# 5	# 5
+# 6	# 6
+# 7	# 7
+# 8	# 8
+# 9	# 9
+# 10	# 10
+# 11	# 11
+# Dessiner la tête	# Draw the head
+# Crane	# Skull
+# Front	# Forehead
+# Dessus du museau	# Top of the snout
+# Dessous de la tête	# Underside of the head
+# Dessiner les pattes antérieures	# Draw the front legs
+# Patte gauche	# Left leg
+# Patte droite	# Right leg
+# Dessiner le ventre	# Draw the belly
+# Dessiner les pattes postérieures	# Draw the hind legs
+# Compléter le dessous de la queue	# Complete the underside of the tail
+# ERREUR : vd	# ERROR: vd
+# ERREUR : pqtd	# ERROR: pqtd
+# Dessiner des stries sur les côtés d'un octogone	# Draw stripes on the sides of an octagon
+# Dessiner 10 stries de longueurs 2, 4, ..., 20.	# Draw 10 stripes of lengths 2, 4, ..., 20.
+# Dessiner une strie de longueur (2 * j) centrée	# Draw a stripe of length (2 * j) centered
+# sur un côté de l'octogone.	# on a side of the octagon.
+# Passer à la strie suivante (sans tracer le côté	# Move to the next stripe (without drawing the side
+# de l'octogone).	# of the octagon).
+# Tourner le robot perpendiculairement au côté	# Turn the robot perpendicular to the next
+# suivant.	# side.
+# Dessiner le tableau d'un tournoi de tennis	# Draw the bracket of a tennis tournament
+# Longueur d'un trait horizontal	# Length of a horizontal line
+# Dessiner un tableau pour un tournoi de n joueurs	# Draw a bracket for a tournament of n players
+# Pointe de l'accolade, pour le vainqueur	# Tip of the brace, for the winner
+# Branche supérieure de l'accolade	# Upper branch of the brace
+# Sous-tableau supérieur, contenant la	# Upper sub-bracket, containing
+# moitié des joueurs	# half of the players
+# Revenir au centre de l'accolade	# Go back to the centre of the brace
+# Branche inférieure de l'accolade	# Lower branch of the brace
+# Sous-tableau inférieur, contenant le	# Lower sub-bracket, containing the
+# reste des joueurs	# rest of the players
+# Revenir à l'extrémité de la pointe	# Go back to the end of the tip
+# Dessiner le développement d'un tétraèdre tronqué	# Draw the net of a truncated tetrahedron
+# Hexagone	# Hexagon
+# Triangle équilatéral	# Equilateral triangle
+# Face et coin en bas	# Face, bottom corner
+# Face et coin en haut	# Face, top corner
+# Dessiner une toile d'araignée	# Draw a spider's web
+# Tracer un cadre autour du dessin	# Draw a frame around the drawing
+# Rejoindre le bord supérieur sans rien tracer	# Reach the top edge without drawing anything
+# Tracer la moitié droite du bord supérieur	# Draw the right half of the top edge
+# Tracer le bord droit	# Draw the right edge
+# Tracer le bord inférieur	# Draw the bottom edge
+# Tracer le bord gauche	# Draw the left edge
+# Tracer le bord supérieur	# Draw the top edge
+# Placer le robot au centre, orienté au nord	# Place the robot at the centre, facing north
+# Tracer un trait horizontal au milieu de l'écran	# Draw a horizontal line in the middle of the screen
+# Dessiner un triangle isocèle	# Draw an isosceles triangle
+# Dessiner un alignement de piquets en vagues	# Draw a row of stakes in waves
+# Dessiner le symbole chinois du Yin Yang	# Draw the Chinese Yin Yang symbol
+# Demi cercle inférieur	# Lower half circle
+# Demi cercle supérieur	# Upper half circle
+# Cercle du pourtour	# Outer circle
+# Petit cercle blanc	# Small white circle
+# Peindre la zone noire	# Paint the black area
+# Petit cercle noir	# Small black circle

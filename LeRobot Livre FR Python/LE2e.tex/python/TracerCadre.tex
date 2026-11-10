@@ -1,0 +1,33 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Tracer\ un\ cadre\ autour\ du\ dessin}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Rejoindre\ le\ bord\ en\ avançant\ tout\ droit}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ auBord():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl while}{\idt \ }{\mcl not}{\idt \ tb():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt av()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ cadre():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Rejoindre\ le\ bord\ supérieur\ sans\ rien\ tracer}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ auBord()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Tracer\ la\ moitié\ droite\ du\ bord\ supérieur}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtd();\ bc();\ auBord()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Tracer\ le\ bord\ droit}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtd();\ auBord()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Tracer\ le\ bord\ inférieur}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtd();\ auBord()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Tracer\ le\ bord\ gauche}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtd();\ auBord()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Tracer\ le\ bord\ supérieur}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtd();\ auBord()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Placer\ le\ robot\ au\ centre,\ orienté\ au\ nord}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ce();\ pn()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt cadre();\ st()}}\par
+
+\medskip }

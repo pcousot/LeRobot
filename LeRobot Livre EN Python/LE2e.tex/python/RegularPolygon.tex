@@ -1,0 +1,28 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ regular\ polygon}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt gridSize\ =\ 30}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt nbSides\ =\ 7}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ regular\ polygon\ with\ n\ \char62{}=\ 1\ sides}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ polygon(n):}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(n):}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fd();\ rot(360\ /\ n)}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gs(gridSize);\ polygon(nbSides);\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

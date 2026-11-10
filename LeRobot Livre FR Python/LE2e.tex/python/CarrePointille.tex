@@ -1,0 +1,26 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ un\ carré\ en\ pointillé}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Tracer\ un\ trait\ pointillé\ de\ n\ points,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ en\ supposant\ n\ \char62{}\ 1.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ traitPointille(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lg(8);\ ec(2);\ lc()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ l\ }{\mcl in}{\idt \ range(n\ {-}\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt dp();\ av()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dp();\ bc()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Tracer\ un\ carré\ pointillé\ avec\ p\ points\ par\ côté}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ (p\ \char62{}\ 1).}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ carre(p):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ c\ }{\mcl in}{\idt \ range(4):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt traitPointille(p);\ pqtd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt carre(30);\ cacherRobot();\ st()}}\par
+
+\medskip }

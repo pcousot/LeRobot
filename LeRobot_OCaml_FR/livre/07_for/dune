@@ -1,0 +1,6 @@
+; Programmes du livre "Premieres lecons de programmation en OCaml"
+; (-w -35 : un compteur de boucle "for" peut ne pas servir dans le corps)
+(executables
+ (names Carre_1 Carre_2 Fleche FriseDeN_1 FriseDeN_2 FriseDePointes FriseDeTildes FriseDeTildesErronee1 FriseDeTildesErronee2 SpiraleCarree_1 SpiraleCarree_2)
+ (libraries lerobot)
+ (flags (:standard -w -35)))

@@ -1,0 +1,39 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Copier-Coller sur PC (Windows ou Linux)     %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Copier}
+\index{Coller}
+\begin{figure}[htbp]
+\newcommand{\toucheCtrl}{\begin{picture}(18,12)(0, 2)\put(0,0){\framebox(18,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny Ctrl}}\end{picture}\hspace{0.3ex}}%
+\newcommand{\toucheL}[1]{\begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny #1}}\end{picture}\hspace{0.3ex}}%
+\newcommand{\toucheMaj}{\framebox[11.mm][l]{\rule{0mm}{2.5mm}\raisebox{-0.75mm}[0mm][0mm]{\includevspacePostScript[3mm]{Shift}{0.95}{0.95}}}}%
+\begin{tabular}{@{}|p{13.2cm}|@{}} \hline
+\multicolumn{1}{|c|}{\raisebox{-2ex}{\rule{0ex}{5ex}} \em Sélectionner et recopier un texte sur PC (Windows ou Linux)}
+\\  \hline \hline
+{ % debut de la mini-page
+\begin{minipage}[t]{13.2cm}
+\vspace{2ex}
+\begin{enumerate}
+\item Cliquer avec la souris au début du texte à recopier pour y placer
+le curseur d'édition clignotant.
+\item Maintenir la touche majuscules \toucheMaj\ enfoncée et cliquer à la fin
+du texte à recopier, de sorte que le texte à recopier
+apparaisse en {\em surbrillance} (on peut aussi faire glisser la souris
+du début à la fin du texte en maintenant son bouton enfoncé).
+\item Maintenir la touche de contrôle \toucheCtrl\ enfoncée le temps de taper
+sur la touche \toucheL{C} pour {\em copier} le texte sélectionné.
+\item Cliquer avec la souris à l'endroit où le texte doit être recopié.
+\item Maintenir la touche de contrôle \toucheCtrl\ enfoncée le temps de taper 
+sur la touche \toucheL{V} pour {\em coller} le texte copié.
+\end{enumerate}
+L'opération de recopie (\toucheCtrl\toucheL{V}) en un endroit quelconque du
+programme peut être répétée autant de
+fois que nécessaire. En cas d'erreur, \toucheCtrl\toucheL{Z} annule la 
+dernière modification.
+\vspace{2ex}
+\end{minipage} 
+} % fin de la mini-page
+\\ \hline
+\end{tabular}
+\caption{Copier-coller sur PC (Windows ou Linux)}\label{fig:PC-copier-coller}
+\end{figure}

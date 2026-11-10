@@ -1,0 +1,34 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ le\ développement\ d\textquotesingle{}un\ tétraèdre\ tronqué\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ lgCote\ =\ 24.}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ faceEtCoin\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\cmt (*\ Hexagone\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt pqtd\ ();\ lgRT\ (lgCote,\ 60.);\ phtg\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 6\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av\ ();\ rt\ 60.}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\cmt (*\ Triangle\ équilatéral\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt pdt\ ();\ av\ ();\ pqtd\ ();\ av\ ()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ developpementDuTetraedreTronque\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 2\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Face\ et\ coin\ en\ bas\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt faceEtCoin\ ();\ lc\ ();\ p3htd\ ();\ avf\ 2;\ phtg\ ();\ av\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt p3htd\ ();\ bc\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Face\ et\ coin\ en\ haut\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt faceEtCoin\ ();\ lc\ ();\ av\ ();\ phtg\ ();\ avf\ 2;\ pqtg\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt bc\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt developpementDuTetraedreTronque\ ();\ st\ ()}}\par
+
+\medskip }

@@ -1,0 +1,232 @@
+\section{Rational numbers}
+The procedure parameters and the constants we have used so far
+have integer values. In \python, we say that they are of {\em type}\index{Type}
+{\idt int} (short for \underline{int}eger). Unlike many
+other languages, \python\ imposes no limit on the size of integers: {\idt 2 ** 100}
+(2 to the power 100) is $1{,}267{,}650{,}600{,}228{,}229{,}401{,}496{,}703{,}205{,}376$, which leaves
+plenty of room for counting the sides of a polygon or the squares of a grid. They are encoded
+in base two in the memory of the computer, on as many bits as needed.
+
+In \python\ we can also use decimal numbers with a decimal point such as {\idt 3.14159}, called floating-point numbers (of type \texttt{float}). They
+are written according to the English-speaking convention with a point (whereas the French
+use a comma). Mathematicians call these numbers {\em rational numbers}\index{Rational}. In \python,
+integers are distinguished from rational numbers by the presence of the point. For example
+{\idt 1000} is an integer whereas {\idt 1000.0} is a rational number, which can
+also be written {\idt 1000.} without any digit after the point. Likewise {\idt .5} is allowed, but
+it is more readable to write {\idt 0.5}.
+
+Integers and rational numbers are encoded in different ways in the memory
+of the computer. Rational numbers are of type {\idt float}\footnote{\ From
+{\em floating-point number}. The computer
+keeps in memory a fixed number of significant digits and the position of the decimal point
+(which ``floats'' among these digits). These are not real
+numbers since numbers of type {\idt float} cannot have infinitely many
+non-zero digits after the decimal point!}.
+
+\section{Parameters of type ``float''}
+In \python, the type of the parameters of a
+procedure is not indicated: the same parameter can receive, from one call to another, an integer or a
+rational, and it is only during execution, when the value is used,
+that \python\ checks that it is suitable (we say that \python\ is a
+{\em dynamically typed} language\index{Dynamic typing}). For example, in the procedure:
+
+\begin{center}
+{\mcl def}\ {\idt arc(l):\ gs(l);\ cr()}
+\end{center}
+
+\noindent the formal parameter {\idt l} (read the letter $\ell$ and not the digit $1$) is passed to the command {\idt gs} of the \robot\ which
+expects a number, integer or rational.
+
+The corresponding actual parameter can therefore be either an integer, as in
+{\idt arc(100)}, or a rational number, written with a point, as in {\idt arc(66.666666667)}:
+\python\ automatically converts the integer {\idt 100} into the rational {\idt 100.0}
+when necessary. If we want to make this conversion ourselves, we use the
+function {\idt float}\index{float}: if {\idt n} is an integer,
+{\idt float(n)} is the corresponding rational number (for example
+{\idt float(3)} is {\idt 3.0}). This is rarely useful.
+
+The command procedures of the \robot\ {\idt gs}, {\idt gsX} and {\idt gsY} (as well as
+{\idt gsRT}, {\idt rot} and {\idt fdl} which we will see in the next chapter) accept rational
+parameters. This is why we can write {\idt gs(20)} as well as {\idt gs(20.5)}.
+The commands {\idt fdn}, {\idt bg}, {\idt pw}, {\idt moveTo} or {\idt drawTo}
+on the contrary have integer parameters: {\idt fdn(2.5)} stops the program with the message
+`{\tt TypeError:\ 'float' object cannot be interpreted as an integer}'.
+
+\begin{exemple}[Arithmetic spiral]{\rm
+The spiral below is made of arcs of circles with successive radii
+$100$; $100 / 1.5$ = $66.666\ldots$; $66.666\ldots / 1.5$ = $44.444\ldots$;
+$44.444\ldots / 1.5$ = $29.629\ldots$; etc.:
+
+ {\raggedright
+ \hbox to 0pt{\hspace*{2cm}\vbox to 0pt{\includevspacePostScript[4cm]{SpiraleArithmetique}{0.8}{0.8}}}
+ \input python/ArithmeticSpiral.tex
+ }
+\noindent $\Box$ }\end{exemple}
+
+\section{Rational expressions}\index{Rational (real) expression}
+Addition, subtraction, multiplication and division of rational numbers are
+written {\idt +}, {\idt -}, {\idt *} and {\idt /}, that is as for integers. For example
+{\idt (((2 * (10.3 + 0.7)) - 1.0) / 3)} is {\idt 7.0}
+
+When an operation involves an integer and a rational, \python\ converts the integer into a
+rational and the result is a rational: {\idt 2 * 3.5} is {\idt 7.0}.
+When both operands are integers, {\idt +}, {\idt -} and {\idt *} give an integer.
+Division, however, requires attention: {\idt /} {\em always} gives a rational,
+even between two integers. Thus {\idt 7 / 2} is {\idt 3.5} and {\idt 6 / 2} is {\idt 3.0}.
+Integer division, which gives an integer, is written {\idt //}: {\idt 7 // 2} is {\idt 3}.
+Thanks to these two notations, the reader of the program always knows which division is performed.
+Since {\idt 6 / 2} is a rational, {\idt fdn(6 / 2)} is rejected by the command {\idt fdn}
+which expects an integer; one must write {\idt fdn(6 // 2)}.
+
+If $r$ is a number, {\idt sqrt($r$)} is its square root $\sqrt{r}$ (short for
+\underline{sq}uare \underline{r}oo\underline{t}),
+{\idt $r$ ** 2} is its square $r^{2}$ (which can also be written {\idt $r$ * $r$}),
+{\idt abs($r$)} is its \underline{abs}olute value (for an integer as well as for a rational),
+{\idt int($r$)} is its integer part obtained by removing the digits after the decimal point
+(we say that it is truncated) and {\idt round($r$)} is the nearest integer (from
+the verb to \underline{round}). The results of {\idt int} and of {\idt round}
+are integers. For example
+{\idt int(0.3)} = {\idt int(0.5)} = {\idt int(0.9)} = {\idt 0} whereas
+{\idt round(0.3)} = {\idt 0} and {\idt round(0.5)} = {\idt round(0.9)} = {\idt 1}\footnote{\ The
+original {\idt round} of \python\ rounds halves to the nearest even integer
+({\idt round(0.5)} is {\idt 0} and {\idt round(2.5)} is {\idt 2}). The library of the
+\robot\ replaces it by a {\idt round} which rounds halves away from zero, like
+Pascal and \ocaml: {\idt round(2.5)} is {\idt 3} and {\idt round(-2.5)} is {\idt -3}.}.
+The function {\idt sqrt} is provided by the library of the \robot\ (line
+{\mcl from}\ {\idt LibRobot}\ {\mcl import}\ {\idt *}), the others are part of \python.
+As for procedures, the argument of a function is always placed between
+parentheses: {\idt sqrt(x + 1)}.
+
+In a rational expression, one can use the horizontal length {\idt valGsX()} and the
+vertical length {\idt valGsY()} of a square of the grid on which the \robot\ moves. For example
+{\idt gsX(valGsX() * 2)} doubles the horizontal size of a square of the grid.
+
+\begin{exemple}[Golden spiral]{\rm
+The golden spiral below is made of successive arcs of circles whose radii
+have as ratio the {\em golden ratio\/}
+$\Phi = \frac{1}{2}(1 + \sqrt{5}) \simeq 1.618033989$. For the advocates of traditional
+aesthetics, the golden spiral is said to be a geometric figure very harmonious
+to the eye.
+
+{\raggedright
+ \vbox to 0pt{\includevspacePostScript[4cm]{SpiraleDor}{0.95}{0.95}}
+ \input python/GoldenSpiral.tex
+ }
+\noindent $\Box$ }\end{exemple}
+
+\section{Rounding errors}
+For real numbers\index{Real}, which have infinitely many digits after the decimal point, such as
+$\frac{1}{3} = 0.3333333333333333\ldots$ or $\pi = 3.1415926535897932\ldots$
+the computer can keep in its memory only a few digits after the decimal point, which
+leads, as with a pocket calculator, to rounding errors in computations. For
+example in ma\-the\-ma\-tics we have:
+\[\left(\left(\left(\left(\left(\sqrt{\sqrt{\sqrt{\sqrt{\sqrt{2}}}}}\right)^{2}\right)^{2}\right)^{2}\right)^{2}\right)^{2} =
+\left(\left(\left(\left(\sqrt{\sqrt{\sqrt{\sqrt{2}}}}\right)^{2}\right)^{2}\right)^{2}\right)^{2} =
+\] \[\left(\left(\left(\sqrt{\sqrt{\sqrt{2}}}\right)^{2}\right)^{2}\right)^{2} =
+\left(\left(\sqrt{\sqrt{2}}\right)^{2}\right)^{2} =
+\left(\sqrt{2}\right)^{2} =
+2\]
+whereas the computer finds that:
+\begin{center}
+{\idt ((((sqrt(sqrt(sqrt(sqrt(sqrt(2))))) ** 2)\hspace*{6em}}\\
+{\idt \hspace*{6em}** 2) ** 2) ** 2) ** 2\ = 1.9999999999999964}
+\end{center}
+
+\noindent Likewise, it finds that {\idt 0.1 + 0.2} is
+{\idt 0.30000000000000004} (the program {\idt RoundingErrors} of the folder
+{\idt book/\allowbreak 19\_\allowbreak rational\_\allowbreak expressions} performs these two computations).
+
+\noindent  Similar rounding problems occur with the grid on which the \robot\ moves. Ideally,
+the Cartesian coordinates of the \robot\ should be real numbers.
+The computer keeps in memory a rational approximation of them. On the screen they must
+be rounded to the nearest integer to correspond to a pixel of the screen.
+
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercice}{Write \python\ programs to produce the patterns of the figure
+below (only the central pattern, which uses the trig\-o\-no\-met\-ric func\-tions in\-tro\-duced
+in the addenda of chapter \ref{ch:rec}, is difficult).
+\noindent $\Box$}\end{exercice}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.6cm]{MotifsDeBeard}{0.95}{0.95}
+ \caption{Horemis and Beard patterns; Baravelle spiral}\label{fig:beard}
+\end{figure}
+\vfill
+\begin{corrige}{
+We give one program, the others being in the folder
+{\idt book/\allowbreak 19\_\allowbreak rational\_\allowbreak expressions}:
+\label{prog:CarresImbriquesPeints}
+\input python/PaintedNestedSquares.tex
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+Rational numbers are often called real numbers by abuse of language. They
+can be written using {\em scientific notation}\index{Scientific notation}, which
+consists in
+following the fractional part by a scale factor made of the letter {\idt e} or
+{\idt E} (which reads ``ten to the power'') followed by an exponent.
+
+\noindent For example $-3.0${\idt e}$2$ = $-300.0$,
+$3.0${\idt e}$0$ = $3.0$ and $3.0${\idt e}$-2$ = $0.03$. A rational number contains no blank. Consequently
+$-3.0\hspace{0.3ex}\blanc\hspace{0.3ex}${\idt e}$\hspace{0.3ex}\blanc\hspace{0.3ex}2$ is wrong. In \python,
+numbers of type {\idt float} are represented with 15 to 16 significant digits in base 10, the smallest
+strictly positive rational (without loss of significant digits) being of the order of
+$2.2${\idt e}$-308$ and the largest of the order of $1.8${\idt e}$308$. Beyond that, the result
+of a computation is {\idt inf} (infinity): {\idt 1e308 * 10} is {\idt inf}.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\smallskip
+
+\index{Rational (real) expression}\index{Integer expression}The value of an arithmetic expression
+can be of type {\idt int} or {\idt float}, according to the following rules:
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item integer constants (without a point) and the operators $+$, $-$, $\ast$, {\idt //},
+{\idt \%}, $\ast\ast$ (with a positive exponent) and {\idt abs}\footnote{\ We use different typefaces
+for {\em keywords}\index{Reserved identifier} (such as {\mcl def}
+or {\mcl for})
+and {\em predefined identifiers}\index{Predefined identifier}
+(such as {\idt sqrt} or {\idt abs}). The identifiers introduced in a \python\ program
+(such as the names of constants, of procedures, etc.) must be
+different from the keywords but may be identical to predefined identifiers. This
+practice is not recommended because programs which change the usual meaning of predefined
+identifiers are unreadable.} applied to integers give an integer result
+of type {\idt int}, as do {\idt int} and {\idt round} which
+apply to a rational;
+\item rational constants (with a point or an exponent {\idt e} or
+{\idt E}), division {\idt /} and the function {\idt sqrt} give a rational result
+of type {\idt float}, as does {\idt float} which applies to an integer;
+\item the operators $+$, $-$, $\ast$, $\ast\ast$ and {\idt abs} applied to rationals,
+or to an integer and a rational, give a rational result.
+\end{list}
+An expression which mixes both, such as {\idt 1 + 2.5}, is therefore allowed: the integer is
+converted into a rational and the result {\idt 3.5} is rational.
+
+\smallskip
+
+In \python, the type of parameters is not declared. \python\ automatically converts
+an integer into a rational when needed, but never a rational into an integer: it is up to
+the programmer to ask for it with {\idt int} or {\idt round}, for example
+{\idt fdn(round(x))}. The expected type of a formal parameter can be indicated in the
+declaration of the procedure, as in {\mcl def}\ {\idt arc(l:\ float):\ gs(l);\ cr()},
+which is not necessary (\python\ does not check it) but can help the reader of the program.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

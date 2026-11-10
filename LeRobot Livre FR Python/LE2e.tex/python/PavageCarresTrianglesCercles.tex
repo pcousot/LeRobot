@@ -1,0 +1,91 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ un\ pavage\ de\ carrés,\ triangles\ et\ cercles}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ un\ carré\ de\ côté\ de\ taille\ 2,\ le\ robot}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ partant\ du\ coin\ inférieur\ gauche\ tourné\ vers\ l\textquotesingle{}est,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ et\ arrivant\ crayon\ baissé\ au\ coin\ inférieur\ droit}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ également\ orienté\ à\ l\textquotesingle{}est.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ carre():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Dessiner\ le\ carré.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av();\ av();\ pqtg();\ av();\ av();\ pqtg()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av();\ av();\ pqtg();\ av();\ av();\ pqtg()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Avancer\ au\ coin\ inférieur\ droit.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av();\ av()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ deux\ triangles\ opposés\ par\ un\ sommet}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ inscrits\ dans\ un\ carré\ invisible\ du\ quadrillage\ de}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ côté\ 2,\ en\ partant\ du\ coin\ inférieur\ gauche\ du\ carré}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ tourné\ vers\ l\textquotesingle{}est,\ et\ en\ arrivant\ au\ coin\ inférieur}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ droit,\ crayon\ baissé\ et\ tourné\ vers\ l\textquotesingle{}est.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ triangles():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ av();\ bc()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtg();\ av();\ av();\ p3htg();\ av();\ p3htg()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av();\ av();\ p3htd();\ av();\ p3htg()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ av();\ bc()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ un\ cercle\ de\ rayon\ 1\ inscrit\ dans\ un\ carré}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ invisible\ du\ quadrillage\ de\ côté\ 2,\ en\ partant\ du}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ coin\ inférieur\ gauche\ du\ carré\ tourné\ vers\ l\textquotesingle{}est,\ et}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ en\ arrivant\ au\ coin\ inférieur\ droit\ du\ carré,\ crayon}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ baissé\ et\ tourné\ vers\ l\textquotesingle{}est.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ cercle():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ av();\ bc()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt vg();\ vg();\ vg();\ vg()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ av();\ bc()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ une\ ligne\ constituée\ d\textquotesingle{}un\ motif\ répété\ 7}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ fois,\ le\ motif\ étant\ formé\ d\textquotesingle{}un\ carré,\ de\ triangles}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ et\ d\textquotesingle{}un\ cercle\ juxtaposés,\ le\ robot\ partant\ du\ coin}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ inférieur\ gauche\ de\ la\ ligne\ orienté\ vers\ l\textquotesingle{}est,\ et}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ arrivant\ au\ coin\ inférieur\ droit\ également\ orienté\ à}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ l\textquotesingle{}est.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ ligneCarre():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(7):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Le\ robot\ est\ crayon\ baissé,\ à\ l\textquotesingle{}est,\ en\ bas\ à}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ gauche\ du\ motif}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt carre();\ triangles();\ cercle()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Comme\ ligneCarre,\ avec\ le\ motif\ formé\ de\ triangles,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ d\textquotesingle{}un\ cercle\ et\ d\textquotesingle{}un\ carré.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ ligneTriangles():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(7):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt triangles();\ cercle();\ carre()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Comme\ ligneCarre,\ avec\ le\ motif\ formé\ d\textquotesingle{}un\ cercle,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ d\textquotesingle{}un\ carré\ et\ de\ triangles.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ ligneCercle():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(7):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt cercle();\ carre();\ triangles()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Ramener\ le\ robot\ du\ coin\ inférieur\ droit\ d\textquotesingle{}une\ ligne}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ au\ coin\ inférieur\ gauche\ de\ la\ ligne\ suivante,\ sans}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ dessiner,\ orienté\ à\ l\textquotesingle{}est\ et\ crayon\ baissé.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ alaLigne():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ ag();\ pqtd();\ av();\ av();\ pqtg();\ bc()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Paver\ l\textquotesingle{}écran\ de\ 11\ lignes\ de\ motifs\ commençant\ par}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ un\ carré,\ puis\ par\ des\ triangles,\ puis\ par\ un}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ cercle,\ du\ coin\ supérieur\ droit\ au\ coin\ inférieur}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ droit\ de\ l\textquotesingle{}écran,\ le\ robot\ étant\ orienté\ à\ l\textquotesingle{}est.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pavage():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Dessiner\ les\ lignes\ 1\ à\ 9\ de\ haut\ en\ bas.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(3):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt alaLigne();\ ligneCarre()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt alaLigne();\ ligneTriangles()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt alaLigne();\ ligneCercle()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Dessiner\ les\ lignes\ 10\ puis\ 11.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt alaLigne();\ ligneCarre()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt alaLigne();\ ligneTriangles()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Aller\ au\ coin\ supérieur\ droit,\ orienté\ à\ l\textquotesingle{}est.}}\par
+\vspace{\neglskip}\mbox{\blc {\idt eh();\ ad();\ pqtd()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Paver\ l\textquotesingle{}écran.}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pavage();\ st()}}\par
+
+\medskip }

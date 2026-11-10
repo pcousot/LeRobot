@@ -1,0 +1,37 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ polygonal\ Greek\ key}}\par
+\vspace{\neglskip}\mbox{\blc {\idt mf\ =\ 2\ \ }{\cmt \#\ Magnification\ factor}}\par
+\vspace{\neglskip}\mbox{\blc {\idt n\ =\ 10\ \ }{\cmt \#\ Number\ of\ sides}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pattern():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Left\ part}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdl(13\ *\ mf);\ rot(90);\ fdl(8\ *\ mf);\ rot(90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdl(6\ *\ mf);\ rot(90);\ fdl(4\ *\ mf);\ rot(90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdl(2\ *\ mf);\ rot(90);\ fdl(2\ *\ mf);\ rot({-}90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdl(2\ *\ mf);\ rot({-}90);\ fdl(4\ *\ mf);\ rot({-}90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdl(6\ *\ mf);\ rot({-}90);\ fdl(8\ *\ mf);\ rot({-}90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdl(18\ *\ mf);\ rot({-}90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Symmetric\ right\ part}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdl(8\ *\ mf);\ rot({-}90);\ fdl(6\ *\ mf);\ rot({-}90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdl(4\ *\ mf);\ rot({-}90);\ fdl(2\ *\ mf);\ rot({-}90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdl(2\ *\ mf);\ rot(90);\ fdl(2\ *\ mf);\ rot(90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdl(4\ *\ mf);\ rot(90);\ fdl(6\ *\ mf);\ rot(90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdl(8\ *\ mf);\ rot(90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdl(13\ *\ mf)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ greekKey():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pattern();\ rot(360\ /\ n)}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt greekKey();\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

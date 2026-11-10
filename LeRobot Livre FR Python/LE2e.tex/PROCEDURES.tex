@@ -1,0 +1,391 @@
+\section{Recopie de texte} 
+%\label{sec:5:1:recopie} 
+
+Dans le programme {\idt CroixGrecque\_1} ci-dessous on retrouve quatre fois la même
+séquence de commandes pour dessiner les quatre
+bran\-ches identiques de la croix et tourner. Chaque branche se décompose en deux cotés égaux
+de lon\-gueur 3 et une extrémité de lon\-gueur 1 (l'unité
+étant la longueur d'un côté d'un carreau  du quadrillage).
+
+\vspace{\baselineskip}
+\vspace*{3cm}%
+\includevspacePostScript[-\baselineskip]{CroixGrecque}{0.95}{0.95}
+\vspace*{-3cm}%
+\label{prog:CroixGrecque_1}
+\input python/CroixGrecque_1.tex
+
+Cette situation où l'on trouve la même séquence de commandes du \robot\ 
+plusieurs fois de suite dans un programme est très fréquente car les 
+dessins géométriques sont souvent composés de morceaux identiques. Il est alors
+très fastidieux de taper plusieurs fois le même texte. On peut l'éviter
+en utilisant les possibilités offertes par l'ordinateur de copier un texte
+déjà enregistré dans sa mémoire et de le recopier ailleurs dans le 
+programme. La manière de procéder est expliquée pour les 
+PC (sous Windows ou Linux) à la figure \ref{fig:PC-copier-coller} 
+(page \pageref{fig:PC-copier-coller})
+et pour le Macintosh à la figure \ref{fig:mac-copier-coller} 
+(page \pageref{fig:mac-copier-coller}).
+\input COPIER-COLLER-PC.tex
+\input COPIER-COLLER-MAC.tex
+
+Faire beaucoup de recopies à la main est long. De plus on imagine bien que 
+dans un programme de plusieurs pages, le lecteur a du mal à retrouver les 
+parties de texte identiques. Ce phénomème est illustré dans le
+programme {\idt Nombre888\_1} ci-dessous. La difficulté serait
+évidemment encore plus grande si les parties de texte identiques se
+trouvaient sur des pages différentes.
+
+\vspace{\baselineskip}
+\vspace*{2cm}%
+\includevspacePostScript[-\baselineskip]{Nombre_888}{0.95}{0.95}
+\vspace*{-2cm}%
+\input python/Nombre888_1.tex
+
+\section{Exemples de procédures} 
+%\label{sec:5:2:ex-procedures} 
+
+Plutôt que de faire des recopies de textes à la main soi-même, on peut 
+demander à l'interpréteur \python\ de le faire à notre place en utilisant 
+des {\em procédures}\index{Procédure}. Commençons par réécrire le programme 
+{\idt CroixGrecque\_1} (page \pageref{prog:CroixGrecque_1}) en uti\-li\-sant des procédures pour mettre en 
+évidence la décomposition de la croix grecque en 
+quatre bran\-ches identiques, chacune d'elles se décomposant en deux 
+cotés égaux de lon\-gueur 3 et une extrémité de lon\-gueur 1.
+
+\newpage
+\vspace*{3cm}%
+\includePostScript{CroixGrecque}{0.95}{0.95}
+\vspace*{-3cm}%
+\input python/CroixGrecque_2.tex
+
+\noindent L'emploi d'une procédure comprend~:
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item la {\em déclaration de procédure}\index{Déclaration de procédure} qui définit une séquence 
+d'instructions (appelée {\em corps de la procédure})\index{Corps de procédure} et lui donne un 
+nom (appelé {\em nom de la procédure})\index{Identificateur}$\:$;
+\item l'{\em appel de procédure}\index{Appel de procédure} qui indique que la séquence 
+d'instructions cons\-ti\-tuant le corps de la procédure doit être recopiée 
+à la place du nom de la procédure.
+\end{list}
+
+\noindent Pour le lecteur du programme, l'utilisation de procédures est 
+préférable aux recopies de textes. A chaque fois qu'il voit le
+nom d'une procédure, il comprend qu'il s'agit de la copie d'un texte
+qu'il peut consulter dans la déclaration de procédure. S'il rencontre
+plusieurs appels d'une même procédure, il n'a pas à faire d'effort 
+pour comprendre immédiatement qu'il s'agit du même texte qui est
+recopié. Le programme est donc plus clair. N'est-ce pas le cas du
+programme {\idt Nombre888\_2} ci-dessous qui est plus facilement 
+compréhensible que le programme {\idt Nombre888\_1}$\:$? 
+
+\vspace{\baselineskip}
+\vspace*{2cm}%
+\includevspacePostScript[-\baselineskip]{Nombre_888}{0.95}{0.95}
+\vspace*{-2cm}%
+\input python/Nombre888_2.tex
+
+\section{Déclaration de procédures} 
+%\label{sec:5:3:decl-procedures} 
+
+Les déclarations des procédures\index{Déclaration de procédure} d'un programme se placent entre 
+la ligne `{\mcl from}\ {\idt LibRobot}\ {\mcl import}\ {\idt *}' et les instructions du programme. 
+La structure d'un programme \python\ est donc la suivante~:
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Programme \python\ :}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ {\mcl from}\hspace{0.3em}\blanc\hspace{0.3em}{\idt LibRobot}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl import}\hspace{0.3em}\blanc\hspace{0.3em}{\idt *}}\par 
+\mbox{\blc\ \ \ \cmt \#\ \small\rm Commentaire expliquant ce que fait le programme}\par 
+\mbox{\blc\ \ \ \small\rm  \ldots\ Déclarations des procédures du programme \ldots}\par 
+\mbox{\blc\ \ \ \small\rm  \ldots\ Instructions du programme%
+\footnote{\ Y compris les appels des procédures du programme.} (non indentées) \ldots}\par 
+\medskip}
+\end{minipage}\\ \hline 
+\end{tabular}
+\end{center}
+
+
+\noindent En \python, une déclaration de procédure a la forme suivante
+(nous utiliserons des formes plus élaborées dans la suite)~:
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Déclaration de procédure~:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ \cmt \#\ \small\rm Spécification : ce que fait la procédure}\par 
+\mbox{\blc\ \ \ {\mcl def}\hspace{0.3em}\blanc\hspace{0.3em}\idt nomDeLaProcedure():}\par 
+\mbox{\blc\ \ \ \blk\blk\blk\blk\small\rm \ldots\ Corps de la procédure%
+\footnote{\ Y compris les appels de procédures précédemment déclarées.}
+ ({\bf obligatoirement indenté}) \ldots}\par 
+\medskip}
+\end{minipage}\\ \hline 
+\end{tabular}
+\end{center}
+
+Le mot anglais {\mcl def} est l'abréviation de {\em define} (définir).
+Le {\idt  nomDeLaProcedure} est choisi par le programmeur
+à sa convenance, de façon à évoquer ce
+à quoi sert cette procédure. Les parenthèses {\idt ()} qui le suivent indiquent
+que c'est une procédure, qu'il faudra appeler en écrivant {\idt nomDeLaProcedure()}, 
+exactement comme les commandes du \robot\ {\idt av()}, {\idt pqtd()}, etc. 
+D'ailleurs les commandes du \robot\ sont des procédures déclarées dans la 
+bibliothèque {\idt LibRobot}. La ligne {\mcl def} se termine obligatoirement par 
+deux points `{\idt :}' qui annoncent le corps de la procédure.
+
+\index{Indentation}Les instructions du corps de la procédure sont écrites sur les lignes 
+suivantes, toutes décalées vers la droite d'un même nombre de blancs, 
+habituellement 4. On dit qu'elles sont {\em indentées}. 
+Comme dans le programme, on peut écrire une ou plusieurs instructions par ligne, séparées 
+par des points-virgules. C'est l'indentation, et elle seule, qui indique à \python\ 
+quelles instructions font partie du corps de la procédure~: le corps se termine à 
+la première ligne qui n'est plus indentée. Les blancs en début de ligne ne sont donc 
+pas une simple question de présentation~: ils font partie de la syntaxe de \python. 
+Si l'on oublie d'indenter la première ligne du corps, \python\ signale par exemple
+`{\tt IndentationError: expected an indented block after function definition on line 3}' 
+(erreur d'indentation~: un bloc indenté est attendu après la définition de fonction de 
+la ligne 3). Si au contraire on indente par erreur une instruction du programme, il signale 
+`{\tt IndentationError: unexpected indent}' (indentation inattendue). Et si une ligne du 
+corps n'a pas le même nombre de blancs que les précédentes, il signale 
+`{\tt IndentationError: unindent does not match any outer indentation level}' 
+(le retrait ne correspond à aucun niveau d'indentation). Une ligne vide après le corps 
+de chaque procédure, comme dans le programme {\idt Nombre888\_2} ci-dessus, 
+n'est pas obligatoire mais rend bien visible la fin de la procédure.
+
+{\bf Attention~:} le corps d'une procédure doit {\bf impérativement} être indenté, et 
+{\bf toutes} ses lignes du même nombre de blancs. Une ligne du corps que l'on oublie 
+d'indenter n'est pas toujours signalée comme une erreur~: elle ne fait simplement plus 
+partie de la procédure. Dans l'exemple ci-dessous, {\idt pqtd()} n'est pas indentée~:
+\python\ l'exécute une seule fois, au début du programme, et non à chaque appel de 
+{\idt coin()}. Au lieu d'un carré, le \robot\ trace un trait droit de huit pas, sans 
+aucun message d'erreur~:
+
+{\parindent \parindentprog
+\medskip
+\noindent\begin{minipage}{\linewidth}\parindent \parindentprog
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ coin():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av();\ av()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pqtd()}\ \ \ \ \ \ \ \ \ \ {\cmt \#\ Erreur\ :\ pas\ indentée,\ hors\ de\ la\ procédure}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt coin();\ coin();\ coin();\ coin()}}\par
+
+\end{minipage}
+\medskip }
+
+\noindent Pour que le \robot\ tourne à chaque coin, il faut indenter {\idt pqtd()} 
+comme {\idt av();\ av()}, avec les mêmes quatre blancs.
+
+\medskip
+\noindent {\it Remarque~:} en \python, les procédures sont des cas particuliers de 
+ce que l'on appelle des {\em fonctions}\index{Fonction}. Nous en reparlerons 
+plus tard.
+
+
+\section{Identificateurs} 
+%\label{sec:7:2:Ident} 
+Le nom d'une procédure s'appelle un 
+{\em identificateur}\index{Identificateur} en \python. En voici 
+une définition précise à laquelle il
+faudra se référer à chaque fois que nous parlerons d'iden\-ti\-fi\-ca\-teurs~:
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Identificateur~:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+Un {\em identificateur} est une séquence de lettres 
+minuscules ou majuscules non accentuées, de chiffres ou
+de soulignés `\_' qui ne commence pas par un chiffre et qui est différente des
+mots anglais réservés par \python\ comme {\mcl from}, {\mcl import}, {\mcl def}, {\mcl for}, 
+{\mcl in}, {\mcl if}, {\mcl while}, {\mcl return}, {\mcl True}, etc.
+\medskip}
+\end{minipage}\\ \hline 
+\end{tabular}
+\end{center}
+
+Par exemple {\idt cote}, {\idt croixGrecque}, {\idt croix\_grecque} ou {\idt cote2} sont des 
+identificateurs alors que {\idt 2cote}, {\idt cote-gauche} ou {\idt for} n'en sont pas. 
+Si l'on écrit `{\mcl def}\ {\idt 2cote():}', \python\ répond 
+`{\tt SyntaxError: invalid decimal literal}' (nombre décimal incorrect) car il croit 
+lire un nombre$\:$; pour `{\mcl def}\ {\idt cote-gauche():}' ou `{\mcl def}\ {\idt for():}', il 
+répond simplement `{\tt SyntaxError: invalid syntax}' (syntaxe incorrecte).
+Les majuscules et les minuscules sont distinguées~: {\idt Cote} et {\idt cote} sont deux 
+identificateurs différents. Si l'on déclare `{\mcl def}\ {\idt Cote():}' puis que l'on 
+appelle {\idt cote()}, \python\ répond 
+`{\tt NameError: name \textquotesingle{}cote\textquotesingle{} is not defined. Did you mean: \textquotesingle{}Cote\textquotesingle{}?}' 
+(le nom {\idt cote} n'est pas défini. Vouliez-vous dire {\idt Cote}$\:$?).
+\python\ permet de commencer un identificateur par une majuscule, mais l'usage est de 
+commencer les noms de procédures par une minuscule. Pour rendre 
+lisible un identificateur formé de plusieurs mots, on
+met une majuscule au début de chaque mot sauf le premier, comme dans 
+{\idt croixDeSaintAndre} ou {\idt bordInterieurDuVerre}\footnote{\ Beaucoup de programmeurs 
+\python\ préfèrent séparer les mots par des soulignés, comme dans {\idt croix\_de\_saint\_andre}.}.
+
+\section{Appel de procédures} 
+%\label{sec:5:4:app-procedures} 
+
+\index{Appel de procédure}Pour appeler une procédure, il suffit d'écrire son nom suivi 
+de {\idt ()}. L'appel {\idt nomDeLaProcedure()}
+est alors remplacé par le corps de la procédure\index{Corps de procédure} c'est-à-dire par la liste
+d'instructions indentées qui suit la ligne `{\mcl def}\ {\idt nomDeLaProcedure():}' dans sa déclaration.
+
+On notera que si l'on déclare une procédure sans jamais l'appeler, elle 
+ne sert absolument à rien. 
+
+On peut appeler une procédure dans le programme ou dans une autre procédure.
+Par exemple dans le programme {\idt CroixGrecque\_2}, on appelle 
+la procédure {\idt croix} qui appelle la procédure {\idt branche} qui elle-même
+appelle les procédures {\idt cote} et {\idt extremite}. 
+
+Il faut impérativement respecter la règle qu'une procédure doit 
+être
+dé\-cla\-rée avant d'être ap\-pe\-lée. Supposons par exemple que l'on ait
+déclaré une pro\-cé\-du\-re sous le nom {\idt nomProc}. Supposons également
+que par suite d'une faute de frappe, on ait appelé cette procédure
+sous le nom {\idt nomProg}. Quand l'exécution arrive à cet appel, l'interpréteur 
+s'arrête en indiquant l'erreur
+`{\tt NameError: name \textquotesingle{}nomProg\textquotesingle{} is not defined}' (le nom {\idt nomProg} n'est pas défini). 
+Ne sachant pas que 
+nous avons écrit par erreur {\idt nomProg} au lieu de {\idt nomProc}, l'interpréteur 
+suppose que la procédure {\idt nomProc} a été déclarée mais n'a jamais été utilisée.
+C'est inutile mais autorisé. Il constate également que la procédure
+{\idt nomProg} est appelée mais n'a pas été déclarée. C'est interdit.
+Il remarque cependant que les deux noms se ressemblent et suggère
+`{\tt Did you mean: \textquotesingle{}nomProc\textquotesingle{}?}' (vouliez-vous dire {\idt nomProc}$\:$?).%
+\footnote{\ Nous parlons souvent des programmes de manière 
+anthropomorphique, c'est-à-dire en leur attribuant des caractères 
+propres à l'homme. En fait nous pensons aux programmeurs qui les
+ont écrits. Par exemple, l'ordinateur ne se trompe pas$\:$; c'est son 
+constructeur qui s'est trompé ou le programmeur qui a fait une erreur 
+logique dans son programme.} 
+On obtient la même erreur `{\tt NameError}' si le programme appelle une procédure
+dont la déclaration est placée plus loin~: \python\ exécute les déclarations dans 
+l'ordre où elles sont écrites, et au moment de l'appel il ne connaît pas encore la procédure. 
+Comme toutes les erreurs découvertes pendant l'exécution, ces erreurs n'apparaissent 
+qu'une fois que le \robot\ a fait la partie du dessin qui précède l'appel fautif.
+
+\section{Commandes du robot définies par des procédures} 
+%\label{sec:5:5:robot-cmd-procs}
+
+Certaines commandes du \robot\ sont équivalentes à une séquence
+de commandes élémentaires et peuvent donc s'exprimer avec des procédures.
+Par exemple, pour pivoter d'un quart de tour, il suffit de pivoter deux fois
+de suite d'un huitième de tour. On a donc~:
+\input python/Pivotements1.tex
+\noindent Voici de nouvelles commandes du \robot\ qui peuvent s'exprimer à l'aide de
+procédures en utilisant des commandes que nous connaissons déjà~:
+\input python/Pivotements2.tex
+\noindent\rule{137mm}{0.1mm} %-------------------------------------------------------
+\begin{exercices}{
+Écrire des programmes \python\ comportant des pro\-cé\-du\-res pour 
+réaliser les croix,
+%de la figure \ref{fig:Croix}, 
+l'étoile astroïdale, la loupe ou le double carré cranté
+%de la figure \ref{fig:EtLoCa} 
+ci-dessous.
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \vspace{-\baselineskip}
+ \includevspacePostScript[1.7cm]{Croix}{0.95}{0.95}
+ \caption{Croix potencée, double, papale, tréflée et de Saint André}
+ %\label{fig:Croix}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.1cm]{EtoileLoupeCarre}{0.95}{0.95}
+ \caption{Étoile astroïdale, loupe et double carré cranté}
+ %\label{fig:EtLoCa}
+\end{figure}
+
+\clearpage
+
+\begin{corrige}{
+Nous donnons un exemple de programme, les
+autres se trouvant corrigés dans le dossier {\idt livre/\allowbreak 05\_procedures}.
+\input python/EtoileAstroidale.tex
+\noindent $\Box$}\end{corrige}
+
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+La notion de procédure\index{Procédure} introduite par Von Neumann et Turing
+fût utilisée en 1949
+sous le nom de {\em routine} sur l'EDSAC ({\em Electronic Delay
+Storage Automatic Computer}) généralement considéré 
+comme le premier ordinateur à programme enregistré ayant 
+fonctionné. Cette machine fût construite dès 1947 à l'université
+de Cambridge en Angleterre par l'équipe de Wilkes\footnote{\ Maurice
+Wilkes, l'un des inventeurs du radar.} et exécuta ses premiers programmes
+en Mai 1949 \cite{levy1}.
+
+Les procédures illustrent le concept d'{\em abstraction}\index{Abstraction}~: les 
+propriétés d'un objet sont isolées afin de
+les utiliser ou de les étudier à part. Plus précisément, une 
+procédure donne un nom à un algorithme de construction d'une partie
+d'un dessin. Dans le corps de la procédure, 
+on s'intéresse à la façon de construire le dessin. Dans les appels 
+on s'intéresse uniquement au dessin terminé, tout en désirant complètement ignorer comment 
+le dessin est obtenu. On sépare donc l'objet et la façon de le 
+construire, le quoi du comment. 
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+Nous trouvons utile de décrire le dessin réalisé par une procédure
+dans un commentaire 
+placé au début de la procédure que l'on appelle la
+ {\em spécification}\index{Spécification} de la procédure. On remarquera que pour qu'une procédure 
+puisse être utilisée sans jamais consulter son corps, il faut que la 
+spécification de la procédure décrive quel dessin elle fait mais 
+également quelles sont les positions et orientations
+du \robot\ avant et après la construction du dessin. Il se dégage ainsi
+une notion d'{\em invariant}\index{Invariant} sur laquelle nous reviendrons dans les chapitres
+suivants sur l'itération. 
+
+Les procédures sont à la base des méthodes 
+de structuration des très grands programmes~: pour être 
+compréhensibles, les programmes de plusieurs milliers de lignes 
+doivent être découpés en procédures ne dépassant pas 
+quelques pages. Les procédures constituent donc un moyen élégant pour 
+segmenter logiquement un programme. Cependant le concept de procédure
+est insuffisant pour structurer des programmes de plusieurs millions de
+lignes. On utilise alors la notion de {\em module} (on dit également {\em unité})
+et de {\em bibliothèque} pour regrouper des ensembles de procédures.
+
+Des procédures regroupées dans une
+{\em bibliothèque} (en \python\ on dit aussi {\em module}) peuvent être 
+fournies aux programmeurs pour les aider dans leurs tâches. Pour utiliser 
+une procédure, le programmeur doit connaître son nom et sa 
+spécification sans avoir besoin
+de connaître son fonctionnement interne. La ligne `{\mcl from}\ {\idt LibRobot}\ {\mcl import}\ {\idt *}' au début
+du programme a pour but d'indiquer à l'interpréteur quelle est la 
+bibliothèque utilisée dans ce programme. Les commmandes du \robot\ sont
+des procédures regroupées dans des bibliothèques.
+
+L'analyse de dessins géométriques pour en dégager une structure que
+l'on peut décrire algorithmiquement à l'aide de procédures est très
+formatrice pour l'esprit. En ce sens l'apprentissage de la programmation
+peut jouer pour les enfants un rôle formateur analogue à celui que 
+jouait autrefois la géométrie euclidienne.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{empty}

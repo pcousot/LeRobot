@@ -1,0 +1,11 @@
+# Avancer n fois si n est positif, reculer -n fois si
+# n est négatif, ne pas bouger si n est nul.
+def avf(n):
+    if n > 0:
+        for i in range(n):
+            av()
+    elif n < 0:
+        pdt()
+        for i in range(-n):
+            av()
+        pdt()

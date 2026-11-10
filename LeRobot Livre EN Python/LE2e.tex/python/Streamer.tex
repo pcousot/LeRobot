@@ -1,0 +1,27 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ streamer}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ drawStreamer(l):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ 2\ *\ l\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl if}{\idt \ i\ \char60{}=\ l:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt gs(i)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt gs(2\ *\ l\ +\ 1\ {-}\ i)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl if}{\idt \ i\ \%\ 2\ ==\ 1:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\cmt \#\ Upper\ semicircle}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt cr();\ cr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Lower\ semicircle}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt cl();\ cl()}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gl();\ drawStreamer(13);\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

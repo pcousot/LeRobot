@@ -1,0 +1,176 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  rulecolor=\color{gray!50},
+  backgroundcolor=\color{gray!8},
+  breaklines=true,
+  upquote=true,
+  showstringspaces=false,
+  xleftmargin=0.5em,
+  xrightmargin=0.5em
+}
+\setlength{\emergencystretch}{3em}
+\newcommand{\kbd}[1]{\texttt{#1}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+\title{LeRobot (Python, English names) Installation Manual\\[0.3em]\large Installing LeRobot on another Mac}
+\author{}
+\date{10 November 2026}
+
+\begin{document}
+\maketitle
+
+This manual explains how to install LeRobot, the Python drawing robot, on a
+Mac where it has never been installed. This is the edition with English command names
+(\kbd{fd()}, \kbd{qtr()}, \kbd{pd()}, \dots), in the folder
+\kbd{LeRobot\_Python\_EN}, used by the book \emph{First Programming Lessons in
+Python}; the French edition is in \kbd{LeRobot\_Python\_FR}. Once it is done, use the
+\emph{LeRobot (Python, English names) User Manual} (\kbd{LeRobot\_Manual.pdf}) to draw and
+to run robot programs.
+
+The Python version needs much less than the OCaml version: no XQuartz, no
+compiler, no startup task. The robot window is an ordinary macOS window
+drawn with tkinter, the graphics library that comes with Python. The
+installation takes about ten minutes. You need:
+\begin{itemize}
+\item a Mac with a recent macOS (Apple Silicon or Intel);
+\item an administrator account (the Python installer asks for the Mac
+  password);
+\item an Internet connection;
+\item a copy of the \kbd{LeRobot} folder, or at least its
+  \kbd{LeRobot\_Python\_EN} folder (USB key, AirDrop, cloud drive, \dots).
+\end{itemize}
+
+Commands are typed in the \textbf{Terminal} application
+(\emph{Applications} $\rightarrow$ \emph{Utilities} $\rightarrow$
+\emph{Terminal}). Copy each command in one piece, paste it into the
+Terminal, and press Return.
+
+\tableofcontents
+
+%======================================================================
+\section{Python with Tk 8.6}
+
+LeRobot needs Python 3.9 or later \emph{linked to Tk 8.6 or later}. Tk is the
+library that draws the window.
+
+\textbf{The \kbd{python3} that comes with macOS is not enough.} It is
+linked to Tk 8.5, which no longer works on recent macOS: the robot window
+does not open and the program hangs. Install Python from python.org, whose
+installer includes a recent Tk:
+\begin{enumerate}
+\item Open \url{https://www.python.org/downloads/macos/} and download the
+  \emph{macOS 64-bit universal2 installer} of the latest Python 3 release.
+\item Open the downloaded \kbd{.pkg} file and follow the installer. At the
+  end, the Finder window it opens can be closed.
+\end{enumerate}
+Check, in a new Terminal window:
+\begin{lstlisting}[language=bash]
+/Library/Frameworks/Python.framework/Versions/Current/bin/python3 -c "import tkinter; print(tkinter.TkVersion)"
+\end{lstlisting}
+The answer must be \kbd{8.6} or more.
+
+You do not need to change which \kbd{python3} the Terminal uses: when
+LeRobot is started with the macOS \kbd{python3}, it notices that its Tk is
+too old and starts itself again with the python.org Python.
+
+\paragraph{With Homebrew instead.} If Homebrew is installed
+(\url{https://brew.sh}), its Python also works once its Tk module is
+installed (replace 3.13 by the version that \kbd{brew info python} shows):
+\begin{lstlisting}[language=bash]
+brew install python@3.13 python-tk@3.13
+\end{lstlisting}
+
+%======================================================================
+\section{The LeRobot folder}
+
+Copy the \kbd{LeRobot} folder anywhere, for example onto the
+\textbf{Desktop}. The Python programs are in its folder
+\kbd{LeRobot\_Python\_EN}; the \kbd{LeRobotPythonEN.app} icon must stay in that
+folder, next to \kbd{robot.sh}. The whole \kbd{LeRobot} folder can be moved
+or renamed later: nothing in it depends on where it is.
+
+\paragraph{Commands.} The \kbd{LeRobot} folder can be anywhere (on the
+Desktop, in Documents, \dots): everything in it is found relative to it.
+The commands of this manual are typed in a Terminal window \emph{opened in
+the \kbd{LeRobot} folder}: type \kbd{cd} and a space, drag the
+\kbd{LeRobot} folder from the Finder onto the Terminal window, and press
+Return (or, in the Finder, right-click the folder and choose
+\emph{Services} $\rightarrow$ \emph{New Terminal at Folder}).
+
+Nothing has to be compiled. If the folder comes from another Mac, make the
+scripts executable again (a copy can lose this):
+\begin{lstlisting}[language=bash]
+cd LeRobot_Python_EN && chmod +x robot.sh launch.sh check.sh
+\end{lstlisting}
+
+%======================================================================
+\section{First launch}
+
+\begin{enumerate}
+\item Open the interactive drawing program:
+\begin{lstlisting}[language=bash]
+cd LeRobot_Python_EN
+python3 Draw.py
+\end{lstlisting}
+  The robot window ($800 \times 700$ points) opens in front of the other
+  windows. Press Return in it to finish, then \kbd{n} not to save.
+\item Run a program of the book:
+\begin{lstlisting}[language=bash]
+./robot.sh book/03_programming/Square.py
+\end{lstlisting}
+  When the square is drawn, press Esc to close the window.
+\item \kbd{LeRobotPythonEN.app}, in the \kbd{LeRobot\_Python\_EN} folder:
+  double-click its icon to run Draw; drop a \kbd{.py} program on its
+  icon to run it. The program runs in a Terminal window, which closes when
+  the program ends normally and stays open if there is an error.
+
+  The first time you open \kbd{LeRobotPythonEN.app}, macOS may refuse to open
+  it because it comes from another Mac. Right-click the icon, choose
+  \emph{Open}, then confirm. Allow it to control Terminal and to access the
+  folder of \kbd{LeRobot} (Desktop, Documents, \dots) when macOS asks.
+\item If the folder was copied from another Mac and the application still
+  refuses to open, rebuild it on this Mac:
+\begin{lstlisting}[language=bash]
+cd LeRobot_Python_EN && tools/app/build.sh
+\end{lstlisting}
+\end{enumerate}
+
+%======================================================================
+\section{Troubleshooting}
+
+\begin{tabularx}{\textwidth}{@{}LLL@{}}
+\toprule
+\textbf{Symptom} & \textbf{Cause} & \textbf{Fix} \\
+\midrule
+The program hangs and no window opens & Python linked to Tk 8.5 (the macOS \kbd{python3}) and no other Python found & Install Python from python.org (Section~1) \\
+\addlinespace
+\emph{il faut un Python avec Tk 8.6 ou plus} & Same cause: LeRobot found no suitable Python & Same fix \\
+\addlinespace
+\emph{No module named '\_tkinter'} & Homebrew Python without its Tk module & \kbd{brew install python-tk@3.13} (with the right version) \\
+\addlinespace
+\emph{No module named 'LibRobot'} & The program was started with \kbd{python3} from another folder & Use \kbd{./robot.sh Program.py}, or drop it on \kbd{LeRobotPythonEN.app} \\
+\addlinespace
+\emph{permission denied: ./robot.sh} & The scripts lost their executable mark during the copy & \kbd{chmod +x robot.sh launch.sh check.sh} (Section~2) \\
+\addlinespace
+\kbd{LeRobotPythonEN.app} does not open & macOS blocks applications copied from another Mac & Right-click, \emph{Open}; or rebuild it (Section~3) \\
+\addlinespace
+To use a given Python & --- & \kbd{LEROBOT\_PYTHON=\allowbreak /path/\allowbreak to/\allowbreak python3 \allowbreak ./robot.sh Program.py} \\
+\bottomrule
+\end{tabularx}
+
+\end{document}

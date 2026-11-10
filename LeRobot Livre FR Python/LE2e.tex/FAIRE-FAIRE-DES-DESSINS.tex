@@ -1,0 +1,654 @@
+\newcommand{\touche}[1]{{
+\begin{picture}(12,12)(0, 2)
+\put(0,0){\framebox(12,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny #1}}
+\end{picture}\hspace{0.3ex}}}
+
+
+\section{Le robot} 
+%\label{sec:2:le-robot} 
+
+Pour réaliser nos dessins géométriques sur ordinateur nous allons piloter
+un petit robot. Son nom est \robot\@\footnote{\ La calligraphie de son nom
+ne laisse aucun doute sur son caractère humanoïde et sympathique. 
+}. Pour dessiner avec le \robot, double cliquer sur son icône
+\begin{center}
+\includegraphics[scale=0.6]{ps-files/LeRobotAppIcone}
+\end{center}
+Notre \robot\ porte un crayon qu'il peut le\-ver ou 
+bais\-ser pen\-dant ses dé\-pla\-ce\-ments sur l'écran de l'ordinateur.  
+Quand le \robot\ se 
+déplace avec son crayon baissé, il laisse une trace sur l'écran 
+comme le ferait un escargot sur une feuille. Quand il se déplace avec son 
+crayon levé, il ne laisse aucune trace de son passage.  Pour dessiner,
+le \robot\ doit suivre exactement les lignes du dessin avec son crayon 
+baissé.
+Il peut également aller d'un point à un autre du dessin qui ne sont pas 
+reliés par un trait en levant son crayon. Pour guider le
+\robot\ nous utilisons le clavier de l'ordinateur qui sert de télécommande.
+Nous pouvons donc piloter le \robot\  comme s'il s'agissait d'une petite voiture 
+conduite à distance par ra\-dio\-com\-man\-de.
+
+\smallskip
+
+Sur l'écran de l'ordinateur notre \robot\ est représenté par une 
+petite flèche \robotCbN\ qui indique dans quelle direction de la
+rose des vents il est tourné (voir la figure 
+\ref{fig:rose-des-vents-8d}, page \pageref{fig:rose-des-vents-8d}). Il peut s'orienter
+au nord \robotCbN\/, au nord-est \robotCbNE, à l'est \robotCbE\/, au
+sud-est \robotCbSE\/, au sud \robotCbS\/, au sud-ouest \robotCbSW\/, à
+l'ouest \robotCbW\ ou au nord-ouest \robotCbNW\/.
+La flè\-che est pleine quand le \robot\ a baissé son crayon et
+évidée
+(\robotClN\/, \robotClNE\/, \robotClE\/, \robotClSE\/, \robotClS\/,
+\robotClSW\/,  \robotClW\ ou \robotClNW\/) quand le crayon est levé.
+\begin{figure}[htbp]
+ \includehvspacePostScript[6cm,5.6cm]{rose-des-vents-8d}{0.95}{0.95}
+ \caption{Rose des vents à huit directions}\label{fig:rose-des-vents-8d}
+\end{figure}
+
+\smallskip
+
+Comme les trains sur leurs rails, notre \robot\ ne peut pas aller 
+n'importe où sur l'écran. Il doit impérativement se déplacer sur 
+les traits ou arcs joignant deux points successifs d'une grille dont les dimensions sont 
+fixées par la taille de l'écran de l'ordinateur. Une petite partie de cette grille
+est  représentée \hbox{ci-dessous} à la figure \ref{fig:grille}.
+\index{Grille du robot@Grille du \protect\smash{\protect\robot}}%
+\begin{figure}[htbp]
+ \includehvspacePostScript[\textwidth,4.0cm]{grille}{0.95}{0.95}
+ \caption{Grille et points d'arrêt du \protect\robot}
+ \label{fig:grille}
+\end{figure}
+
+\noindent Cette grille imaginaire correspond au papier quadrillé que nous avons utilisé pour
+faire nos dessins à la main, sauf que les carreaux ne sont pas visibles sur 
+l'écran de l'ordinateur. 
+Après un déplacement, le \robot\ s'arrête toujours à l'intersection
+d'une ligne horizontale et d'une ligne verticale de la grille imaginaire. La figure
+ \ref{fig:traject} (page \pageref{fig:traject}) montre toutes les trajectoires possibles
+du \robot\ entre deux points d'arrêt quelconques sur la grille.
+\begin{figure}[htbp]
+ \includevspacePostScript[5.4cm]{dessincomplexe}{0.95}{0.95}
+ \caption{Trajectoires du \protect\robot\ (grossissement $\times$\ $4,5$)}
+ \label{fig:traject}
+\end{figure}
+\begin{figure}[htbp]
+ \includehvspacePostScript[42mm,2.1cm]{robot-arrete}{0.95}{0.95}
+ \caption{Le \protect\robot\ arrêté (grossissement $\times$\ $2,5$)}
+ \label{fig:robot-arrete}
+\end{figure}
+La figure \ref{fig:robot-arrete} \hbox{(page \pageref{fig:robot-arrete})} 
+décrit la position
+exacte du \robot\ quand il s'arrête sur la grille. Il place la pointe de
+son crayon située au milieu et à l'arrière de la flèche exactement sur
+un point d'arrêt de la grille.
+
+
+\section{Pilotage du robot} 
+
+Pour piloter le \robot\ sur l'ordinateur, il faut ``{\em exécuter le programme}
+{\idt Des\-si\-ner}'' qui fait partie de la bibliothèque {\idt LeRobot\_Python\_FR}
+accompagnant ce livre%
+\footnote{\ Il suffit de double cliquer sur l'icône du \robot\ {\tt LeRobotPython.app}.
+On peut aussi, dans une fenêtre de terminal placée dans le dossier
+{\tt LeRobot\_Python\_FR}, taper
+{\tt python3 Des\-si\-ner.py}. Sur le Macintosh, la fenêtre du \robot\ est une fenêtre
+ordinaire, qui vient au premier plan$\:$; si les touches restent sans effet, cliquer
+dans cette fenêtre.}. 
+
+\subsection{Position initiale du robot}
+
+Quand l'exécution du programme {\idt Des\-si\-ner}
+commence, l'écran 
+de l'ordinateur se présente comme on le voit en réduction à la figure 
+\ref{fig:ecran-initial-1}  (page \pageref{fig:ecran-initial-1}).
+\begin{figure}[htbp]
+ \includevspacePostScript[7.6cm]{ecran-initial-1}{0.95}{0.95}
+ \caption{Écran de l'ordinateur au début}
+ \centering{de l'exécution du programme {\idt Des\-si\-ner}}
+ \label{fig:ecran-initial-1}
+\end{figure}
+Au départ le \robot\ se trouve donc arrêté au milieu de la grille
+imaginaire, crayon baissé, or\-ienté vers le nord \robotCbN\/.
+Pour piloter le \robot, nous utilisons les touches du clavier de 
+l'ordinateur qui sert de télécommande. Nous allons maintenant
+voir sur quelles touches appuyer pour lever ou baisser le crayon, 
+avancer, pivoter sur place, tourner, etc.
+
+\subsection{Manœuvrer le crayon du robot}
+
+ En tapant sur la touche marquée \touche{L} du
+clavier, le \robot\ lève son crayon \robotClN\/. En tapant sur la touche 
+\touche{B}, il le baisse \robotCbN\/. Faute de disposer de beaucoup de place sur l'écran 
+de l'ordinateur pour
+permettre de rappeler en détail le mode d'emploi du \robot, nous utilisons
+des abréviations mnémotechniques% 
+%
+\footnote{\ Les abréviations mnémotechniques permettent d'aider la mémoire par association d'idées.}
+placées en bas de l'écran comme on peut
+le voir à la figure 
+\ref{fig:ecran-initial-1} ci-dessus. 
+Par \hbox{exemple~:}
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item {\idt l}\,$:${\idt lc} signifie ``la touche \touche{L} permet de {\underline l}ever le \hbox{{\underline c}rayon''$\:$;}
+\item {\idt b}\,$:${\idt bc} signifie ``la touche \touche{B} permet de {\underline b}aisser le \hbox{{\underline c}rayon''.}
+\end{list}
+Les lettres se tapent en minuscules, sans appuyer sur la touche majuscules
+(une lettre majuscule n'est pas une commande du \robot).
+
+L'effet des touches \touche{L} et \touche{B} de manœuvre du crayon du 
+\robot\ est résumé dans la table \ref{tab:crayon} (page \pageref{tab:crayon}).
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{@{}|c|c|c|c|c|c|c|c|c|c|@{}} \hline
+\touche{L} ({\idt lc}) & Avant   & \robotCbN  & \robotCbNE & \robotCbE & \robotCbSE & \robotCbS  & \robotCbSW
+& \robotCbW & \robotCbNW \\ \cline{2-10}
+                     & Après & \robotClN  & \robotClNE & \robotClE & \robotClSE  & \robotClS  
+& \robotClSW & \robotClW  & \robotClNW  \\ \hline\hline
+\touche{B} ({\idt bc}) & Avant  & \robotClN  & \robotClNE & \robotClE & \robotClSE & \robotClS  & \robotClSW  
+& \robotClW  & \robotClNW  \\ \cline{2-10}
+                         & Après & \robotCbN & \robotCbNE & \robotCbE  & \robotCbSE   & \robotCbS 
+& \robotCbSW & \robotCbW  & \robotCbNW \\ \hline
+\end{tabular}
+\end{center}
+\caption{Manœuvres du crayon du \protect\robot}
+\label{tab:crayon}
+\end{table}
+
+
+
+\subsection{Faire pivoter le robot sur place d'un quart de tour}
+
+
+La touche \touche{$-$} fait \underline{p}ivoter le \robot\ sur place d'un 
+\underline{q}uart de \underline{t}our à \underline{g}auche ({\idt pqtg} en abrégé).
+Par exemple si le \robot\ est orienté dans la direction nord \robotCbN\/, la touche \touche{$-$} le fait
+pivoter sur place dans la direction ouest \robotCbW\/. S'il est orienté à l'est \robotCbE\/, 
+il se place dans la direction nord \robotCbN\/. 
+La touche \touche{$+$} fait \underline{p}ivoter le \robot\ sur place d'un 
+\underline{q}uart de \underline{t}our à \underline{d}roite ({\idt pqtd} en abrégé).
+ 
+Quand on parle du côté gauche du \robot, il faut s'imaginer à
+la place du \robot, le regard tourné dans la direction de 
+la flèche. Par exemple, la gauche de \robotCbE\ est le haut de cette page tandis 
+que la gauche de \robotCbS\ est à droite de cette \hbox{feuille$\:$!}
+ 
+L'effet des commandes \touche{$-$} ({\idt pqtg})  et \touche{$+$} ({\idt pqtd}) 
+est résumé dans la table ci-dessous dans le cas où le crayon est baissé. L'effet est
+le même quand le crayon est levé.
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{@{}|c|c|c|c|c|c|c|c|c|c|@{}} \hline
+\touche{$-$} ({\idt pqtg}) & Avant   & \robotCbN & \robotCbNE & \robotCbE & \robotCbSE & \robotCbS & \robotCbSW & \robotCbW & \robotCbNW \\ \cline{2-10}
+                         & Après & \robotCbW & \robotCbNW & \robotCbN & \robotCbNE & \robotCbE & \robotCbSE & \robotCbS & \robotCbSW \\ \hline \hline
+\touche{$+$} ({\idt pqtd}) & Avant   & \robotCbN & \robotCbNE & \robotCbE & \robotCbSE & \robotCbS & \robotCbSW & \robotCbW & \robotCbNW \\ \cline{2-10}
+                         & Après & \robotCbE & \robotCbSE & \robotCbS & \robotCbSW & \robotCbW & \robotCbNW & \robotCbN & \robotCbNE \\ \hline
+\end{tabular}
+\end{center}
+\caption{Pivotements du \protect\robot\ d'un quart de tour sur lui-même}
+%\label{tab:pqtdg}
+\end{table}
+
+\subsection{Faire pivoter le robot sur place d'un huitième de tour}
+
+La touche \touche{G} fait \underline{p}ivoter le \robot\ sur place d'un 
+\underline{h}uitième de \underline{t}our à \underline{g}auche ({\idt phtg} en abrégé).
+Par exemple, s'il est dans la direction nord \robotCbN\/, le \robot\ se place dans la direction
+nord-ouest \robotCbNW\/. En continuant à taper sur la touche \touche{G}, le \robot\
+tourne à chaque fois d'un huitième de tour en passant par les positions successives
+\robotCbW\ puis \robotCbSW\/, \robotCbS\/, \robotCbSE\/, \robotCbE\/, \robotCbNE\/, \ldots
+La touche \touche{D} fait \underline{p}ivoter le \robot\ sur place d'un 
+\underline{h}uitième de \underline{t}our à \underline{d}roite ({\idt phtd} en abrégé).
+L'effet des touches  \touche{G} ({\idt phtg})  et \touche{D} ({\idt phtd}) est résumé 
+\hbox{ci-dessous~:}
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{@{}|c|c|c|c|c|c|c|c|c|c|@{}} \hline
+\touche{G} ({\idt phtg}) & Avant    & \robotCbN  & \robotCbNW & \robotCbW  & \robotCbSW & \robotCbS  & \robotCbSE & \robotCbE  & \robotCbNE \\ \cline{2-10}
+                       & Après  & \robotCbNW & \robotCbW  & \robotCbSW & \robotCbS  & \robotCbSE &\robotCbE   & \robotCbNE & \robotCbN  \\ \hline \hline
+\touche{D} ({\idt phtd}) & Avant    & \robotCbN  & \robotCbNE & \robotCbE  & \robotCbSE & \robotCbS  & \robotCbSW & \robotCbW  & \robotCbNW \\ \cline{2-10}
+                       & Après & \robotCbNE & \robotCbE  & \robotCbSE & \robotCbS  & \robotCbSW & \robotCbW  & \robotCbNW & \robotCbN  \\ \hline
+\end{tabular}
+\end{center}
+\caption{Pivotements du \protect\robot\ d'un huitième de tour sur lui-même}
+%\label{tab:phtgd}
+\end{table}
+
+\subsection{Faire avancer le robot}
+
+La touche \touche{A} fait \underline{av}ancer le \robot\ tout droit, de la taille d'un 
+côté d'un carreau du quadrillage. 
+L'abréviation mnémotechnique de cette commande du \robot\ est {\idt av}.
+Si le crayon est baissé, ce déplacement permet de tracer un petit trait. Si le crayon 
+est levé, ce déplacement ne laisse aucune trace sur le dessin. Dans les deux cas le
+\robot\ avance tout droit dans la direction où il se trouve sans 
+changer \hbox{d'orientation~:}
+\begin{table}[htbp]
+\begin{center}
+\input ROBOT-AVPICT2.46x2.46.tex
+\input ROBOT+AVPICT2.46x2.46.tex
+\input ROBOT-VGPICT2.46x2.46.tex 
+\input ROBOT+VGPICT2.46x2.46.tex 
+\input ROBOT-VDPICT2.46x2.46.tex
+\input ROBOT+VDPICT2.46x2.46.tex
+\begin{tabular}{@{}|c|c|c|c|c|c|c|c|c|c|@{}} \hline
+\touche{A} ({\idt av}) & Avant   & \robotCbNmav & \robotCbNEmav & \robotCbEmav & \robotCbSEmav & \robotCbSmav & \robotCbSWmav & \robotCbWmav & \robotCbNWmav \\ \cline{2-10}
+                     & Après & \robotCbNpav & \robotCbNEpav & \robotCbEpav & \robotCbSEpav & \robotCbSpav & \robotCbSWpav & \robotCbWpav & \robotCbNWpav \\ \hline 
+\end{tabular}
+\end{center}
+\caption{Avancées du \protect\robot\ dans les huit directions}
+%\label{tab:av-8d}
+\end{table}
+
+\begin{exemple}[Frise crantée]{\rm
+ En tapant successivement sur les touches \touche{A} ({\idt av}), \touche{$+$} ({\idt pqtd}),  \touche{A} ({\idt av}),
+\touche{$+$} ({\idt pqtd}), \touche{A} ({\idt av}), \touche{$-$} ({\idt pqtg}), \touche{A} ({\idt av}), 
+\touche{$-$} ({\idt pqtg}), \touche{A} ({\idt av}), \touche{$+$} ({\idt pqtd}),  \touche{A} ({\idt av}),
+\touche{$+$} ({\idt pqtd}), \touche{A} ({\idt av}), \touche{$-$} ({\idt pqtg}), \touche{A} ({\idt av}), 
+\touche{$-$} ({\idt pqtg}), \ldots, on ob\-tient la frise \hbox{suivante~:}
+
+\includevspacePostScript[0.7cm]{frise-crantee}{0.95}{0.95}
+\noindent $\Box$ }\end{exemple}
+
+\begin{exemple}[Frise crénelée]{\rm
+ En tapant successivement sur les touches
+\touche{D} ({\idt phtd}), \touche{D} ({\idt phtd}), \touche{A} ({\idt av}), \touche{D} ({\idt phtd}), 
+\touche{A} ({\idt av}), \touche{G} ({\idt phtg}), \touche{A} ({\idt av}), \touche{G} ({\idt phtg}), 
+\touche{A} ({\idt av}), \touche{D} ({\idt phtd}), \touche{A} ({\idt av}), \touche{D} ({\idt phtd}), 
+\touche{A} ({\idt av}), \ldots, on ob\-tient la frise \hbox{suivante~:}
+
+\includevspacePostScript[0.7cm]{frise-crenelee}{0.95}{0.95}
+\noindent $\Box$ }\end{exemple}
+
+\subsection{Faire virer le robot}
+
+La touche \touche{(} \vspace{-1.0mm} permet de faire {\underline v}irer le \robot\ à {\underline g}auche 
+({\idt vg} en abrégé) tandis que la
+touche \touche{)} permet de le faire {\underline v}irer 
+à {\underline d}roite ({\idt vd}).
+Ces touches ont été
+choisies parce que les parenthèses évoquent l'idée de virage et que
+la parenthèse gauche \touche{(} qui se trouve à gauche sur le clavier 
+correspond au virage à gauche tandis que la
+parenthèse droite \touche{)} qui correspond au virage à droite se trouve à droite sur le 
+clavier. Si le crayon est baissé, ce déplacement permet de tracer
+un petit arc de cercle. Si le crayon est levé, ce déplacement ne laisse 
+aucune trace sur le dessin. Dans les deux cas le \robot\ se déplace sur la
+grille et change d'orientation comme indiqué dans la table 
+\hbox{ci-dessous~:}
+\begin{table}[htbp]
+\begin{center}
+\input ROBOT-AVPICT2.46x2.46.tex
+\input ROBOT+AVPICT2.46x2.46.tex
+\input ROBOT-VGPICT2.46x2.46.tex 
+\input ROBOT+VGPICT2.46x2.46.tex 
+\input ROBOT-VDPICT2.46x2.46.tex
+\input ROBOT+VDPICT2.46x2.46.tex
+\begin{tabular}{@{}|c|c|c|c|c|c|c|c|c|c|@{}} \hline
+\touche{(} ({\idt vg}) & Avant & \robotCbNmvg & \robotCbNEmvg & \robotCbEmvg & \robotCbSEmvg & \robotCbSmvg & \robotCbSWmvg & \robotCbWmvg & \robotCbNWmvg \\\cline{2-10}
+                       & Après & \robotCbNpvg & \robotCbNEpvg & \robotCbEpvg & \robotCbSEpvg & \robotCbSpvg & \robotCbSWpvg & \robotCbWpvg & \robotCbNWpvg \\\hline \hline
+\touche{)} ({\idt vd}) & Avant & \robotCbNmvd & \robotCbNEmvd & \robotCbEmvd & \robotCbSEmvd & \robotCbSmvd & \robotCbSWmvd & \robotCbWmvd & \robotCbNWmvd \\\cline{2-10}
+                       & Après & \robotCbNpvd & \robotCbNEpvd & \robotCbEpvd & \robotCbSEpvd & \robotCbSpvd & \robotCbSWpvd & \robotCbWpvd & \robotCbNWpvd \\\hline
+\end{tabular}
+\end{center}
+ \caption{Virages du \protect\robot}
+%\label{tab:()-vgd}
+\end{table}
+
+\begin{exemple}[Frise d'accolades]{\rm
+ En tapant successivement sur les tou\-ches 
+ \touche{)} ({\idt vd}), \touche{(} ({\idt vg}), 
+ \touche{$+$} ({\idt pqtd}), \touche{$+$} ({\idt pqtd}),
+ \touche{(} ({\idt vg}), \touche{)} ({\idt vd}), 
+ \touche{$+$} ({\idt pqtd}), \touche{$+$} ({\idt pqtd}),
+ \touche{)} ({\idt vd}), \touche{(} ({\idt vg}),
+ \touche{$+$} ({\idt pqtd}), \touche{$+$} ({\idt pqtd}),
+\ldots, on ob\-tient la frise \hbox{suivante~:}
+
+\includevspacePostScript[1.0cm]{frise-accolades}{0.95}{0.95} 
+\noindent $\Box$}\end{exemple}
+
+\subsection{Impossibilité de sortir du cadre}
+
+En tapant sur la touche  \touche{A} plusieurs fois de suite le \robot\ \robotCbN\ avance tout droit
+en traçant un trait jusqu'à rencontrer le bord du cadre qui délimite son champ d'action.  
+Si l'on continue à taper sur la touche
+\touche{A} pour essayer de le faire sortir du cadre c'est une {\em erreur} 
+en ce sens que
+le \robotErr\ refuse de le faire et émet un 
+\raisebox{0.25ex}{$\scriptscriptstyle \boldmath\ll$}~%
+bip-bip%
+~\raisebox{0.25ex}{$\scriptscriptstyle \boldmath\gg$}
+de 
+protestation\@\footnote{\ La calligraphie de son nom
+ne laisse aucun doute sur son mécontentement. 
+} (il écrit aussi
+\raisebox{0.25ex}{$\scriptscriptstyle \boldmath\ll$}~%
+{\tt ** SORTIE INTERDITE **}%
+~\raisebox{0.25ex}{$\scriptscriptstyle \boldmath\gg$}
+dans la fenêtre du terminal)$\:$! 
+
+\subsection{Corriger les erreurs de pilotage}
+
+\index{Erreur} Il arrive souvent que l'on fasse des erreurs de pilotage du \robotErr. Par
+exemple, au lieu de le faire tourner à droite avec une 
+parenthèse droite \touche{)} ({\idt vd}), on tape une parenthèse gauche 
+\touche{(} ({\idt vg}) et le \robotErr\ tourne
+à gauche$\:$! La touche d'{\em effacement} marquée d'une flèche 
+orientée à gauche \index{Touche d'effacement}
+\hspace{0.3ex}\framebox[11.mm][l]{$\leftarrow$~~~}\hspace{0.3ex}
+ou \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{delete}}\hspace{0.3ex}
+permet de corriger les erreurs en revenant en arrière et en effaçant
+les derniers tracés dans l'ordre inverse où ils ont été
+dessinés par le \robot.
+
+\subsection{Terminer et reproduire le dessin}
+
+Pendant l'exécution du programme {\idt Des\-si\-ner}, 
+il est possible,  à chaque ins\-tant, de
+terminer le dessin en tapant sur la touche de retour à la ligne 
+\hbox{\framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex}} 
+ou \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{return}}\hspace{0.3ex}, également
+marquée {\small\tt Entrée} ou en anglais {\small\tt Ret} sur certains  claviers d'ordinateurs. Ceci est rappelé 
+en bas à droite de l'écran de l'ordinateur par un symbole 
+$\hookleftarrow$ qui clignote. 
+
+Le dessin qui vient d'être terminé n'est pas perdu, il est
+possible de le reproduire et de l'im\-pri\-mer%
+\footnote{\ Après la touche de retour à la ligne, le \robot\ demande dans la ligne
+du bas de l'écran {\tt Voulez-vous sauver dans mon\_dessin.py ? (y/n)}. En tapant
+sur la touche \touche{Y}, le dessin est enregistré sous la forme d'un programme \python\ dans 
+le fichier {\tt mon\_dessin.py}, qui commence par {\mcl from}\ {\idt LeRobot}\ {\mcl import}\ {\idt *}~;
+on le reproduit en tapant {\tt make mon\_dessin} (ou {\tt python3 mon\_dessin.py}) dans
+le dossier {\tt LeRobot\_Python\_FR}. Le prochain dessin sauvé remplacera ce fichier$\:$: pour garder
+définitivement le fichier, il faut changer son nom puis l'exécuter en le faisant glisser sur l'application
+\texttt{LeRobotPython.app}.}.
+ 
+
+\subsection{Dessiner un point, une croix, la grille des points d'arrêt du robot}
+
+La touche \touche{P} ({\idt dp}) permet de \underline{d}essiner un 
+\underline{p}oint, sans déplacer le \robot. On utilise la
+touche \touche{C} ({\idt dc}) pour \underline{d}essiner une petite
+\underline{c}roix {\tt +}. La touche \touche{.} ({\idt dg})
+permet de \underline{d}essiner la \underline{g}rille des points 
+d'arrêt du \robot\ comme on la voit par exemple sur la figure
+\ref{fig:transports} (page \pageref{fig:transports}).
+
+\subsection{Dessiner en couleur}
+
+Le \robot\ a la
+possibilité de dessiner avec des crayons de différentes couleurs.
+Pendant l'exé\-cu\-tion du programme {\idt Des\-si\-ner}, 
+la couleur du crayon utilisé par le \robot\ figure dans un petit carré 
+placé en bas à droite de l'écran (voir la figure \ref{fig:ecran-initial-1}
+page \pageref{fig:ecran-initial-1}). Pour changer la couleur du crayon, 
+il suffit de taper une ou plusieurs fois sur la touche \touche{*} pour faire
+défiler toutes les couleurs possibles les unes
+après les autres.
+
+Pour peindre une zone fermée par un trait, on place le \robot\ de sorte
+que son arrière soit dans la zone, puis on tape sur la touche \touche{W}
+({\idt peindre})~: la zone prend la couleur du crayon (voir le chapitre
+\ref{ch:peinture}).
+
+\subsection{Déplacer rapidement le robot avec la souris}
+
+Pour déplacer le \robot\ sans rien dessiner, on peut lever le crayon
+\touche{L} ({\idt lc}) puis avancer une ou plusieurs fois 
+\touche{A} ({\idt av}) en changeant éventuellement de direction
+(\touche{D} ({\idt phtd}) ou \touche{G} ({\idt phtg})) et enfin baisser
+le crayon \touche{B} ({\idt bc}). Pour aller plus vite, on peut utiliser
+la souris pour déplacer le \robot\ sur un point quelconque de la grille 
+des points d'arrêt sans rien tracer~: il suffit de cliquer sur ce point (ou d'y
+amener la souris bouton enfoncé), ou taper sur les flèches.
+
+
+\section*{Résumé des commandes interactives \newline de pilotage du robot}
+
+Les commandes de pilotage du \robot\ pour dessiner interactivement
+avec le programme {\idt Des\-si\-ner} sont résumées dans la table \ref{tab:cmd-inter} 
+(page \pageref{tab:cmd-inter}).
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{@{}|l|l|p{8.5cm}|@{}} \hline
+{\em Touche\ :} & {\em Commande\ :} & {\em Effet\ :} \\ \hline  \hline
+\multicolumn{3}{|l|}{\em Grille des points d'arrêt du \robot\ :} \\ \hline
+\touche{.} & {\idt dg} & \underline{d}essine la \underline{g}rille des points d'arrêt du \robot. \\ \hline \hline
+\multicolumn{3}{|l|}{\em Pivotements du \robot\ sur place :}\\ \hline
+\touche{D} & {\idt phtd} & fait \underline{p}ivoter le \robot\ sur place d'un \underline{h}uitième de \underline{t}our à \underline{d}roite. \\
+\touche{$+$} & {\idt pqtd} & fait \underline{p}ivoter le \robot\ sur place d'un \underline{q}uart de \underline{t}our à \underline{d}roite. \\
+\touche{G} & {\idt phtg} & fait \underline{p}ivoter le \robot\ sur place d'un \underline{h}uitième de \underline{t}our à \underline{g}auche. \\
+\touche{$-$} & {\idt pqtg} & fait \underline{p}ivoter le \robot\ sur place d'un \underline{q}uart de \underline{t}our à \underline{g}auche. \\ \hline \hline
+\multicolumn{3}{|l|}{\em Déplacements du \robot\ :}\\ \hline
+\touche{A} & {\idt av} & fait \underline{av}ancer le \robot\ tout droit jusqu'au prochain point d'arrêt du quadrillage. \\
+\touche{)} & {\idt vd} & fait tourner le \robot\ par un \underline{v}irage d'un quart de cercle à \underline{d}roite. \\
+\touche{(} & {\idt vg} & fait tourner le \robot\ par un \underline{v}irage d'un quart de cercle à \underline{g}auche. \\
+\multicolumn{2}{|l|}{\touche{$\leftarrow$}\touche{$\rightarrow$}\touche{$\uparrow$}\touche{$\downarrow$}} & déplace le \robot\ d'un point d'arrêt, sans tracer. \\ \hline \hline
+\multicolumn{3}{|l|}{\em Manœuvres du crayon du \robot\ :}\\ \hline
+\touche{L} & {\idt lc} & \underline{l}ève le \underline{c}rayon du \robot, pour éviter de dessiner lors de ses déplacements. \\
+\touche{B} & {\idt bc} & \underline{b}aisse le \underline{c}rayon du \robot, pour dessiner lors de ses déplacements. \\
+\touche{P} & {\idt dp} & \underline{d}essine un \underline{p}oint, sans déplacer le \robot. \\
+\touche{C} & {\idt dc} & \underline{d}essine une \underline{c}roix, sans déplacer le \robot. \\ \hline \hline
+\multicolumn{3}{|l|}{\em Couleur et peinture :}\\ \hline
+\touche{*} & {\idt cc} & \underline{c}hange la \underline{c}ouleur du crayon (couleur suivante). \\
+\touche{W} & {\idt peindre} & peint la zone fermée derrière le \robot\ avec la couleur du crayon. \\ \hline \hline
+\multicolumn{3}{|l|}{\em Erreurs de pilotage du \robot\ :}\\ \hline
+\multicolumn{2}{|l|}{%touche d'effacement 
+\framebox[11.mm][l]{$\leftarrow$~~~}\hspace{0.3ex} ou \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{delete}}\hspace{0.3ex}
+} & efface, dans l'ordre inverse, les derniers tracés du \robot. \\ \hline \hline
+\multicolumn{3}{|l|}{\em Arrêt du \robot\ :}\\ \hline
+\multicolumn{2}{|l|}{%retour a la ligne
+\framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex} ou \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{return}}\hspace{0.3ex}
+} & termine le dessin$\:$; la touche \touche{Y} le sauve alors dans {\tt mon\_dessin.py} (il peut ensuite être reproduit et imprimé). \\ \hline
+\end{tabular}
+\caption{Résumé des commandes interactives du \protect\robot\label{tab:cmd-inter}}
+\end{center}
+\end{table}
+
+\clearpage\nopagebreak
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercice}{
+%\label{exo:trouver-9}
+Supposons que le \robot\ soit initialement orienté vers le nord
+avec son crayon baissé \robotCbN\/.  Parmi les chiffres d'une montre digitale 
+re\-pré\-sen\-tés à la figure \ref{fig:alphabet} (page \pageref{fig:alphabet}), quel est
+celui obtenu en donnant au robot la {\em séquence de commandes}%
+\footnote{\ Une séquence \index{Séquence} de commandes est une succession ou suite de commandes données dans un certain ordre.}
+  \hbox{ci-dessous~:}\\
+\hspace*{2ex}{\idt pqtd();\ av();\ pqtg();\ av();\ av();\ pqtg()}\\
+\hspace*{2ex}{\idt av();\ pqtg();\ av();\ pqtg();\ av()}\\
+c'est-à-dire en tapant \hbox{successivement~:}\\
+\hspace*{2ex}\touche{$+$} \touche{A} \touche{$-$} \touche{A} \touche{A} \touche{$-$} \touche{A} \touche{$-$} 
+\touche{A} \touche{$-$} \touche{A}$\:$?
+$\Box$}\end{exercice}
+
+\begin{exercice}{
+%\label{exo:trouver-F}
+Quelle lettre majuscule de l'alphabet  de la figure \ref{fig:alphabet} (page \pageref{fig:alphabet})
+obtient-on en donnant au \robot\ \robotCbN\ la séquence de commandes \hbox{suivante~:}\\
+\hspace*{2ex}{\idt av();\ av();\ pqtd();\ av();\ pqtd();\ pqtd();\ av()}\\
+\hspace*{2ex}{\idt pqtd();\ av();\ av();\ pqtd();\ av();\ av()}\\
+c'est-à-dire en \hbox{tapant~:}\\
+\hspace*{2ex}\touche{A} \touche{A} \touche{$+$} \touche{A} \touche{$+$} \touche{$+$} \touche{A} \touche{$+$} \touche{A} 
+\touche{A} \touche{$+$} \touche{A} \touche{A}$\:$?
+$\Box$}\end{exercice}
+
+\begin{exercice}{
+%\label{exo:faire-T}
+Quelle est la suite de commandes à donner au \robot\ \robotCbN\ pour qu'il dessine 
+la lettre {\tt T} majuscule représentée à la figure \ref{fig:alphabet} (page \pageref{fig:alphabet})$\:$?
+$\Box$}\end{exercice}
+
+\begin{exercice}{
+%\label{exo:faire-4}
+Quelle est la suite de commandes à donner au \robot\ \robotCbN\ pour qu'il dessine le chiffre 4 
+représenté à la figure \ref{fig:alphabet} \hbox{(page \pageref{fig:alphabet})$\:$?}
+$\Box$}\end{exercice}
+
+\begin{exercice}{
+%\label{exo:faire-octogone}
+Quelle est la séquence de commandes à donner au \robot\ pour
+dessiner l'octogone de la figure \ref{fig:octogone-cercles} 
+\hbox{ci-dessous$\:$?}
+$\Box$}\end{exercice}
+
+\begin{exercice}{
+%\label{exo:faire-cercles-tangents}
+Quelle est la séquence de commandes à donner au \robot\ pour
+dessiner les trois cercles tangents de la figure \ref{fig:octogone-cercles} 
+\hbox{ci-dessous$\:$?}
+$\Box$}\end{exercice}
+
+\begin{figure}[htbp]
+ \includehvspacePostScript[47mm,2.2cm]{octogone-cercles}{0.95}{0.95}
+ \caption{Octogone et cercles tangents de tailles différentes}
+ \label{fig:octogone-cercles}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{corrige}{
+%\label{cor:trouver-9} 
+En essayant sur l'ordinateur on trouve le chiffre neuf.
+$\Box$}\end{corrige}
+
+\begin{corrige}{
+%\label{cor:trouver-F} 
+La lettre F.
+$\Box$}\end{corrige}
+
+\begin{corrige}{
+%\label{cor:faire-T} 
+La lettre T majuscule de la figure \ref{fig:alphabet} (page \pageref{fig:alphabet}) est
+obtenue en donnant successivement au \robot\ \robotCbN\ les commandes suivantes~:\\
+\hspace*{2ex}{\idt av();\ av();\ av();\ av();\ pqtd();\ av()}\\
+\hspace*{2ex}{\idt pqtd();\ pqtd();\ av();\ av()}\\
+c'est-à-dire en tapant \hbox{successivement~:}\\
+\hspace*{2ex}\touche{A} \touche{A} \touche{A} \touche{A} \touche{$+$} \touche{A} \touche{$+$} \touche{$+$} 
+\touche{A} \touche{A}.
+$\Box$}\end{corrige}
+
+\begin{corrige}{
+%\label{cor:faire-4} 
+Le chiffre 4 d'une montre digitale est
+obtenu en donnant au \robot\ \robotCbN\ la séquence de commandes suivante~:\\
+\hspace*{2ex}{\idt av();\ av();\ pqtd();\ pqtd();\ av()}\\
+\hspace*{2ex}{\idt pqtd();\ av();\ pqtd();\ av()}\\
+c'est-à-dire en tapant \hbox{successivement~:}\\
+\hspace*{2ex}\touche{A} \touche{A} \touche{$+$} \touche{$+$} \touche{A} \touche{$+$} \touche{A} \touche{$+$} \touche{A}.
+$\Box$}\end{corrige}
+
+\begin{corrige}{
+%\label{cor:faire-octogone} 
+L'octogone de la figure \ref{fig:octogone-cercles} (page \pageref{fig:octogone-cercles}), 
+est obtenu en donnant au \robot\ la séquence de commandes ci-dessous~:\\
+\hspace*{2ex}{\idt av();\ phtd();\ av();\ phtd();\ av();\ phtd();\ av();\ phtd()}\\
+\hspace*{2ex}{\idt av();\ phtd();\ av();\ phtd();\ av();\ phtd();\ av()}\\
+c'est-à-dire en tapant \hbox{successivement~:}\\
+\hspace*{2ex}\touche{A} \touche{D} \touche{A} \touche{D} \touche{A} \touche{D} 
+\touche{A} \touche{D} \touche{A} \touche{D} \touche{A} \touche{D} 
+\touche{A} \touche{D} \touche{A}.
+$\Box$}\end{corrige}
+
+\begin{corrige}{
+%\label{cor:faire-cercles-tangents} 
+Les cercles tangents de la figure \ref{fig:octogone-cercles} (page \pageref{fig:octogone-cercles}), 
+sont obtenus en donnant au \robot\ la séquence de commandes \hbox{ci-dessous~:}\\
+\hspace*{2ex}{\idt phtd()}\\
+\hspace*{2ex}{\idt vd();\ vd();\ vd();\ vd();\ vd();\ vd()}\\
+\hspace*{2ex}{\idt phtg()}\\
+\hspace*{2ex}{\idt vg();\ vg();\ vg();\ vg();\ vg();\ vg()}\\
+\hspace*{2ex}{\idt phtg()}\\
+\hspace*{2ex}{\idt vd();\ vd();\ vd();\ vd()}\\
+c'est-à-dire en tapant  \hbox{successivement~:}\\
+\hspace*{1ex}\touche{D} \\
+\hspace*{1ex}\touche{)} \touche{)} \touche{)} \touche{)} \touche{)} \touche{)} \\
+\hspace*{1ex}\touche{G} \\
+\hspace*{1ex}\touche{(} \touche{(} \touche{(} \touche{(} \touche{(} \touche{(} \\
+\hspace*{1ex}\touche{G} \\
+\hspace*{1ex}\touche{)} \touche{)} \touche{)} \touche{)}. 
+$\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+Dans ce chapitre nous avons appris à piloter le \robot\ de manière
+interactive.  Le {\em mode interactif} \index{Mode interactif} est le mode de fonctionnement de nombreux
+programmes d'ordinateur que l'on appelle des {\em interpréteurs}. \index{Interpréteur}Ces programmes
+engagent un dia\-lo\-gue avec l'utilisateur en utilisant un langage de
+communication que l'on appelle le {\em langage de commande}\index{Langage de commande}. L'utilisateur
+dirige le travail de l'interpréteur en lui donnant des commandes au moyen
+du clavier de l'ordinateur, de la souris, etc. Les exemples sont très
+nombreux. Citons les éditeurs de texte, les tableurs, le
+`Finder' du Macintosh ou l'interpréteur de commandes des systèmes d'exploitation%
+\footnote{\ Les systèmes d'exploitation sont des programmes qui gèrent l'organisation interne et l'affectation
+des ressources des ordinateurs.
+} (comme Microsoft \texttt{Windows} sur PC ou Unix sur les stations de travail scientifiques), les systèmes
+transactionnels d'interrogation de bases de données (comme celles qui sont 
+in\-ter\-ro\-gées par minitel). L'avantage évident
+de cette interaction avec l'ordinateur est que l'utilisateur peut corriger
+ses erreurs dès qu'elles se produisent. L'inconvénient majeur est que
+les tâches répétitives deviennent très vite fastidieuses.
+
+Pour notre \robot, le langage de commande se réduit à quelques
+commandes très simples données au clavier (\hspace{-0.4ex}\touche{A}, \touche{B}, 
+\touche{C}, \touche{D}, \touche{G}, \hbox{\touche{L},} \touche{P}, \touche{$+$}, 
+\hbox{\touche{$-$},} \touche{(}, \touche{)}, \touche{.},  \touche{*}, \touche{W}, 
+\framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex} ou \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{return}}\hspace{0.3ex}) sans oublier la souris
+qui est un moyen très
+rapide pour désigner un point précis sur l'écran.
+Le \robot\ ne communique avec l'utilisateur que par des 
+\raisebox{0.25ex}{$\scriptscriptstyle \boldmath\ll$}~%
+bips-bips%
+~\raisebox{0.25ex}{$\scriptscriptstyle \boldmath\gg$}
+lui signalant 
+qu'il ne doit pas le faire sortir du cadre. Les erreurs de dessin peuvent être 
+corrigées par la touche d'effacement \framebox[11.mm][l]{$\leftarrow$~~~} ou \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{delete}}\hspace{0.3ex}
+qui annule l'effet des dernières commandes données au \robot.
+
+Pendant le dessin interactif, le \robot\ engendre un programme \python\ 
+(le fichier {\tt mon\_dessin.py})
+qui peut ensuite être exécuté
+pour reproduire et imprimer le dessin. Ceci peut être comparé aux robots
+de peinture de l'industrie automobile. Un ouvrier spécialisé peint une
+voiture au pistolet. Tous ses mouvements sont en\-re\-gis\-trés sur 
+ordinateur puis utilisés pour engendrer un programme. En exécutant ce 
+programme, l'ordinateur peut ensuite commander un robot disposant d'un bras 
+manipulateur portant un pistolet pour reproduire fidèlement tous ces 
+mouvements et peindre indéfiniment des voitures. Il s'agit d'un exemple rudimentaire
+d'{\em apprentissage}, un thème de recherche actif en {\em intelligence
+artificielle} où l'ordinateur engendre son propre 
+programme pour réaliser certaines tâches à partir d'exemples qui lui sont fournis
+en plus ou moins grand nombre.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\indent Le dessin interactif sur ordinateur avec le \robot\ n'est pas plus difficile
+et est certainement plus formateur que n'importe quel jeu vidéo. Il apprend
+aux enfants à utiliser un {\em formalisme} simple. Il demande un effort
+d'imagination pour s'orienter dans le plan puisque les commandes ne sont
+pas relatives à l'observateur mais au \robot. 
+Cependant la tâche
+devient vite pénible pour les dessins géométriques répétitifs. 
+Seule la programmation, que nous abordons dans le prochain
+chapitre permet d'obtenir de tels dessins sans peine.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

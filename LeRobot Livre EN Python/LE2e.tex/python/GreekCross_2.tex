@@ -1,0 +1,29 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ Greek\ cross}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ side():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd();\ fd();\ fd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ end():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtl();\ fd();\ qtl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ the\ left\ side,\ the\ end\ and\ then\ the\ right}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ side\ of\ an\ arm,\ and\ turn\ the\ robot\ towards}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ the\ next\ arm.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ arm():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt side();\ end();\ side();\ qtr()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ cross():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt arm();\ arm();\ arm();\ arm()}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt cross();\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

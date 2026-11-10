@@ -1,0 +1,36 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ frame\ around\ the\ drawing}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Reach\ the\ edge\ by\ moving\ straight\ ahead}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ toEdge():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl while}{\idt \ }{\mcl not}{\idt \ tb():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ frame():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Reach\ the\ top\ edge\ without\ drawing\ anything}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ toEdge()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ the\ right\ half\ of\ the\ top\ edge}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr();\ pd();\ toEdge()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ the\ right\ edge}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr();\ toEdge()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ the\ bottom\ edge}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr();\ toEdge()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ the\ left\ edge}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr();\ toEdge()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ the\ top\ edge}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr();\ toEdge()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Place\ the\ robot\ at\ the\ centre,\ facing\ north}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gc();\ fn()}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt frame();\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

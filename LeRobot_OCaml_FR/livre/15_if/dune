@@ -1,0 +1,4 @@
+(executables (names FriseEnPeigne FriseEnDentsDeScie FriseDeVaguelettes
+  FriseDoctogones FriseCercles FriseSemiOctogonale OrientationAuNord
+  PavageOctogonesJuxtaposes)
+ (libraries lerobot) (flags (:standard -w -35)))

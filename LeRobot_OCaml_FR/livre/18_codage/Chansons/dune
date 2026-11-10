@@ -1,0 +1,4 @@
+(executables
+ (names ALaClaireFontaine AlohaOe Alouette CadetRoussel ChevaliersDeLaTableRonde CielitoLindo DeLosCuatroMuleros EnPassantParLaLorraine FrereJacques JaiDuBonTabac Kalinka LePontDAvignon MaNormandie OhMyDarlingClementine SantaLucia WhenTheSaintsGoMarchingIn )
+ (libraries lerobot)
+ (flags (:standard -w -35)))

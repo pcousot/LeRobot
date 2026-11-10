@@ -1,0 +1,33 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Lire\ un\ entier\ n\ et\ écrire\ sa\ factorielle\ n!}}\par
+\vspace{\neglskip}\mbox{\blc {\idt nmin\ =\ 0}}\par
+\vspace{\neglskip}\mbox{\blc {\idt nmax\ =\ 20}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Lire\ au\ clavier\ la\ valeur\ de\ n,\ en\ recommençant}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ tant\ que\ l\textquotesingle{}on\ n\textquotesingle{}a\ pas\ nmin\ \char60{}=\ n\ \char60{}=\ nmax}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ lireN():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt write(}{\cha \char34{}n\ =\ \char34{}}{\idt )}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt n\ =\ lireEntier()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ nmin\ \char60{}=\ n\ }{\mcl and}{\idt \ n\ \char60{}=\ nmax:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl return}{\idt \ n}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt writeln(}{\cha \char34{}n\ doit\ être\ compris\ entre\ \char34{}}{\idt ,\ str(nmin),\ }{\cha \char34{}\ et\ \char34{}}{\idt ,}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk\blk\blk{\idt str(nmax),\ }{\cha \char34{}\ !\ Recommencer.\char34{}}{\idt )}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl return}{\idt \ lireN()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt n\ =\ lireN()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Calculer\ f\ =\ n!}}\par
+\vspace{\neglskip}\mbox{\blc {\idt f\ =\ 1}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ n\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt f\ =\ f\ *\ i}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Écrire\ f}}\par
+\vspace{\neglskip}\mbox{\blc {\idt writeln(}{\cha \char34{}n!\ =\ \char34{}}{\idt ,\ str(f))}}\par
+\vspace{\neglskip}\mbox{\blc {\idt readln()}}\par
+
+\medskip }

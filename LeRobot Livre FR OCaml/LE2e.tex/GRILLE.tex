@@ -1,0 +1,249 @@
+Jusqu'à présent nous avons tracé nos dessins sur du papier quadrillé à petits carreaux.
+Le \robot\ a la faculté supplémentaire de changer la taille des carreaux. 
+On peut donc agrandir les dessins en augmentant la taille des carreaux avant de commencer le dessin. Il est également possible 
+de changer la taille des carreaux pendant que le \robot\ dessine. Ceci permet de
+tracer des segments de longueurs différentes et des arcs de cercles dont le rayon peut varier. 
+En choisissant des carreaux rectangulaires on peut tracer des ellipses et choisir
+de manière quelconque les angles de déplacement du \robot.
+
+\section{Grille carrée}
+La grille standard représentée à la figure \ref{fig:grille} (page \pageref{fig:grille})
+a une taille de 12 pixels. On peut changer la 
+\underline{l}ongueur du côté d'un carreau de la \underline{g}rille avec la commande {\idt lg} qui
+prend en paramètre la nouvelle longueur de la grille exprimée en pixels. Par exemple
+{\idt lg\ 6.} définit une taille de grille deux fois plus petite que la grille habituelle tandis que 
+{\idt lg\ 24.} double la taille de la grille.
+
+On remarquera le point qui suit le nombre de pixels. La longueur de la grille peut en effet
+comporter une partie décimale, comme dans {\idt lg\ 7.5} (7 pixels et demi). En \ocaml\ un tel
+nombre, que l'on appelle un {\em nombre flottant}\index{Nombre flottant}, s'écrit toujours avec un point,
+même quand sa partie décimale est nulle~: {\idt 6.} (ou {\idt 6.0}) est le nombre flottant six
+tandis que {\idt 6} est le nombre entier six. Pour \ocaml\ ce ne sont pas les mêmes nombres$\:$!
+Si l'on écrit {\idt lg\ 6}, le compilateur signale
+`{\tt The constant 6 has type int but an expression was expected of type float}'
+(la constante 6 est un entier alors qu'un flottant était attendu) et suggère 
+`{\tt Hint: Did you mean 6.?}' (vouliez-vous dire {\idt 6.}$\:$?).
+Quand la longueur de la grille est donnée par une expression entière comme 
+$(6\ \ast\ ${\idt i}$)$, on la convertit en nombre flottant avec {\idt float\_of\_int} (en anglais
+`flottant à partir d'entier') en écrivant {\idt lg\ (float\_of\_int\ (6\ $\ast$\ i))}. Nous étudierons
+les nombres flottants en détail au chapitre qui leur est consacré.
+
+\begin{exemple}[Carrés superposés]{\rm
+ Le programme ci-dessous permet de des\-si\-ner des carrés superposés, le \robot\ partant
+ et arrivant au coin inférieur gauche, orienté vers le nord, la superposition étant
+ obtenue en choisissant des tailles de grille successives de 6, 12, 18, \ldots, 84~:
+ 
+% \includePostScript{CarresSuperposes2}{0.95}{0.95}
+% incorpore dans~:
+ \input ocaml/CarresSuperposes2.tex
+\noindent $\Box$ }\end{exemple}
+
+
+\section{Grille rectangulaire}
+
+Le \robot\ peut se promener sur une grille rectangulaire dont la longueur du côté
+horizontal est différente de celle du côté
+vertical. Ceci lui per\-met de des\-sin\-er des rec\-tan\-gles et des el\-lip\-ses com\-me ceux-ci~:
+%de la figure \ref{fig:RecEl} (page \pageref{fig:RecEl}).
+\begin{figure}[htbp]
+ \includevspacePostScript[2.2cm]{RectangleEtEllipse40x20}{0.95}{0.95}
+ \caption{Rectangle et ellipse sur un quadrillage $40 \times 20$}
+% \label{fig:RecEl}
+\end{figure}
+
+ La grille initiale a une taille $12 \times 12$ comptée en pixels. La commande {\idt lgX\ 40.} permet de donner
+ une longueur de 40 pixels au côté horizontal de la grille sans changer la longueur du côté vertical. après
+ cette commande la grille a donc une taille $40 \times 12$ pixels. Dans cette notation $40 \times 12$ on donne
+ d'abord la longueur du côté horizontal (nommé $X$) puis la longueur du côté vertical (nommé $Y$)
+ de la grille. La commande {\idt lgY\ 20.} permet de donner
+ une longueur de 20 pixels au côté vertical de la grille sans changer la longueur du côté horizontal. après
+ cette commande la grille a donc une taille $40 \times 20$ pixels. On peut donc changer indépendamment la
+  taille horizontale (avec {\idt lgX}) ou la taille verticale (avec {\idt lgY}) de la grille. 
+  On peut revenir à une grille carrée en utilisant la commande {\idt lg}.
+  Par exemple la commande {\idt lg\ 12.}
+  permet de revenir à une grille carrée standard $12 \times 12$. Le rectangle et l'ellipse
+ ci-dessus 
+  %de la figure \ref{fig:RecEl} (page \pageref{fig:RecEl}) 
+  sont construits par le programme suivant~:\hfill
+ \input ocaml/RectangleEtEllipse.tex
+ 
+ La figure 
+ ci-dessous
+%\ref{fig:vdavvg3060} (page \pageref{fig:vdavvg3060}) 
+illustre l'effet des commandes
+ {\idt vd\ ()},  {\idt av\ ()} et {\idt vg\ ()} avec une grille rectangulaire de dimensions $30 \times 60$.
+\begin{figure}[htbp]
+ \includevspacePostScript[4.3cm]{VD+AV+VG-30x60}{0.95}{0.95}
+ \caption{Virage  à droite, avancer et virage à gauche avec une grille $30 \times 60$}
+% \label{fig:vdavvg3060}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[2.9cm]{Parallel+Ellipses}{0.95}{0.95}
+ \caption{Parallélogrammes et ellipses}
+ \label{fig:parel}
+\end{figure}
+\begin{exemple}{\rm 
+\renewcommand{\carrenoir}{\hspace{-4mm}\rule{1.5mm}{1.5mm}\hspace{2.5mm}}
+Les divers tracés de segments et d'arcs d'el\-lip\-ses par les commandes {\idt av\ ()}, {\idt vg\ ()} 
+et {\idt vd\ ()} sont illustrés par les deux programmes ci-dessous qui dessinent des parallélogrammes et
+des ellipses par pivotement d'un quart de tour autour du centre de la grille, comme on le voit à la 
+fi\-gu\-re \ref{fig:parel} (page \pageref{fig:parel})~:\hfill
+\input ocaml/Parallelogrammes.tex
+\input ocaml/Ellipses.tex
+\renewcommand{\carrenoir}{}
+\noindent $\Box$}\end{exemple}
+
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercices}{Utiliser les possibilités offertes par les changements de taille de la grille carrée
+pour dessiner~:
+
+\tiret les spirales et cercles concentriques de la figure \ref{fig:spirales} (page \pageref{fig:spirales})$\:$;
+
+\tiret la frise de la figure \ref{fig:dfrisec} (page \pageref{fig:dfrisec})$\:$;
+
+\tiret l'hélice et la balle de la figure \ref{fig:heba} (page \pageref{fig:heba})$\:$;
+
+\tiret l'escargot de la figure \ref{fig:escar} (page \pageref{fig:escar})$\:$;
+
+\tiret le stégosaure et son bébé de la figure \ref{fig:steg2} (page \pageref{fig:steg2})$\:$;
+
+\tiret la famille de chiens de la figure \ref{fig:chiens} (page \pageref{fig:chiens})$\:$;
+
+\tiret le pavage de la figure \ref{fig:PVdV} (page \pageref{fig:PVdV}) inspiré par un motif de
+van de Vecht (\cite{escher1}, page 26) représenté à la figure \ref{fig:mVdV} (page \pageref{fig:mVdV}).
+\noindent $\Box$}\end{exercices}
+\begin{exercices}{Utiliser les possibilités offertes par les  grilles rectangulaires
+pour dessiner~:
+
+\tiret la frise de losanges se chevauchant de la figure \ref{fig:frlos} (page \pageref{fig:frlos})$\:$;
+
+\tiret le vélo de la figure \ref{fig:velo} (page \pageref{fig:velo})$\:$;
+
+\tiret la rose des vents
+à huit directions \ref{fig:rose-des-vents-8d} (page \pageref{fig:rose-des-vents-8d})$\:$;
+
+\tiret les pavages des figures \ref{fig:PVdV1l} (page \pageref{fig:PVdV1l}),
+\ref{fig:PVdV2l} (page \pageref{fig:PVdV2l}) et \ref{fig:PVdV4l} (page \pageref{fig:PVdV4l}) obtenues à
+partir du pavage de la figure \ref{fig:PVdV} (page \pageref{fig:PVdV}) en diminuant pro\-gres\-si\-ve\-ment la taille de la grille sur le côté droit
+du dessin, sur le côté gauche et dans le dernier cas sur les quatre côtés du rectangle à la manière du graveur
+hollandais M. C. Escher (\cite{escher1}, \cite{escher2}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[2.8cm]{Spirales}{0.95}{0.95}
+ \caption{Spirales et cercles concentriques}
+ \label{fig:spirales}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[0.6cm]{DoubleFriseCrantee}{0.95}{0.95}
+ \caption{Double frise crantée}
+ \label{fig:dfrisec}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.3cm]{HeliceBalle}{0.95}{0.95}
+ \caption{Hélice et balle}
+ \label{fig:heba}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.8cm]{Escargot}{0.95}{0.95}
+ \caption{Escargot}
+ \label{fig:escar}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.8cm]{StegosaureEtBebe}{0.95}{0.95}
+ \caption{Stégosaure et son bébé}
+ \label{fig:steg2}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.8cm]{ChiensEtChiots}{0.95}{0.95}
+ \caption{Famille de chiens en balade}
+ \label{fig:chiens}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[2.5cm]{MotifVanDeVecht}{0.95}{0.95}
+ \caption{Motif ornemental de N. J. van de Vecht}
+ \label{fig:mVdV}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[2.2cm]{FriseLosangesImbriques}{0.95}{0.95}
+ \caption{Frise de losanges se chevauchant}
+ \label{fig:frlos}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.1cm]{velo}{0.95}{0.95}
+ \caption{Vélo}
+ \label{fig:velo}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[14.6cm]{PavageVdVRegulier}{0.95}{0.95}
+ \caption{Pavage régulier inspiré par un motif ornemental\label{fig:PVdV}}
+ \centering{de N. J. van de Vecht}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[14.6cm]{PavageVdV1limite}{0.95}{0.95}
+ \caption{Pavage rectangulaire à une limite}
+ \label{fig:PVdV1l}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[14.6cm]{PavageVdV2limites}{0.95}{0.95}
+ \caption{Pavage rectangulaire à deux limites}
+ \label{fig:PVdV2l}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[17.0cm]{PavageVdV4limites}{0.95}{0.95}
+ \caption{Pavage rectangulaire à quatre limites}
+ \label{fig:PVdV4l}
+\end{figure}
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corrige}{
+%\label{cor:Frise-1}
+\renewcommand{\carrenoir}{\hspace{-4mm}\rule{1.5mm}{1.5mm}\hspace{2.5mm}}
+Nous donnons quelques programmes, les autres programmes se trouvant dans le dossier
+{\idt livre/\allowbreak 10\_grille\_cartesienne}~:
+\input ocaml/SpiraleGeometrique.tex
+\input ocaml/Escargot2.tex
+\renewcommand{\carrenoir}{}
+\noindent $\Box$}\end{corrige}
+\begin{corrige}{
+Nous donnons le programme le plus difficile, à savoir le pavage de la figure
+\ref{fig:PVdV4l} (page \pageref{fig:PVdV4l}) obtenue à
+partir du pavage de la figure \ref{fig:PVdV} (page \pageref{fig:PVdV}) en diminuant pro\-gres\-si\-ve\-ment la tail\-le de la gril\-le sur les 
+qua\-tre côtés du rectangle. Les autres programmes se trouvent
+dans le dossier {\idt livre/\allowbreak 10\_grille\_cartesienne}~:
+\input ocaml/PavageVdV4limites.tex
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+Si toutes les grilles des points d'arrêt du \robot\ étaient alignées sur le centre de l'écran, il se pourrait
+qu'après un changement de grille le \robot\ ne soit plus sur un point de la grille. C'est pourquoi la
+ grille est toujours relative au \robot\ et non pas à l'écran. En cas de changement de taille de la grille tous les points de la grille (que l'on peut observer grâce à
+la commande {\idt dg\ ()}) changent de place, sauf celui sur lequel est placé le \robot. En conséquence aucune commande
+du \robot\ (sauf une, à savoir {\idt ce\ ()}) ne peut lui faire quitter l'un des points de la grille courante. Par exemple les commandes {\idt ag\ ()}, {\idt ad\ ()}, {\idt eh\ ()} et 
+{\idt eb\ ()} déplacent le \robot\ horizontalement ou verticalement sur le point de la grille courante (respectivement à gauche, à droite, en haut et
+en bas) le plus près du bord. 
+Pour pouvoir placer le \robot\ n'importe où sur l'écran avec précision, il faut disposer d'un
+ point de repère absolu. Ce point de repère absolu est le centre de l'écran. La commande 
+ {\idt ce\ ()} ramène le \robot\ toujours au même point exactement situé au centre de l'écran. 
+ Cette commande est donc la seule
+ commande du \robot\ qui ne s'effectue pas sur la même grille.  Si le centre
+ de l'écran n'est pas situé sur la grille courante, la commande {\idt ce\ ()} recentre la grille exactement 
+ au centre de l'écran de façon à éviter de faire sortir le \robot\ de son quadrillage de déplacement.
+
+Pour éviter d'éventuels problèmes de décalage, il suffit de programmer le dessin comme s'il s'agissait
+de papier millimétré en  choisissant une taille de grille minimale (1 millimètre sur le papier  millimétré)
+de façon  à ce que tous les changements de taille de grille soient effectués quand le \robot\ est au centre et correspondent
+à des multiples (5, 10, \ldots sur le papier  millimétré) de la taille de base. On peut également procéder
+empiriquement par expérimentation, ce qui est quelquefois plus distrayant.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,23 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Écrire\ un\ nombre\ en\ base\ 2}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ decimalEnBinaire(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ n\ \char60{}\ 0:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt ecrire(}{\cha \char34{}{-}\char34{}}{\idt );\ translater(1,\ 0)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt decimalEnBinaire({-}n)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl elif}{\idt \ n\ ==\ 0:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt ecrire(}{\cha \char34{}0\char34{}}{\idt );\ translater(1,\ 0)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl elif}{\idt \ n\ ==\ 1:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt ecrire(}{\cha \char34{}1\char34{}}{\idt );\ translater(1,\ 0)\ \ }{\cmt \#\ n\ \char62{}=\ 2}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt decimalEnBinaire(n\ //\ 2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt decimalEnBinaire(n\ \%\ 2)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt lg(7);\ decimalEnBinaire(123456789);\ st()}}\par
+
+\medskip }

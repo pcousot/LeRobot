@@ -1,0 +1,37 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ une\ grecque\ polygonale\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ fg\ =\ 2.\ \ \ \ }{\cmt (*\ Facteur\ de\ grossissement\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ n\ =\ 10\ \ \ \ \ }{\cmt (*\ Nombre\ de\ côtés\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ motif\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\cmt (*\ Partie\ gauche\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt tl\ (13.\ *.\ fg);\ rt\ 90.;\ tl\ (8.\ *.\ fg);\ rt\ 90.;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt tl\ (6.\ *.\ fg);\ rt\ 90.;\ tl\ (4.\ *.\ fg);\ rt\ 90.;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt tl\ (2.\ *.\ fg);\ rt\ 90.;\ tl\ (2.\ *.\ fg);\ rt\ ({-}90.);}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt tl\ (2.\ *.\ fg);\ rt\ ({-}90.);\ tl\ (4.\ *.\ fg);\ rt\ ({-}90.);}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt tl\ (6.\ *.\ fg);\ rt\ ({-}90.);\ tl\ (8.\ *.\ fg);\ rt\ ({-}90.);}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt tl\ (18.\ *.\ fg);\ rt\ ({-}90.);}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\cmt (*\ Partie\ symétrique\ droite\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt tl\ (8.\ *.\ fg);\ rt\ ({-}90.);\ tl\ (6.\ *.\ fg);\ rt\ ({-}90.);}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt tl\ (4.\ *.\ fg);\ rt\ ({-}90.);\ tl\ (2.\ *.\ fg);\ rt\ ({-}90.);}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt tl\ (2.\ *.\ fg);\ rt\ 90.;\ tl\ (2.\ *.\ fg);\ rt\ 90.;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt tl\ (4.\ *.\ fg);\ rt\ 90.;\ tl\ (6.\ *.\ fg);\ rt\ 90.;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt tl\ (8.\ *.\ fg);\ rt\ 90.;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt tl\ (13.\ *.\ fg)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ grecque\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ n\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt motif\ ();\ rt\ (360.\ /.\ float\_of\_int\ n)}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt grecque\ ();\ st\ ()}}\par
+
+\medskip }

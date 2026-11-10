@@ -1,0 +1,48 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Pavage\ irrégulier\ dans\ le\ style\ de\ M.\ C.\ Escher,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ inspiré\ d\textquotesingle{}un\ motif\ de\ N.\ J.\ van\ de\ Vecht.}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Motif\ de\ N.\ J.\ van\ de\ Vecht,\ le\ robot\ partant\ en}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ haut\ à\ gauche\ et\ arrivant\ en\ bas\ à\ gauche\ orienté}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ vers\ le\ nord.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ motif():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtd();\ avf(4);\ pqtd();\ avf(3);\ pqtd();\ av();\ pqtd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt avf(3);\ pdt();\ avf(3)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av();\ pqtd();\ av();\ pqtg();\ av();\ pqtg();\ av()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtd();\ av();\ pqtd();\ avf(3)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtd();\ av();\ pqtd();\ av();\ pqtg();\ av();\ pqtg()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av();\ pqtd();\ av();\ pqtd();\ avf(3)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pdt();\ avf(3);\ pqtd();\ avf(3);\ lc();\ pdt();\ avf(6)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pdt();\ bc()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ une\ colonne\ de\ motifs\ de\ hauteurs\ 2,\ 4,\ 6,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ 8,\ 10,\ 8,\ 6,\ 4,\ 2,\ le\ robot\ partant\ en\ haut\ à\ gauche\ et}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ arrivant\ en\ bas\ à\ droite\ (c\textquotesingle{}est{-}à{-}dire\ en\ bas\ à}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ gauche\ de\ la\ colonne\ suivante)\ orienté\ vers\ le\ nord.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ colonne():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lgY(1);\ eh()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ 6):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt lgY(2\ *\ i);\ motif()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ 5):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt lgY(10\ {-}\ 2\ *\ i);\ motif()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtd();\ avf(4);\ pqtg()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ un\ pavage\ irrégulier\ constitué\ de\ colonnes}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ de\ largeurs\ 0,\ 2,\ 4,\ 6,\ ...,\ 14,\ 16,\ 14,\ ...,\ 2,\ 0.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pavage():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lgX(1);\ ag();\ lgX(0)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ 9):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt colonne();\ lgX(2\ *\ i)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ 9):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt colonne();\ lgX(16\ {-}\ 2\ *\ i)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt colonne()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt pavage();\ st()}}\par
+
+\medskip }

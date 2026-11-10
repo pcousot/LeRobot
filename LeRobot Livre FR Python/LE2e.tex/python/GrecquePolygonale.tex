@@ -1,0 +1,34 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ une\ grecque\ polygonale}}\par
+\vspace{\neglskip}\mbox{\blc {\idt fg\ =\ 2\ \ }{\cmt \#\ Facteur\ de\ grossissement}}\par
+\vspace{\neglskip}\mbox{\blc {\idt n\ =\ 10\ \ }{\cmt \#\ Nombre\ de\ côtés}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ motif():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Partie\ gauche}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tl(13\ *\ fg);\ rt(90);\ tl(8\ *\ fg);\ rt(90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tl(6\ *\ fg);\ rt(90);\ tl(4\ *\ fg);\ rt(90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tl(2\ *\ fg);\ rt(90);\ tl(2\ *\ fg);\ rt({-}90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tl(2\ *\ fg);\ rt({-}90);\ tl(4\ *\ fg);\ rt({-}90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tl(6\ *\ fg);\ rt({-}90);\ tl(8\ *\ fg);\ rt({-}90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tl(18\ *\ fg);\ rt({-}90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Partie\ symétrique\ droite}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tl(8\ *\ fg);\ rt({-}90);\ tl(6\ *\ fg);\ rt({-}90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tl(4\ *\ fg);\ rt({-}90);\ tl(2\ *\ fg);\ rt({-}90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tl(2\ *\ fg);\ rt(90);\ tl(2\ *\ fg);\ rt(90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tl(4\ *\ fg);\ rt(90);\ tl(6\ *\ fg);\ rt(90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tl(8\ *\ fg);\ rt(90)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tl(13\ *\ fg)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ grecque():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt motif();\ rt(360\ /\ n)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt grecque();\ st()}}\par
+
+\medskip }

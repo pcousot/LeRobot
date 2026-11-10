@@ -1,0 +1,212 @@
+\index{Cartesian coordinate system}\index{Cartesian coordinates}
+To locate the position of the \robot\ on the screen, we use a {\em Cartesian coordinate system}
+as shown in figure \ref{fig:repcar} below:
+
+\begin{figure}[htbp]
+ \includevspacePostScript[6.2cm]{RepereCartesien}{0.95}{0.95}
+ \caption{Coordinates in a Cartesian coordinate system}\label{fig:repcar}
+\end{figure}
+
+The {\em origin\/} $0$ of the coordinate system is located at the centre of the grid. The horizontal axis $OX$ is 
+called the {\em x-axis\/} (axis of {\em abscissas\/})\index{Abscissa}. The vertical axis $OY$ is 
+called the {\em y-axis\/} (axis of {\em ordinates\/})\index{Ordinate}. Both axes are graduated. The length of the
+graduations on the x-axis is equal to the length of the horizontal side of a square 
+ of the grid counted in pixels. Likewise, the length of the
+graduations on the y-axis is equal to the length of the vertical side of a square
+of the grid counted in pixels. 
+
+A grid point is located by its {\em  Cartesian coordinates}\index{Cartesian coordinates}, which are
+two integers $(X, Y)$, the first being its {\em abscissa} (or x-coordinate) and the second its {\em ordinate} (or y-coordinate). For example the 
+grid point located at the centre of the grid has coordinates $(0, 0)$. The points located
+to the right of the origin $O$ have a positive abscissa. The points located
+to the left of the origin $O$ have a negative abscissa (preceded by the minus sign $-$). 
+Likewise, the points located above
+the origin $O$ have a positive ordinate while the points located
+below the origin $O$ have a negative ordinate.  As an example, some points of 
+the grid are labelled with their coordinates in figure \ref{fig:repcar}  (page \pageref{fig:repcar}).  
+
+The abscissa X of a point A is the distance from the origin of its projection on the axis $OX$
+(that is, of the point of intersection
+of the axis $OX$ with the line parallel to the axis $OY$ passing through A). Likewise, the ordinate Y of a point 
+A is the distance from the origin of its projection on the axis $OY$
+(that is, of the point of intersection
+of the axis $OY$ with the line parallel to the axis $OX$ passing through A). For example in figure
+\ref{fig:coorA} 
+below,
+we have $X = 6$ and $Y = 7$\footnote{\ In the folder {\idt book/\allowbreak 14\_cartesian\_coordinates} you will find
+a \python\ program, {\idt Learn\_Coordinates.py}, for learning how to locate points of the plane with
+a Cartesian coordinate system.}.
+
+\begin{figure}[htbp]
+ \includevspacePostScript[4.1cm]{AbscisseOrdonnee}{0.95}{0.95}
+ \caption{Point A with abscissa X = 6 and ordinate Y = 7}
+ \label{fig:coorA}
+\end{figure}
+
+The command {\idt moveTo(x,\ y)} places the \robot\ on the grid point with Cartesian coordinates $(x, y)$. 
+The orientation of the \robot\ and the position of its pen remain unchanged. 
+
+For example, the command {\idt moveTo(0,\ 0)} places the \robot\ at the origin of the Cartesian
+coordinate system, at the centre of the grid\footnote{\ The command {\idt gc()} has the additional effect
+of recentring, if necessary, the origin of the coordinate system exactly at the centre of the screen.}. 
+An example is given below:
+
+\clearpage
+\vspace*{-1cm}
+ {\raggedright 
+ \vbox to 0pt{\vspace*{\baselineskip}\vspace*{6cm}%
+ \includevspacePostScript[-\baselineskip]{LigneDeCarres}{0.95}{0.95}}%
+ \label{prog:LigneDeCarres1}
+ \input python/RowOfSquares1.tex
+ }
+
+The command {\idt translate(x,\ y)} translates the \robot\ by $(x, y)$
+without changing its orientation\footnote{\ In the folder {\idt book/\allowbreak 14\_cartesian\_coordinates} you will find
+a \python\ program, {\idt Learn\_Translation.py}, for learning how to translate points of the plane 
+located by Cartesian coordinates.}. An example of the translation of a rectangle is given in figure 
+\ref{fig:extrans} below.
+\begin{figure}[h]
+\includevspacePostScript[6.0cm]{Translater}{0.95}{0.95}%
+ \caption{Translation (17, -8) from A to B}\label{fig:extrans}
+\end{figure}
+\newpage
+A translation of the \robot\ by $(x, y)$ consists in increasing (or decreasing if $x$ is negative)
+its abscissa by $x$ and increasing (or decreasing if $y$ is negative)
+its ordinate by $y$. If the centre of the grid, with coordinates $(0, 0)$, is exactly at the centre
+of the screen, we can define moving in terms of translation as follows:
+
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ moveTo(x,\ y):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gc();\ translate(x,\ y)}}\par
+
+\medskip }
+
+\noindent As this example shows, the commands {\idt moveTo} and {\idt translate}
+are procedures with two parameters, the abscissa {\idt x} then the ordinate {\idt y},
+placed between parentheses and separated by a comma, like the two parameters
+of the call {\idt rectangle(3,\ 4)} in the previous chapter. The order matters:
+{\idt moveTo(6,\ 7)} and {\idt moveTo(7,\ 6)} do not place the \robot\ on the same point.
+
+
+The program {\idt RowOfSquares1} on page
+\pageref{prog:LigneDeCarres1} can be rewritten us\-ing a
+translation command instead of a move command,
+as follows:\\
+{\raggedright%
+\vspace{\baselineskip}%
+\vbox to 0pt{\vspace*{\baselineskip}\vspace*{6cm}%
+\includevspacePostScript[-\baselineskip]{LigneDeCarres}{0.95}{0.95}}%
+\vspace*{-1cm}%
+\input python/RowOfSquares2.tex
+\vspace{0.5cm}% the figure placed beside goes further down than the Python listing
+}
+ 
+ With the command {\idt translate(x,\ y)}, the movement of the \robot\ is relative to its starting
+position, whereas with the command {\idt moveTo(x,\ y)}, the movement of the \robot\ is relative 
+to the origin of the Cartesian coordinate system.
+ 
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercices}{Write \python\ programs using the commands
+{\idt move\-To} and {\idt trans\-late} to produce the following drawings:
+
+\tiret  the tilings obtained by repeating various patterns inscribed in a square of
+size $(6 \times 6)$ in figure \ref{fig:pm6x6} (page \pageref{fig:pm6x6});
+
+\tiret  the tiling of quadrilaterals in figure \ref{fig:pavqua} (page \pageref{fig:pavqua});
+
+\tiret  the mosaic of the Alhambra recorded by Escher \cite{escher1} in figure 
+\ref{fig:mosa5} (page \pageref{fig:mosa5}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[7.7cm]{PavageQuadrilateres}{0.95}{0.95}%
+ \caption{Tiling of quadrilaterals}\label{fig:pavqua}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.8cm]{MosaiqueAlhambra5}{0.95}{0.95}
+ \caption{Mosaic of the Alhambra}\label{fig:mosa5}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[17.2cm]{PavageMotifs6x6}{0.95}{0.95}
+ \caption{Tilings of $(6 \times 6)$ patterns}\label{fig:pm6x6}
+\end{figure}
+\begin{corrige}{
+We give the program drawing the tiling of quadrilaterals of figure \ref{fig:pavqua} (page 
+\pageref{fig:pavqua}), the other programs being in the folder {\idt book/\allowbreak 14\_cartesian\_coordinates}. It is a tiling of
+the screen with patterns inscribed in $(6 \times 6)$ squares, the basic pattern being
+drawn next to the procedure that draws it.
+%\noindent\includePostScript{MotifPavageQuadrilateres}{0.95}{0.95}
+\input python/QuadrilateralTiling.tex
+\noindent $\Box$}\end{corrige}
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+ 
+ Following in the footsteps of Apollonius\footnote{\ \href{https://en.wikipedia.org/wiki/Apollonius_of_Perga}{Apollonius of Perga}, Greek astronomer and
+ mathematician, 295 -- 230 BC.}, who had informally given the equations
+ of the conics (circles, ellipses, parabolas and hyperbolas), Fermat and Descartes were the first 
+ to ``put into equations'' geometrical problems. 
+ Descartes introduced the notion
+ of a system of plane coordinates, each point of the plane being defined by its abscissa $x$
+ and its ordinate $y$, obtained by projecting onto axes $OX$ and $OY$, rectangular or oblique. 
+ 
+ An algebraic curve is then defined by the relation $f(x, y) = 0$ that holds between the coordinates of
+ each of its points. 
+For example the Cartesian equation of the circle with centre $(a, b)$ is
+ $x^{2} + y^{2} - 2 a x - 2 b y + c = 0$ with the radius $R$ such that $R^{2} = a^{2} + b^{2} -c$,
+ assuming that $a^{2} + b^{2} \geq c$. 
+ 
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\indent  Descartes set out his method in a work
+ published in 1637
+ entitled ``La Géométrie'' (Geometry) which, together with ``La Dioptrique'' (Optics) and ``Les Météores'' (Meteorology), formed the
+ appendices of one of the most famous texts of philosophy, the celebrated ``Discours de la 
+ méthode pour bien conduire sa raison et chercher la vérité 
+ dans les sciences'' (Discourse on the Method of Rightly Conducting One's Reason and of Seeking Truth in the Sciences), where he sets out his methodical and rational philosophy, since called
+{\em  Cartesianism}. The idea of an equation appears more clearly in Fermat, who discovered
+ independently of Descartes, around 1629, the basic principle of {\em analytic
+ geometry}. He only published it in 1679 in his ``Isagoge (Introduction aux lieux plans et solides)'' (Introduction to plane and solid loci).
+ 
+ Descartes had only seriously studied the conics of the second degree. 
+ Newton\footnote{\ \href{https://en.wikipedia.org/wiki/Isaac_Newton}{Isaac Newton}, English mathematician, physicist and astronomer, 1642--1727.}
+ studied the cubics of the third degree and curves of higher degree. We also
+ owe him the systematic use of negative coordinates, of which Descartes was
+ wary. La Hire\footnote{\ \href{https://en.wikipedia.org/wiki/Philippe_de_La_Hire}{Philippe de la Hire}, French astronomer and mathematician, 1640--1718}
+ introduced in 1679 the consideration of a system of spatial coordinates, which
+ amounts to building a  third coordinate axis $OZ$, perpendicular to the axes $OX$
+ and $OY$ defining the plane. A point in space is then determined by three real
+ numbers $(x, y, z)$ and the equation $f(x, y, z) = 0$ defines a skew surface. 
+ Möbius\footnote{\ \href{https://en.wikipedia.org/wiki/August_Ferdinand_Möbius}{August Ferdinand Möbius}, German astronomer and mathematician,
+ 1790--1868} and Plücker%
+ \footnote{\ \href{https://en.wikipedia.org/wiki/Julius_Plücker}{Julius Plücker}, German mathematician and physicist, 1801--1868} extended
+ the notion of coordinates by introducing the homogeneous coordinates \((X, Y, Z, T)\) such that
+ $x = \frac{X}{T}$,  $y = \frac{Y}{T}$ and  $z = \frac{Z}{T}$. This makes it possible to introduce the points
+ at infinity $(X, Y, Z, 0)$ and the imaginary points $X = A_{1} + i A_{2}$, $Y = B_{1} + i B_{2}$,
+ $Z = C_{1} + i C_{2}$ and $T = D_{1} + i D_{2}$ where $i^{2} = -1$. One can then consider for
+ example imaginary circles such that $a^{2} + b^{2} < c$.
+ 
+ \vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newpage                               % If the chapter ends with a blank page
+\thispagestyle{empty}           % If the chapter ends with a blank page

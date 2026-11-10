@@ -1,0 +1,29 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ une\ spirale\ segmentée}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Tourner\ à\ gauche\ puis\ avancer\ le\ robot\ tout\ droit}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ de\ l\ fois\ la\ taille\ de\ la\ grille\ pour\ former\ un}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ quart\ de\ tour.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ quartDeTour(l):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtg();\ avf(l)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Tracer\ deux\ quarts\ de\ tour\ successifs\ pour\ former}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ un\ demi{-}tour.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ demiTour(l):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt quartDeTour(l)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt quartDeTour(l)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Tracer\ une\ spirale\ de\ n\ demi{-}tours}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ spirale(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ l\ }{\mcl in}{\idt \ range(1,\ n\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt demiTour(l)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt lg(6);\ spirale(19);\ st()}}\par
+
+\medskip }

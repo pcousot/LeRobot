@@ -1,0 +1,721 @@
+\section{Structure of programs}
+%\label{sec:4:ecrir-progs}
+
+Just as writing correct English requires following precise rules of
+spelling and grammar, writing correct programs is subject to a number
+of {\em syntax rules}\index{Syntax rule}, fortunately simpler than
+those of English. The difference
+is that English sentences containing spelling or grammar mistakes
+may still be understood by English speakers, whereas
+a program containing
+{\em syntax errors}\index{Syntax error} cannot
+be translated into the language of the com\-pu\-ter, and therefore cannot be run.
+This translation is carried out by a program (called an {\em interpreter})\index{Interpreter}
+designed to point out our errors but not to correct them. To correct
+our errors in a satisfactory way, the interpreter would have to understand
+our intentions, a very difficult problem.
+
+The program {\idt PaperHen} below is an example of a
+correct \python\ program.
+
+\begin{exemple}[Syntactically correct program]{\hfill
+\label{prog:Cocotte} \input python/PaperHen.tex
+\noindent $\Box$ }\end{exemple}
+
+\noindent All our \python\ programs for driving the \robot\ have the same form:
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em \python\ program:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ {\mcl from}\hspace{0.3em}\blanc\hspace{0.3em}{\idt LibRobot}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl import}\hspace{0.3em}\blanc\hspace{0.3em}{\idt *}}\par
+\mbox{\blc\ \ \ \cmt \#\ \small\rm Comment explaining what the program does}\par
+\mbox{\blc\ \ \ \small\rm  \ldots\ Instructions of the program (one per line, or separated by `$;$') \ldots}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+A \python\ program is stored in a file whose name ends with {\idt .py}.
+The name of the program is the name of this file, without the {\idt .py}: the program
+{\idt PaperHen} is stored in the file {\idt PaperHen.py}.
+
+This name is chosen by the programmer
+as he or she likes, so as to suggest what the program is for.
+ The only rule to fol\-low is that the name of the program
+must contain only unaccented lowercase or
+uppercase letters\footnote{\ Accents do not exist in English
+(with very rare exceptions, as in the words `naïve', `protégé' or
+`rôle', borrowed from French).}, digits or
+underscores `\_'\footnote{\ The underscore `\_' must not be confused with the hyphen `-'.}
+and must begin with a letter. For example {\idt  S},
+{\idt  TheStegosaurus} or {\idt  The\_Stegosaurus} are correct program
+names whereas {\idt  1S},
+{\idt  s!}, {\idt  The\ Stegosaurus} or {\idt  The-Stégosaurus} do not follow
+the rule for writing program names.
+
+A \python\ program begins with the line `{\mcl from}\ {\idt LibRobot}\ {\mcl import}\ {\idt *}'.
+This line
+imports from the
+{\em library}\index{Library} {\idt LibRobot} all (that is the meaning of the star `{\idt *}')
+the commands of the
+\robot, without which the computer would not know them. It also opens the window
+in which the \robot\ draws.
+
+There must be a blank
+between the word {\mcl from} and the name {\idt LibRobot}, as well as between {\idt LibRobot} and the
+word {\mcl import}. In a book there are blanks everywhere and even, if you look closely,
+more blank than anything else. Putting a blank in a book to say that you must type
+a blank is therefore silly, because most readers are not interested in the
+blanks in books but simply in what is written there.
+We shall therefore use the symbol `\blanc' to write our blanks in black and \hbox{white!}
+In other words we write \blanc\ to say that you must press the long bar
+at the bottom of the com\-pu\-ter keyboard, called the
+{\em space bar}\index{Space bar},
+to obtain a blank `\ ' in the program.
+We do not do so in the programs given as examples, which are
+shown as they appear on the screen. Likewise, at the end of a
+line you must press the return key
+\framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex} or \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{return}}\hspace{0.3ex} to go to the beginning of the
+next line. We do not write it in books because all readers know
+that they must go to the beginning of the next line when they reach the end of a line.
+
+After the comment that explains what the program does
+come the instructions
+of the program. They are written in the order in which they must be executed by
+the com\-pu\-ter, starting at the beginning of the line (with no blank in front: we shall see
+in the next chapter that blanks at the beginning of a line have a precise meaning in \python).
+You can write one instruction per line or else several instructions on the same line,
+separating them by semicolons, with no semicolon after the last one on the line.
+The instructions of the program
+can be commands of the \hbox{\robot:} {\idt fd}, {\idt cl}, {\idt cr}, {\idt qtr},
+{\idt qtl}, {\idt etr}, {\idt etl}, {\idt pu}, {\idt pd}, {\idt dc}, {\idt dp},
+{\idt dg} or {\idt st}, each followed by {\idt ()}. In general, programs for driving the \robot\
+end with the command {\idt st()}, which waits until we
+press a key before the drawing
+disappears at the end of the execution of the program.
+
+Texts that begin with the sign {\cmt \#} and continue to the end of
+the line are {\em comments}, ignored by the computer.
+
+The pro\-gram
+{\idt WrongPaperHen} below contains
+several errors that are very common among beginners.
+
+\begin{exemple}[Syntactically incorrect program]{\hfill
+
+\label{prog:Cocotte-errone} \input python/WrongPaperHen.tex
+\noindent The errors in this program are the \hbox{following:}
+\begin{list}{$\scriptscriptstyle\bullet$}{
+\renewcommand{\labelwidth}{3mm}
+\renewcommand{\labelsep}{3mm}
+\renewcommand{\leftmargin}{10mm}
+\renewcommand{\rightmargin}{0mm}
+}
+\item[1.] the line `{\mcl from}\ {\idt LibRobot}\ {\mcl import}\ {\idt *}' has been forgotten;
+\item[2.] the text that explains what the program does has been written between triple
+quotes {\cha \char34\char34\char34} (it is a {\em documentation string}, which can
+be used as a comment spanning several lines) but the closing triple quotes
+{\cha \char34\char34\char34} have been forgotten;
+\item[3.] the instruction {\idt rtl()} is not a command of the \robotErr;
+\item[4.] the opening parenthesis of the last command {\idt st(} is not closed.
+\end{list}
+\noindent $\Box$ }\end{exemple}
+
+
+A complicated example of a syntactically correct \python\ program
+is given \hbox{below:}
+\begin{exemple}[The stegosaurus]{\rm
+The \python\ program for driving the \robot\ to
+draw the ste\-go\-saur\-us shown in fig\-ure
+\ref{fig:stegosaure} (page \pageref{fig:stegosaure}) is the \hbox{following:}
+\label{prog:Stegosaure} \input python/Stegosaurus.tex
+\noindent $\Box$ }\end{exemple}
+
+\section{Comments}
+%\label{sec:4:comment}
+
+A \python\ program may contain {\em comments}\index{Comment}, which are
+any texts written after the sign {\cmt \#\ \ldots}, up to the end of the
+line. A comment may take up a whole line or follow the instructions
+of a line, as in {\idt cl()\ \ }{\cmt \#\ ERROR:\ cr}.
+A text of several lines may also be placed between triple quotes
+{\cha \char34\char34\char34\ \ldots\ \char34\char34\char34}: it is a
+{\em documentation string}\index{Documentation string}, which the computer
+reads but which gives no command to the \robot.
+The com\-pu\-ter takes no account of these comments, which are only
+meant to explain the use and the working principle of the
+program to the readers of this program. If all the
+comments of a program are removed, it becomes unreadable for a human but
+nothing is changed for the com\-pu\-ter.
+
+\begin{exemple}[The \underline{unreadable} stegosaurus]{\rm
+By removing all the com\-ments of the program {\idt Stegosaurus}
+on page \pageref{prog:Stegosaure}, as well as the useless blanks and line
+breaks, we obtain a \python\ program that is
+totally unreadable but which draws perfectly well the
+ste\-go\-saur\-us shown in fig\-ure
+\ref{fig:stegosaure} (page \hbox{\pageref{fig:stegosaure}):}
+{\small\input{python/UnreadableStegosaurus.tex}}
+This example also shows that the layout of the instructions of the
+program is important. Spacing between instructions and
+proper alignment make programs much easier
+to read.
+\noindent $\Box$ }\end{exemple}
+
+
+
+\section{Interpretation of programs}
+%\label{sec:4:compil-progs}
+The {\em interpretation}\index{Interpretation} of a \python\ program consists in translating it
+into the language of the com\-pu\-ter,
+called {\em machine language}\index{Machine language}, and having it executed by the computer.
+It is done by a program
+called the \index{Interpreter}\python\ {\em interpreter}\@\footnote{\ The command
+{\tt ./robot.sh PaperHen.py}, typed in a
+terminal window opened in the folder {\tt LeRobot\_Python\_EN}, calls the interpreter
+{\tt python3} to run the program {\tt PaperHen.py}. Dragging the icon of
+{\tt PaperHen.py} onto that of the application {\tt LeRobotPythonEN.app} does the same thing.}.
+The interpreter works in two stages:
+\begin{list}{$\scriptscriptstyle\bullet$}{
+\renewcommand{\rightmargin}{0mm}
+}
+\item it first reads the {\em whole} program to check that it follows the syntax rules
+of \python\ and to translate it; if it finds a syntax error, it reports it
+and stops without running anything;
+\item then, if the program is syntactically correct, it has the computer execute its
+instructions, one after the other.
+\end{list}
+Some errors can be discovered only during this second stage, when
+the com\-pu\-ter reaches the faulty instruction, for example the call of a command that does not
+exist. Execution then stops, but the \robot\ has already made all the drawing requested
+by the preceding instructions.
+Obviously the \python\ program and its translation drive
+the \robot\ in the same way. This way of proceeding
+saves us from having to learn machine language. It is very difficult
+to understand this machine language because all programs are written
+only with 0s and \hbox{1s!}
+
+\section{Syntax errors}
+%\label{sec:4:err-compil}
+
+To be able to run a \python\ program, it must not contain
+any syntax errors\index{Programming error}\index{Syntax error} violating the rules
+for writing programs. In case of an error the interpreter explains
+briefly, in English, the cause of the error and points out the place in the program
+where the er\-ror was found (the line number, for example {\tt line 15}, then the line
+itself and, underneath, one or more
+carets {\idt \char94} under the faulty text). The message begins with
+the name of the error, for example {\tt SyntaxError}. You must then
+correct the error and run the program again.
+
+An error discovered during execution is reported in the same way, but the
+message begins with {\tt Traceback (most recent call last):}
+and ends with the name of the error, for example {\tt NameError}.
+
+\begin{exemple}[Syntactically incorrect program]{\rm
+\hfill The pro\-gram {\idt WrongPaperHen} on page
+\pageref{prog:Cocotte-errone}
+contains several of the most frequent errors for
+such a simple program.
+When we run this program {\idt WrongPaperHen}, the interpreter starts by reporting
+`{\tt SyntaxError: unterminated triple-quoted string literal (detected at line 15)}',
+pointing at
+the {\cha \char34\char34\char34} of the
+first line: the closing triple quotes were forgotten at the end of the
+text that explains what the program does, so that the whole rest of the
+program, up to the last line 15, is part of this text!
+Having added the forgotten {\cha \char34\char34\char34} at the end of the first line,
+a new attempt reports
+`{\tt SyntaxError: \textquotesingle{}(\textquotesingle{} was never closed}'
+pointing at the parenthesis of {\idt st(} on line 15. We close it by writing {\idt st()}.
+The program is now syntactically correct and its execution can begin.
+It stops at once, on the first instruction, with the message
+`{\tt NameError: name \textquotesingle{}etr\textquotesingle{} is not defined. Did you mean: \textquotesingle{}str\textquotesingle{}?}'
+(the suggestion {\idt str}, a name known to \python, is of no help here).
+Since the line `{\mcl from}\ {\idt LibRobot}\ {\mcl import}\ {\idt *}' was forgotten,
+the interpreter does not know the meaning of the commands of the \robotErr, and the window
+of the \robot\ has not even opened.
+After adding this line at the beginning of the program, we can run it again.
+The window opens, the \robot\ draws the first line of the back of the paper hen,
+then everything stops with the message
+`{\tt NameError: name \textquotesingle{}rtl\textquotesingle{} is not defined. Did you mean: \textquotesingle{}etl\textquotesingle{}?}',
+which points at the
+line where {\idt rtl()} is. It is a typing
+mistake, which we correct by replacing {\idt  rtl} by {\idt  etl}.
+We thus laboriously obtain the program {\idt PaperHen} on page
+\pageref{prog:Cocotte}, which is correct (apart from the comment, written with {\cmt \#} in {\idt PaperHen}).
+The interpreter stops at the first error it finds: you must therefore
+run the program again after each correction. Note that the two syntax
+errors were reported before any execution, whereas the two unknown names
+were discovered only during execution, when the com\-pu\-ter reached
+the faulty instruction.
+\noindent $\Box$ }\end{exemple}
+
+
+\section{Execution of programs}
+%\label{sec:4:exec-progs}
+The {\em execution}\index{Execution} of a program consists in having
+the com\-pu\-ter carry out the actions defined by the instructions of the program. Since in our case the instructions are
+commands of the \robot, executing the program makes it possible to drive the
+\robot.
+
+{\newcommand{\touche}[1]{{\begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny #1}}\end{picture}\hspace{0.3ex}}}
+When the \robot\ has finished its drawing, the command {\idt st()} displays at the bottom of
+the window the keys that let you \hbox{continue:}
+\begin{list}{$\scriptscriptstyle\bullet$}{
+\renewcommand{\rightmargin}{0mm}
+}
+\item decrease (by pressing the minus key \touche{$-$} once or several times)
+or increase (by pressing the plus key \touche{$+$} once or several times)
+the speed of the \robot\ (which can vary from 0 to 10);
+\item have the \robot\ redraw the whole drawing, at the chosen speed, by pressing
+another key, for example the return key \framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex} or \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{return}}\hspace{0.3ex};
+when the \robot\ draws too fast for you to watch
+the drawing un\-fold, just decrease its speed and then have it
+redraw the drawing;
+\item stop the execution of the program for good by pressing the
+escape key\index{Escape key} \touche{Esc} (or one of the keys
+\touche{\S} or \touche{\#}), which gives the screen of figure
+\ref{fig:ecran-arret} (page \pageref{fig:ecran-arret}).
+\end{list}
+
+\index{Execution (interruption)}\index{Interrupting execution}During
+the execution of a program driving the \robot, we
+can also stop the drawing of the \robot\ at any moment by pressing the
+escape key \touche{Esc} (or \touche{\S} or \touche{\#}).
+The drawing then stays displayed as it was at that instant, until we press
+a key. For example if we interrupt the execution
+of the program {\idt Stegosaurus} on page \pageref{prog:Stegosaure}
+when the \robot\ finishes drawing the left front leg,
+we obtain a screen similar to the one in figure
+\ref{fig:ecran-stop} on page \pageref{fig:ecran-stop}.
+}
+
+\begin{figure}[p] %[htbp]
+ \includevspacePostScript[7.6cm]{ecran-stop}{0.95}{0.95}
+ \caption{Com\-pu\-ter screen after a stop}\label{fig:ecran-stop}
+\end{figure}
+
+\begin{figure}[p] %[htbp]
+ \includevspacePostScript[7.6cm]{ecran-arret}{0.95}{0.95}
+ \caption{Com\-pu\-ter screen before the final stop}
+ \label{fig:ecran-arret}
+\end{figure}
+
+\section{Logical errors}
+%\label{sec:4:err-exec}
+
+\index{Logical error}\index{Programming error}Having eliminated all the syntax errors, that is,
+the programming errors that come from violating the grammar rules
+of the \python\ language, our troubles are not yet over before we can
+admire the \hbox{drawing!} There remain the
+{\em logical errors},
+which we shall discover when running the program.
+
+The first possible error is that the sequence of commands that our
+program asks the com\-pu\-ter to give to the \robot\ leads it
+outside the frame. This is the case of the following program:
+\input python/LeaveTheFrame.tex
+\noindent This program ({\idt LeaveTheFrame}) gives the sad result
+below, accompanied in the terminal window by the message
+`{\tt Error line 8 of LeaveTheFrame.py: the robot would leave the frame (fd)}':
+%indiqué à la figure \ref{fig:ecran-sortir} (page \pageref{fig:ecran-sortir}).
+\begin{figure}[htbp]
+ \includevspacePostScript[7.6cm]{ecran-sortir}{0.95}{0.95}
+ \caption{Com\-pu\-ter screen when the robot leaves the frame}
+ %\label{fig:ecran-sortir}
+\end{figure}
+
+The second possible error is that we made a mistake in
+the program and that the drawing obtained does not look at all like what
+we had imagined. For example, the program {\idt WrongStegosaurus}
+below is a logically wrong but syntactically
+correct version of the program {\idt Stegosaurus} on page \pageref{prog:Stegosaure}.
+\input python/WrongStegosaurus.tex
+The author of this program {\idt WrongStegosaurus} twice mixed up his left
+and his right. The
+result of running this program, as
+shown
+below
+(figure \ref{fig:StegosaureErrone}), %page \pageref{fig:StegosaureErrone}
+would sur\-prise more than one pa\-lae\-on\-tol\-o\-gist!
+\begin{figure}[htbp]
+ \includehvspacePostScript[105mm,6.8cm]{StegosaureErrone}{0.95}{0.95}
+ \caption{A rather botched stegosaurus}
+ \label{fig:StegosaureErrone}
+\end{figure}
+
+A third error, typical of \python\ beginners, is to forget the parentheses
+{\idt ()} after a command of the \robot, for example `{\idt fd;\ qtr()}' instead of
+`{\idt fd();\ qtr()}'. The program is syntactically correct but the \robot\ does not move forward,
+because {\idt fd} without {\idt ()} names the command without asking for it to be executed.
+The \python\ interpreter reports nothing at all: no error, not even
+a {\em warning}\index{Warning}.
+Only the drawing, which is missing a line, reveals the error. So you must always
+check that every command is indeed followed by its parentheses.
+
+\section{How to locate logical errors in the program}
+%\label{sec:4:trouv-err-exec}
+
+To find the logical errors in the program you have to imagine
+that you are executing the program in place of the \robotErr. When the program
+is very long this is not easy.
+The best way is therefore to follow the execution of the program in {\em step-by-step} mode,
+\index{Step-by-step execution}
+which lets you follow the commands transmitted by the com\-pu\-ter to the \robotErr\ so as to locate the error precisely. When the error is
+located, you must stop the execution
+of the program in order to correct it in the program. Once
+this is done, you can run the program again for a new
+attempt.
+{\newcommand{\touche}[1]{{\begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny #1}}\end{picture}\hspace{0.3ex}}}
+\begin{list}{$\scriptscriptstyle\bullet$}{
+\renewcommand{\rightmargin}{0mm}
+}
+\item To switch to step-by-step mode we \hbox{can:}
+\end{list}
+\begin{list}{-}{
+\renewcommand{\labelwidth}{3mm}
+\renewcommand{\labelsep}{3mm}
+\renewcommand{\leftmargin}{15mm}
+\renewcommand{\rightmargin}{0mm}
+}
+  \item at the end of the drawing, reduce the speed to zero by pressing the key
+  \touche{$-$} several times, then have the drawing redrawn by pressing the return key
+  \framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex} or \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{return}};
+  \item or insert an instruction {\idt ss()} in the \python\ program, a
+  little before the place where the error is suspected. This instruction {\idt ss()}
+  (\underline{s}ingle \underline{s}tep) switches
+  the com\-pu\-ter to step-by-step execution mode.
+\end{list}
+\begin{list}{$\scriptscriptstyle\bullet$}{
+\renewcommand{\rightmargin}{0mm}
+}
+\item In step-by-step mode, the com\-pu\-ter waits for us to give it
+the order to execute each command of the \robot\ by pressing a key, for example the
+return key \framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex} or \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{return}}. We can thus follow
+the execution of the program instruction after
+instruction, which in general makes it fairly easy to find the error.
+\enlargethispage{2\baselineskip}% touches return ajoutees page 50 : garder la fin de la liste sur la page
+\item When the error has been precisely located in the program, you
+ can stop the execution of the program by pressing
+ the es\-cape key \touche{Esc} (or \touche{\S} or \touche{\#}).
+\item[]  It is also possible to program the return to a normal
+   \underline{ex}e\-cu\-tion speed by inserting an instruction {\idt ex()}
+  in the program.
+\end{list}
+}
+It almost always takes several attempts before the program is
+lo\-gi\-cal\-ly correct.
+When it is, one is often tempted to improve it. The hardest thing
+is then to know when to \hbox{stop!}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{@{}|l|p{11cm}|@{}} \hline
+{\idt st()} & \underline{st}ops the execution of the program at the end of the drawing.
+             The speed can be decreased with
+ \begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{$\scriptscriptstyle -$}}\end{picture}\hspace{0.3ex} (minimum 0) or increased with
+ \begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{$\scriptscriptstyle +$}}\end{picture}\hspace{0.3ex} (maximum 10).
+			 Any other key has the drawing redrawn at the indicated speed.
+			 Execution stops for good when you press
+			 \begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny esc}}\end{picture}\hspace{0.3ex} or
+  \begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny \S}}\end{picture}\hspace{0.3ex} or
+  \begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny \#}}\end{picture}\hspace{0.3ex}.\\ \hline
+{\idt ss()} & executes the rest of the program in step-by-step mode
+             (\underline{s}ingle \underline{s}tep, speed 0): each command of the \robot\
+			is executed when you press a key.\\ \hline
+{\idt ex()} & executes the rest of the program in normal \underline{ex}ecution
+             mode (speed 10). \\ \hline
+\end{tabular}
+\end{center}
+\label{tab:cmd-vit1}
+\caption{Commands controlling the driving mode of the \protect\robot}
+\end{table}
+
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercices}{\ \\
+
+\vspace{-\baselineskip}
+\noindent \begin{minipage}[t]{88mm}
+\tiret Write, debug and run \python\ programs drawing the
+\robot\ as it is stylized opposite, with its
+pen down and with its pen up.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{44mm}
+\vspace{2.0cm}\includePostScript{Robot+BC+LC}{0.95}{0.95}
+\hspace{-4.4cm}  % 4.4cm de large
+\end{minipage}
+
+\noindent \begin{minipage}[t]{103mm}
+\tiret  Write, debug and run a \python\ program that
+drives the \robot\ to make it draw the dog shown
+opposite.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{29mm}
+\vspace{2.3cm}\includePostScript{Chien}{0.95}{0.95}
+\hspace{-2.9cm}  % 2.9cm de large
+\end{minipage}
+
+\noindent \begin{minipage}[t]{103mm}
+\tiret  Program the drawings on
+pa\-ge \pageref{fig:quadrilateres}.
+\end{minipage}
+
+\vspace{1.5mm}
+
+\tiret  Program the drawing of your initials in capital letters
+in the style of the letter {\tt H} in relief shown in
+figure \ref{fig:h-relief} (page \pageref{fig:h-relief}).
+
+\noindent $\Box$}\end{exercices}
+
+\begin{corrige}{We give one program ({\idt Dog}), the others being in the folder {\idt book/\allowbreak 04\_writing\_running}.
+\input python/Dog.tex
+\noindent $\Box$}\end{corrige}
+
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+The cycle of writing, syntactic debugging, translation, logical
+debugging and execution of programs has become considerably
+shorter in recent years thanks to the fantastic progress
+in computer architecture, which should be understood very
+schematically.
+A micro\-com\-pu\-ter \hbox{comprises:}
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item an arithmetic and logic unit to do calculations and
+handle data,
+\item a memory to keep data
+and programs temporarily (its content is lost when the power is switched off),
+\end{list}
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item one or more magnetic or solid-state (SSD) hard disks
+ to keep files containing data or programs permanently,
+\item (USB) ports for plugging in memory sticks, which make it possible to
+keep files
+containing data or programs permanently, or to exchange them with other
+com\-pu\-ters,
+\item a keyboard to enter data or programs into memory,
+\item a graphics screen to display texts and images,
+\item a mouse to point at places on the graphics screen,
+\item a bus to allow fast exchanges of data and
+programs between these various components.
+\end{list}
+
+When the com\-pu\-ter is switched on, it is wired to load into
+its memory and execute a program stored permanently on disk,
+called the {\em operating system}\index{Operating system}. The essential
+task of this program is to manage all the components of the com\-pu\-ter and to
+dialogue with the user by means of a {\em command interpreter}\index{Command interpreter},
+which waits for the user to give it orders through
+the keyboard and executes them immediately, one after the other,
+until the user gives it the order to switch off
+the com\-pu\-ter. Among the commands of the interpreter are, for example,
+deleting a file stored on disk or launching the
+execution of a program written in machine language (generally
+called an {\em application program}\index{Application program}) such as, for example, a {\em
+text editor} to create a text and store it in a file,
+or an {\em interpreter} to translate a \python\ program into machine language and have it
+executed.
+
+The first interfaces between man and machine were purely textual. You typed on
+the keyboard and saw the result on a printer, soon replaced by a screen with only
+lines of text at most 80 characters long. Black-and-white screens were
+replaced by colour screens (as can still be seen in the \texttt{terminal} application).
+Then came graphics screens made up of very small coloured pixels.
+Windowing gives the illusion of several graphics screens on a single one. Then came
+the idea of icons to represent files and applications, on which you can
+double-click to launch an application. For example, a double click on the icon of
+\texttt{LeRobotPythonEN.app} launches the interactive drawing program, whereas dragging the icon
+of a program of the \robot\ onto this icon of the application \texttt{LeRobotPythonEN.app} runs this program,
+making the drawing window and the terminal appear. Note that you must click on
+one or the other of the windows to use it. You can stop the program with Control+C or
+ctrl+C (which computer scientists write \^{}C) after selecting the terminal window, or by closing this window, or else with the escape key (\texttt{esc}) in the graphics window.
+
+% (pas d'espace en bas de ce cadre : il tient dans la page)
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+
+Com\-pu\-ters are {\em binary} in the sense that all data, in
+particular programs, are represented by sequences of 0s and
+1s. The com\-pu\-ter works by transferring an instruction of the program
+from a cell of its memory
+into its arithmetic and logic unit (via the bus) and
+executing it (which in general modifies the content of the memory,
+of the disk, of the screen, etc.), then starting again in the same way with the instruction
+stored in the next cell of its memory. Some instructions,
+called {\em branch instructions}, make it possible to indicate that the next instruction
+is stored in the memory cell with a given number.
+
+
+To execute a program written in machine language and stored on disk,
+the operating system asks the arithmetic and
+logic unit to load this program into memory, that is, to
+copy the program into a part of the memory
+that was unoccupied, and then to execute a branch instruction
+to the first instruction of this program. The program must end
+with a branch instruction back to the operating
+system. Modern com\-pu\-ters also have the abil\-i\-ty
+to interrupt the execution of the current program and then to resume it
+later as if nothing had happened. In the meantime, it is
+the operating system that runs, to react according to
+the cause of the interruption. For example if the user has moved the mouse,
+its new coordinates are stored in memory. If the clock
+ticks, which happens every sixtieth of a second for example, the time
+is updated, etc. In particular the user has
+buttons or keys (%touche Esc (touche d'echappement)
+\begin{picture}(14,12)(0, 2)
+\put(0,0){\framebox(14,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny Esc}}
+\end{picture}\hspace{0.3ex},
+%touche §
+\begin{picture}(12,12)(0, 2)
+\put(0,0){\framebox(12,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny \S}}
+\end{picture}\nolinebreak\hspace{0.3ex}\nolinebreak,
+%touche #
+\begin{picture}(12,12)(0, 2)
+\put(0,0){\framebox(12,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny \#}}
+\end{picture}\hspace{0.3ex}
+ for our \robot) to interrupt
+the execution of the program if he or she notices an error.
+
+
+Among the applications that the operating system can run,
+there is one that particularly interests us: the \python\ interpreter.
+
+Modern programming environments (such as {\tt IDLE}, supplied with \python)
+take care of editing the text of the
+program, that is, of creating and modifying it
+by interaction with the user. The
+\python\ program is displayed on the screen and stored in memory
+as
+the user types it on the keyboard. The user can modify it
+using various function keys and the mouse. The user is also
+given the possibility of saving the text on the hard disk
+in a file whose name must be given.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+
+When text editing is finished, the environment can
+have the program translated into an equivalent program
+written in machine language. For so-called {\em compiled}\index{Compilation} languages,
+such as \ocaml\ or C, this translation is done once and for all by
+a {\em compiler}\index{Compiler}: the compiled program is stored
+on disk, then the user goes back to the operating system level to
+load into memory
+and execute the compiled program as explained above.
+
+During the debugging phase of the program, it is faster to
+store the translated program directly in memory, the translator
+itself taking care of its execution and then taking back control when
+this execution is finished or interrupted. This is how
+the \python\ interpreter proceeds, every time it is asked to run a program.
+
+\vfill
+
+One can see the considerable progress that has been made since the
+first com\-pu\-ters, for which the wiring had to be modified to
+change the program \cite{levy1}:
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item since the program is stored in memory (following the idea of
+Von Neumann\footnote{\ \href{https://en.wikipedia.org/wiki/John_von_Neumann}{John von Neumann}, 1903--1957, American mathematician.})
+and the memory is connected to fast disks, it is possible to
+change the program of the machine almost \hbox{instantly;}
+\item the use of high-level languages such as \python\ or \ocaml\ and of efficient interpreters
+or compilers
+makes it possible to avoid having to program in a thankless machine
+\hbox{language;}
+\item the alphanumeric screen lets the user edit his or her program
+interactively at the keyboard, which saves a considerable amount of time
+compared with handling the cardboard punched cards
+still used in the \hbox{1970s;}
+\item computing power, linked to the density of transistors on
+computer chips (which ranges from a few billion to several hundred billion
+transistors in 2016), makes it possible to manage graphics
+screens directly connected to the memory, which allows
+very fast changes and hence the use of windows, mice, \hbox{etc.;}
+\item the size of the memory (a few billion characters, GB, gigabytes) and
+of the disks (a few thousand billion characters, TB, terabytes) makes it possible to consider
+ever larger programs and data, and therefore ever more
+sophisticated applications.
+\end{list}
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+The size of the largest programs that can be written today
+now runs to tens or hundreds of millions of lines, which is considerable
+and not without difficulties, since the limits of human
+understanding are being reached. A training of the mind, a
+new rigour, even more precise than the logic of mathematicians,
+becomes the prime quality which, together with imagination and a sense of
+aesthetics, makes good computer scientists.
+
+\indent A little method also
+helps a lot. The whole history of programming languages
+is full of inventions making it possible to formulate more clearly how
+to organize data in memory or the computations of the com\-pu\-ter.
+Each time, human capacities, and therefore the maximum size of the largest
+ programs, have been pushed back.
+A very old idea for structuring computations, due to Von Neumann and Turing%
+\footnote{\ \href{https://en.wikipedia.org/wiki/Alan_Turing}{Alan Turing}, 1912--1954, English mathematician.}, is that
+of the {\em procedure}, formerly called a {\em routine}
+or {\em subprogram}. We begin to introduce it in the next chapter.
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{empty}

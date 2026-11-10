@@ -1,0 +1,329 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  rulecolor=\color{gray!50},
+  backgroundcolor=\color{gray!8},
+  breaklines=true,
+  upquote=true,
+  xleftmargin=0.5em,
+  xrightmargin=0.5em
+}
+\setlength{\emergencystretch}{3em}
+\newcommand{\kbd}[1]{\texttt{#1}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+\title{LeRobot User Manual}
+\author{}
+\date{9 November 2026}
+
+\begin{document}
+\maketitle
+
+LeRobot is a drawing robot you steer on screen: either live, with the mouse
+and keyboard (Dessiner), or by writing a short OCaml program of robot
+commands (such as \kbd{mon\_dessin.ml}). It is the OCaml translation of the
+1998 Caml Light version, in the folder \kbd{LeRobot\_OCaml\_FR} of the
+\kbd{LeRobot} folder, which can be anywhere (commands below are typed in a
+Terminal window opened in the \kbd{LeRobot} folder).
+
+\tableofcontents
+
+%======================================================================
+\section{Getting started}
+
+You need OCaml with dune and the \kbd{graphics} library
+(\kbd{opam install graphics}), and XQuartz, the X11 display server for macOS.
+
+\begin{enumerate}
+\item Build once, and again after any change to the source files:
+\begin{lstlisting}[language=bash]
+cd LeRobot_OCaml_FR && eval $(opam env) && dune build
+\end{lstlisting}
+\item Start XQuartz: \kbd{open -a XQuartz}. Opening the robot window starts
+  it too if it is set up correctly.
+\item Always launch with \kbd{DISPLAY=:0} in front of the command, as shown in
+  Parts~1 and~3 (\kbd{robot.sh} and \kbd{LeRobotOCaml.app} do it for you). The default display setting can point to a stale XQuartz
+  connection and fail with \emph{Cannot open display}.
+\end{enumerate}
+
+The application \kbd{LeRobotOCaml.app}, in \kbd{LeRobot\_OCaml\_FR}, does all
+of this for you: double-click it to run Dessiner, or drop a \kbd{.ml}
+program on its icon to compile and run it (see Part~2).
+
+After a restart of the Mac, XQuartz may refuse to start because the folder
+\kbd{/tmp/.X11-unix} is missing or not owned by root. The startup task
+described in the installation manual recreates it at every restart; without
+it, recreate it once (asks for your password):
+\begin{lstlisting}[language=bash]
+sudo mkdir -p /tmp/.X11-unix && sudo chown root:wheel /tmp/.X11-unix && sudo chmod 1777 /tmp/.X11-unix
+\end{lstlisting}
+
+The window is $800 \times 700$ pixels. The large white area is where the
+robot draws; the strip along the bottom is the message bar.
+
+%======================================================================
+\section{Part 1 --- Interactive drawing (Dessiner)}
+
+In Dessiner you give the robot commands with single keys and move it with
+the mouse or the arrow keys; press Enter when you are done, then \kbd{y} to
+save the drawing as a program.
+
+\subsection{Launch}
+Double-click \kbd{LeRobotOCaml.app}, or type \kbd{make Dessiner}, or:
+\begin{lstlisting}[language=bash]
+cd LeRobot_OCaml_FR && DISPLAY=:0 dune exec ./Dessiner.exe
+\end{lstlisting}
+The robot appears in the centre, pointing north, as a small arrow-shaped
+icon. To give the window keyboard focus, click its title bar.
+
+\subsection{The window}
+\begin{itemize}
+\item \textbf{Drawing area} --- the large white area.
+\item \textbf{Message bar} (bottom) --- a reminder of the keys, ending with
+  \kbd{* :cc w :peindre\ \ Entree :fin}.
+\item \textbf{Colour box} (small box near the right of the bar) --- shows
+  the current pen colour.
+\item \textbf{Enter icon} (far right) --- the Enter symbol; it blinks when
+  the robot waits for a key.
+\end{itemize}
+
+\subsection{Moving the robot with the mouse or the arrow keys}
+Click on a grid point (or move the pointer with the button held down) and
+the robot jumps to the nearest grid point, without drawing. The arrow keys
+move it one grid step left, right, up or down, also without drawing. When
+the pointer moves with the button released, the robot does not move, and a
+click or trackpad tap does not end the drawing.
+
+If the robot would go past the edge of the drawing area, it stays where it
+is and the terminal prints
+\kbd{** SORTIE INTERDITE ** translater} (``forbidden exit''), with a beep-beep.
+This is only a warning.
+
+\subsection{Keyboard commands}
+The robot draws only when its pen is down (\kbd{b}). One step is one grid
+square.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{@{}l l L@{}}
+\toprule
+\textbf{Key} & \textbf{Command} & \textbf{What it does} \\
+\midrule
+\kbd{b} & bc & Pen down: the robot draws as it moves \\
+\kbd{l} & lc & Pen up: the robot moves without drawing \\
+\kbd{a} & av & Move forward one step \\
+\kbd{)} & vd & Curved turn to the right (draws an arc) \\
+\kbd{(} & vg & Curved turn to the left (draws an arc) \\
+\kbd{+} & pqtd & Quarter turn right ($90^\circ$) \\
+\kbd{-} & pqtg & Quarter turn left ($90^\circ$) \\
+\kbd{d} & phtd & Eighth turn right ($45^\circ$) \\
+\kbd{g} & phtg & Eighth turn left ($45^\circ$) \\
+\kbd{c} & dc & Draw a small cross (+) \\
+\kbd{p} & dp & Draw a point \\
+\kbd{.} & dg & Draw the grid \\
+\kbd{*} & cc & Next pen colour (shown in the colour box) \\
+\kbd{w} & peindre & Paint the closed area behind the robot with the pen colour \\
+Arrow keys & translater & Move one step left, right, up or down, without drawing \\
+Backspace & --- & Undo the last command \\
+Enter & --- & Finish the drawing \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Colours cycle in this order: white, yellow, blue, violet, green, red,
+indigo, black. To paint, put the robot so that its back is inside a closed
+area, then press \kbd{w}.
+
+\subsection{Finishing and saving}
+\begin{enumerate}
+\item Press \textbf{Enter}. The bar asks:
+  \emph{Voulez-vous sauver dans mon\_dessin.ml ? (y/n)}
+\item Press \kbd{y} to save. Every command you used, including mouse and
+  arrow moves (written as \kbd{translater (dx,dy)}) and colour changes
+  (written as \kbd{cc n} with the colour name in a comment), is written to
+  \kbd{mon\_dessin.ml} as a robot program (see Part~3), and the window
+  closes.
+\item Press any other key to close without saving.
+\end{enumerate}
+Saving always overwrites \kbd{mon\_dessin.ml}. To keep an earlier drawing,
+copy that file under another name first.
+
+%======================================================================
+\section{Part 2 --- Running a robot program}
+A robot program is an OCaml file that lists robot commands in order. It can
+be in any folder. Drop it on \kbd{LeRobotOCaml.app}, or type, in a Terminal
+window opened in \kbd{LeRobot\_OCaml\_FR}:
+\begin{lstlisting}[language=bash]
+./robot.sh path/to/Program.ml
+\end{lstlisting}
+\kbd{robot.sh} compiles the program (the library must have been built once
+with \kbd{make}), starts XQuartz if needed and runs it. The program draws the
+picture by itself, then waits so you can replay it at another speed (see
+Section~\ref{sec:replay}) or close it with Esc.
+
+The programs of the book \emph{Premi\`eres le\c{c}ons de programmation en
+OCaml} start with \kbd{open LibRobot} and are in the folder \kbd{livre},
+one subfolder per chapter:
+\begin{lstlisting}[language=bash]
+./robot.sh livre/03_programmation/Carre.ml
+make run PROG=livre/20_grille_polaire/LimaconDePascal
+make verifier                      # all programs, one after the other
+make verifier DIR=02_interaction   # one chapter
+make verifier DEPUIS=FriseDeTriangles   # resume at a program
+\end{lstlisting}
+With \kbd{make verifier}, answer in the robot window when a drawing is
+finished: Enter = correct (next program), \kbd{r} = run it again, \kbd{q}
+or Esc = stop (the command to resume is printed), any other key starts a
+remark, ended by Enter, noted in \kbd{verification.txt}. A program that
+never ends by itself (\kbd{Boucle1}, \kbd{Boucle2}) is stopped with Esc.
+
+%======================================================================
+\section{Part 3 --- Running a robot program with dune}
+
+A robot program is an OCaml file that lists robot commands in order; you run
+it with \kbd{dune exec}, and it draws the picture by itself, then waits so
+you can replay it at another speed.
+
+\subsection{Run mon\_dessin.ml}
+\begin{lstlisting}[language=bash]
+cd LeRobot_OCaml_FR && DISPLAY=:0 dune exec ./mon_dessin.exe
+\end{lstlisting}
+\kbd{dune exec} rebuilds the program first if the file has changed.
+
+\subsection{Write your own program}
+\begin{enumerate}
+\item Create a file in \kbd{LeRobot\_OCaml\_FR}, for example \kbd{maison.ml}:
+\begin{lstlisting}
+open LeRobot
+let () =
+begin
+  init_pict (); ce();
+  bc(); av(); av(); pqtd(); av(); av(); pqtd(); av(); av(); pqtd(); av(); av();
+  st()
+end
+\end{lstlisting}
+\item Add its name, without \kbd{.ml}, to both lists of the
+  \kbd{executables} section in the file \kbd{dune}:
+\begin{lstlisting}
+(executables
+ (names Dessiner mon_dessin maison)
+ (modules Dessiner mon_dessin maison)
+\end{lstlisting}
+\item Run it: \kbd{DISPLAY=:0 dune exec ./maison.exe} from the
+  \kbd{LeRobot\_OCaml\_FR} folder.
+\end{enumerate}
+
+Every program follows the same pattern:
+\begin{itemize}
+\item \kbd{init\_pict (); ce();} first: clears the window and puts the robot
+  in the centre.
+\item The robot starts with its pen down, so every move draws: call
+  \kbd{lc()} to move without drawing, and \kbd{bc()} to draw again.
+\item \kbd{st()} last: shows the speed screen and keeps the window open.
+  Without it, the window closes as soon as the drawing is done.
+\item Each command is followed by \kbd{;}, and commands without arguments
+  take \kbd{()}.
+\end{itemize}
+
+\subsection{Replaying at another speed}\label{sec:replay}
+When the program reaches \kbd{st()}, the bar shows:
+\begin{lstlisting}
++ : plus vite   - : moins vite   vitesse : N     autre touche : redessiner   Echap : quitter
+\end{lstlisting}
+\begin{itemize}
+\item \kbd{+} / \kbd{-} --- change the speed from 0 to 10 (default 10, the
+  fastest). Only the number changes.
+\item Any other key, for example the space bar --- clear the window and
+  redraw at the chosen speed; the speed screen comes back when it is done.
+\item Esc --- close the window.
+\end{itemize}
+At speed 1 each command takes about 0.1\,s. Speed 0 is step-by-step mode:
+the robot does one command each time you press a key, and Esc stops.
+
+\subsection{Command reference}
+One step is one grid square. Commands are in French; the table gives the
+English meaning.
+
+\begin{longtable}{@{}p{0.42\linewidth} p{0.53\linewidth}@{}}
+\toprule
+\textbf{Command} & \textbf{Meaning} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\kbd{av ()} & Move forward one step \\
+\kbd{avf n} & Move forward $n$ steps \\
+\kbd{vd ()} / \kbd{vg ()} & Curved turn right / left (draws an arc) \\
+\kbd{phtd ()} / \kbd{phtg ()} & Turn $45^\circ$ right / left \\
+\kbd{pqtd ()} / \kbd{pqtg ()} & Turn $90^\circ$ right / left \\
+\kbd{p3htd ()} / \kbd{p3htg ()} & Turn $135^\circ$ right / left \\
+\kbd{pdt ()} & Turn around ($180^\circ$) \\
+\kbd{pn ()} \kbd{pne ()} \kbd{pe ()} \kbd{pse ()} \kbd{ps ()} \kbd{psw ()} \kbd{pw ()} \kbd{pnw ()} & Face N, NE, E, SE, S, SW, W, NW \\
+\kbd{pivoter n} & Face direction $n$ (0 = N, 1 = NE, 2 = E \dots\ 7 = NW) \\
+\kbd{rt a} & Turn by $a$ degrees (anticlockwise) \\
+\kbd{bc ()} / \kbd{lc ()} & Pen down / pen up \\
+\kbd{dp ()} / \kbd{dc ()} & Draw a point / a small cross \\
+\kbd{cc n} & Pen colour $n$ (0 white, 1 yellow, 2 blue, 3 violet, 4 green, 5 red, 6 indigo, 7 black) \\
+\kbd{ec n} & Pen thickness $n$ \\
+\kbd{cf n} & Clear the window and fill it with background colour $n$ \\
+\kbd{translater (dx,dy)} & Move $dx$ steps across and $dy$ steps up, without drawing \\
+\kbd{tracer (x,y)} & Go to window pixel $(x,y)$, drawing if the pen is down \\
+\kbd{deplacer (x,y)} & Go to grid point $(x,y)$, counted from the centre \\
+\kbd{ce ()} & Go to the centre \\
+\kbd{eh ()} \kbd{eb ()} \kbd{ad ()} \kbd{ag ()} & Go to the top, bottom, right or left edge \\
+\kbd{dg ()} & Draw the grid \\
+\kbd{lg x} / \kbd{lgX x} / \kbd{lgY x} & Set the step size (both directions / across / up) \\
+\kbd{lgRT (r,t)} & Step of length $r$ at angle $t$ (polar grid) \\
+\kbd{tl l} & Move forward $l$ points, the grid following the robot \\
+\kbd{peindre ()} & Fill the closed area behind the robot with the pen colour \\
+\kbd{montrerRobot ()} / \kbd{cacherRobot ()} & Show / hide the robot \\
+\kbd{autoriserSorties ()} / \kbd{interdireSorties ()} & Allow / forbid moving past the window edge \\
+\kbd{vt n} & Set the speed (0 to 10) \\
+\kbd{pp ()} / \kbd{ex ()} & Step-by-step mode / full speed \\
+\kbd{message "text"} & Write a message in the bottom bar \\
+\kbd{st ()} & End: show the speed screen \\
+\end{longtable}
+
+The full list, with test functions such as \kbd{tb ()} (would the next step
+leave the window?), is in \kbd{LeRobot.mli}.
+
+%======================================================================
+\section{Troubleshooting}
+
+\begin{longtable}{@{}p{0.27\linewidth} p{0.33\linewidth} p{0.34\linewidth}@{}}
+\toprule
+\textbf{Symptom} & \textbf{Cause} & \textbf{Fix} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\emph{Cannot open display} & DISPLAY points to a stale XQuartz connection, or XQuartz is not running & Put \kbd{DISPLAY=:0} in front of the command; start XQuartz with \kbd{open -a XQuartz} \\
+\addlinespace
+XQuartz opens and closes at once & \kbd{/tmp/.X11-unix} missing or not owned by root (common after a restart) & Run the \kbd{sudo mkdir \dots} command from Section~1 \\
+\addlinespace
+\kbd{** SORTIE INTERDITE ** translater} in the terminal & The robot was asked to move past the window edge & Only a warning; keep the pointer or the robot inside the window, or call \kbd{autoriserSorties ()} \\
+\addlinespace
+The window closes right after the drawing & The program has no \kbd{st()} at the end & Add \kbd{st()} as the last command \\
+\addlinespace
+Keys do nothing in the window & The window does not have keyboard focus & Click the window's title bar \\
+\addlinespace
+A saved drawing was lost & Saving from Dessiner always overwrites \kbd{mon\_dessin.ml} & Copy \kbd{mon\_dessin.ml} under a new name before saving again \\
+\addlinespace
+Text font cannot be changed & \kbd{policeTexte} has no effect with this XQuartz & None; the bar layout is sized for the default font \\
+\end{longtable}
+
+\end{document}

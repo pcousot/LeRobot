@@ -1,0 +1,291 @@
+In chapter \ref{ch:proc-pascal} we learned how to declare and call procedures without parameters,
+which let us repeat the same sequence of commands of the
+\robot\ several times at different places in the program. In chapter \ref{ch:appel} we
+used commands of the \robot\ which are calls of procedures with parameters,
+the use of one or more parameters al\-low\-ing the procedure to perform sequences
+of commands that are similar but differ according to the value of the parameters. We will now
+see how to declare procedures with parameters in \python. Let us start
+with a simple example:
+
+\bigskip
+
+ {\raggedright 
+ {}\hfill\vbox to 0pt{\vspace*{\baselineskip}\vspace*{3cm}
+ \includevspacePostScript[-\baselineskip]{CarrePointille}{0.3}{0.3}}\hspace*{30mm}%
+ \label{prog:CarrePointille}
+ \input python/DottedSquare.tex
+ }
+The procedure {\idt dottedLine} draws a dotted line made up of a succession of
+{\idt n} black pixels separated by $(${\idt n}$ - 1)$ white pixels, the num\-ber {\idt n} of dots being
+passed as a parameter of this procedure. In the declaration `{\mcl def}\ {\idt dottedLine(n):}',
+the parameter {\idt n} is written between the parentheses that follow the name of the procedure,
+parentheses which remain empty {\idt ()} for procedures without parameters. There is no need to state that {\idt n} is
+an integer: \python\ does not ask for it, and it is only at execution time,
+when computing the expression {\idt n - 1}, that it uses the value of {\idt n}.
+The procedure {\idt square} draws a dotted
+square, the number {\idt p} of dots per side being passed as a parameter. The call {\idt square(30)}
+says that the procedure {\idt square} must be executed with a parameter {\idt p} equal to 30. Consequently the
+procedure {\idt dottedLine} is called four times with a parameter {\idt n} equal to {\idt p}, that is
+30. We say that {\idt p} is the {\em formal parameter}\index{Formal parameter}  (whose value is not yet known
+at the time the procedure is declared, and which is designated by an identifier) and that 
+30 is the {\em actual parameter}\index{Actual parameter} (that is,
+the value of the formal parameter for this call of the procedure).
+
+In general, declarations and calls of procedures with pa\-ram\-e\-ters have the following
+form:
+
+\index{Formal parameter}\index{Procedure declaration}\index{Identifier}
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Declaration of a procedure with parameters:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ \cmt \#\ \small\rm Specification: what the procedure does}\par 
+\mbox{\blc\ \ \ \mcl def\blc\hspace{0.3em}\blanc\hspace{0.3em}\idt procedureName(%
+formalParam1\footnote{\ A formal parameter is an identifier.},\ formalParam2,\ \dots):}\par 
+\mbox{\blc\ \ \ \ \ \ \ \small\rm \ldots\ Instructions of the body of the procedure%
+\footnote{\ The expressions appearing in these instructions may use the formal parameters
+{\idt formalParam1}, \ldots\ of the procedure.}
+ (indented) \ldots}\par 
+\medskip}
+\end{minipage}\\ \hline 
+\end{tabular}
+\end{center}
+
+\index{Actual parameter}\index{Procedure call}
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Call of a procedure with parameters:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ \idt procedureName(actualParam1%
+\footnote{\ An actual parameter is an integer expression (or a colour, etc.).},\ actualParam2,\ \dots%
+\footnote{\ The actual parameters are given in the order in which the corresponding formal
+pa\-ram\-e\-ters appear.})}\par 
+\medskip}
+\end{minipage}\\ \hline 
+\end{tabular}
+\end{center}
+
+Note that the parameters, formal ones in the procedure declaration as well as actual ones
+in the procedure call, are placed between parentheses and separated by
+commas. For example, to draw a rectangle of height 3 and width 4 with the 
+procedure {\idt rectangle} declared by `{\mcl def}\ {\idt rectangle(height,\ width):}' in the program
+{\idt MacintoshSE.py} of the folder 
+{\idt book/\allowbreak 13\_declaring\_procedures}, we write {\idt rectangle(3,\ 4)}.
+If we forget the parentheses and write {\idt rectangle\ 3,\ 4}, \python\ rejects the program
+before running it with the message `{\tt SyntaxError: invalid syntax}'.
+An actual parameter can be an expression,
+as in {\idt rightHalfCircle(2\ *\ gridSize)} (page \pageref{prog:HeliceEnCouleur})
+or {\idt fdn(-3)}: it is computed before the procedure is called. Be careful to place
+the closing parenthesis correctly: {\idt rightHalfCircle(2)\ *\ gridSize} would be
+understood as the multiplication by {\idt gridSize} of the result of the call {\idt rightHalfCircle(2)}, 
+which makes no sense. After drawing the half circle, \python\ stops with the message:
+`{\tt TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'}'
+(operand types not allowed for {\idt *}: {\idt NoneType} and integer). {\idt NoneType} is the type
+of the value {\mcl None} (`nothing') returned by a procedure call.
+
+The number of actual parameters must be equal to the number of formal parameters.
+If we write {\idt rectangle(3)}, \python\ stops when the \robot\ reaches this call,
+with the message
+`{\tt TypeError: rectangle() missing 1 required positional argument: 'width'}'
+and if we write
+{\idt rectangle(3,\ 4,\ 5)}, with the message
+`{\tt TypeError: rectangle() takes 2 positional arguments but 3 were given}'.
+
+
+A procedure with 
+formal parameters can be called several times in a program with 
+actual pa\-ram\-e\-ters
+that can be different each time.
+
+The formal parameters of a procedure are names that are {\em local} to the procedure: they can only be used in the
+body of the procedure (elsewhere, \python\ would answer for example
+`{\tt NameError: name 'width' is not defined}'). Consequently different procedures can have
+formal parameters with the same name although they are different parameters. 
+
+These various 
+points are illustrated by the example below.
+
+\noindent\begin{minipage}{\textwidth}
+\begin{exemple}[Segmented spiral]{\rm
+~The program below draws a spiral made up of pairs of straight line segments
+of successive lengths 1, 2, 3, \ldots, 19:
+
+\nopagebreak
+ {\raggedright 
+ \mbox{}\hspace*{40mm}\vbox to 0pt{\vspace*{\baselineskip}\vspace*{4cm}
+\includevspacePostScript[-\baselineskip]{SpiraleSegmentee}{0.7}{0.7}}
+ \input python/SegmentedSpiral.tex
+ }
+\noindent $\Box$ }
+\end{exemple}
+\end{minipage}
+
+
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercices}{Write \python\ programs containing procedures with
+parameters to produce the following drawings:
+
+\tiret the cross with three transverse arms, the coloured propeller, the mi\-cro\-com\-put\-er,
+the colour logo, the caterpillar (where the number
+of rings of the caterpillar's body is passed as a parameter of the drawing procedure), the canoe 
+(where the number of rowers is a parameter) shown on page \pageref{fig:crx3b};
+
+\tiret the squares inscribed one inside another
+or the painted version of this drawing shown in figure \ref{fig:carinspt} (page \pageref{fig:carinspt});
+
+\tiret the arabesque inspired by the dome of the mausoleum of Sultan
+         Qayt-\-Bay shown in figure \ref{fig:arab2} (page \pageref{fig:arab2});
+
+\tiret the barge of figure \ref{fig:transports} (page \pageref{fig:transports}) where the number
+         of portholes is given as a parameter;
+
+\tiret the Golomb tiling of figure \ref{fig:golomb} (page \pageref{fig:golomb}).
+
+\noindent $\Box$}\end{exercices}
+\twocolumn
+\begin{figure}[h]
+%\hspace{-3.363cm} 
+\includevspacePostScript[4.9cm]{Arabesque2}{0.95}{0.95}
+ \caption{Arabesque}\label{fig:arab2}
+\end{figure}
+\vfill
+\begin{figure}[h]
+%\hspace{-3.363cm} 
+\includevspacePostScript[0.0cm]{HeliceEnCouleur}{0.95}{0.95}
+ \caption{Coloured propeller}
+ %\label{fig:helice}
+\end{figure}
+\vfill
+\begin{figure}[h]
+%\hspace{-3.363cm} 
+\includevspacePostScript[0.0cm]{MacintoshSE}{0.95}{0.95}
+ \caption{Old microcomputer}
+ %\label{fig:MacSE}
+\end{figure}
+\mbox{}
+\newpage
+\begin{figure}[!h]
+%\hspace{-3.363cm} 
+\includevspacePostScript[5.3cm]{LogoEnCouleur}{0.95}{0.95}%
+\caption{Colour logo}%
+%\label{fig:Logoc}
+\end{figure}
+\begin{figure}[!h]
+%\hspace{-3.363cm} 
+\includevspacePostScript[1.0cm]{Chenille}{0.95}{0.95}%
+\caption{Caterpillar}%
+%\label{fig:chenille}
+\end{figure}
+\begin{figure}[!h]
+%\hspace{-3.363cm} 
+\includevspacePostScript[1.0cm]{Pirogue_1}{0.95}{0.95}%
+\caption{Canoe}%
+%\label{fig:pirog1}
+\end{figure}
+\vfil
+\begin{figure}[!h]
+\includevspacePostScript[0.0cm]{Croix3branches}{0.95}{0.95}%
+\caption{Cross with three arms}%
+\label{fig:crx3b}%
+\end{figure}
+\onecolumn
+\begin{figure}[h]
+\includevspacePostScript[5.7cm]{CarresInscritsPeints}{0.95}{0.95}
+ \caption{Horemis's pattern of inscribed squares}\label{fig:carinspt}
+\end{figure}
+\begin{corrige}{
+We give one program, the others being in the folder 
+{\idt book/\allowbreak 13\_declaring\_procedures}:
+\label{prog:HeliceEnCouleur}
+\input python/ColourPropeller.tex
+\noindent $\Box$}\end{corrige}
+
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+
+In \python, the definitions of identifiers are distinguished from their uses. \index{Identifier}
+The   {\em defining occurrences} appear in a constant
+or procedure declaration ({\mcl def}) as the name of a constant, of a procedure or of a formal parameter.
+The  {\em using occurrences} of these identifiers are the names of constants or of
+formal parameters used in an integer expression, or the names of procedures used in calls.
+
+ The same identifier may have several defining occurrences in a program. Hence the
+ problem arises of matching the using occurrences with the defining occurrences of the same
+ identifier. For 
+example the identifier can be used to name a constant of the program and formal parameters
+in procedures. In \python, these procedures can be nested one inside
+ another (by declaring with {\mcl def} a procedure {\idt p2} inside the body of a procedure {\idt p1},
+ with one more level of indentation), as in the example below:
+ 
+\smallskip
+
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt n\ =\ 17}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ p1(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl def}{\idt \ p2(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt ...}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt ...\ n\ ...\ \ }{\cmt \#1}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt ...}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ...}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt p2(n)\ \ }{\cmt \#2}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ...}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt ...}}\par
+\vspace{\neglskip}\mbox{\blc {\idt p1(n)\ \ }{\cmt \#3}}\par
+\vspace{\neglskip}\mbox{\blc {\idt ...}}\par
+
+\medskip }
+
+We say that the program has a {\em block structure}. \index{Block structure}These blocks are formed by the procedures nested 
+ one inside another, the program being considered as the outermost block. 
+ 
+ The {\em scope 
+ rule}\index{Scope} of identifiers in \python\ says that a using occurrence of an identifier
+ refers to the defining occurrence of the innermost block in which this using occurrence appears and
+ which contains a defining occurrence of the identifier. 
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+ 
+ 
+In the example above,
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+ \item the using occurrence of {\idt n} on the line marked {\cmt \#1} refers to the formal parameter of the procedure {\idt p2};
+\item the using occurrence of {\idt n} on the line marked {\cmt \#2} refers to the formal parameter of the procedure {\idt p1};
+ \item the using occurrence of {\idt n} on the line marked {\cmt \#3} refers to the constant 17.
+\end{list}
+
+Block structure, which is found in \python, was introduced by {\sc algol 60} \cite{algol60}. This language was created by a group
+of European and American experts gathered in the working group WG2.1 of IFIP (International Federation for 
+Information Processing), which brings together all the national computing societies. It is the ancestor of a family
+of languages which includes \pascal, {\sc Ada} and {\sc Modula}.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

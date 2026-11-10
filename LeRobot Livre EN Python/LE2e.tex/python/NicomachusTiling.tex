@@ -1,0 +1,57 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Tile\ a\ square\ with\ successive\ rings\ made\ of}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ squares\ of\ sizes\ 1,\ 2,\ 3,\ ...,\ starting\ from\ the}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ centre.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ 5):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ the\ 4\ sides\ of\ the\ i{-}th\ ring,\ tiling\ them}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ with\ squares\ of\ size\ i.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(4):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Draw\ one\ side\ of\ the\ i{-}th\ ring,\ tiled\ with}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ i\ squares\ of\ side\ length\ i,\ the\ robot}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ starting\ from\ the\ first\ square\ and\ arriving}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ at\ the\ last\ square\ in\ the\ same\ corner\ and\ in}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ the\ same\ direction\ as\ at\ the\ start.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Draw\ i\ {-}\ 1\ squares\ of\ the\ i{-}th\ ring}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl for}{\idt \ k\ }{\mcl in}{\idt \ range(i\ {-}\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\cmt \#\ Draw\ a\ square\ of\ length\ i,\ the\ robot}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\cmt \#\ starting\ and\ arriving\ at\ the\ same\ corner}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\cmt \#\ and\ in\ the\ same\ direction.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\mcl for}{\idt \ l\ }{\mcl in}{\idt \ range(4):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk\blk\blk{\mcl for}{\idt \ m\ }{\mcl in}{\idt \ range(i):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk\blk\blk\blk\blk{\idt fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk\blk\blk{\idt qtr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\cmt \#\ Move\ forward\ to\ the\ next\ square\ of\ the}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\cmt \#\ i{-}th\ ring.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt qtr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\mcl for}{\idt \ l\ }{\mcl in}{\idt \ range(i):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk\blk\blk{\idt fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt qtl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Draw\ the\ i{-}th\ square\ of\ length\ i\ of\ the}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ i{-}th\ ring.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl for}{\idt \ k\ }{\mcl in}{\idt \ range(4):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\mcl for}{\idt \ l\ }{\mcl in}{\idt \ range(i):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk\blk\blk{\idt fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt qtr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Turn\ a\ quarter\ turn\ to\ place\ the\ robot\ at\ the}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ beginning\ of\ the\ next\ side\ of\ the\ i{-}th\ ring.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt qtr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Go\ to\ the\ starting\ point\ of\ the\ (i\ +\ 1){-}th}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ ring.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(i):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(i):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fd()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

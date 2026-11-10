@@ -1,0 +1,15 @@
+# Notes
+ut = 0
+d0 = 0
+re = 2
+mi = 4
+fa = 5
+sol = 7
+la = 9
+si = 11
+# Altérations
+bemol = -1
+becarre = 0
+diese = 1
+# Octaves
+octave = 12

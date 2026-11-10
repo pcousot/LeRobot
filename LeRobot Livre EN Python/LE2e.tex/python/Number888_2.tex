@@ -1,0 +1,33 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ the\ number\ 888\ as\ on}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ digital\ watches.}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ the\ digit\ 8,\ starting\ at\ the\ bottom\ left\ of\ the}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ 8\ with\ the\ robot\ facing\ north\ and\ ending\ at\ the\ bottom}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ left\ of\ the\ 8\ with\ the\ robot\ facing\ west.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ eight():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd();\ qtr();\ fd();\ qtl();\ fd();\ qtl();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtl();\ fd();\ qtl();\ fd();\ qtr();\ fd();\ qtr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Starting\ with\ the\ robot\ facing\ west\ at\ the\ bottom}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ left\ of\ the\ 8,\ back\ up\ to\ the\ bottom\ right\ of\ the\ 8\ then}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ one\ space\ and\ turn\ the\ robot\ north\ again.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ space():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ qtr();\ qtr();\ fd();\ fd();\ qtl();\ pd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt eight();\ space()\ \ }{\cmt \#\ the\ hundreds\ 8}}\par
+\vspace{\neglskip}\mbox{\blc {\idt eight();\ space()\ \ }{\cmt \#\ the\ tens\ 8}}\par
+\vspace{\neglskip}\mbox{\blc {\idt eight()\ \ }{\cmt \#\ the\ units\ 8}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

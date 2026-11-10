@@ -1,0 +1,21 @@
+from LibRobot import *
+
+# Dessiner une frise de N
+ag()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+av(); av(); pdt(); vg(); vd(); pdt()
+st()

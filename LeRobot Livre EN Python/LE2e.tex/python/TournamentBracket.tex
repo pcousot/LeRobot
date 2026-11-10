@@ -1,0 +1,38 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ the\ bracket\ of\ a\ tennis\ tournament}}\par
+\vspace{\neglskip}\mbox{\blc {\idt l\ =\ 5\ \ }{\cmt \#\ Length\ of\ a\ horizontal\ line}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ bracket\ for\ a\ tournament\ of\ n\ players}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ bracket(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Tip\ of\ the\ brace,\ for\ the\ winner}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdn(l)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ n\ \char62{}\ 1:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Upper\ branch\ of\ the\ brace}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt qtl();\ fdn(n);\ qtr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Upper\ sub{-}bracket,\ containing}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ half\ of\ the\ players}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt bracket(n\ //\ 2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Go\ back\ to\ the\ centre\ of\ the\ brace}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pu();\ qtl();\ fdn({-}n);\ qtr();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Lower\ branch\ of\ the\ brace}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt qtr();\ fdn(n);\ qtl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Lower\ sub{-}bracket,\ containing\ the}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ rest\ of\ the\ players}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt bracket(n\ {-}\ n\ //\ 2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Go\ back\ to\ the\ centre\ of\ the\ brace}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pu();\ qtr();\ fdn({-}n);\ qtl();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Go\ back\ to\ the\ end\ of\ the\ tip}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdn({-}l)}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gs(3);\ fe();\ bracket(16);\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

@@ -1,0 +1,431 @@
+Nous avons utilisé des noms pour désigner des valeurs~: les constantes, les paramètres des
+procédures et les compteurs des boucles ``for''. Jusqu'à présent, une fois fixée, la valeur désignée par un tel nom
+ne changeait plus. Les {\em variables} permettent au contraire de mémoriser des résultats
+intermédiaires dans les calculs et de les modifier au cours de l'exécution du programme.
+
+\section{Variables et affectation}
+Une variable\index{Variable} est utilisée pour conserver une valeur dans la mémoire
+de l'ordinateur. En \python, une variable est créée par une {\em déclaration de
+variable}\index{Déclaration de variable}, qui indique le nom de la variable (qui est un identificateur)
+et sa valeur initiale, placée après le signe {\idt =}~:
+
+\vspace{\neglskip}\mbox{\blc  \blk\idt  b\ =\ \mcl True}\par
+\vspace{\neglskip}\mbox{\blc  \blk\idt  i\ =\ 0}\par
+\vspace{\neglskip}\mbox{\blc  \blk\idt  r\ =\ 0.0}\par
+\vspace{\neglskip}\mbox{\blc  \blk\idt  s\ =\ {\cha \char34\char34}}\par
+
+\noindent Cela s'écrit exactement comme les déclarations de constantes que nous avons utilisées
+jusqu'à présent~: en \python, une constante n'est rien d'autre qu'une variable dont on ne change
+jamais la valeur. C'est \python\ qui décide quelle partie de la mémoire et quel codage sera utilisé pour
+représenter la valeur de la variable, selon le type de cette valeur~:
+{\idt b} est une variable booléenne, {\idt i} une variable entière, {\idt r} une variable
+rationnelle et {\idt s} une variable contenant une chaîne de caractères (ici la chaîne vide). En \python, une variable
+a donc toujours une valeur, fixée dès sa création. On peut utiliser cette valeur dans une
+expression (comme {\idt 2 * i + 1}) en la notant simplement par le nom de la variable.
+Il ne faut pas utiliser une variable avant de l'avoir créée~: si le programme commence par
+{\idt i = i + 1} sans avoir d'abord donné une valeur initiale à {\idt i}, l'exécution s'arrête
+avec le message `{\tt NameError:\ name 'i' is not defined}' (le nom {\idt i} n'est pas défini).
+L'instruction
+d'{\em affectation\/} \index{Affectation}permet de changer la
+valeur d'une variable. Par exemple l'instruction~:
+
+\vspace{\neglskip}\mbox{\blc  \blk\blk\idt  b\ =\ \mcl False}\par
+
+\noindent affecte la valeur ``faux'' à la variable booléenne {\idt b}. De manière générale, une
+instruction d'affectation a la forme suivante~:
+
+\index{Affectation}
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Instruction d'affectation~:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+
+\vspace{\neglskip}\mbox{\blc  \blk\blk\idt  nomDeVariable\ =\ \rm expression%
+\footnote{\ L'expression peut utiliser l'ancienne valeur de la variable.}}\par
+
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+\noindent Le symbole\ {\idt =}\ se lit ``devient égal à''. Il ne faut pas le confondre avec la
+comparaison {\idt ==} (``est égal à'') utilisée dans les conditions des {\mcl if} et des {\mcl while}.
+L'exécution de cette instruction consiste à
+évaluer l'``expression'' pour calculer sa valeur qui devient celle de la variable nommée
+{\idt  nomDeVariable}. Le type de la variable est celui de la valeur qu'elle contient~:
+
+\index{Compatibilité de type}
+\begin{center}
+\begin{minipage}[t]{11.5cm}
+\begin{tabular}{@{}|l|l|l|@{}} \hline
+\multicolumn{3}{@{}|l|@{}}{\em Types des valeurs~:} \\ \hline \hline
+Exemple de valeur & Type & Nom du type\\ \hline
+{\mcl True}, {\mcl False} & {\idt bool} & booléen \\
+{\idt 0}, {\idt 1}, {\idt -5} & {\idt int} & entier \\
+{\idt 0.0}, {\idt 1.5} & {\idt float} & rationnel \\
+{\cha \char34\char34}, {\cha \char34{}abc\char34} & {\idt str} & chaîne de caractères \\
+\hline
+\end{tabular}
+\end{minipage}
+\end{center}
+
+\noindent  En \python, le type d'une variable n'est pas fixé une fois pour toutes~:
+si {\idt i} est une variable entière, l'affectation {\idt i = 1.5} est
+acceptée et {\idt i} devient une variable rationnelle. C'est rarement une bonne idée, car le
+lecteur du programme s'y perd et l'erreur n'apparaît que plus tard, par exemple dans
+{\idt avf(i)} qui exige un entier. Mieux vaut garder à chaque variable le même type et faire les
+{\em conversions}\index{Conversion} explicitement~: par exemple
+{\idt r = float(i)} ou {\idt i = int(r)}.
+
+\section{Sauvegarde de l'état du robot}
+
+Une première utilisation des noms est la sauvegarde de l'état du \robot. Imaginons par
+exemple que nous voulions concevoir une procédure pour faire un dessin qui nécessite divers
+changements de la taille de la grille. Pour que l'appel de
+cette procédure dans un programme ne modifie pas la taille de la grille utilisée dans le
+programme, il faut sauvegarder cette
+taille au début de la procédure puis la restituer à la fin. Il suffit de lui donner un
+nom par une {\em déclaration locale}\index{Déclaration locale}
+{\idt nom = expression} placée dans le corps de la procédure, comme dans l'exemple suivant~:
+
+{\raggedright
+ %\vspace{\baselineskip}
+ \vbox to 0pt{\includevspacePostScript[13mm]{Canards}{0.95}{0.95}}%
+ \input python/Canards.tex
+ }
+
+\noindent Les déclarations {\idt lX = valLgX();\ lY = valLgY()}
+calculent les valeurs de {\idt valLgX()} et de {\idt valLgY()} au début de la procédure et
+leur donnent les noms {\idt lX} et {\idt lY}, qui ne peuvent être utilisés que dans la suite du
+corps de la procédure {\idt canard}. On dit que ce sont des variables {\em locales} à la
+procédure~: elles n'existent pas en dehors de son corps.
+
+\section{Compter}
+Supposons que nous voulions
+compter le nombre d'itérations dans une boucle ``while''. On utilise une variable entière~:
+
+\mbox{\blc  \blk\idt  i\ =\ 0}\par
+
+\noindent Avant d'exécuter la boucle ``while'', la variable doit être initialisée à 0
+(elle peut avoir été modifiée depuis sa déclaration)~:
+
+\mbox{\blc  \blk\blk\idt  i\ =\ 0}\par
+
+\noindent Après chaque tour de boucle, la valeur de la variable doit être augmentée de 1~:
+
+\mbox{\blc  \blk\blk\idt  i\ =\ i\ +\ 1}\par
+
+\noindent Supposons que la valeur de la variable {\idt i} soit égale à 5 {\em avant} l'affectation
+\mbox{\idt  i\ =\ i\ +\ 1}. La valeur de l'expression {\idt  i\ +\ 1}
+est $5 + 1 = 6$ de sorte que la valeur de la variable {\idt i} {\em après} l'affectation sera égale
+à 6. Comme cette instruction est très fréquente, \python\ permet de l'abréger en
+\mbox{\idt  i\ +=\ 1} (``augmenter {\idt i} de 1''). De même \mbox{\idt  i\ -=\ 1} diminue {\idt i}
+de 1 et \mbox{\idt  i\ *=\ 2} le double.
+
+Par exemple, ceci peut nous servir pour déterminer la taille de la fenêtre dans laquelle le \robot\
+se déplace sur l'écran de l'ordinateur~:
+\input python/CalculerTailleFenetreRobot.tex
+
+\noindent Les variables {\idt largeur} et {\idt hauteur} sont déclarées dans le programme, en
+dehors des procédures~; on dit qu'elles sont {\em globales}\index{Variable globale}. Une procédure
+peut utiliser leur valeur sans rien dire de spécial. Par contre, pour les {\em modifier}, il faut
+le déclarer au début du corps de la procédure par {\mcl global}\index{global}\ {\idt largeur}.
+Sans cette déclaration, \python\ considérerait que l'affectation {\idt largeur = 0} crée une
+nouvelle variable locale {\idt largeur}, sans rapport avec la variable globale, qui garderait la
+valeur 0 (et {\idt largeur += 1} sans {\idt largeur = 0} avant provoquerait l'erreur
+`{\tt UnboundLocalError:\ local variable 'largeur' referenced before assignment}', la variable
+locale {\idt largeur} étant utilisée avant d'avoir reçu une valeur).
+
+L'opérateur {\idt +} appliqué à deux chaînes de caractères les met bout à bout et la
+fonction {\idt str} donne la chaîne de caractères qui représente un nombre (par
+exemple {\idt str(25)} vaut {\cha \char34{}25\char34}). On ne peut pas mettre bout à bout une
+chaîne et un nombre~: {\cha \char34{}(\char34}\ {\idt + largeur} provoque l'erreur
+`{\tt TypeError:\ can only concatenate str (not "int") to str}'.
+
+\section{Entrée d'une valeur au clavier}
+On peut obtenir une valeur en la tapant au clavier de
+l'ordinateur. Pour
+ce faire la fonction {\idt lireEntier()} attend que l'on tape un nombre entier et rend
+sa valeur. La question posée par le programme (écrite avec {\idt write}, voir ci-dessous)
+s'affiche dans la barre du bas de la fenêtre du \robot, et la réponse que l'on tape au clavier
+s'inscrit à sa suite (on peut aussi la taper dans le terminal d'où le programme a été lancé).
+On écrit par exemple~:
+
+\mbox{\blc  \blk\blk\idt  write({\cha \char34{}n\ =\ \char34})}\par
+\mbox{\blc  \blk\blk\idt  n\ =\ lireEntier()}\par
+
+\noindent pour donner à la variable {\idt n} la valeur tapée. On peut
+corriger les fautes de frappe avec la touche  %touche d'effacement
+\framebox[11.mm][l]{$\leftarrow$~~~}\hspace{0.3ex}
+d'effacement. Il faut terminer l'entrée de la valeur par la frappe de la touche %retour a la ligne
+\framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex}
+de retour à la ligne. Si ce que l'on a tapé n'est pas un entier, le programme le
+redemande. Sur un clavier français, on peut taper les chiffres avec ou sans la touche
+des majuscules.
+
+De même {\idt lireReel()} rend un nombre rationnel (de type {\idt float}), {\idt lireChaine()}
+rend la chaîne de caractères tapée (sans apostrophes ni guillemets) et {\idt lireCar()} rend
+le caractère de la première touche frappée dans la fenêtre du \robot\ (sans attendre la touche de
+retour à la ligne). En \pascal, une seule procédure {\idt readln} permettait de lire une valeur
+de n'importe quel type. En \python, chaque fonction de lecture rend une valeur d'un type bien précis
+(la fonction {\idt input} de \python\ rend toujours une chaîne de caractères, qu'il faudrait
+convertir en entier avec {\idt int}~; {\idt lireEntier} le fait pour nous). Par contre certaines
+fonctions, comme {\idt write}, {\idt str} ou {\idt abs}, acceptent des paramètres de types
+différents~: on dit qu'elles sont {\em polymorphes}\index{Polymorphe} (alors que d'autres fonctions, comme
+{\idt lireEntier} ou {\idt sqrt}, sont {\em monomorphes}\index{Monomorphe} en ce sens que leurs
+paramètres et leur résultat ont toujours le même type).
+
+L'instruction {\idt readln()} permet d'attendre que la touche %retour a la ligne
+\framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex}
+de retour à la ligne soit enfoncée. Elle est donc utile pour laisser le temps de lire ce que
+le programme a écrit avant la fin de son exécution.
+
+\section{Affichage de la valeur d'une expression}
+Pour afficher des textes dans le terminal (et dans la barre du bas de la fenêtre du
+\robot), on
+peut utiliser l'instruction {\idt write(}$t_1${\idt ,} $t_2${\idt ,} \ldots{\idt )} qui écrit 
+$t_1$, $t_2$, \ldots\ les uns
+à la suite des autres, sur la même ligne. L'instruction
+{\idt writeln(}$t_1${\idt ,} $t_2${\idt ,} \ldots{\idt )} fait de même puis passe à la ligne suivante.
+Les $t_i$ peuvent être des chaînes de caractères ou des expressions entières ou rationnelles,
+dont la valeur est écrite~: si {\idt x} vaut 3, {\idt writeln(}{\cha \char34{}x = \char34}{\idt , x)}
+écrit {\tt x = 3}. On peut aussi transformer soi-même la valeur d'une expression $E$ en chaîne de caractères
+avec {\idt str(}$E${\idt )}, comme le fait le programme ci-dessous. Par exemple
+ce programme lit
+un entier $n$
+puis écrit sa factorielle $n! = (1 \ast 2 \ast \ldots \ast (n - 1) \ast n)$. Pour redemander
+la valeur de $n$ tant qu'elle est incorrecte, il utilise une fonction récursive {\idt lireN}
+(voir le chapitre \ref{ch:rec}) qui rend la valeur lue~:
+\input python/Factorielle.tex
+
+\noindent La variable {\idt n} de la fonction {\idt lireN} est locale à cette fonction~: c'est
+une autre variable que la variable {\idt n} du programme, qui reçoit la valeur rendue par
+{\idt lireN()}. La valeur maximale de $n$ est fixée à 20, comme dans la version \ocaml\ de
+ce programme où $21!$ dépasse le plus grand entier. En \python, les entiers n'ont pas de limite~:
+on pourrait calculer exactement $100!$, qui s'écrit avec 158 chiffres.
+\vfill
+
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+
+\noindent\begin{exercices}{\ \\
+
+\tiret Écrire un programme qui dessine un cadre le plus près possible du bord de la fenêtre de déplacement
+du \robot.
+
+\tiret Écrire un programme qui esquisse les dessins à  compléter de la figure \ref{fig:completer-les-dessins} 
+(page \pageref{fig:completer-les-dessins}).
+
+\tiret La numération babylonienne \cite{guitel}, qui date d'environ 2000 ans av. J.-C., est en
+base 60. C'est donc une numération sexagésimale tout comme celle que nous utilisons encore
+pour noter l'heure. Les unités, de 1 à 59, sont notées de manière additive en accumulant des ``clous'' (pour
+1) et des ``chevrons'' (pour 10) regroupés et superposés comme indiqué sur la figure
+ci-dessous.\\[3.9cm]
+\noindent\includePostScript{Babyloniens}{0.95}{0.95}%[3.9cm]
+
+\noindent Au delà de 60, la notation est positionnelle, la valeur d'un chiffre occupant
+la $p^{\grave{e}me}$ position (comptée de droite à gauche à partir de zéro) étant
+multipliée par $60^{p}$. L'absence d'unités sexagésimales en position médiale (que
+nous no\-te\-rions par 0) fut d'abord marquée par un espace puis, vers le $3^{\grave{e}me}$
+siècle av. J.-C., par ``deux clous inclinés''. Les Babyloniens ont donc mis 15 siècles pour
+inventer une notation pour le
+zéro sans toutefois en comprendre la valeur calculatoire$\:$! Par exemple 
+le nombre $3657 = 1 \times 60^{2} + 0 \times 60^{1} + 57 \times 60^{0}$
+est représenté par la juxtaposition des chiffres $1$, $0$ et 
+$57 = 50 + 7$~:
+
+\pagebreak
+%\vspace{-6mm}
+\mbox{}\\[1.9cm]
+\noindent\includePostScript{Babyloniens3657}{0.95}{0.95}%[2.4cm]
+
+Écrire un programme \python\ de conversion
+d'un nombre po\-si\-tif quel\-con\-que dans la nu\-mé\-ra\-tion babylonienne. 
+
+\tiret La numération égyptienne ($3^{\grave{e}me}$ 
+millénaire av. J.-C.) est décimale et additive \cite{guitel}. Elle utilise des hiéroglyphes pour 
+noter les
+puissances de 10 (le trait vertical pour 1, l'anse pour 10, la spirale pour 100, le lotus pour 1000,
+l'index pour 10~000,
+le têtard pour 100 000 et le génie pour 1 000 000)~:\\[3.0cm]
+
+\noindent\includePostScript{ChiffresEgyptiens}{0.95}{0.95}%[3.0cm]
+ 
+\noindent La valeur d'une séquence de signes est la somme des valeurs
+de ces signes~:\\[2.0cm]
+
+\noindent\includePostScript{1234567Egyptien}{0.95}{0.95}%[3.0cm]
+ 
+\noindent On écrit de gauche à droite ou de droite à gauche, la
+lecture se faisant dans le sens où sont orientés les hiéroglyphes. 
+Les signes identiques se regroupent sur une, deux ou trois lignes de
+la manière suivante~:\\[0.8cm]
+ 
+%\vspace{-\baselineskip}
+\noindent\includePostScript{GroupesEgyptiens}{0.95}{0.95}%[1.8cm]
+ 
+\noindent  Entre -2000 et -1600 ans av. J.-C., une représentation hybride (additive et partiellement
+positionnelle) est apparue. Un nombre inférieur à 1000 situé avant, au dessus ou au dessous
+du signe du génie du million, du têtard, de l'index ou du lotus représente le produit de ce nombre et de la
+valeur de ce hiéroglyphe. Par exemple, le nombre 37 280 549 peut se décomposer en
+$((372 \ast 100 000) + 80 549)$ et s'écrit~:\\[2.3cm]
+ 
+\noindent\includePostScript{37280549Egyptien}{0.95}{0.95}
+ 
+\noindent Écrire un programme \python\ de conversion d'un nombre dans la nu\-mé\-ra\-tion
+é\-gyp\-tien\-ne.
+
+\tiret La numération acrophonique grecque \cite{guitel} fut utilisée à partir 
+du V$\grave{e}me$
+siècle av. J.-C. à Athènes. C'est une numération additive décimale utilisant la base
+auxiliaire 5 pour diminuer les répétitions. Les chiffres supérieurs
+à un sont notés par des 
+lettres (ou combinaisons de lettres) 
+correspondant chacune à l'initiale (ou à l'abréviation) du nom du
+nombre correspondant~:\\[1.8cm]
+
+\noindent\includePostScript{ChiffresGrecques}{0.95}{0.95}
+
+Écrire un programme \python\ de conversion d'un nombre in\-fé\-rieur à 100~000 dans la nu\-mé\-ra\-tion
+grecque. 
+Pour représenter les grands nombres, utiliser la numération acrophonique 
+pour les monnaies~:
+
+\noindent Oboles~:\\[0mm]
+
+%\vspace{-0.5cm}
+\noindent\includePostScript{ObolesGrecques}{0.95}{0.95}
+
+\noindent Drachmes (1 drachme = 6 oboles)~:\\[0.8cm]
+
+\noindent\includePostScript{DrachmesGrecques}{0.95}{0.95}
+
+\noindent Talents (1 talent = 6~000 drachmes)~:\\[0.8cm]
+
+\noindent\includePostScript{TalentsGrecques}{0.95}{0.95}
+
+\clearpage
+\noindent Par exemple le nombre 239~686~966 se représente par~:\\[1.0cm]
+
+\noindent\includePostScript{239686966Grecque}{0.95}{0.95}
+
+\tiret La numération romaine \cite{guitel} est additive et soustractive (tout signe placé à gauche
+d'un signe de valeur supérieure s'en soustrait). Ses chiffres
+sont bien connus~:\\[1.2cm]
+
+\noindent\includePostScript{ChiffresRomains}{0.95}{0.95}
+
+Pour les grands nombres, la barre horizontale multiplie par 1~000 la valeur du nombre qu'elle
+surligne et le rectangle sans base multiplie par 100~000 la valeur du nombre qu'il enferme,
+comme dans l'exemple 135~792~468 ci-dessous~:\\[1.4cm]
+
+\noindent\includePostScript{135792468Romain}{0.95}{0.95}
+
+Écrire un programme \python\ de conversion d'un nombre dans la nu\-mé\-ra\-tion
+ro\-mai\-ne.
+
+\tiret Écrire un programme de dessin de la courbe de Sierpinski à un ordre
+quelconque de la figure \ref{fig:CourbSierp} (page \pageref{fig:CourbSierp}).
+
+\tiret Un carré magique d'ordre $n$ est un tableau carré de $n^{2}$ nombres
+tel que la somme des nombres de chaque ligne, de chaque colonne et de chaque
+dia\-go\-na\-le est la même. Des exemples sont donnés à la figure \ref{fig:Cmagic}
+(page \pageref{fig:Cmagic}). Notons $C_{i, j}$ le nombre figurant à la
+$i^{\grave{e}me}$ ligne et la $j^{\grave{e}me}$ colonne du carré comptées à
+partir de 1 et numérotées de bas en haut pour les lignes et de gauche à
+droite pour les colonnes. Écrire un programme \python\ qui cons\-truit des
+carrés magiques d'ordre $n$ impair en commençant par placer 1 dans
+$C_{i, j} = C_{\frac{n + 1}{2}, n}$ puis affecte les nombres 2, 3, \ldots, $n^{2}$
+aux éléments $C_{i, j}$ obtenus en augmentant $i$ et $j$ de 1 modulo $n$ à chaque fois
+pendant $n - 1$ pas, et en diminuant $j$ de 1 tout en laissant $i$ inchangé à chaque 
+$n^{\grave{e}me}$ pas.
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[9.2cm]{CourbeSierpinski0a5}{0.95}{0.95}
+ \caption{Courbes de Sierpinski d'ordres 0 à 5}\label{fig:CourbSierp}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[6.0cm]{CarreMagique}{0.95}{0.95}
+ \caption{Carrés magiques d'ordres 3, 5 et 7}\label{fig:Cmagic}
+\end{figure}
+
+\pagebreak
+
+\begin{corrige}{
+Nous donnons un programme (sans le corps de la procédure technique {\idt ecrireCentre}).
+Les autres se trouvent dans le dossier\newline {\idt livre/\allowbreak 22\_variables\_E\_S}~:
+\input python/CarreMagique.tex
+\noindent $\Box$}\end{corrige}
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+Une \underline{variable}\index{Variable} sert à donner un {\em nom} à une mémoire qui conserve
+une {\em valeur} représentée
+selon un code déterminé par le {\em type} de la variable. Pour un codage binaire, on
+peut imaginer que la mémoire est une suite de lampes éteintes (pour représenter
+le bit 0) ou allumées (pour le bit 1).
+Dans beaucoup de langages, comme \pascal, la valeur
+initiale d'une va\-ria\-ble est {\em indéterminée} puisqu'elle dépend de l'état
+de la mémoire au moment du début de l'exécution du programme, ce qui est une source
+d'erreurs. En \python, une variable reçoit une valeur initiale dès sa création.
+L'instruction d'\underline{affectation}\index{Affectation} permet de
+conserver une nouvelle valeur en mo\-di\-fiant physiquement
+l'état de cette mémoire. La nouvelle valeur est donnée par une expression (qui peut
+utiliser l'ancienne valeur). La notion informatique de variable est donc très différente
+de la notion mathématique homonyme. En mathématiques une variable désigne une valeur
+inconnue fixée une fois pour toutes, comme les constantes d'un
+programme \python\ dont on ne change jamais la valeur. Pour un mathématicien, une variable informatique
+serait la suite des valeurs qu'elle prend à sa création puis après chaque
+affectation.
+
+\vspace{\baselineskip}
+
+
+On peut déclarer des variables {\em locales} à une procédure (ou fonction),
+en écrivant {\idt x =} $\ldots$ dans le corps de la procédure, comme
+la variable {\idt n} de la fonction {\idt lireOrdre} du programme {\idt CarreMagique}.
+Dans ce cas la variable n'est utilisable que dans la suite du corps de la procédure.
+À l'exécution, elle est créée à chaque exécution du corps
+de la procédure. Pour une procédure récursive,
+il s'agit à chaque appel d'une nouvelle variable sans aucun
+lien avec les instances correspondant aux appels récursifs antérieurs.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+Dans le corps de la procédure on peut également utiliser des variables
+{\em glo\-ba\-les} dont la déclaration figure dans le programme,
+en dehors des procédures, comme {\idt largeur} et {\idt hauteur} dans le programme
+{\idt CalculerTailleFenetreRobot} ou {\idt i} et {\idt j} dans le programme {\idt CarreMagique}.
+Pour qu'une procédure puisse les modifier par affectation, il faut les nommer après le
+mot-clé {\mcl global} au début de son corps. Ces variables globales existent
+pendant toute la durée de l'exécution du programme. Par conséquent en cas
+d'appels récursifs d'une procédure, il s'agit toujours de la
+même variable globale.
+
+Enfin des variables locales et globales peuvent porter le même nom (comme la variable
+{\idt n} de la fonction {\idt lireOrdre} et la variable {\idt n} du programme {\idt CarreMagique}). Dans
+ce cas c'est la variable locale qui est visible dans la procédure, la variable
+globale continuant à exister mais étant inaccessible. En \python, une variable est locale
+à une procédure dès qu'elle reçoit une valeur par affectation dans le corps de cette procédure
+(sauf si elle est déclarée {\mcl global}).
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+

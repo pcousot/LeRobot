@@ -1,0 +1,3 @@
+; Programmes (chapitre 1) repris de la traduction de Turbo Pascal (programmes/01_specifications)
+(executables (names Alphabet BateauAVoilesACompleter Bonhomme Camion Carreau CarreauDansCarre ChateauFort ChienACompleter Chiffre8 ChiffresMontreDigitale Coeur FleurStylisee1 Helicoptere LettreH Maison Marelle ParachuteDansCarre Peniche PetitsCerclesTangents Pique Quadrilateres Train Trefle)
+ (libraries lerobot) (flags (:standard -w +a-4-9-21-26-27-32-33-35-37-39-40-41-42-44-45-50-69-70)))

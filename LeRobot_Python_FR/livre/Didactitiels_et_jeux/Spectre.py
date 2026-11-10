@@ -1,0 +1,82 @@
+from LibRobot import *
+
+# Le « Spectre », découvert par David Smith, Joseph Samuel Myers, Craig S.
+# Kaplan et Chaim Goodman-Strauss (« A chiral aperiodic monotile », 2023),
+# quelques mois après le chapeau (voir Chapeau.py) : une seule tuile qui
+# recouvre tout le plan, jamais de façon périodique, SANS jamais être
+# retournée. À gauche, le polygone Tile(1,1) : les 14 côtés du chapeau,
+# tous de longueur 1 (les côtés gardent leurs directions, multiples de 30
+# degrés). Des polygones Tile(1,1) peuvent encore être retournés dans
+# certains pavages ; remplacer chaque côté par la même courbe en S (à
+# droite) l'interdit : un S s'emboîte dans un S, mais pas un S retourné.
+# C'est le Spectre.
+
+unite = 48                 # longueur d'un côté, en points
+
+# le contour, côté après côté : rotation (degrés, sens direct) avant le
+# côté ; tous les côtés ont pour longueur 1
+rotations = [-60, 90, 60, 0, 60, -90, 60, 90, 60, -90, 60, 90, -60, 90]
+
+# un point bien à l'intérieur de la tuile, vu du coin de départ (le robot
+# tourné vers le nord, x vers la droite, y vers le haut)
+interieurX = 1.1
+interieurY = -0.1
+
+# coins de la tuile, en unités, depuis le coin de départ
+coins = [(0, 0), (-0.866, -0.5), (-0.366, -1.366), (0.634, -1.366),
+         (1.634, -1.366), (2.134, -0.5), (3, -1), (3.866, -0.5),
+         (3.366, 0.366), (2.366, 0.366), (2.366, 1.366), (1.5, 1.866),
+         (1, 1), (0, 1)]
+courbure = 0.15            # écart des côtés en S à la ligne droite
+pas = 12                   # segments droits pour dessiner un S
+
+
+def polygone(u):
+    # Dessiner le polygone Tile(1,1) de côtés de longueur u, en partant et
+    # en revenant au même coin, tourné vers le nord
+    rt(180)                # direction qui précède le premier côté
+    for rotation in rotations:
+        rt(rotation)
+        tl(u)
+    rt(-180)               # de nouveau tourné vers le nord
+
+
+def peindreTuile(u):
+    # Peindre l'intérieur de la tuile dessinée depuis le coin du robot
+    angle = atan2(interieurY, interieurX) * 180 / pi - 90
+    distance = sqrt(interieurX ** 2 + interieurY ** 2) * u
+    lc()
+    rt(angle); tl(distance)
+    peindre()
+    pdt(); tl(distance); pdt(); rt(-angle)
+    bc()
+
+
+def coteCourbe(ax, ay, bx, by):
+    # Tracer de (ax, ay) à (bx, by) une courbe en S : elle s'écarte vers la
+    # gauche dans sa première moitié et vers la droite dans la seconde, si
+    # bien que c'est la même courbe dans un sens ou dans l'autre
+    for k in range(1, pas + 1):
+        t = k / pas
+        s = courbure * sin(2 * pi * t)
+        tracerReel(ax + t * (bx - ax) - s * (by - ay),
+                   ay + t * (by - ay) + s * (bx - ax))
+
+
+def spectre(x, y):
+    # Dessiner le Spectre, son coin de départ en (x, y) (en unités)
+    lc(); deplacerReel(x, y); bc()
+    for k in range(len(coins)):
+        ax, ay = coins[k]
+        bx, by = coins[(k + 1) % len(coins)]
+        coteCourbe(x + ax, y + ay, x + bx, y + by)
+
+
+cacherRobot()
+lg(unite); ec(3)
+cc(rouge); spectre(3, 0.75)
+lc(); deplacerReel(3 + interieurX, 0.75 + interieurY); pn(); peindre()
+lc(); deplacerReel(-6, 0.75); pn(); bc()
+cc(bleu); polygone(unite); peindreTuile(unite)
+message("Tile(1,1) (en bleu) et le Spectre (en rouge), qu'il n'est jamais nécessaire de retourner")
+st()

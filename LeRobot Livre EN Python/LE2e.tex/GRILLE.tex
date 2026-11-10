@@ -1,0 +1,249 @@
+So far we have drawn our pictures on paper ruled in small squares.
+The \robot\ has the additional ability to change the size of the squares.
+We can therefore enlarge the drawings by increasing the size of the squares before starting the drawing. It is also possible
+to change the size of the squares while the \robot\ is drawing. This makes it possible to
+draw segments of different lengths and arcs of circles whose radius can vary.
+By choosing rectangular cells we can draw ellipses and choose
+the angles of movement of the \robot\ freely.
+
+\section{Square grid}
+The standard grid shown in figure \ref{fig:grille} (page \pageref{fig:grille})
+has a size of 12 pixels. We can change the
+length of the side of a square of the grid with the command {\idt gs} (\underline{g}rid \underline{s}ize), which
+takes as parameter the new length of the grid expressed in pixels. For example
+{\idt gs(6)} sets a grid half the size of the usual grid whereas
+{\idt gs(24)} doubles the size of the grid.
+
+The length of the grid can also
+have a decimal part, as in {\idt gs(7.5)} (seven and a half pixels). Such a
+number, which is called a {\em floating-point number}\index{Floating-point number}, is written with a point
+(and not with a comma as in French):
+{\idt 6.0} (or {\idt 6.}) is the floating-point number six
+whereas {\idt 6} is the integer six. The commands {\idt gs}, {\idt gsX} and {\idt gsY}
+accept either an integer or a floating-point number: {\idt gs(6)} and {\idt gs(6.0)}
+have the same effect\footnote{\ This is not the case in all languages: in \ocaml\ for example,
+one must write {\idt gs\ 6.} with a floating-point number and convert integers
+into floating-point numbers.}.
+When the length of the grid is given by an integer expression such as
+$(6\ \ast\ ${\idt i}$)$, we therefore simply write {\idt gs(6\ $\ast$\ i)}. We will study
+floating-point numbers in detail in the chapter devoted to them.
+
+\begin{exemple}[Superimposed squares]{\rm
+ The program below draws superimposed squares, the \robot\ starting
+ and ending at the lower left corner, facing north, the superimposition being
+ obtained by choosing successive grid sizes of 6, 12, 18, \ldots, 84:
+
+% \includePostScript{CarresSuperposes2}{0.95}{0.95}
+% incorpore dans~:
+ \input python/OverlappingSquares2.tex
+\noindent $\Box$ }\end{exemple}
+
+
+\section{Rectangular grid}
+
+The \robot\ can walk on a rectangular grid whose horizontal side has a length
+different from that of the
+vertical side. This allows it to draw rec\-tan\-gles and el\-lip\-ses like these:
+%de la figure \ref{fig:RecEl} (page \pageref{fig:RecEl}).
+\begin{figure}[htbp]
+ \includevspacePostScript[2.2cm]{RectangleEtEllipse40x20}{0.95}{0.95}
+ \caption{Rectangle and ellipse on a $40 \times 20$ grid}
+% \label{fig:RecEl}
+\end{figure}
+
+ The initial grid has a size of $12 \times 12$ counted in pixels. The command {\idt gsX(40)} gives
+ a length of 40 pixels to the horizontal side of the grid without changing the length of the vertical side. After
+ this command the grid therefore has a size of $40 \times 12$ pixels. In this notation $40 \times 12$ we give
+ first the length of the horizontal side (called $X$) then the length of the vertical side (called $Y$)
+ of the grid. The command {\idt gsY(20)} gives
+ a length of 20 pixels to the vertical side of the grid without changing the length of the horizontal side. After
+ this command the grid therefore has a size of $40 \times 20$ pixels. So we can change independently the
+  horizontal size (with {\idt gsX}) or the vertical size (with {\idt gsY}) of the grid.
+  We can return to a square grid by using the command {\idt gs}.
+  For example the command {\idt gs(12)}
+  returns to a standard $12 \times 12$ square grid. The rectangle and the ellipse
+ above
+  %de la figure \ref{fig:RecEl} (page \pageref{fig:RecEl})
+  are built by the following program:\hfill
+ \input python/RectangleAndEllipse.tex
+
+ The figure
+ below
+%\ref{fig:vdavvg3060} (page \pageref{fig:vdavvg3060})
+illustrates the effect of the commands
+ {\idt cr()}, {\idt fd()} and {\idt cl()} with a rectangular grid of dimensions $30 \times 60$.
+\begin{figure}[htbp]
+ \includevspacePostScript[4.3cm]{VD+AV+VG-30x60}{0.95}{0.95}
+ \caption{Curve to the right, move forward and curve to the left with a $30 \times 60$ grid}
+% \label{fig:vdavvg3060}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[2.9cm]{Parallel+Ellipses}{0.95}{0.95}
+ \caption{Parallelograms and ellipses}
+ \label{fig:parel}
+\end{figure}
+\begin{exemple}{\rm
+\renewcommand{\carrenoir}{\hspace{-4mm}\rule{1.5mm}{1.5mm}\hspace{2.5mm}}
+The various segments and arcs of el\-lip\-ses drawn by the commands {\idt fd()}, {\idt cl()}
+and {\idt cr()} are illustrated by the two programs below, which draw parallelograms and
+ellipses by turning them a quarter turn around the centre of the grid, as can be seen in
+fig\-ure \ref{fig:parel} (page \pageref{fig:parel}):\hfill
+\input python/Parallelograms.tex
+\input python/Ellipses.tex
+\renewcommand{\carrenoir}{}
+\noindent $\Box$}\end{exemple}
+
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercices}{Use the possibilities offered by changing the size of the square grid
+to draw:
+
+\tiret the spirals and concentric circles of figure \ref{fig:spirales} (page \pageref{fig:spirales});
+
+\tiret the frieze of figure \ref{fig:dfrisec} (page \pageref{fig:dfrisec});
+
+\tiret the propeller and the ball of figure \ref{fig:heba} (page \pageref{fig:heba});
+
+\tiret the snail of figure \ref{fig:escar} (page \pageref{fig:escar});
+
+\tiret the stegosaurus and its baby of figure \ref{fig:steg2} (page \pageref{fig:steg2});
+
+\tiret the family of dogs of figure \ref{fig:chiens} (page \pageref{fig:chiens});
+
+\tiret the tiling of figure \ref{fig:PVdV} (page \pageref{fig:PVdV}) inspired by a motif by
+van de Vecht (\cite{escher1}, page 26) shown in figure \ref{fig:mVdV} (page \pageref{fig:mVdV}).
+\noindent $\Box$}\end{exercices}
+\begin{exercices}{Use the possibilities offered by rectangular grids
+to draw:
+
+\tiret the frieze of overlapping diamonds of figure \ref{fig:frlos} (page \pageref{fig:frlos});
+
+\tiret the bicycle of figure \ref{fig:velo} (page \pageref{fig:velo});
+
+\tiret the eight-point compass rose
+\ref{fig:rose-des-vents-8d} (page \pageref{fig:rose-des-vents-8d});
+
+\tiret the tilings of figures \ref{fig:PVdV1l} (page \pageref{fig:PVdV1l}),
+\ref{fig:PVdV2l} (page \pageref{fig:PVdV2l}) and \ref{fig:PVdV4l} (page \pageref{fig:PVdV4l}) obtained
+from the tiling of figure \ref{fig:PVdV} (page \pageref{fig:PVdV}) by pro\-gres\-sive\-ly decreasing the size of the grid on the right-hand side
+of the drawing, on the left-hand side and, in the last case, on all four sides of the rectangle, in the manner of the Dutch
+engraver M. C. Escher (\cite{escher1}, \cite{escher2}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[2.8cm]{Spirales}{0.95}{0.95}
+ \caption{Spirals and concentric circles}
+ \label{fig:spirales}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[0.6cm]{DoubleFriseCrantee}{0.95}{0.95}
+ \caption{Double notched frieze}
+ \label{fig:dfrisec}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.3cm]{HeliceBalle}{0.95}{0.95}
+ \caption{Propeller and ball}
+ \label{fig:heba}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.8cm]{Escargot}{0.95}{0.95}
+ \caption{Snail}
+ \label{fig:escar}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.8cm]{StegosaureEtBebe}{0.95}{0.95}
+ \caption{Stegosaurus and its baby}
+ \label{fig:steg2}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.8cm]{ChiensEtChiots}{0.95}{0.95}
+ \caption{Family of dogs out for a walk}
+ \label{fig:chiens}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[2.5cm]{MotifVanDeVecht}{0.95}{0.95}
+ \caption{Ornamental motif by N. J. van de Vecht}
+ \label{fig:mVdV}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[2.2cm]{FriseLosangesImbriques}{0.95}{0.95}
+ \caption{Frieze of overlapping diamonds}
+ \label{fig:frlos}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.1cm]{velo}{0.95}{0.95}
+ \caption{Bicycle}
+ \label{fig:velo}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[14.6cm]{PavageVdVRegulier}{0.95}{0.95}
+ \caption{Regular tiling inspired by an ornamental motif\label{fig:PVdV}}
+ \centering{by N. J. van de Vecht}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[14.6cm]{PavageVdV1limite}{0.95}{0.95}
+ \caption{Rectangular tiling with one limit}
+ \label{fig:PVdV1l}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[14.6cm]{PavageVdV2limites}{0.95}{0.95}
+ \caption{Rectangular tiling with two limits}
+ \label{fig:PVdV2l}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[17.0cm]{PavageVdV4limites}{0.95}{0.95}
+ \caption{Rectangular tiling with four limits}
+ \label{fig:PVdV4l}
+\end{figure}
+
+\clearpage
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corrige}{
+%\label{cor:Frise-1}
+\renewcommand{\carrenoir}{\hspace{-4mm}\rule{1.5mm}{1.5mm}\hspace{2.5mm}}
+We give a few programs; the other programs are in the folder
+{\idt book/\allowbreak 10\_grid}:
+\input python/GeometricSpiral.tex
+\input python/Snail2.tex
+\renewcommand{\carrenoir}{}
+\noindent $\Box$}\end{corrige}
+\begin{corrige}{
+We give the most difficult program, namely the tiling of figure
+\ref{fig:PVdV4l} (page \pageref{fig:PVdV4l}) obtained
+from the tiling of figure \ref{fig:PVdV} (page \pageref{fig:PVdV}) by pro\-gres\-sive\-ly decreasing the size of the grid on all
+four sides of the rectangle. The other programs are
+in the folder {\idt book/\allowbreak 10\_grid}:
+\input python/VdVTiling4Limits.tex
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+If all the grids of stopping points of the \robot\ were aligned on the centre of the screen, it could happen
+that after a change of grid the \robot\ would no longer be on a point of the grid. This is why the
+ grid is always relative to the \robot\ and not to the screen. When the size of the grid changes, all the points of the grid (which can be seen with
+the command {\idt dg()}) move, except the one on which the \robot\ stands. Consequently no command
+of the \robot\ (except one, namely {\idt gc()}) can make it leave one of the points of the current grid. For example the commands {\idt gl()}, {\idt gr()}, {\idt gt()} and
+{\idt gb()} move the \robot\ horizontally or vertically to the point of the current grid (respectively to the left, to the right, at the top and
+at the bottom) closest to the edge.
+To be able to place the \robot\ anywhere on the screen precisely, one needs an
+ absolute reference point. This absolute reference point is the centre of the screen. The command
+ {\idt gc()} always brings the \robot\ back to the same point, located exactly at the centre of the screen.
+ This command is therefore the only
+ command of the \robot\ that is not performed on the same grid. If the centre
+ of the screen is not on the current grid, the command {\idt gc()} recentres the grid exactly
+ at the centre of the screen so as to avoid making the \robot\ leave its grid of movement.
+
+To avoid possible misalignment problems, it is enough to program the drawing as if it were
+on graph paper, choosing a minimal grid size (1 millimetre on graph paper)
+so that all the changes of grid size are made when the \robot\ is at the centre and correspond
+to multiples (5, 10, \ldots\ on graph paper) of the basic size. One can also proceed
+empirically by experimenting, which is sometimes more fun.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,32 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Compute\ the\ size\ of\ the\ window\ where\ the\ robot}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ moves}}\par
+\vspace{\neglskip}\mbox{\blc {\idt width\ =\ 0}}\par
+\vspace{\neglskip}\mbox{\blc {\idt height\ =\ 0}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ robotWindowWidth():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl global}{\idt \ width}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(1);\ pu();\ gc();\ gl();\ fe();\ width\ =\ 0}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl while}{\idt \ }{\mcl not}{\idt \ tb():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt width\ +=\ 1;\ fd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ robotWindowHeight():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl global}{\idt \ height}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(1);\ pu();\ gc();\ gb();\ fn();\ height\ =\ 0}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl while}{\idt \ }{\mcl not}{\idt \ tb():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt height\ +=\ 1;\ fd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt robotWindowWidth();\ robotWindowHeight()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt message(}{\cha \char34{}(\char34{}}{\idt \ +\ str(width)\ +\ }{\cha \char34{}\ x\ \char34{}}{\idt \ +\ str(height)\ +\ }{\cha \char34{})\char34{}}{\idt )}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt markPause()}}\par
+
+\nopagebreak\medskip }\nopagebreak

@@ -1,0 +1,492 @@
+% Summary of the robot commands (Python library LibRobot: from LibRobot import *)
+%
+% \apxCmd{...} writes the command in the first column and remembers its
+% width; \apxDef, at the start of the second column, shifts the text when
+% the command overflows the first column.
+\newsavebox{\apxBoite}
+\newcommand{\apxCmd}[1]{\global\setbox\apxBoite\hbox{\idt #1}\usebox{\apxBoite}}
+\newcommand{\apxDef}{\apxFontSize\ifdim\wd\apxBoite>1.2cm
+  \hspace*{\dimexpr\wd\apxBoite-1.2cm\relax}\fi}
+% keyboard keys
+\newcommand{\apxTouche}[1]{\mbox{\begin{picture}(12,12)(0, 2)
+\put(0,0){\framebox(12,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny #1}}
+\end{picture}\hspace{0.3ex}}}
+\newcommand{\apxEsc}{\mbox{\begin{picture}(14,12)(0, 2)
+\put(0,0){\framebox(14,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny Esc}}
+\end{picture}\hspace{0.3ex}}}
+\newcommand{\apxArret}{\apxEsc, \apxTouche{\S} or \apxTouche{\#}}
+\newcommand{\apxEntree}{\framebox[11.mm][l]{$\hookleftarrow$~~~}}
+\newcommand{\apxEffacement}{\framebox[11.mm][l]{$\leftarrow$~~~}}
+% Python strings and characters
+\newcommand{\apxChaine}[1]{{\cha \char34{}#1\char34{}}}
+\newcommand{\apxCar}[1]{{\cha \textquotesingle{}#1\textquotesingle{}}}
+\newcommand{\apxRobot}{{\normalsize \rm\robot}}
+
+\noindent{\apxFontSize The commands of the \apxRobot\ are
+those of the library {\idt LibRobot} (a program starts with
+{\mcl from}\ {\idt LibRobot}\ {\mcl import}\ {\idt *}). A command is written followed by
+parentheses, empty when it has no parameter, like {\idt fd()}; the
+parameters are written between the parentheses, separated by commas, like
+{\idt pw(2)}, {\idt fdl(-3.5)} or {\idt moveTo(2, 3)}. A real number (of type
+{\idt float}) is written with a point, like {\idt 20.5}, an integer (of type
+{\idt int}) without a point; an integer can be given where a real is expected,
+like {\idt gs(20)}. A character string is of type {\idt str}, a boolean
+of type {\idt bool} ({\mcl True} or {\mcl False}).
+The functions {\idt val}\ldots\ return the current value of a setting of the
+\apxRobot.\par}
+\vspace{3mm}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Grid of the stopping points of the {\normalsize \robot}:}  \\ \hline \hline
+\apxCmd{dg()} & \apxDef (\underline{d}raw \underline{g}rid)
+draws the grid of the stopping points of the \apxRobot\ (the
+drawing of the grid can be interrupted by \apxArret). \\
+\apxCmd{gs($n$)} & \apxDef (\underline{g}rid \underline{s}ize) sets the new length $n$ (a real
+$n \geq 0$) of the sides of a square of the grid ($12 \times 12$ pixels
+by default). \\
+\apxCmd{gsX($n$)} & \apxDef sets the new length $n$ (a real) of the
+horizontal side (\underline{X}) of a square of the grid (\underline{g}rid \underline{s}ize, 12 pixels by default). \\
+\apxCmd{gsY($n$)} & \apxDef sets the new length $n$ (a real) of the
+vertical side (\underline{Y}) of a square of the grid (\underline{g}rid \underline{s}ize, 12 pixels by default). \\
+\apxCmd{gsRT($r$, $t$)} & \apxDef sets the new lengths of the
+sides of a square of the \underline{g}rid (\underline{g}rid \underline{s}ize) by the polar coordinates \underline{$r$} and
+\underline{$t$} (two reals: the length $r \geq 0$ of the diagonal of the square is
+expressed in pixels and the angle $t$ between this diagonal and the horizontal side is
+expressed in degrees, usually $0 \leq t \leq 90$).
+\\ \hline
+\apxCmd{valGsX()} & \apxDef is equal to the \underline{val}ue (of type {\idt float}) of the
+length (\underline{g}rid \underline{s}ize) of the horizontal side (\underline{X}) of a
+square of the grid (counted in pixels). \\
+\apxCmd{valGsY()} & \apxDef is equal to the \underline{val}ue (of type {\idt float}) of the
+length (\underline{g}rid \underline{s}ize) of the vertical side (\underline{Y}) of a
+square of the grid (counted in pixels). \\
+\apxCmd{valGsR()} & \apxDef is equal to the \underline{val}ue (of type {\idt float}) of the
+length (\underline{g}rid \underline{s}ize) of the diagonal (\underline{R}) of a square
+of the grid (counted in pixels). \\
+\apxCmd{valGsT()} & \apxDef is equal to the \underline{val}ue (of type {\idt float}) of
+the angle (\underline{T}) of the diagonal of a square
+of the \underline{g}rid with its horizontal side (counted in degrees). \\
+\hline \end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\apxCmd{valX()} & \apxDef is equal to the \underline{val}ue (of type {\idt float}) of
+the absolute abscissa (\underline{X}) of the \apxRobot\ (counted in pixels from the left
+edge of the window). \\
+\apxCmd{valY()} & \apxDef is equal to the \underline{val}ue (of type {\idt float}) of
+the absolute ordinate (\underline{Y}) of the \apxRobot\ (counted in pixels from the bottom of
+the window), so that after {\idt x = round(valX())} and {\idt y = round(valY())},
+later on {\idt pu();\ drawTo(x, y)} puts the \apxRobot\ back at this place on
+the screen. \\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Relative turns on the spot:}  \\ \hline \hline
+\apxCmd{etr()} & \apxDef (\underline{e}ighth \underline{t}urn
+\underline{r}ight) turns the \apxRobot\ on the spot an eighth of a turn
+to the right. \\
+\apxCmd{qtr()} & \apxDef (\underline{q}uarter \underline{t}urn
+\underline{r}ight) turns the \apxRobot\ on the spot a quarter turn
+to the right. \\
+\apxCmd{tetr()} & \apxDef (\underline{t}hree \underline{e}ighths of a
+\underline{t}urn \underline{r}ight) turns the \apxRobot\ on the
+spot 3 eighths of a turn to the right. \\
+\apxCmd{etl()} & \apxDef (\underline{e}ighth \underline{t}urn
+\underline{l}eft) turns the \apxRobot\ on the spot an eighth of a turn
+to the left. \\
+\apxCmd{qtl()} & \apxDef (\underline{q}uarter \underline{t}urn
+\underline{l}eft) turns the \apxRobot\ on the spot a quarter turn
+to the left. \\
+\apxCmd{tetl()} & \apxDef (\underline{t}hree \underline{e}ighths of a
+\underline{t}urn \underline{l}eft) turns the \apxRobot\ on the
+spot 3 eighths of a turn to the left. \\
+\apxCmd{ht()} & \apxDef (\underline{h}alf \underline{t}urn)
+turns the \apxRobot\ on the spot a half turn. \\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Absolute turns on the spot: }  \\ \hline \hline
+\apxCmd{fn()} & \apxDef (\underline{f}ace \underline{n}orth) turns the \apxRobot\ on the spot towards the north (\underline{N}). \\
+\apxCmd{fne()} & \apxDef makes the \apxRobot\ \underline{f}ace the north-east (\underline{NE}), turning on the spot. \\
+\apxCmd{fe()} & \apxDef makes the \apxRobot\ \underline{f}ace the east (\underline{E}), turning on the spot. \\
+\apxCmd{fse()} & \apxDef makes the \apxRobot\ \underline{f}ace the south-east (\underline{SE}), turning on the spot. \\
+\apxCmd{fs()} & \apxDef makes the \apxRobot\ \underline{f}ace the south (\underline{S}), turning on the spot. \\
+\apxCmd{fsw()} & \apxDef makes the \apxRobot\ \underline{f}ace the south-west (\underline{SW}), turning on the spot. \\
+\apxCmd{fw()} & \apxDef makes the \apxRobot\ \underline{f}ace the west (\underline{W}), turning on the spot. \\
+\apxCmd{fnw()} & \apxDef makes the \apxRobot\ \underline{f}ace the north-west (\underline{NW}), turning on the spot. \\
+\apxCmd{face($o$)} & \apxDef turns the \apxRobot\ on the spot to \underline{face}
+the \underline{o}rientation given by the value of the integer $o$ (between 0 and 7) equal to
+{\idt north} $=$ 0, {\idt northEast} $=$ 1, {\idt east} $=$ 2, {\idt southEast} $=$ 3,
+{\idt south} $=$ 4, {\idt southWest} $=$ 5, {\idt west} $=$ 6 or {\idt northWest} $=$ 7. \\
+\apxCmd{rot($t$)} & \apxDef changes the coordinate system and the orientation of the \apxRobot\ so
+that it performs a \underline{rot}ation on the spot by an angle of $t$ degrees ($t$ real,
+counterclockwise if $t > 0$ and clockwise if
+$t < 0$, like {\idt rot(15)} or {\idt rot(-30)}). \\ \hline
+\apxCmd{valOrientation()} & \apxDef is equal to the \underline{val}ue (of type {\idt int})
+of the \underline{orientation} of the \apxRobot\ coded by {\idt north} $=$ 0, {\idt northEast} $=$ 1,
+{\idt east} $=$ 2, {\idt southEast} $=$ 3, {\idt south} $=$ 4, {\idt southWest} $=$ 5,
+{\idt west} $=$ 6 and {\idt northWest} $=$ 7. The directions {\idt north}, {\idt east},
+{\idt south} and {\idt west} are parallel to the edges of the screen, {\idt north} at the top.
+The directions {\idt northEast}, {\idt southEast}, {\idt southWest} and {\idt northWest}
+correspond to the orientation of the diagonals of a square of the grid.\\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Pen: }  \\ \hline \hline
+\apxCmd{pd()} & \apxDef (\underline{p}en \underline{d}own) puts the pen down to draw while moving. \\
+\apxCmd{pu()} & \apxDef (\underline{p}en \underline{u}p) lifts the pen to avoid drawing while moving. \\
+\apxCmd{dc()} & \apxDef (\underline{d}raw a \underline{c}ross) draws a small cross (as thick as the
+pen), without moving the \apxRobot. \\
+\apxCmd{dp()} & \apxDef (\underline{d}raw a \underline{p}oint) draws a dot (as thick as the
+pen), without moving the \apxRobot. \\
+\apxCmd{pw($n$)} & \apxDef (\underline{p}en \underline{w}idth) sets the new thickness $n$ (an integer) of the
+pen (1 pixel by default). \\ \hline
+\apxCmd{valPw()} & \apxDef is equal to the \underline{val}ue (of type {\idt int}) of
+the thickness of the pen (\underline{p}en \underline{w}idth). \\
+\apxCmd{valPd()} & \apxDef is equal to the boolean \underline{val}ue {\mcl True} if
+and only if the pen is down (\underline{p}en \underline{d}own), otherwise to {\mcl False}. \\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Moves (drawing or not depending on whether the pen is up or down): }  \\ \hline \hline
+\apxCmd{fd()} & \apxDef (\underline{f}orwar\underline{d}) moves the \apxRobot\ straight
+ahead to the next stopping point on the grid. \\
+\apxCmd{cr()} & \apxDef (\underline{c}urve \underline{r}ight) makes the \apxRobot\ turn
+by a bend of a quarter circle to the right. \\
+\apxCmd{cl()} & \apxDef (\underline{c}urve \underline{l}eft) makes the \apxRobot\ turn
+by a bend of a quarter circle to the left. \\
+\apxCmd{fdn($n$)} & \apxDef (\underline{f}orwar\underline{d} \underline{n} times) moves the
+\apxRobot\ straight ahead $n$ times ($n$ an integer; doing nothing if $n = 0$ and moving
+backwards if $n < 0$, like {\idt fdn(-2)}). \\
+\apxCmd{fdl($l$)} & \apxDef (\underline{f}orwar\underline{d} by a \underline{l}ength) changes the coordinate system (but not the angle of the directions NE-E)
+and moves the \apxRobot\ forward by a translation of $l$ pixels ($l$ real)
+in the direction it is facing (if $l > 0$) or in the opposite direction (if $l < 0$).
+\\
+\apxCmd{drawToReal($x$, $y$)} & \apxDef (\underline{draw to} the point with \underline{real}
+coordinates) draws a straight line
+segment (if the pen is down) from the current position of the \apxRobot\ to the point with
+real coordinates $(x, y)$ of the Cartesian coordinate system of the grid (see
+{\idt moveTo}) and moves the \apxRobot\ to this point. \\
+\apxCmd{drawTo($x$, $y$)} & \apxDef does the same up to the point with integer coordinates
+$(x, y)$ counted in pixels from the lower left corner of the window (like
+{\idt valX()} and {\idt valY()}).\\ \hline
+\apxCmd{valFdl()} & \apxDef is equal to the \underline{val}ue (of type {\idt float}) of the
+length of the segment drawn by the last move forward by {\idt fd()} or by
+{\idt fdl()} (\underline{f}orwar\underline{d} by a \underline{l}ength), counted in pixels. \\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Positioning at the centre and on the edges of the frame: }  \\ \hline \hline
+\apxCmd{gc()} & \apxDef (\underline{g}o to the \underline{c}entre) places the \apxRobot\ at the centre of {\em the screen}, which
+is also {\em the centre of the grid}, without changing the orientation of the \apxRobot\ and
+without drawing anything. \\
+\apxCmd{gt()} & \apxDef (\underline{g}o to the \underline{t}op) places the
+\apxRobot\ at the top of the frame, without changing its horizontal position or its
+orientation and without drawing anything. \\
+\apxCmd{gb()} & \apxDef (\underline{g}o to the \underline{b}ottom) places the
+\apxRobot\ at the bottom of the frame, without changing its horizontal position or its
+orientation and without drawing anything. \\
+\apxCmd{gl()} & \apxDef (\underline{g}o to the \underline{l}eft) places the
+\apxRobot\ on the left of the frame, without changing its vertical position or its
+orientation and without drawing anything. \\
+\apxCmd{gr()} & \apxDef (\underline{g}o to the \underline{r}ight) places the
+\apxRobot\ on the right of the frame, without changing its vertical position or its
+orientation and without drawing anything. \\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Cartesian coordinate system: }  \\ \hline \hline
+\apxCmd{translate($x$, $y$)} & \apxDef \underline{translate}s the \apxRobot\ by $x$
+squares of the grid horizontally (to the right if $x > 0$ and to the left if $x < 0$) and $y$
+squares of the grid vertically (up if $y > 0$ and down if $y < 0$), without changing
+its orientation and without drawing anything ($x$ and $y$ integers). \\
+\apxCmd{moveTo($x$, $y$)} & \apxDef (\underline{move to}) moves the
+\apxRobot\ to the point with integer coordinates $(x, y)$ on the grid, without changing its
+orientation or drawing anything, the origin of the Cartesian coordinate system being at the
+centre of the grid. \\
+\apxCmd{moveToReal($x$, $y$)} & \apxDef does the same with \underline{real} coordinates
+$x$ and $y$ (of type {\idt float}), like {\idt moveToReal(1.5, -2.5)}. \\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Boolean test of the orientation of the {\normalsize \rm\robot}:  }  \\ \hline \hline
+\apxCmd{tn()} & \apxDef (\underline{t}est \underline{n}orth) \underline{t}ests whether the \apxRobot\ is facing north (\underline{N}). \\
+\apxCmd{tne()} & \apxDef \underline{t}ests whether the \apxRobot\ is facing north-east (\underline{NE}). \\
+\apxCmd{te()} & \apxDef \underline{t}ests whether the \apxRobot\ is facing east (\underline{E}).\\
+\apxCmd{tse()} & \apxDef \underline{t}ests whether the \apxRobot\ is facing south-east (\underline{SE}).\\
+\apxCmd{ts()} & \apxDef \underline{t}ests whether the \apxRobot\ is facing south (\underline{S}).\\
+\apxCmd{tsw()} & \apxDef \underline{t}ests whether the \apxRobot\ is facing south-west (\underline{SW}).\\
+\apxCmd{tw()} & \apxDef \underline{t}ests whether the \apxRobot\ is facing west (\underline{W}).\\
+\apxCmd{tnw()} & \apxDef \underline{t}ests whether the \apxRobot\ is facing north-west (\underline{NW}). \\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Boolean test of the position of the {\normalsize \rm\robot}:  }  \\ \hline \hline
+\apxCmd{tb()} & \apxDef (\underline{t}est \underline{b}order) \underline{t}ests whether
+the \apxRobot\ is at the edge (\underline{b}order) of the frame (a move of the \apxRobot\
+forward by {\idt fd()} would take it out of the frame). \\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Time:  }  \\ \hline \hline
+\apxCmd{clock()} & \apxDef returns three integers: the present hour (between 0
+and 23), minute (between 0 and 59) and second (between 0 and 59), so that after
+{\idt h, mi, s = clock()} the variables {\idt h}, {\idt mi} and {\idt s} contain
+these three values. \\
+\apxCmd{date()} & \apxDef likewise returns three integers, the day (between 1 and 31), the month
+(between 1 and 12) and the current year, as in {\idt d, mo, y = date()}. \\ \hline
+\apxCmd{delay($t$)} & \apxDef waits for a \underline{delay} of $t$ seconds ($t$ of type
+{\idt float}, like {\idt delay(0.5)}). \\
+\apxCmd{tickCount()} & \apxDef is equal to the integer number of sixtieths of a second
+elapsed (to measure a duration as the difference of two values). \\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Interrupting the execution of the program:  }  \\ \hline \hline
+\apxCmd{\rm\apxArret} & \apxDef typed while the \apxRobot\ is moving (by
+{\idt fd()}, {\idt cr()}, {\idt cl()}, \ldots) or running step by step, any of these
+keys stops the program and closes the window. \\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{ Debugging the program:  }  \\ \hline \hline
+\apxCmd{st()} & \apxDef \underline{st}ops the \apxRobot\ and recalls in the bottom line
+of the window the keys that can be used: \apxTouche{$+$} increases and \apxTouche{$-$}
+decreases the speed of the \apxRobot\ (between 0 and 10, speed 0 switching to step-by-step
+mode), \apxEsc\ or \apxTouche{\#} closes the window and ends the program, any other
+key redraws the whole drawing from the beginning, at the chosen speed. A program
+that ends without {\idt st()} waits for a key to be typed or a click before
+closing the window. \\
+\apxCmd{ss()} & \apxDef (\underline{s}tep by \underline{s}tep) runs the
+rest of the program in step-by-step mode, at speed 0: the \apxRobot\ waits for a key to be
+typed before each command (\apxArret\ stopping the program). \\
+\apxCmd{ex()} & \apxDef runs the rest of the program in normal \underline{ex}ecution mode,
+at speed 10. \\
+\apxCmd{sp($v$)} & \apxDef runs the rest of the program at \underline{sp}eed
+$v$ (an integer; step by step if $v \leq 0$, with a maximum of 10 if $v > 10$). \\
+\apxCmd{showRobot()} & \apxDef makes the \apxRobot\ visible on the screen
+during the drawing (default option). \\
+\apxCmd{hideRobot()} & \apxDef makes the \apxRobot\ invisible on the screen
+during the drawing. \\
+\apxCmd{forbidExits()} & \apxDef forbids the \apxRobot\ to go out
+of the frame in the rest of the program (default option: a command
+that would take the \apxRobot\ out of the frame then stops the program with an error,
+writing in the terminal, for example, {\tt Error line 4 of Program.py: the robot
+would leave the frame (fd)}; the window stays displayed). \\
+\apxCmd{allowExits()} & \apxDef allows the \apxRobot\ to go out
+of the frame in the rest of the execution of the program. \\ \hline
+\apxCmd{valSp()} & \apxDef is equal to the \underline{val}ue (of type {\idt int}) of the
+\underline{sp}eed of the \apxRobot\ (between 0 (step-by-step mode)
+and 10). \\
+\apxCmd{valVisible()} & \apxDef is equal to the boolean value {\mcl True} (respectively
+{\mcl False}) if the \apxRobot\ is \underline{visible} (respectively invisible) on the screen. \\
+\apxCmd{valAllowExits()} & \apxDef is equal to the boolean value {\mcl True}
+(respectively {\mcl False}) if exits out of the frame are
+allowed (\underline{allow exits}) (respectively forbidden). \\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+%
+Colour: & \\ \hline \hline
+%
+\multicolumn{2}{|p{12.9cm}|}{Colours are integers: {\idt white} $= 0$,
+{\idt yellow} $= 1$, {\idt blue} $= 2$, {\idt violet} $= 3$,
+{\idt green} $= 4$, {\idt red} $= 5$, {\idt indigo} $= 6$ and
+{\idt black} $= 7$.}\\\hline \hline
+%
+\apxCmd{pc($c$)} & \apxDef (\underline{p}en \underline{c}olour) sets the colour $c$ of the pen, like {\idt pc(red)}. \\
+\apxCmd{paint()} & \apxDef paints with the colour of the pen the region
+of a single colour (usually white), bounded by the lines of the drawing, where the
+\apxRobot\ is. \\
+\apxCmd{bg($c$)} & \apxDef (\underline{b}ack\underline{g}round colour) completely erases the drawing then fills the screen with the background colour $c$.
+The \apxRobot\ is placed at the centre of the screen
+in the initial conditions (visible, facing north, exits out of the frame
+forbidden, black pen of thickness 1 down and normal execution at speed 10); the
+dimensions of the grid do not change. \\ \hline
+\apxCmd{valBg()} & \apxDef is equal to the \underline{val}ue (of type {\idt int}) of the
+background colour (\underline{b}ack\underline{g}round). \\
+\apxCmd{valPc()} & \apxDef is equal to the \underline{val}ue (of type {\idt int}) of the
+pen colour (\underline{p}en \underline{c}olour). \\
+\apxCmd{blackAndWhiteScreen()} & \apxDef is equal to {\mcl True} if
+and only if the screen is black and white, otherwise to {\mcl False} (it is always
+{\mcl False} on today's screens). \\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Writing in the drawing window of the {\normalsize \rm\robot}:  }  \\ \hline \hline
+\apxCmd{label($c$)} & \apxDef writes the character string $c$ (between quotes
+\apxChaine{} and \apxChaine{}, where any quote must be preceded by a
+backslash: {\cha \textbackslash\char34}, like {\idt label(}\apxChaine{Hello}{\idt )})
+to the right of the \apxRobot\ (or to its left if it is
+facing west), without changing its position or that of its pen. \\
+\apxCmd{intToString($i$)} & \apxDef (\underline{int}eger \underline{to} \underline{string}) is the character string
+representing the integer $i$ in base 10 (like {\idt str($i$)}). \\
+\apxCmd{realToString($r$)} & \apxDef (\underline{real} \underline{to} \underline{string}) is the character string
+representing the real $r$ in the form {\idt $d.dddd$e$\pm ee$} where $d$ is a digit of the
+mantissa, $e$ is a digit of the exponent and {\idt e} reads ``times 10 to the power''. \\
+\apxCmd{boolToString($b$)} & \apxDef (\underline{bool}ean \underline{to} \underline{string}) is the character string
+(\apxChaine{True} or \apxChaine{False}) re\-pre\-sent\-ing the boolean $b$.\\
+\apxCmd{concat([$c_1$, $c_2$, \ldots, $c_n$])} & \apxDef is the character
+string obtained by \underline{concat}enating the strings $c_1$, $c_2$, \ldots, $c_n$ one
+after the other (like $c_1$ {\idt +} $c_2$ {\idt +} \ldots\
+{\idt +} $c_n$). \\ \hline
+\apxCmd{textFont($f$)} & \apxDef chooses the \underline{font}
+$f$ of the \underline{text} ({\idt courier}, {\idt times}, {\idt helvetica}, \ldots). \\
+\apxCmd{textSize($s$)} & \apxDef chooses the \underline{size}
+$s$ (an integer) of the \underline{text}. \\
+\apxCmd{textStyle($s$)} & \apxDef chooses the \underline{style} of the
+\underline{text} ({\idt normal}, {\idt bold}, {\idt italic},
+{\idt underline}, \ldots). \\
+\multicolumn{2}{|p{12.9cm}|}{\apxFontSize These three commands have no visible effect: the
+font of the window of the \apxRobot\ cannot be changed.} \\ \hline
+\apxCmd{valTextFont()} & \apxDef \underline{val}ue (of type {\idt str}) of the
+current \underline{font} of the \underline{text}. \\
+\apxCmd{valTextSize()} & \apxDef \underline{val}ue (of type {\idt int}) of the
+current \underline{size} of the \underline{text}. \\ \hline
+\end{tabular}
+
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Messages displayed in the bottom line of the window of the {\normalsize \rm\robot}:  }  \\ \hline \hline
+\apxCmd{message($c$)} & \apxDef erases the \underline{message} in the bottom line of the
+window of the \apxRobot\ then writes the character string $c$ there. \\
+\apxCmd{markPause()} & \apxDef (\underline{mark} a \underline{pause}) pauses (making the symbol
+$\hookleftarrow$ blink in the message line) until the mouse button or a key of the
+keyboard is pressed.\\
+\apxCmd{clearMessage()} & \apxDef (\underline{clear} the \underline{message}) erases the message in the
+bottom line of the window of the \apxRobot. \\ \hline
+\apxCmd{readChar()} & \apxDef (\underline{read} a \underline{char}acter) waits (making the symbol $\hookleftarrow$ blink
+in the message line) until a key of the keyboard or the mouse button is
+pressed, then reads and returns the character (a string of a single
+character, of type {\idt str}) corresponding to the key pressed (or the character
+\apxCar{0} if the mouse button was pressed). \\ \hline
+\apxCmd{keyboardCommandsMemento} & \apxDef is a character string
+recalling the \underline{keyboard} \underline{commands} for interactive control of the \apxRobot\ (see {\idt interaction}), to
+be displayed by {\idt message(keyboardCommandsMemento)}. \\
+\apxCmd{valMessage()} & \apxDef is equal to the \underline{val}ue (of type {\idt str})
+of the \underline{message} written in the bottom line of the window of the \apxRobot\ or to the
+empty string \apxChaine{} if there is no message. \\ \hline
+\end{tabular}
+\vfil
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Reading and writing text:  }  \\ \hline \hline
+\multicolumn{2}{|p{12.9cm}|}{\apxFontSize The text written by {\idt write} and
+{\idt writeln} is displayed in the terminal. When the program waits for an answer
+({\idt readInt()}, \ldots), the question (the current line, preceded by the last two
+lines written) is displayed in the bottom line of the window of the \apxRobot. The
+answer is typed in the window of the \apxRobot, where it is displayed after the question
+(\apxEffacement\ to correct, \apxEntree\ to finish), or else in the terminal.} \\ \hline
+\apxCmd{write($c_1$, \ldots, $c_n$)} & \apxDef writes the character strings (or the
+numbers) $c_1$, \ldots, $c_n$ one after the other, like
+{\idt write(\apxChaine{N = }, n)}. \\
+\apxCmd{writeln($c_1$, \ldots, $c_n$)} & \apxDef does the same then goes to a new line
+({\idt writeln()} only goes to a new line). \\ \hline
+\apxCmd{readInt()} & \apxDef (\underline{read} an \underline{int}eger) reads the user's answer, ended by
+\apxEntree, and returns the integer (of type {\idt int}) that it represents. If the
+answer is not an integer, the question \apxChaine{Enter an integer: } is asked again.
+On a French keyboard, the digits can be typed without the Shift
+key. \\
+\apxCmd{readReal()} & \apxDef does the same to \underline{read} a
+\underline{real} number (of type {\idt float}). \\
+\apxCmd{readString()} & \apxDef (\underline{read} a \underline{string}) reads the user's answer, ended by
+\apxEntree, and returns it as a character string (of type {\idt str}). \\
+\apxCmd{readCharacter()} & \apxDef does the same and returns the first
+\underline{character} of the answer (a string of a single character). \\
+\apxCmd{readln()} & \apxDef waits until the user types \apxEntree\ (what was typed
+before is ignored). \\
+\apxCmd{clearText()} & \apxDef (\underline{clear} the \underline{text}) erases the text of the terminal. \\ \hline
+\end{tabular}
+\vfil
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Useful functions:  }  \\ \hline \hline
+\apxCmd{pi} & \apxDef is the real $\pi = 3.14159\ldots$ (of type {\idt float}). \\
+\apxCmd{round($x$)} & \apxDef is the integer closest to the real $x$, like
+{\idt round(2.5)} $=$ 3 and {\idt round(-2.5)} $= -3$ (the library replaces the
+{\idt round} of \python, which rounds halves to the even number: 2 for 2.5). \\
+\apxCmd{random()} & \apxDef is an integer drawn at random between $-32767$ and $32767$. \\ \hline
+\end{tabular}
+\vfil
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Sounds:  }  \\ \hline \hline
+\apxCmd{beep()} & \apxDef emits a short sound. \\
+\apxCmd{longBeep()} & \apxDef emits a long sound. \\ \hline
+\end{tabular}
+\vfil
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Music:  }  \\ \hline \hline
+\apxCmd{metronome($n$)} & \apxDef sets the \underline{metronome} to $n$ quarter notes per minute
+({\idt largo} $=$ 50, {\idt lento} $=$ 56, {\idt larghetto} $=$ 60, {\idt adagio} $=$ 70,
+{\idt andante} $=$ 85, {\idt andantino} $=$ 95, {\idt moderato} $=$ 110,
+{\idt allegretto} $=$ 115, {\idt allegro} $=$ 130, {\idt vivace} $=$ 150,
+{\idt presto} $=$ 175, {\idt prestissimo} $=$ 200; 100 by default). \\
+\apxCmd{dynamics($n$)} & \apxDef sets the \underline{dynamics} $n$ (between 1 and 9:
+{\idt pianississimo} $=$ 1, {\idt pianissimo} $=$ 2, {\idt piano} $=$ 3,
+{\idt mezza\_voce} $=$ 4, {\idt mezzo\_piano} $=$ 4, {\idt mezzo\_forte} $=$ 6,
+{\idt forte} $=$ 7, {\idt fortissimo} $=$ 8, {\idt fortississimo} $=$ 9). \\
+\apxCmd{note($p$, $d$)} & \apxDef plays a \underline{note} of pitch
+$p = o * \mbox{\idt octave} + n + a$ (an integer) where $o = -3$, $-2$, \ldots, $3$ is the octave
+of the note (0 for the octave of middle C of the piano, {\idt octave} $=$ 12), $n$ $=$
+{\idt C} $=$ 0, {\idt D} $=$ 2, {\idt E} $=$ 4, {\idt F} $=$ 5,
+{\idt G} $=$ 7, {\idt A} $=$ 9, {\idt B} $=$ 11 is the name of the note,
+$a$ $=$ {\idt flat} $= -1$, {\idt natural} $= 0$, {\idt sharp} $= 1$ is the accidental of the note
+and $d$ (a real) is the duration of the note, counted in quarter notes: {\idt whole}
+$= 4.$, {\idt dotted\_whole} $= 6.$, {\idt half} $= 2.$, {\idt dotted\_half} $= 3.$,
+{\idt half\_triplet} $= 4/3$, {\idt quarter} $= 1.$,
+{\idt dotted\_quarter} $= 1.5$, {\idt quarter\_triplet} $= 2/3$, {\idt eighth}
+$= 0.5$, {\idt dotted\_eighth} $= 0.75$,
+{\idt eighth\_triplet} $= 1/3$, {\idt sixteenth} $= 0.25$,
+{\idt dotted\_sixteenth} $= 0.375$ or {\idt thirty\_second}
+$= 0.125$, like {\idt note(octave + G + sharp, eighth)}. \\
+\apxCmd{rest($d$)} & \apxDef makes a \underline{rest} of duration $d$ $=$
+{\idt whole\_rest} $= 4.$, {\idt dotted\_half\_rest} $= 3.$, {\idt half\_rest}
+$= 2.$, {\idt dotted\_quarter\_rest} $= 1.5$, {\idt quarter\_rest} $= 1.$,
+{\idt dotted\_eighth\_rest} $= 0.75$, {\idt eighth\_rest} $= 0.5$,
+{\idt sixteenth\_rest} $= 0.25$ or
+{\idt thirty\_second\_rest} $= 0.125$. \\ \hline
+\end{tabular}
+\vfil
+\noindent\begin{tabular}{@{}|p{1cm}p{11.9cm}|@{}} \hline
+\multicolumn{2}{|l|}{Interaction with the user of the {\normalsize \rm\robot}:  }  \\ \hline \hline
+\multicolumn{2}{|l|}{\idt interaction(coordinates, turns, drawing, mouseEnds, save)}\\
+& \apxFontSize erases the screen then lets the user move the \apxRobot\ with the mouse,
+by clicking on a point of the grid (if {\idt mouseEnds} is {\mcl True}: from square to square, button released)
+or with the arrow keys, and possibly drive it with the keyboard (the five
+parameters are
+booleans, {\mcl True} or {\mcl False}). The interaction ends with the key \apxEntree\ (or by
+pressing the mouse button if {\idt mouseEnds} is {\mcl True}); the program
+then stops as with {\idt st()}.
+
+\tiret If {\idt coordinates} is {\mcl True}, the coordinates of the \apxRobot\ are displayed
+during the interaction.
+
+\tiret If {\idt turns} is {\mcl True}, the user can turn the
+\apxRobot\ with the keys \apxTouche{$-$} ({\idt qtl}), \apxTouche{$+$} ({\idt qtr}),
+\apxTouche{l} ({\idt etl}) and \apxTouche{r} ({\idt etr}).
+
+\tiret If {\idt turns} and {\idt drawing} are {\mcl True}, the user can also draw with
+the keys \apxTouche{f} ({\idt fd}), \apxTouche{$($} ({\idt cl}), \apxTouche{$)$}
+({\idt cr}), \apxTouche{u} ({\idt pu}), \apxTouche{d} ({\idt pd}), \apxTouche{p}
+({\idt dp}), \apxTouche{c} ({\idt dc}), \apxTouche{$.$} ({\idt dg}), \apxTouche{$*$}
+(change of the pen colour, {\idt pc}) and \apxTouche{w} ({\idt paint}), undoing the
+last command with \apxEffacement.
+
+\tiret If {\idt drawing} and {\idt save} are {\mcl True}, the program asks at the end
+whether to save the drawing: by answering \apxTouche{y}, one obtains a program
+{\idt my\_drawing.py} whose execution reproduces the drawing.
+\\ \hline
+\multicolumn{2}{|l|}{\idt x, y, c = interactionTP(coordinates, turns, drawing,}\\
+\multicolumn{2}{|l|}{\idt \phantom{x, y, c = interactionTP(}mouseEnds, save)}\\
+& \apxFontSize lets the user move the \apxRobot\ with the mouse (or the arrow keys)
+and drive it with the keyboard like {\idt interaction} (except \apxTouche{$*$}, \apxTouche{w} and
+\apxEffacement), but without erasing the screen, and then continues the
+program. The interaction ends with the key \apxEntree, with \apxEsc, with any key
+that is not a command of the \apxRobot\ or, if {\idt mouseEnds} is {\mcl True}, by
+pressing the mouse button. At the end, {\idt interactionTP} returns three values, put
+here in the variables {\idt x}, {\idt y} and {\idt c}: the integers {\idt x} and {\idt y}
+are the horizontal and vertical displacement of the \apxRobot\ counted in squares of the grid,
+and {\idt c} is the last key typed (a space \apxCar{ } if
+the interaction ended with a click). The parameter {\idt save} has no effect.
+\\ \hline
+\end{tabular}
+\newpage                 % If the chapter ends with a blank page
+\thispagestyle{empty}

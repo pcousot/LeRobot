@@ -1,0 +1,63 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Tiling\ of\ quadrilaterals\ produced\ by\ a\ pattern}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ inscribed\ in\ a\ (6\ x\ 6)\ square}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gridSizeX\ =\ 6}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gridSizeY\ =\ 6}}\par
+\vspace{\neglskip}\mbox{\blc {\idt patternX\ =\ 6\ \ }{\cmt \#\ Width\ of\ the\ pattern}}\par
+\vspace{\neglskip}\mbox{\blc {\idt patternY\ =\ 6\ \ }{\cmt \#\ Height\ of\ the\ pattern}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ pattern\ in\ a\ (patternX\ x\ patternY)\ square,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ the\ robot\ starting\ and\ ending\ at\ the\ centre\ of}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ the\ pattern,\ facing\ north.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pattern():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(4):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pu();\ qtl();\ fd();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt tetr();\ fd();\ fd();\ qtl();\ fd();\ ht();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt etl();\ fd();\ fd();\ ht();\ fd();\ qtr();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt qtr();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pu();\ tetr();\ fd();\ fd();\ fd();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt etr()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Tile\ with\ y\ rows\ of\ x\ patterns}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ tiling(x,\ y):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Shift\ the\ drawing\ to\ the\ left\ by\ half\ the}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ length\ of\ a\ row\ and\ upwards\ by}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ half\ the\ height\ of\ the\ tiling.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt translate({-}(patternX\ *\ (x\ //\ 2)),\ patternY\ *\ (y\ //\ 2))}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ (y\ {-}\ 1)\ rows\ of\ x\ patterns\ (with}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ translation\ to\ the\ bottom\ left\ of\ the\ next}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ row).}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(y\ {-}\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Draw\ a\ row\ of\ x\ patterns\ (without}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ translation\ to\ the\ right\ after\ the\ last\ pattern}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ of\ the\ row).}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(x\ {-}\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt pattern()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\cmt \#\ Move\ to\ the\ next\ pattern\ on\ the\ right\ in\ the}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\cmt \#\ same\ row.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt translate(patternX,\ 0)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pattern()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Go\ to\ the\ start\ of\ the\ next\ row.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt translate({-}(patternX\ *\ (x\ {-}\ 1)),\ {-}patternY)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ the\ last\ row\ of\ x\ patterns\ (without}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ translation\ to\ the\ bottom\ left\ of\ the\ next}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ row).}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(x\ {-}\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pattern()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt translate(patternX,\ 0)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pattern()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gsX(gridSizeX);\ gsY(gridSizeY)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt tiling(10,\ 6)}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

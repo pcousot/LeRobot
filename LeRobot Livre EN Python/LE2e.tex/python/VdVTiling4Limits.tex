@@ -1,0 +1,51 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Irregular\ tiling\ in\ the\ style\ of\ M.\ C.\ Escher,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ inspired\ by\ a\ pattern\ of\ N.\ J.\ van\ de\ Vecht.}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Pattern\ of\ N.\ J.\ van\ de\ Vecht,\ the\ robot\ starting}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ at\ the\ top\ left\ and\ arriving\ at\ the\ bottom\ left}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ facing\ north.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pattern():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr();\ fdn(4);\ qtr();\ fdn(3);\ qtr();\ fd();\ qtr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdn(3);\ ht();\ fdn(3)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd();\ qtr();\ fd();\ qtl();\ fd();\ qtl();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr();\ fd();\ qtr();\ fdn(3)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr();\ fd();\ qtr();\ fd();\ qtl();\ fd();\ qtl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd();\ qtr();\ fd();\ qtr();\ fdn(3)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ht();\ fdn(3);\ qtr();\ fdn(3);\ pu();\ ht();\ fdn(6)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ht();\ pd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ column\ of\ patterns\ of\ heights\ 2,\ 4,\ 6,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ 8,\ 10,\ 8,\ 6,\ 4,\ 2,\ the\ robot\ starting\ at\ the\ top\ left}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ and\ arriving\ at\ the\ bottom\ right\ (that\ is,\ at\ the}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ bottom\ left\ of\ the\ next\ column)\ facing\ north.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ column():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gsY(1);\ gt()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ 6):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt gsY(2\ *\ i);\ pattern()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ 5):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt gsY(10\ {-}\ 2\ *\ i);\ pattern()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr();\ fdn(4);\ qtl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ an\ irregular\ tiling\ made\ of\ columns}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ of\ widths\ 0,\ 2,\ 4,\ 6,\ ...,\ 14,\ 16,\ 14,\ ...,\ 2,\ 0.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ tiling():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gsX(1);\ gl();\ gsX(0)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ 9):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt column();\ gsX(2\ *\ i)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ 9):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt column();\ gsX(16\ {-}\ 2\ *\ i)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt column()}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt tiling();\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

@@ -1,0 +1,36 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ serpentines}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Build\ a\ serpentine\ of\ height\ n\ starting\ from}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ its\ lower\ west\ corner}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ serpentineE(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ n\ \char62{}\ 0:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Build\ the\ base\ of\ width\ n,\ from\ west\ to\ east}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fe();\ fdn(n);\ fn();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Build\ the\ upper\ serpentine\ of\ height}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ n\ {-}\ 1\ starting\ from\ its\ lower\ east\ corner}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt serpentineW(n\ {-}\ 1)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Build\ a\ serpentine\ of\ height\ n\ starting\ from}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ its\ lower\ east\ corner}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ serpentineW(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ n\ \char62{}\ 0:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Build\ the\ base\ of\ width\ n,\ from\ east\ to\ west}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fw();\ fdn(n);\ fn();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Build\ the\ upper\ serpentine\ of\ height}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ n\ {-}\ 1\ starting\ from\ its\ lower\ west\ corner}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt serpentineE(n\ {-}\ 1)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gs(6);\ gb();\ gr();\ serpentineW(18);\ gb();\ gl()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt serpentineE(18);\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

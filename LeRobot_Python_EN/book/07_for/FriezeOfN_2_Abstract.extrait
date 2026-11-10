@@ -1,0 +1,14 @@
+from LibRobot import *
+
+# Draw a frieze of N with a "for" loop
+# North
+gl()
+# North
+for j in range(16):
+    fd(); fd()  # North  # North
+    ht(); cl()  # North  # South
+    cr(); ht()  # East  # South
+# North
+# North
+st()
+# North

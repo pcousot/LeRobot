@@ -1,0 +1,224 @@
+Le nombre $1066$ nous fait immédiatement penser à la bataille d'Hastings et la victoire de Guillaume le Conquérant, duc de Normandie~;
+$1776$  à l'indépendance des États Unis~; $1789$ à la révolution
+française. Quand on lit $3.14159$ on sait qu'il s'agit d'une valeur approchée de $\pi$
+(écrit avec la convention anglo-saxonne qui utilise un point à la place de notre virgule).
+Par contre quand on lit le chiffre $2$, on ne pense à rien de précis et il est à peu près sûr
+qu'on se demande
+\raisebox{0.25ex}{$\scriptscriptstyle \boldmath\ll$}~%
+deux quoi$\:$?%
+~\raisebox{0.25ex}{$\scriptscriptstyle \boldmath\gg$}.
+Tout cela pour dire que lorsqu'on voit un nombre dans un
+programme il n'est pas toujours facile de comprendre immédiatement de quoi il s'agit. Pour le savoir,
+on peut, en \python, nommer le nombre à l'aide d'une déclaration de constante placée au
+début du programme~:
+
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\idt revolutionFrancaise\ =\ 1789\ \ }{\cmt \#\ Date\ de\ la\ révolution}}\par
+
+\medskip }
+
+\noindent puis utiliser le nom {\idt revolutionFrancaise} à la place du nombre
+{\small\rm 1789} dans la suite du programme.
+
+
+\begin{exemple}[Croix de Malte]{\rm
+Dans le programme de dessin d'une croix de Malte ci-dessous, on
+utilise une constante {\idt longueur} pour définir la longueur d'une
+branche (c'est-à-dire la distance de sa base au centre de la croix) et
+une autre {\idt largeur} pour définir la largeur d'une branche
+(c'est-à-dire la distance entre les extrémités de sa base)~:\hfill\\[22mm]
+\includePostScript{CroixDeMalte_1}{0.95}{0.95}%
+\vspace*{-22mm}%
+\input python/CroixDeMalte_1.tex
+
+Pour choisir la meilleure forme possible pour
+cette croix, il n'y a qu'un seul endroit dans le programme où il est nécessaire
+de modifier ces constantes. Par exemple pour obtenir la plus petite croix représentée à la
+figure \ref{fig:crmadiff} ci-dessous, il suffit de prendre~:\par
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\idt largeur\ =\ 10\ \ }{\cmt \#\ Largeur\ d\textquotesingle{}une\ branche}}\par
+\vspace{\neglskip}\mbox{\blc {\idt longueur\ =\ 15\ \ }{\cmt \#\ Longueur\ d\textquotesingle{}une\ branche}}\par
+
+\medskip }
+\begin{figure}[htbp]
+ \includevspacePostScript[2.5cm]{CroixDeMalteDiff}{0.95}{0.95}
+ \caption{Croix de Malte $10\times 15$, $15\times 20$, $20\times 25$, $25\times 30$,
+ $10\times 35$, $35\times 35$}
+ \label{fig:crmadiff}
+\end{figure}
+\noindent $\Box$ }\end{exemple}
+
+On remarquera que les nombres {\idt 20} et {\idt 30} (ou {\idt 10} et {\idt 15})
+sont des nombres {\em entiers}. Ils sont utilisés comme longueurs des côtés des
+carreaux de la grille dans les commandes {\idt lgX} et {\idt lgY} qui, comme la commande
+{\idt lg}, acceptent aussi des nombres à virgule, écrits avec un point, comme {\idt 20.5},
+que l'on appelle des nombres {\em flottants}. On aurait donc aussi bien pu écrire
+`{\idt largeur\ =\ 20.5}'. Les nombres entiers (comme {\idt 20}) et les nombres flottants
+(comme {\idt 20.5} ou {\idt 20.0}) sont deux sortes de nombres différentes pour \python,
+mais il les mélange sans difficulté dans les calculs. Nous verrons
+pourquoi ils sont différents au chapitre 19 sur les expressions rationnelles.
+
+On indique que l'on utilise une ou plu\-sieurs {\em constantes nommées}
+par des {\em déclarations de constantes}~:\index{Déclaration de constantes}
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Déclaration de constantes~:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ \ \idt {\small\rm identificateur1}\ $=$\ {\small\rm nombre1}}\par
+\mbox{\blc\ \ \ \ \idt {\small\rm identificateur2}\ $=$\ {\small\rm nombre2}}\par
+\mbox{\blc\ \ \ \ \small\rm  \ldots}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+\noindent Chaque déclaration de constante s'écrit sur une ligne, au début de la ligne
+(sans indentation), comme `$x = 3$' en mathématiques. Il est d'usage de mettre un blanc
+\hspace{0.3em}\blanc\hspace{0.3em} avant et après le signe $=$, mais ce n'est pas obligatoire.
+Comme pour les noms de procédures, l'identificateur doit respecter les règles des
+identificateurs de \python. L'usage est de le faire commencer par une lettre
+minuscule. Majuscules et minuscules sont distinguées~: si l'on déclare
+`{\idt Largeur\ =\ 20}' puis que l'on utilise {\idt largeur}, \python\ répond
+`{\tt NameError: name 'largeur' is not defined. Did you mean: 'Largeur'?}'
+(le nom {\idt largeur} n'est pas défini, vouliez-vous dire {\idt Largeur}$\:$?).
+Après ces déclarations, on peut utiliser les noms de constantes
+`{\small\rm identificateur1}' à la place de `{\small\rm nombre1}' et `{\small\rm identificateur2}'
+à la place de `{\small\rm nombre2}', etc.
+
+À vrai dire, \python\ n'a pas de véritables constantes~: rien n'interdit de donner plus loin
+dans le programme une autre valeur au nom {\idt largeur} (nous verrons au chapitre 22 que c'est
+ainsi que l'on utilise des {\em variables}). On parle de constante parce que le programme
+ne donne qu'une seule fois une valeur à ce nom, au début, et ne la change jamais ensuite.
+
+Dans un programme \python, une déclaration définit des constantes (avec le signe $=$) ou des
+procédures (avec le mot {\mcl def}). Nous verrons plus tard qu'elle peut aussi définir des fonctions et des
+variables~:\index{Déclaration}
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Déclaration~:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ \ \small\rm  Déclaration de constantes}\par
+\mbox{\blc\ \ \tiny\rm  ou}\par
+\mbox{\blc\ \ \ \ \small\rm  Déclaration de procédures}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+Les déclarations de constantes ou de procédures se placent, dans n'importe quel
+ordre, avant les instructions du programme~:\index{Programme}
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Programme \python\ :}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ {\mcl from}\hspace{0.3em}\blanc\hspace{0.3em}{\idt LibRobot}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl import}\ {\idt *}}\par
+\mbox{\blc\ \ \ \cmt \#\ \small\rm Commentaire expliquant ce que fait le programme}\par
+\mbox{\blc\ \ \ \small\rm  \ldots\ Déclarations du programme \ldots}\par
+\mbox{\blc\ \ \ \small\rm  \ldots\ Instructions du programme\footnote{\ Utilisant les constantes
+et procédures déclarées.} (une par ligne ou séparées par des `$;$') \ldots}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+La principale règle à respecter est que tout identificateur doit être déclaré avant d'être
+utilisé (sinon, quand le \robot\ arrive à l'instruction qui l'utilise, \python\ s'arrête avec
+une erreur {\tt NameError}).
+
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercice}{Écrire des programmes \python\ comportant des constantes nom\-mées
+pour dessiner~:
+
+\tiret l'hélice singulière de la figure \ref{fig:hesing} ci-dessous$\:$;
+
+\tiret le canardeau de la figure \ref{fig:canar} ci-dessous.
+
+\noindent $\Box$}\end{exercice}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.6cm]{HeliceSinguliere}{0.95}{0.95}
+ \caption{Hélice singulière}
+ \label{fig:hesing}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.2cm]{Canardeau}{0.95}{0.95}
+ \caption{Canardeau sortant de son œuf}
+ \label{fig:canar}
+\end{figure}
+\begin{corrige}{
+Nous donnons un programme, l'autre se trouve dans le dossier {\idt livre/\allowbreak 11\_constantes}.
+Le côté horizontal des carreaux de la grille de la $i$\raisebox{0.6ex}{\scriptsize e}
+feuille d'une pale est {\idt xbase * i}. C'est un nombre entier que l'on peut donner
+directement à la commande {\idt lgX}~:
+\input python/HeliceSinguliere.tex
+\noindent $\Box$}\end{corrige}
+\nopagebreak
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+Les entiers informatiques sont une approximation des \href{https://fr.wikipedia.org/wiki/Entier_relatif}{entiers relatifs} en mathématiques (mais pas trop grands). Les flottants (plus précisement \href{https://fr.wikipedia.org/wiki/Virgule_flottante}{virgule flottante}) sont un sous ensemble des \href{https://fr.wikipedia.org/wiki/Nombre_rationnel}{nombres rationnels} (et donc des \href{https://fr.wikipedia.org/wiki/Nombre_réel}{nombres réels}) écrits en \href{https://fr.wikipedia.org/wiki/Virgule_flottante}{virgule flottante}.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+Une {\em déclaration de constante} {\idt nom\ =\ nombre} permet de donner un nom
+à un nombre particulier. Par la suite le nom, plus significatif, peut être
+employé à la place du nombre. L'avantage immédiat est que pour changer de nombre il
+suffit de le faire dans la déclaration de constante alors qu'autrement il faut rechercher toutes ses
+occurrences  dans le programme.
+
+Ceci peut être comparé à la notion de variable en mathématiques c'est-à-dire à l'emploi
+de lettres $x$, $y$, $z$ \ldots pour désigner des nombres quelconques. La différence est qu'en
+\python\ le nom de constante désigne une valeur particulière alors qu'en mathématiques il
+s'agit d'une valeur quelconque.
+
+Historiquement les premiers problèmes mathématiques traités par les babyloniens (1800 ans av. J.-C.)
+comportaient une solution algorithmique donnée pour un exemple et des tables numériques
+ séparées pour résoudre d'autres problèmes similaires \cite{ritter1}.
+Au Moyen Age on utilisait le langage rhétorique comme `un nombre ajouté à son carré
+valent 12' pour `$x + x^{2} = 12$'. Chuquet\footnote{\ \href{https://fr.wikipedia.org/wiki/Nicolas_Chuquet}{Nicolas Chuquet}, mathématicien
+français, v. 1445-1500.}, auteur du plus ancien traité d'algèbre écrit par un
+français (1484), utilisait $1^{1}$ pour désigner l'inconnue, $1^{2}$ pour désigner son
+carré et les symboles $\bar{p}$ et $\bar{m}$ pour l'addition et la soustraction.
+Il pouvait écrire `$12\;\bar{p}\;3^{1}$ egaulx a $4^{2}$' pour `$12 + 3x = 4x^{2}$'.
+Viète\footnote{\ \href{https://fr.wikipedia.org/wiki/François_Viète}{François Viète}, mathématicien français, 1530-1603.} fit faire un pas
+important vers la symbolisation en algèbre en introduisant l'usage des lettres pour désigner
+les quantités inconnues. Il écrivait vers 1590~:
+`$1\;$ QC $\;-\;15\;$QQ$\;+\;85\;$C$\;+\;225\;$Q$\;+\;274\;$N égalent $120$', soit si
+C si\-gni\-fie cube, donc $x^{3}$, Q si\-gni\-fie carré, donc $x^{2}$, et N signifie nombre, donc $x$, l'équation
+$x^{5} - 15x^{4} + 85x^{3} + 225x^{2} + 274x = 120$ (\cite{benoit1}). Il fallut at\-ten\-dre qua\-tre mathématiciens
+français
+Desargues\footnote{\ \href{https://fr.wikipedia.org/wiki/Girard_Desargues}{Girard Desargues}, mathématicien français, 1591--1661.},
+Descartes\footnote{\ \href{https://fr.wikipedia.org/wiki/René_Descartes}{René Descartes}, mathématicien français, 1596--1650.},
+Fermat\footnote{\ \href{https://fr.wikipedia.org/wiki/Pierre_de_Fermat}{Pierre de Fermat}, mathématicien français, 1601--1665.} et
+Pascal\footnote{\ \href{https://fr.wikipedia.org/wiki/Blaise_Pascal}{Blaise Pascal}, mathématicien français, 1623--1662.} (ce dernier ayant été choisi
+par Wirth pour nommer son langage de programmation \pascal) pour entrer dans l'ère
+moderne des mathématiques.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

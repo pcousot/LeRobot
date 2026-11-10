@@ -1,0 +1,416 @@
+We have used names to denote values: constants, parameters of
+procedures and counters of ``for'' loops. Until now, once fixed, the value denoted by such a name
+never changed. {\em Variables}, on the contrary, make it possible to store intermediate
+results of computations and to modify them during the execution of the program.
+
+\section{Variables and assignment}
+A variable\index{Variable} is used to keep a value in the memory
+of the computer. In \python, a variable is created by a {\em variable
+declaration}\index{Variable declaration}, which gives the name of the variable (which is an identifier)
+and its initial value, placed after the sign {\idt =}:
+
+\vspace{\neglskip}\mbox{\blc  \blk\idt  b\ =\ \mcl True}\par
+\vspace{\neglskip}\mbox{\blc  \blk\idt  i\ =\ 0}\par
+\vspace{\neglskip}\mbox{\blc  \blk\idt  r\ =\ 0.0}\par
+\vspace{\neglskip}\mbox{\blc  \blk\idt  s\ =\ {\cha \char34\char34}}\par
+
+\noindent This is written exactly like the constant declarations we have used
+so far: in \python, a constant is nothing but a variable whose value is
+never changed. It is \python\ that decides which part of the memory and which encoding will be used to
+represent the value of the variable, according to the type of this value:
+{\idt b} is a boolean variable, {\idt i} an integer variable, {\idt r} a rational
+variable and {\idt s} a variable containing a character string (here the empty string). In \python, a variable
+therefore always has a value, fixed as soon as it is created. This value can be used in an
+expression (such as {\idt 2 * i + 1}) simply by writing the name of the variable.
+A variable must not be used before it has been created: if the program begins with
+{\idt i = i + 1} without first giving an initial value to {\idt i}, execution stops
+with the message `{\tt NameError:\ name 'i' is not defined}'.
+The {\em assignment\/} \index{Assignment}instruction
+makes it possible to change the
+value of a variable. For example the instruction:
+
+\vspace{\neglskip}\mbox{\blc  \blk\blk\idt  b\ =\ \mcl False}\par
+
+\noindent assigns the value ``false'' to the boolean variable {\idt b}. In general, an
+assignment instruction has the following form:
+
+\index{Assignment}
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Assignment instruction:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+
+\vspace{\neglskip}\mbox{\blc  \blk\blk\idt  variableName\ =\ \rm expression%
+\footnote{\ The expression can use the old value of the variable.}}\par
+
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+\noindent The symbol\ {\idt =}\ is read ``becomes equal to''. It must not be confused with the
+comparison {\idt ==} (``is equal to'') used in the conditions of {\mcl if} and {\mcl while}.
+Executing this instruction consists in
+evaluating the ``expression'' to compute its value, which becomes that of the variable named
+{\idt  variableName}. The type of the variable is that of the value it contains:
+
+\index{Type compatibility}
+\begin{center}
+\begin{minipage}[t]{11.5cm}
+\begin{tabular}{@{}|l|l|l|@{}} \hline
+\multicolumn{3}{@{}|l|@{}}{\em Types of values:} \\ \hline \hline
+Example of value & Type & Name of the type\\ \hline
+{\mcl True}, {\mcl False} & {\idt bool} & boolean \\
+{\idt 0}, {\idt 1}, {\idt -5} & {\idt int} & integer \\
+{\idt 0.0}, {\idt 1.5} & {\idt float} & rational \\
+{\cha \char34\char34}, {\cha \char34{}abc\char34} & {\idt str} & character string \\
+\hline
+\end{tabular}
+\end{minipage}
+\end{center}
+
+\noindent  In \python, the type of a variable is not fixed once and for all:
+if {\idt i} is an integer variable, the assignment {\idt i = 1.5} is
+accepted and {\idt i} becomes a rational variable. This is rarely a good idea, because the
+reader of the program gets lost and the error only shows up later, for example in
+{\idt fdn(i)}, which requires an integer. It is better to keep the same type for each variable and to make
+{\em conversions}\index{Conversion} explicitly: for example
+{\idt r = float(i)} or {\idt i = int(r)}.
+
+\section{Saving the state of the robot}
+
+A first use of names is to save the state of the \robot. Suppose for
+example that we want to design a procedure to make a drawing that requires various
+changes of the grid size. So that calling
+this procedure in a program does not modify the grid size used in the
+program, this size must be saved
+at the beginning of the procedure and restored at the end. It is enough to give it a
+name by a {\em local declaration}\index{Local declaration}
+{\idt name = expression} placed in the body of the procedure, as in the following example:
+
+{\raggedright
+ %\vspace{\baselineskip}
+ \vbox to 0pt{\includevspacePostScript[13mm]{Canards}{0.95}{0.95}}%
+ \input python/Ducks.tex
+ }
+
+\noindent The declarations {\idt lX = valGsX();\ lY = valGsY()}
+compute the values of {\idt valGsX()} and {\idt valGsY()} at the beginning of the procedure and
+give them the names {\idt lX} and {\idt lY}, which can be used only in the rest of the
+body of the procedure {\idt duck}. They are said to be variables {\em local} to the
+procedure: they do not exist outside its body.
+
+\section{Counting}
+Suppose we want to
+count the number of iterations of a ``while'' loop. We use an integer variable:
+
+\mbox{\blc  \blk\idt  i\ =\ 0}\par
+
+\noindent Before executing the ``while'' loop, the variable must be initialized to 0
+(it may have been modified since its declaration):
+
+\mbox{\blc  \blk\blk\idt  i\ =\ 0}\par
+
+\noindent After each pass through the loop, the value of the variable must be increased by 1:
+
+\mbox{\blc  \blk\blk\idt  i\ =\ i\ +\ 1}\par
+
+\noindent Suppose that the value of the variable {\idt i} is 5 {\em before} the assignment
+\mbox{\idt  i\ =\ i\ +\ 1}. The value of the expression {\idt  i\ +\ 1}
+is $5 + 1 = 6$, so that the value of the variable {\idt i} {\em after} the assignment will be
+6. Since this instruction is very frequent, \python\ allows it to be abbreviated to
+\mbox{\idt  i\ +=\ 1} (``increase {\idt i} by 1''). Likewise \mbox{\idt  i\ -=\ 1} decreases {\idt i}
+by 1 and \mbox{\idt  i\ *=\ 2} doubles it.
+
+For example, this can help us determine the size of the window in which the \robot\
+moves on the computer screen:
+\input python/ComputeRobotWindowSize.tex
+
+\noindent The variables {\idt width} and {\idt height} are declared in the program,
+outside the procedures; they are said to be {\em global}\index{Global variable}. A procedure
+can use their value without saying anything special. On the other hand, to {\em modify} them, it must
+declare so at the beginning of the body of the procedure with {\mcl global}\index{global}\ {\idt width}.
+Without this declaration, \python\ would consider that the assignment {\idt width = 0} creates a
+new local variable {\idt width}, unrelated to the global variable, which would keep the
+value 0 (and {\idt width += 1} without {\idt width = 0} before it would cause the error
+`{\tt UnboundLocalError:\ local variable 'width' referenced before assignment}', the local
+variable {\idt width} being used before it has received a value).
+
+The operator {\idt +} applied to two character strings puts them end to end, and the
+function {\idt str} gives the character string that represents a number (for
+example {\idt str(25)} is {\cha \char34{}25\char34}). A string and a number cannot
+be put end to end: {\cha \char34{}(\char34}\ {\idt + width} causes the error
+`{\tt TypeError:\ can only concatenate str (not "int") to str}'.
+
+\section{Entering a value from the keyboard}
+A value can be obtained by typing it on the computer's
+keyboard. To
+do so, the function {\idt readInt()} (\underline{read} an \underline{int}eger) waits for an integer to be typed and returns
+its value. The question asked by the program (written with {\idt write}, see below)
+appears in the bottom bar of the \robot's window, and the answer typed on the keyboard
+is displayed right after it (it can also be typed in the terminal from which the program was started).
+For example we write:
+
+\mbox{\blc  \blk\blk\idt  write({\cha \char34{}n\ =\ \char34})}\par
+\mbox{\blc  \blk\blk\idt  n\ =\ readInt()}\par
+
+\noindent to give the variable {\idt n} the value typed. Typing
+mistakes can be corrected with the  %touche d'effacement
+\framebox[11.mm][l]{$\leftarrow$~~~}\hspace{0.3ex}
+backspace key. The entry of the value must be ended by pressing the %retour a la ligne
+\framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex}
+return key. If what has been typed is not an integer, the program asks for it
+again. On a French (AZERTY) keyboard, the digits can be typed with or without the
+shift key.
+
+Likewise {\idt readReal()} (\underline{read} a \underline{real}) returns a rational number (of type {\idt float}), {\idt readString()}
+(\underline{read} a \underline{string}) returns the character string typed (without apostrophes or quotation marks) and {\idt readChar()} (\underline{read} a \underline{char}acter) returns
+the character of the first key pressed in the \robot's window (without waiting for the
+return key). In \pascal, a single procedure {\idt readln} made it possible to read a value
+of any type. In \python, each reading function returns a value of a well-defined type
+(\python's {\idt input} function always returns a character string, which would have to be
+converted into an integer with {\idt int}; {\idt readInt} does it for us). On the other hand some
+functions, such as {\idt write}, {\idt str} or {\idt abs}, accept parameters of different
+types: they are said to be {\em polymorphic}\index{Polymorphic} (whereas other functions, such as
+{\idt readInt} or {\idt sqrt}, are {\em monomorphic}\index{Monomorphic} in the sense that their
+parameters and their result always have the same type).
+
+The instruction {\idt readln()} waits until the %retour a la ligne
+\framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex}
+return key is pressed. It is therefore useful to leave time to read what
+the program has written before its execution ends.
+
+\section{Displaying the value of an expression}
+To display texts in the terminal (and in the bottom bar of the \robot's
+window), one
+can use the instruction {\idt write(}$t_1${\idt ,} $t_2${\idt ,} \ldots{\idt )}, which writes
+$t_1$, $t_2$, \ldots\ one
+after the other, on the same line. The instruction
+{\idt writeln(}$t_1${\idt ,} $t_2${\idt ,} \ldots{\idt )} does the same and then goes to the next line.
+The $t_i$ can be character strings or integer or rational expressions,
+whose value is written: if {\idt x} is 3, {\idt writeln(}{\cha \char34{}x = \char34}{\idt , x)}
+writes {\tt x = 3}. One can also convert the value of an expression $E$ into a character string oneself
+with {\idt str(}$E${\idt )}, as the program below does. For example
+this program reads
+an integer $n$
+and then writes its factorial $n! = (1 \ast 2 \ast \ldots \ast (n - 1) \ast n)$. To ask again
+for the value of $n$ as long as it is incorrect, it uses a recursive function {\idt readN}
+(see chapter \ref{ch:rec}) which returns the value read:
+\input python/Factorial.tex
+
+\noindent The variable {\idt n} of the function {\idt readN} is local to this function: it is
+a different variable from the variable {\idt n} of the program, which receives the value returned by
+{\idt readN()}. The maximal value of $n$ is set to 20, as in the \ocaml\ version of
+this program, where $21!$ exceeds the largest integer. In \python, integers have no limit:
+one could compute exactly $100!$, which is written with 158 digits.
+\medskip
+
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+
+\noindent\begin{exercices}{\ \\
+
+\tiret Write a program that draws a frame as close as possible to the edge of the window in which
+the \robot\ moves.
+
+\tiret Write a program that sketches the drawings to be completed of figure \ref{fig:completer-les-dessins}
+(page \pageref{fig:completer-les-dessins}).
+
+\tiret Babylonian numeration \cite{guitel}, which dates from about 2000 BC, is in
+base 60. It is therefore a sexagesimal numeration, just like the one we still use
+for telling the time. The units, from 1 to 59, are written additively by accumulating ``nails'' (for
+1) and ``chevrons'' (for 10), grouped and stacked as shown in the figure
+below.\par\nopagebreak
+\noindent\begin{minipage}[b][4.40cm]{\textwidth}\vfill\includePostScript{Babyloniens}{0.95}{0.95}\end{minipage}\par
+
+\noindent Beyond 60, the notation is positional, the value of a digit in
+the $p^{\rm th}$ position (counted from right to left starting from zero) being
+multiplied by $60^{p}$. The absence of sexagesimal units in a middle position (which
+we would write as 0) was first marked by a space and then, around the $3^{\rm rd}$
+century BC, by ``two slanting nails''. The Babylonians thus took 15 centuries to
+invent a notation for
+zero, without however understanding its computational value! For example
+the number $3657 = 1 \times 60^{2} + 0 \times 60^{1} + 57 \times 60^{0}$
+is represented by juxtaposing the digits $1$, $0$ and
+$57 = 50 + 7$:
+
+\par\nopagebreak
+\noindent\begin{minipage}[b][2.40cm]{\textwidth}\vfill\includePostScript{Babyloniens3657}{0.95}{0.95}\end{minipage}\par
+
+Write a \python\ program that converts
+any po\-si\-tive number into Babylonian nu\-mer\-a\-tion.
+
+\tiret Egyptian numeration ($3^{\rm rd}$
+millennium BC) is decimal and additive \cite{guitel}. It uses hieroglyphs to
+write the
+powers of 10 (the vertical stroke for 1, the handle for 10, the spiral for 100, the lotus for 1000,
+the finger for 10,000,
+the tadpole for 100,000 and the genie for 1,000,000):\par\nopagebreak
+\noindent\begin{minipage}[b][3.50cm]{\textwidth}\vfill\includePostScript{ChiffresEgyptiens}{0.95}{0.95}\end{minipage}\par
+
+\noindent The value of a sequence of signs is the sum of the values
+of these signs:\par\nopagebreak
+\noindent\begin{minipage}[b][3.07cm]{\textwidth}\vfill\includePostScript{1234567Egyptien}{0.95}{0.95}\end{minipage}\par
+
+\noindent Writing goes from left to right or from right to left, the
+reading being done in the direction in which the hieroglyphs face.
+Identical signs are grouped on one, two or three lines
+as follows:\par\nopagebreak
+\noindent\begin{minipage}[b][1.89cm]{\textwidth}\vfill\includePostScript{GroupesEgyptiens}{0.95}{0.95}\end{minipage}\par
+
+\noindent  Between 2000 and 1600 BC, a hybrid representation (additive and partially
+positional) appeared. A number less than 1000 placed before, above or below
+the sign of the genie of the million, the tadpole, the finger or the lotus represents the product of this number and the
+value of this hieroglyph. For example, the number 37,280,549 can be decomposed into
+$((372 \ast 100{,}000) + 80{,}549)$ and is written:\par\nopagebreak
+\noindent\begin{minipage}[b][3.10cm]{\textwidth}\vfill\includePostScript{37280549Egyptien}{0.95}{0.95}\end{minipage}\par
+
+\noindent Write a \python\ program that converts a number into E\-gyp\-tian
+nu\-mer\-a\-tion.
+
+\tiret Greek acrophonic numeration \cite{guitel} was used from
+the 5th
+century BC in Athens. It is an additive decimal numeration using the auxiliary
+base 5 to reduce repetitions. The digits greater
+than one are written with
+letters (or combinations of letters),
+each corresponding to the initial (or the abbreviation) of the name of the
+corresponding number:\par\nopagebreak
+\noindent\begin{minipage}[b][2.40cm]{\textwidth}\vfill\includePostScript{ChiffresGrecques}{0.95}{0.95}\end{minipage}\par
+
+Write a \python\ program that converts a number less than 100,000 into Greek
+nu\-mer\-a\-tion.
+To represent large numbers, use the acrophonic numeration
+for currencies:
+
+\noindent Obols:\par\nopagebreak
+\noindent\begin{minipage}[b][1.32cm]{\textwidth}\vfill\includePostScript{ObolesGrecques}{0.95}{0.95}\end{minipage}\par
+
+\noindent Drachmas (1 drachma = 6 obols):\par\nopagebreak
+\noindent\begin{minipage}[b][1.46cm]{\textwidth}\vfill\includePostScript{DrachmesGrecques}{0.95}{0.95}\end{minipage}\par
+
+\noindent Talents (1 talent = 6,000 drachmas):\par\nopagebreak
+\noindent\begin{minipage}[b][1.46cm]{\textwidth}\vfill\includePostScript{TalentsGrecques}{0.95}{0.95}\end{minipage}\par
+
+\noindent For example the number 239,686,966 is represented by:\par\nopagebreak
+\noindent\begin{minipage}[b][1.89cm]{\textwidth}\vfill\includePostScript{239686966Grecque}{0.95}{0.95}\end{minipage}\par
+
+\tiret Roman numeration \cite{guitel} is additive and subtractive (any sign placed to the left
+of a sign of greater value is subtracted from it). Its digits
+are well known:\par\nopagebreak
+\noindent\begin{minipage}[b][1.70cm]{\textwidth}\vfill\includePostScript{ChiffresRomains}{0.95}{0.95}\end{minipage}\par
+
+For large numbers, the horizontal bar multiplies by 1,000 the value of the number it
+overlines, and the rectangle without a base multiplies by 100,000 the value of the number it encloses,
+as in the example 135,792,468 below:\par\nopagebreak
+\noindent\begin{minipage}[b][1.90cm]{\textwidth}\vfill\includePostScript{135792468Romain}{0.95}{0.95}\end{minipage}\par
+
+Write a \python\ program that converts a number into Roman
+nu\-mer\-a\-tion.
+
+\tiret Write a program that draws the Sierpinski curve of any
+order of figure \ref{fig:CourbSierp} (page \pageref{fig:CourbSierp}).
+
+\tiret A magic square of order $n$ is a square array of $n^{2}$ numbers
+such that the sum of the numbers of each row, of each column and of each
+di\-ag\-o\-nal is the same. Examples are given in figure \ref{fig:Cmagic}
+(page \pageref{fig:Cmagic}). Let $C_{i, j}$ be the number in the
+$i^{\rm th}$ row and the $j^{\rm th}$ column of the square, counted from
+1 and numbered from bottom to top for the rows and from left to
+right for the columns. Write a \python\ program that builds
+magic squares of odd order $n$ by first placing 1 in
+$C_{i, j} = C_{\frac{n + 1}{2}, n}$ and then assigning the numbers 2, 3, \ldots, $n^{2}$
+to the elements $C_{i, j}$ obtained by increasing $i$ and $j$ by 1 modulo $n$ each time
+for $n - 1$ steps, and by decreasing $j$ by 1 while leaving $i$ unchanged at every
+$n^{\rm th}$ step.
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[9.2cm]{CourbeSierpinski0a5}{0.95}{0.95}
+ \caption{Sierpinski curves of orders 0 to 5}\label{fig:CourbSierp}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[6.0cm]{CarreMagique}{0.95}{0.95}
+ \caption{Magic squares of orders 3, 5 and 7}\label{fig:Cmagic}
+\end{figure}
+
+\pagebreak
+
+\begin{corrige}{
+We give one program (without the body of the technical procedure {\idt writeCentred}).
+The others are in the folder\newline {\idt book/\allowbreak 22\_variables}:
+\input python/MagicSquare.tex
+\noindent $\Box$}\end{corrige}
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+A \underline{variable}\index{Variable} is used to give a {\em name} to a memory that keeps
+a {\em value} represented
+according to a code determined by the {\em type} of the variable. For a binary encoding, one
+can imagine that the memory is a row of lamps that are off (to represent
+the bit 0) or on (for the bit 1).
+In many languages, such as \pascal, the initial
+value of a va\-ri\-a\-ble is {\em undetermined}, since it depends on the state
+of the memory at the moment the execution of the program begins, which is a source
+of errors. In \python, a variable receives an initial value as soon as it is created.
+The \underline{assignment}\index{Assignment} instruction makes it possible to
+keep a new value by physically mod\-i\-fy\-ing
+the state of this memory. The new value is given by an expression (which can
+use the old value). The computing notion of variable is therefore very different
+from the mathematical notion of the same name. In mathematics a variable denotes an
+unknown value fixed once and for all, like the constants of a
+\python\ program whose value is never changed. For a mathematician, a computer variable
+would be the sequence of values it takes when it is created and then after each
+assignment.
+
+\vspace{\baselineskip}
+
+
+Variables {\em local} to a procedure (or function) can be declared
+by writing {\idt x =} $\ldots$ in the body of the procedure, like
+the variable {\idt n} of the function {\idt readOrder} of the program {\idt MagicSquare}.
+In this case the variable can be used only in the rest of the body of the procedure.
+At run time, it is created at each execution of the body
+of the procedure. For a recursive procedure,
+it is at each call a new variable without any
+link to the instances corresponding to earlier recursive calls.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+In the body of the procedure one can also use
+{\em glo\-bal} variables whose declaration appears in the program,
+outside the procedures, such as {\idt width} and {\idt height} in the program
+{\idt ComputeRobotWindowSize} or {\idt i} and {\idt j} in the program {\idt MagicSquare}.
+For a procedure to be able to modify them by assignment, they must be named after the
+keyword {\mcl global} at the beginning of its body. These global variables exist
+throughout the execution of the program. Consequently, in the case of
+recursive calls of a procedure, it is always the
+same global variable.
+
+Finally, local and global variables can have the same name (like the variable
+{\idt n} of the function {\idt readOrder} and the variable {\idt n} of the program {\idt MagicSquare}). In
+this case it is the local variable that is visible in the procedure, the global
+variable continuing to exist but being inaccessible. In \python, a variable is local
+to a procedure as soon as it receives a value by assignment in the body of this procedure
+(unless it is declared {\mcl global}).
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

@@ -1,0 +1,21 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Avancer\ n\ fois\ si\ n\ est\ positif,\ reculer\ {-}n\ fois\ si}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt n\ est\ négatif,\ ne\ pas\ bouger\ si\ n\ est\ nul.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ avf\ n\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl if}{\idt \ n\ \char62{}\ 0\ }{\mcl then}{\idt \ }{\mcl begin}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ n\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt av\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl done}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl end}{\idt \ }{\mcl else}{\idt \ }{\mcl if}{\idt \ n\ \char60{}\ 0\ }{\mcl then}{\idt \ }{\mcl begin}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pdt\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ {-}\ n\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt av\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pdt\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl end}}\par
+
+\medskip }

@@ -1,0 +1,4 @@
+(executables
+ (names AlphabetPhonetique AuClairDeLaLune Codage123456789 CodeMorse1 CodeMorse2 CodeMorseTraduit CodeTelegrapheDeChappe ConversionsEnBinaire Cryptage Decryptage EcrireEtJouerIlCourtLeFuret EcrireEtJouerMusique Greensleeves OTannenbaum PorteeEtNotesSurOrdinateur TableauAlphabetPhonetique TelegrapheDeChappe TelegrapheDeChappeTraduit )
+ (libraries lerobot)
+ (flags (:standard -w -32-35)))

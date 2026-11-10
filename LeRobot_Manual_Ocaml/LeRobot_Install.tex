@@ -1,0 +1,263 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  rulecolor=\color{gray!50},
+  backgroundcolor=\color{gray!8},
+  breaklines=true,
+  upquote=true,
+  showstringspaces=false,
+  xleftmargin=0.5em,
+  xrightmargin=0.5em
+}
+\setlength{\emergencystretch}{3em}
+\newcommand{\kbd}[1]{\texttt{#1}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+\title{LeRobot Installation Manual\\[0.3em]\large Installing LeRobot on another Mac}
+\author{}
+\date{8 November 2026}
+
+\begin{document}
+\maketitle
+
+This manual explains how to install LeRobot, the OCaml drawing robot, on a
+Mac where it has never been installed. Once it is done, use the
+\emph{LeRobot User Manual} (\kbd{LeRobot\_Manual.pdf}) to draw and to run
+robot programs.
+
+The installation takes about half an hour, mostly spent waiting for
+downloads. You need:
+\begin{itemize}
+\item a Mac with a recent macOS (Apple Silicon or Intel);
+\item an administrator account: several steps ask for the Mac password;
+\item an Internet connection;
+\item a copy of the \kbd{LeRobot} folder (USB key, AirDrop, cloud drive, \dots).
+\end{itemize}
+
+All commands are typed in the \textbf{Terminal} application
+(\emph{Applications} $\rightarrow$ \emph{Utilities} $\rightarrow$
+\emph{Terminal}). Copy each command in one piece, paste it into the
+Terminal, and press Return. When \kbd{sudo} asks for a password, type the
+Mac password: nothing is shown while you type, which is normal.
+
+\tableofcontents
+
+%======================================================================
+\section{Apple's command line tools}
+
+These provide the C compiler and \kbd{make} that OCaml needs.
+\begin{lstlisting}[language=bash]
+xcode-select --install
+\end{lstlisting}
+Click \emph{Install} in the window that appears and wait for it to finish.
+If the Terminal answers that the tools are already installed, go on to the
+next step.
+
+%======================================================================
+\section{Homebrew}
+
+Homebrew installs the other programs. Skip this step if
+\kbd{brew --version} already prints a version number. Otherwise run the
+installer (the same command is given on \url{https://brew.sh}, where it can
+also be copied):
+\begin{lstlisting}[language=bash]
+/bin/bash -c \
+  "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+\end{lstlisting}
+At the end, the installer prints a few \emph{Next steps} commands. Run them:
+they make the \kbd{brew} command available in every new Terminal window. On
+an Apple Silicon Mac they amount to:
+\begin{lstlisting}[language=bash]
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+\end{lstlisting}
+
+%======================================================================
+\section{XQuartz}
+
+XQuartz is the display server in which the robot window opens.
+\begin{lstlisting}[language=bash]
+brew install --cask xquartz
+\end{lstlisting}
+Then \textbf{log out of the Mac and log in again} (Apple menu
+$\rightarrow$ \emph{Log Out}). XQuartz only works properly after a new
+session.
+
+%======================================================================
+\section{OCaml, dune and the graphics library}
+
+\begin{enumerate}
+\item Install opam, the OCaml package manager:
+\begin{lstlisting}[language=bash]
+brew install opam
+\end{lstlisting}
+\item Initialise it. This downloads and compiles OCaml, which takes several
+  minutes. Answer \kbd{y} if it asks whether to modify the shell
+  configuration.
+\begin{lstlisting}[language=bash]
+opam init -y && eval $(opam env)
+\end{lstlisting}
+\item Install the build system and the libraries LeRobot uses:
+\begin{lstlisting}[language=bash]
+opam install -y dune graphics ocamlfind && eval $(opam env)
+\end{lstlisting}
+\end{enumerate}
+Check: \kbd{ocaml -version} and \kbd{dune --version} each print a version
+number.
+
+%======================================================================
+\section{The LeRobot folder}
+
+\begin{enumerate}
+\item Copy the \kbd{LeRobot} folder anywhere, for example onto the
+  \textbf{Desktop}. The OCaml programs are in its folder
+  \kbd{LeRobot\_OCaml\_FR}; the \kbd{LeRobotOCaml.app} icon must stay in that
+  folder, next to \kbd{robot.sh}. The whole \kbd{LeRobot} folder can be
+  moved or renamed later: nothing in it depends on where it is.
+
+  The \kbd{LeRobot} folder can be anywhere (on the
+Desktop, in Documents, \dots): everything in it is found relative to it.
+The commands of this manual are typed in a Terminal window \emph{opened in
+the \kbd{LeRobot} folder}: type \kbd{cd} and a space, drag the
+\kbd{LeRobot} folder from the Finder onto the Terminal window, and press
+Return (or, in the Finder, right-click the folder and choose
+\emph{Services} $\rightarrow$ \emph{New Terminal at Folder}).
+\item Compile it:
+\begin{lstlisting}[language=bash]
+cd LeRobot_OCaml_FR && eval $(opam env) && dune build
+\end{lstlisting}
+  If the folder was copied with its \kbd{\_build} subfolder from another Mac
+  and the build fails, delete it with \kbd{dune clean} and build again.
+\end{enumerate}
+
+%======================================================================
+\section{Start XQuartz automatically after each restart}
+
+At every restart, macOS empties the folder \kbd{/tmp}, which removes the
+folder \kbd{/tmp/.X11-unix} that XQuartz needs. XQuartz cannot recreate it
+itself, because it must belong to the system administrator (root). Without
+it, XQuartz opens and closes at once and the robot window cannot appear.
+
+The file \kbd{org.xquartz.x11-unix.plist}, in the \kbd{LeRobot} folder,
+is a small startup task that recreates this folder at every restart.
+Install it once with these four commands. Copy the four lines together and
+paste them into the Terminal; the first one asks for the Mac password.
+\begin{lstlisting}[language=bash]
+sudo cp org.xquartz.x11-unix.plist /Library/LaunchDaemons/
+sudo chown root:wheel /Library/LaunchDaemons/org.xquartz.x11-unix.plist
+sudo chmod 644 /Library/LaunchDaemons/org.xquartz.x11-unix.plist
+sudo launchctl bootstrap system /Library/LaunchDaemons/org.xquartz.x11-unix.plist
+\end{lstlisting}
+The last command also runs the task at once, so no restart is
+needed. If the \kbd{.plist} file is missing from the folder, recreate it
+from Appendix~\ref{app:plist} first.
+
+Check that it worked:
+\begin{lstlisting}[language=bash]
+ls -ld /tmp/.X11-unix
+\end{lstlisting}
+The answer must begin with \kbd{drwxrwxrwt} and contain \kbd{root wheel}.
+
+If you ever want to remove the startup task (do not run this to install
+it):
+\begin{lstlisting}[language=bash]
+sudo launchctl bootout system/org.xquartz.x11-unix
+sudo rm /Library/LaunchDaemons/org.xquartz.x11-unix.plist
+\end{lstlisting}
+
+%======================================================================
+\section{First launch}
+
+\begin{enumerate}
+\item Start XQuartz: \kbd{open -a XQuartz}.
+\item Open the interactive drawing program:
+\begin{lstlisting}[language=bash]
+cd LeRobot_OCaml_FR
+eval $(opam env)
+DISPLAY=:0 dune exec ./Dessiner.exe
+\end{lstlisting}
+  The robot window ($800 \times 700$ pixels) opens in XQuartz. If you do not
+  see it, click the XQuartz icon in the Dock. Pressing Return or clicking in
+  the window ends the program.
+\item \kbd{DISPLAY=:0} must always be put in front of the command: the
+  default display setting may point to a stale XQuartz connection. The
+  shortcut \kbd{make Dessiner}, typed in the same folder, does all of this.
+\item \kbd{LeRobotOCaml.app} starts XQuartz if it is not running.
+  Double-click its icon to run \kbd{Dessiner}; drop a \kbd{.ml} program on
+  its icon to compile and run it.
+  The first time you open \kbd{LeRobotOCaml.app}, macOS may refuse to open it because it comes from
+  another Mac. Right-click the icon, choose \emph{Open}, then confirm. Allow
+  it to control Terminal and to access the folder of \kbd{LeRobot}
+  (Desktop, Documents, \dots) when macOS asks.
+\end{enumerate}
+
+%======================================================================
+\section{Troubleshooting}
+
+\begin{tabularx}{\textwidth}{@{}LLL@{}}
+\toprule
+\textbf{Symptom} & \textbf{Cause} & \textbf{Fix} \\
+\midrule
+\emph{command not found: brew} & Homebrew's \emph{Next steps} were not run & Run the \kbd{echo 'eval \dots'} command of Section~2, or open a new Terminal window \\
+\addlinespace
+\emph{command not found: dune} or \kbd{ocaml} & opam's settings not loaded in this window & Run \kbd{eval \$(opam env)} \\
+\addlinespace
+\kbd{opam install graphics} fails, mentioning X11 & XQuartz not installed, or the Mac not logged out and in again & Do Section~3 completely, then retry \\
+\addlinespace
+XQuartz opens and closes at once & \kbd{/tmp/\allowbreak .X11-unix} missing or not owned by root & Run the startup task again: \kbd{sudo launchctl kickstart system/\allowbreak org.xquartz.x11-unix}; if that fails, install it (Section~6) \\
+\addlinespace
+\emph{Cannot open display} & \kbd{DISPLAY=:0} missing, or XQuartz not running & Put \kbd{DISPLAY=:0} in front of the command; \kbd{open -a XQuartz} \\
+\addlinespace
+\emph{Boot-out failed: 3: No such process} & The removal command was run while the task was not installed & Harmless; run the installation commands of Section~6 \\
+\addlinespace
+\emph{Bootstrap failed: 5} & The task is already installed & Nothing to do \\
+\addlinespace
+XQuartz log & Detailed error messages & \kbd{\textasciitilde/\allowbreak Library/\allowbreak Logs/\allowbreak X11/\allowbreak org.xquartz.log} \\
+\bottomrule
+\end{tabularx}
+
+%======================================================================
+\appendix
+\section{The startup task file}\label{app:plist}
+
+If \kbd{org.xquartz.x11-unix.plist} is missing, this command recreates it
+in the \kbd{LeRobot} folder (the Terminal being opened in that folder);
+then install it as in
+Section~6.
+\begin{lstlisting}[language=bash]
+cat > org.xquartz.x11-unix.plist <<'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>org.xquartz.x11-unix</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/sh</string>
+    <string>-c</string>
+    <string>mkdir -p /tmp/.X11-unix
+chown root:wheel /tmp/.X11-unix
+chmod 1777 /tmp/.X11-unix</string>
+  </array>
+  <key>RunAtLoad</key>
+  <true/>
+</dict>
+</plist>
+EOF
+\end{lstlisting}
+
+\end{document}

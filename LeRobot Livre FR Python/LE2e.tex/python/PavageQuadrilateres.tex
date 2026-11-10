@@ -1,0 +1,60 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Pavage\ de\ quadrilatères\ produits\ par\ un\ motif}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ inscrit\ dans\ un\ carré\ (6\ x\ 6)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt tailleGrilleX\ =\ 6}}\par
+\vspace{\neglskip}\mbox{\blc {\idt tailleGrilleY\ =\ 6}}\par
+\vspace{\neglskip}\mbox{\blc {\idt motifX\ =\ 6\ \ }{\cmt \#\ Largeur\ du\ motif}}\par
+\vspace{\neglskip}\mbox{\blc {\idt motifY\ =\ 6\ \ }{\cmt \#\ Hauteur\ du\ motif}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ un\ motif\ dans\ un\ carré\ (motifX\ x\ motifY),}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ le\ robot\ partant\ et\ arrivant\ au\ centre\ du\ motif,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ orienté\ vers\ le\ nord.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ motif():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(4):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt lc();\ pqtg();\ av();\ bc()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt p3htd();\ av();\ av();\ pqtg();\ av();\ pdt();\ av()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt phtg();\ av();\ av();\ pdt();\ av();\ pqtd();\ av()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pqtd();\ av()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt lc();\ p3htd();\ av();\ av();\ av();\ bc()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt phtd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Paver\ avec\ y\ lignes\ de\ x\ motifs}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pavage(x,\ y):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Décentrer\ le\ dessin\ à\ gauche\ de\ la\ moitié\ de\ la}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ longueur\ d\textquotesingle{}une\ ligne\ et\ vers\ le\ haut\ de\ la}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ moitié\ de\ la\ hauteur\ du\ pavage.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt translater({-}(motifX\ *\ (x\ //\ 2)),\ motifY\ *\ (y\ //\ 2))}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Dessiner\ (y\ {-}\ 1)\ lignes\ de\ x\ motifs\ (avec}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ translation\ en\ bas\ à\ gauche\ de\ la\ ligne}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ suivante).}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(y\ {-}\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Dessiner\ une\ ligne\ de\ x\ motifs\ (sans}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ translation\ à\ droite\ après\ le\ dernier\ motif}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ de\ la\ ligne).}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(x\ {-}\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt motif()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\cmt \#\ Passer\ au\ motif\ suivant\ à\ droite\ dans\ la}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\cmt \#\ même\ ligne.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt translater(motifX,\ 0)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt motif()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Passer\ au\ début\ de\ la\ ligne\ suivante.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt translater({-}(motifX\ *\ (x\ {-}\ 1)),\ {-}motifY)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Dessiner\ la\ dernière\ ligne\ de\ x\ motifs\ (sans}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ translation\ en\ bas\ à\ gauche\ de\ la\ ligne}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ suivante).}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(x\ {-}\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt motif()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt translater(motifX,\ 0)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt motif()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt lgX(tailleGrilleX);\ lgY(tailleGrilleY)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pavage(10,\ 6)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\medskip }

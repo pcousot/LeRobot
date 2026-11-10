@@ -1,0 +1,4 @@
+(executables (names YinYang PeintureDessin Couleurs FleurStyliseeCouleur
+  PavageDiscretCarresCouleur PavageHexagonalOndule
+  MotifDuPavageHexagonalOndule)
+ (libraries lerobot) (flags (:standard -w -35)))

@@ -1,0 +1,6 @@
+; Programmes du livre "Premieres lecons de programmation en OCaml"
+; (-w -35 : un compteur de boucle "for" peut ne pas servir dans le corps)
+(executables
+ (names PavageDeAl_Karagi PavageDeAl_KaragiExplique PavageDeGolomb PavageDeGolombExplique PavageDeNicomaque PiquetsEnDentsDeScie Pyramide S1p2p3pEtcExplique VaguesDePiquets)
+ (libraries lerobot)
+ (flags (:standard -w -35)))

@@ -1,0 +1,8 @@
+; Programmes du chapitre 4 du livre "Premieres lecons de programmation en OCaml"
+; (CocotteErronee.ml contient volontairement des erreurs : il n'est pas compile)
+(executables
+ (names Cocotte Stegosaure StegosaureIllisible SortirDuCadre StegosaureErrone Chien
+  Parallelogramme RobotCrayonBaisse RobotCrayonLeve TrapezeIsocele)
+ (modules Cocotte Stegosaure StegosaureIllisible SortirDuCadre StegosaureErrone Chien
+  Parallelogramme RobotCrayonBaisse RobotCrayonLeve TrapezeIsocele)
+ (libraries lerobot))

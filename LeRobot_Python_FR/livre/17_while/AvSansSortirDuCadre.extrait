@@ -1,0 +1,4 @@
+# Avancer si cela ne fait pas sortir le robot du cadre
+def avSansSortir():
+    if not tb():
+        av()

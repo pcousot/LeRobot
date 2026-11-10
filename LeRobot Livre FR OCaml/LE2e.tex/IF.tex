@@ -1,0 +1,343 @@
+En réponse à nos questions, notre \robot\ peut indiquer dans quelle direction il est orienté.
+N'étant pas doué de la parole, ses réponses sont {\em booléennes} \index{Booléen} c'est-à-dire 
+{\idt true} (prononcer ``trou'', {\em vrai} \index{Vrai} en anglais) ou {\idt false} (prononcer ``faulse'', 
+{\em faux} \index{Faux} en anglais). On peut imaginer qu'il donne ses réponses à l'aide d'un voyant lumineux
+qu'il allume pour répondre  {\idt true} (vrai) et qu'il laisse éteint pour répondre {\idt false}
+(faux).
+
+Pour poser les questions sur l'orientation du \robot, on utilise les commandes de test suivantes~:
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{@{}|l|p{11.7cm}|@{}} \hline
+\multicolumn{2}{|l|}{\em Commandes de test d'orientation du \robot~:} \\ \hline \hline
+{\idt tn ()} & {\idt true} si  le \robot\ est \underline{t}ourné vers le nord (\underline{n}) et  {\idt false} sinon. \\ \hline
+{\idt tne ()} & {\idt true} si  le \robot\ est \underline{t}ourné vers le nord-est (\underline{ne}) et {\idt false} sinon. \\ \hline
+{\idt te ()} & {\idt true} si  le \robot\ est \underline{t}ourné vers l'est (\underline{e}) et {\idt false} sinon. \\ \hline
+{\idt tse ()} & {\idt true} si  le \robot\ est \underline{t}ourné vers le sud-est (\underline{se}) et {\idt false} sinon. \\ \hline
+{\idt ts ()} & {\idt true} si  le \robot\ est \underline{t}ourné vers le sud (\underline{s}) et {\idt false} sinon. \\ \hline
+{\idt tsw ()} & {\idt true} si  le \robot\ est \underline{t}ourné vers le sud-ouest (\underline{sw}) et {\idt false} sinon. \\ \hline
+{\idt tw ()} & {\idt true} si  le \robot\ est \underline{t}ourné vers l' ouest (\underline{w}) et {\idt false} sinon. \\ \hline
+{\idt tnw ()} & {\idt true} si  le \robot\ est \underline{t}ourné vers le nord-ouest (\underline{nw}) et {\idt false} sinon. \\ \hline
+\end{tabular}
+\end{center}
+%\label{tab:tnetc}
+\caption{Tests d'orientation du \protect\robot}
+\end{table}
+
+En \ocaml, l'instruction de test ``if'' permet de n'exécuter une séquence d'instructions que
+si une certaine {\em expression booléenne} \index{Expression booléenne}est vraie ({\idt true}).  Pour commencer nous allons
+utiliser des expressions booléennes simples, à savoir les commandes de test d'orientation du \robot\
+({\idt tn ()}, {\idt tne ()}, {\idt te ()}, {\idt tse ()}, {\idt ts ()}, {\idt tsw ()}, {\idt tw ()}, {\idt tnw ()}). Dans sa
+forme la plus simple, l'instruction de test ``if'' s'écrit comme suit~:
+
+\index{Test}
+\begin{center}
+\begin{tabular}{@{}|p{12.6cm}|@{}} \hline
+{\em Test ``if'' à une seule alternative~:}\\ \hline \hline
+\begin{minipage}[t]{12.6cm}
+{\medskip
+\mbox{\blc\ \ \ {\mcl if}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm expression booléenne}%
+\footnote{\ A résultat {\idt true} (vrai) ou {\idt false} (faux).} \hspace{0.3em}\blanc\hspace{0.3em}{\mcl then}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl begin}}\par 
+\mbox{\blc\ \ \ \ \ \small\rm  \ldots\ Instructions (séparées par des `$;$') exécutées seulement si}\par 
+\mbox{\blc\ \ \ \ \ \small\rm  l'expression booléenne vaut {\idt true} \ldots}\par 
+\mbox{\blc\ \ \ {\mcl end}}\par 
+\medskip}
+\end{minipage}\\ \hline 
+\end{tabular}
+\end{center}
+
+On peut traduire en français par {\idt si} \ldots\ {\idt alors} {\idt début}  \ldots\ {\idt fin}.
+Le mot anglais {\idt then} se prononce très approximativement `zen' (avec un cheveu sur la langue).
+
+Quand il n'y a qu'une seule instruction à exécuter, on peut omettre le {\mcl begin} et
+le {\mcl end}, comme dans `{\mcl if}\ {\idt tw\ ()}\ {\mcl then}\ {\idt pqtd\ ()}'.
+\underline{Une erreur grave} est d'oublier le {\mcl begin} et le {\mcl end} quand il y a 
+plusieurs instructions. Par exemple dans~:
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\mcl if}{\idt \ tw\ ()\ }{\mcl then}{\idt \ pqtd\ ();\ av\ ()}}\par
+
+\medskip }
+\noindent seule l'instruction {\idt pqtd ()} dépend du test~: l'instruction {\idt av ()}
+qui suit le point-virgule est toujours exé\-cu\-tée, que le \robot\ soit tourné vers l'ouest ou non.
+Le compilateur ne peut pas signaler cette erreur puisque le programme est correct (mais ne fait pas
+ce que l'on voulait). Notons aussi que l'instruction de test ``if'' est {\em une} instruction~:
+si d'autres instructions la suivent, elle doit en être séparée par un point-virgule.
+
+
+Dans l'exemple ci-dessous, le \robot\ avance deux fois et tourne à droite d'un quart de tour puis
+d'un quart de tour supplémentaire 
+s'il est orienté à l'ouest~:
+
+\vspace{\baselineskip}
+
+ {\raggedright 
+ \includevspacePostScript[0.9cm]{FriseEnPeigne}{0.95}{0.95}
+ \input ocaml/FriseEnPeigne.tex
+}
+ 
+ Dans sa première forme ci-dessus l'instruction de test ne fait rien quand l'expression booléenne
+ vaut {\idt false}. Si l'on veut donner le choix de la séquence d'instructions à exécuter dans les
+ deux alternatives, on utilisera la forme suivante~:
+ 
+\index{Test}
+ \begin{center}
+\begin{tabular}{@{}|p{12.6cm}|@{}} \hline
+{\em Test ``if'' à deux alternatives~:}\\ \hline \hline
+\begin{minipage}[t]{12.6cm}
+{\medskip
+\mbox{\blc\ \ \ {\mcl if}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm expression booléenne}%
+\footnote{ \ A résultat {\idt true} (vrai) ou {\idt false} (faux).} \hspace{0.3em}\blanc\hspace{0.3em}{\mcl then}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl begin}}\par 
+\mbox{\blc\ \ \ \ \ \small\rm  \ldots\ Instructions (séparées par des `$;$') exécutées si l'expression}\par 
+\mbox{\blc\ \ \ \ \ \small\rm   booléenne vaut {\idt true} \ldots}\par 
+\mbox{\blc\ \ \ {\mcl end}}\par 
+\mbox{\blc\ \ \ {\mcl else}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl begin}}\par 
+\mbox{\blc\ \ \ \ \ \small\rm  \ldots\ Instructions  (séparées par des `$;$') exécutées si l'expression  }\par 
+\mbox{\blc\ \ \ \ \ \small\rm  booléenne vaut {\idt false} \ldots}\par 
+\mbox{\blc\ \ \ {\mcl end}}\par 
+\medskip}
+\end{minipage}\\ \hline 
+\end{tabular}
+\end{center}
+
+On peut traduire en français par {\idt si} \ldots\ {\idt alors} {\idt début}  \ldots\ {\idt fin}
+ \ldots\ {\idt sinon} {\idt début}  \ldots\ {\idt fin}.
+
+Comme précédemment, le {\mcl begin} et le {\mcl end} peuvent être omis quand il n'y a qu'une
+seule instruction dans une alternative.
+C'est une erreur que de mettre un point-virgule `{\idt $;$}' \underline{avant} ou 
+\underline{après} le {\mcl else} mais elle n'est pas
+très grave car elle est signalée par le com\-pi\-la\-teur (`{\tt Syntax error}', erreur de syntaxe).
+Le compilateur signale la même erreur quand on oublie le {\mcl begin} et le {\mcl end} 
+autour de plusieurs instructions placées entre le {\mcl then} et le {\mcl else}.
+
+Dans le dessin de la frise en dents de scie ci-dessous, le \robot\ tourne de trois quarts de tour à droite 
+s'il est orienté au nord-est et à gauche dans les autres cas (le seul autre cas possible étant d'ailleurs
+qu'il soit tourné vers le sud)~:
+
+\vspace{0.4cm}
+ {\raggedright 
+ \includevspacePostScript[0.5cm]{FriseEnDentsDeScie}{0.95}{0.95}
+ \input ocaml/FriseEnDentsDeScie.tex
+ }
+ \vfill
+ Quand il y a plus de deux cas à tester on peut utiliser plusieurs alternatives et ne rien faire
+ quand aucune des expressions booléeennes ne vaut {\idt true} comme dans~:
+ 
+\index{Test}
+ \begin{center}
+\begin{tabular}{@{}|p{12.6cm}|@{}} \hline
+{\em Test ``if'' à $n$ alternatives~:}\\ \hline \hline
+\begin{minipage}[t]{12.6cm}
+{\medskip
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl if}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm expression booléenne 1}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl then}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl begin}}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  \ldots\ Instructions (séparées par des `$;$') exécutées si l'expression }\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  booléenne 1 vaut {\idt true} \ldots}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl end}}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl else}\ {\mcl if}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm expression booléenne 2}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl then}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl begin}}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  \ldots\ Instructions (séparées par des `$;$') exécutées si l'expression }\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  booléenne 2 vaut {\idt true} \ldots}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl end}}\par 
+\mbox{\blc\ \ \ \dots}\par
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl else}\ {\mcl if}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm expression booléenne $n$}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl then}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl begin}}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  \ldots\ Instructions (séparées par des `$;$') exécutées si l'expression }\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  booléenne $n$ vaut {\idt true} \ldots}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl end}}\par 
+\medskip}
+\end{minipage}\\ \hline 
+\end{tabular}
+\end{center}
+
+\vfill
+
+ \noindent On peut aussi prévoir une dernière alternative qui est exécutée quand toutes les
+ expressions booléeennes testées valent {\idt false}~:
+ 
+ \index{Test}
+\begin{center}
+\begin{tabular}{@{}|p{12.6cm}|@{}} \hline
+{\em Test ``if'' à $(n + 1)$ alternatives~:}\\ \hline \hline
+\begin{minipage}[t]{12.6cm}
+{\medskip
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl if}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm expression booléenne 1}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl then}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl begin}}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  \ldots\ Instructions (séparées par des `$;$') exécutées si l'expression }\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  booléenne 1 vaut {\idt true} \ldots}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl end}}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl else}\ {\mcl if}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm expression booléenne 2}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl then}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl begin}}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  \ldots\ Instructions (séparées par des `$;$') exécutées si l'expression }\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  booléenne 2 vaut {\idt true} \ldots}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl end}}\par 
+\mbox{\blc\ \ \ \dots}\par
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl else}\ {\mcl if}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm expression booléenne $n$}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl then}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl begin}}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  \ldots\ Instructions (séparées par des `$;$') exécutées si l'expression }\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  booléenne $n$ vaut {\idt true} \ldots}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl end}}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl else}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl begin}}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  \ldots\ Instructions  (séparées par des `$;$') exécutées si les expressions}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ \ \ \small\rm  booléennes 1, \ldots, $n$ valent {\idt false} \ldots}\par 
+\vspace{\neglskip}\mbox{\blc\ \ \ {\mcl end}}\par 
+\medskip}
+\end{minipage}\\ \hline 
+\end{tabular}
+\end{center}
+
+ Cette forme de test multiple est illustrée ci-dessous dans le programme construisant la frise suivante~:
+
+  {\raggedright 
+ \includevspacePostScript[1.0cm]{FriseDeVaguelettes}{0.95}{0.95}
+ \input ocaml/FriseDeVaguelettes.tex
+ }
+
+Pour terminer nous allons introduire de nouvelles commandes du \robot\ qui permettent
+de faire pivoter le \robot\ sur place vers une orientation donnée. Par exemple la commande
+{\idt pn ()} qui permet de faire \underline{p}ivoter le \robot\ vers le \underline{n}ord peut
+être définie à l'aide de la procédure \ocaml\ suivante~:
+
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Faire\ pivoter\ le\ robot\ sur\ place\ vers\ le\ nord\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ pn\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl if}{\idt \ tne\ ()\ }{\mcl then}{\idt \ phtg\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl else}{\idt \ }{\mcl if}{\idt \ te\ ()\ }{\mcl then}{\idt \ pqtg\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl else}{\idt \ }{\mcl if}{\idt \ tse\ ()\ }{\mcl then}{\idt \ p3htg\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl else}{\idt \ }{\mcl if}{\idt \ ts\ ()\ }{\mcl then}{\idt \ pdt\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl else}{\idt \ }{\mcl if}{\idt \ tsw\ ()\ }{\mcl then}{\idt \ p3htd\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl else}{\idt \ }{\mcl if}{\idt \ tw\ ()\ }{\mcl then}{\idt \ pqtd\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl else}{\idt \ }{\mcl if}{\idt \ tnw\ ()\ }{\mcl then}{\idt \ phtd\ ()}}\par
+
+\medskip }
+
+\noindent Le programme {\idt OrientationAuNord} du dossier {\idt livre/\allowbreak 15\_if} essaie cette
+procédure dans les huit directions. Nous pourrions définir de la même façon les  commandes de pivotement du \robot\
+sur place dans l'une des huit directions principales de la rose des vents qui sont données dans la table
+\ref{tab:pnetc} ci-dessous.
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{@{}|l|p{11.7cm}|@{}} \hline
+\multicolumn{2}{|l|}{\em Commandes de pivotement du \robot\ sur place~:} \\ \hline \hline
+{\idt pn ()} & fait \underline{p}ivoter le \robot\ sur place vers le nord (\underline{n}). \\ \hline
+{\idt pne ()} &  fait \underline{p}ivoter le \robot\ sur place  vers le nord-est (\underline{ne}). \\ \hline
+{\idt pe ()} &  fait \underline{p}ivoter le \robot\ sur place vers l'est (\underline{e}). \\ \hline
+{\idt pse ()} &  fait \underline{p}ivoter le \robot\ sur place vers le sud-est (\underline{se}). \\ \hline
+{\idt ps ()} &  fait \underline{p}ivoter le \robot\ sur place vers le sud (\underline{s}). \\ \hline
+{\idt psw ()} &  fait \underline{p}ivoter le \robot\ sur place vers le sud-ouest (\underline{sw}). \\ \hline
+{\idt pw ()} &  fait \underline{p}ivoter le \robot\ sur place vers l' ouest (\underline{w}). \\ \hline
+{\idt pnw ()} &  fait \underline{p}ivoter le \robot\ sur place vers le nord-ouest (\underline{nw}). \\ \hline
+\end{tabular}
+\end{center}
+\caption{Pivotement du \protect\robot\ sur place dans une direction donnée\label{tab:pnetc}}
+\end{table}
+
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercice}{Écrire des programmes \ocaml\  comportant des instructions
+de test ``if'' pour réaliser les frises de la figure \ref{fig:frisif} ci-dessous.
+\noindent $\Box$}\end{exercice}
+\begin{figure}[htbp]
+ \includevspacePostScript[3.8cm]{FriseIf}{0.95}{0.95}
+ \caption{Frises de cercles et (semi-) octogones}\label{fig:frisif}
+\end{figure}
+\begin{corrige}{
+Nous donnons le programme pour dessiner la frise d'octogones de la figure \ref{fig:frisif}
+ (page \pageref{fig:frisif}), les autres se trouvant dans le dossier {\idt livre/\allowbreak 15\_if}~:
+\input ocaml/FriseDoctogones.tex
+\noindent $\Box$}\end{corrige}
+\vfill\pagebreak[3]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+\index{Test}
+L'instruction de test {\idt si} \ldots {\idt alors} \ldots {\idt sinon} \ldots fut introduite vers la fin des années
+1950 dans le langage de programmation {\sc algol 60}. Ce langage, conçu par un groupe
+d'experts internationaux, eut une très grande influence dans la conception de langages de programmation
+ultérieurs notamment {\sc algol w}, \pascal, {\sc ada},  {\sc modula} et bien d'autres.  
+Une autre forme d'instruction de test par cas fut introduite dans le langage de programmation 
+{\sc algol w} (également conçu par N. Wirth) et reprise en \pascal\ sous le nom de ``case''.
+En \ocaml, l'instruction de test par cas s'appelle le {\em filtrage} (``match'' en anglais).
+Elle généralise l'instruction ``if'' qui peut s'écrire comme suit~:
+
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\mcl match}{\idt \ expressionBooleenne\ }{\mcl with}}\par
+\vspace{\neglskip}\mbox{\blc {\idt \char124{}\ }{\mcl true}{\idt \ {-}\char62{}\ }{\mcl begin}{\idt \ ...\ }{\mcl end}}\par
+\vspace{\neglskip}\mbox{\blc {\idt \char124{}\ }{\mcl false}{\idt \ {-}\char62{}\ }{\mcl begin}{\idt \ ...\ }{\mcl end}}\par
+
+\medskip }
+
+De manière plus générale, le filtrage permet de choisir quelle séquence d'instructions doit
+être exécutée en fonction de la valeur d'une expression. Par exemple {\idt valOrientation ()} est
+égal au numéro de l'orientation du \robot\ (0 pour le nord, 1 pour le nord-est, 2 pour l'est, 
+etc.). On pourra écrire~:
+ 
+
+\index{Test}
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\mcl match}{\idt \ valOrientation\ ()\ }{\mcl with}}\par
+\vspace{\neglskip}\mbox{\blc {\idt \char124{}\ 0\ {-}\char62{}\ }{\mcl begin}{\idt \ ...\ }{\mcl end}{\idt \ \ }{\cmt (*\ nord\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt \char124{}\ 1\ {-}\char62{}\ }{\mcl begin}{\idt \ ...\ }{\mcl end}{\idt \ \ }{\cmt (*\ nord{-}est\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt \char124{}\ 2\ {-}\char62{}\ }{\mcl begin}{\idt \ ...\ }{\mcl end}{\idt \ \ }{\cmt (*\ est\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt \char124{}\ 3\ {-}\char62{}\ }{\mcl begin}{\idt \ ...\ }{\mcl end}{\idt \ \ }{\cmt (*\ sud{-}est\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt \char124{}\ 4\ {-}\char62{}\ }{\mcl begin}{\idt \ ...\ }{\mcl end}{\idt \ \ }{\cmt (*\ sud\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt \char124{}\ 5\ {-}\char62{}\ }{\mcl begin}{\idt \ ...\ }{\mcl end}{\idt \ \ }{\cmt (*\ sud{-}ouest\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt \char124{}\ 6\ {-}\char62{}\ }{\mcl begin}{\idt \ ...\ }{\mcl end}{\idt \ \ }{\cmt (*\ ouest\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt \char124{}\ 7\ {-}\char62{}\ }{\mcl begin}{\idt \ ...\ }{\mcl end}{\idt \ \ }{\cmt (*\ nord{-}ouest\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt \char124{}\ \_\ {-}\char62{}\ ()\ \ \ \ \ \ \ \ \ \ \ \ \ }{\cmt (*\ impossible\ *)}}\par
+
+\medskip }
+
+
+\noindent Tous les cas possibles doivent être prévus. Le compilateur ne sait pas que l'orientation
+est comprise entre 0 et 7. Si l'on oublie le dernier cas, il signale
+`{\tt this pattern-matching is not exhaustive}' (ce filtrage n'est pas exhaustif).
+Le dernier cas `{\idt \_}' (souligné) regroupe toutes les autres valeurs, comme le mot
+{\mcl otherwise} (`autrement' en anglais) de certaines extensions de \pascal. 
+L'instruction {\idt ()} ne fait rien. Plusieurs cas semblables peuvent être regroupés 
+comme dans l'exemple ci-dessous~:
+
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\mcl match}{\idt \ valOrientation\ ()\ }{\mcl with}}\par
+\vspace{\neglskip}\mbox{\blc {\idt \char124{}\ 0\ \char124{}\ 2\ \char124{}\ 4\ \char124{}\ 6\ {-}\char62{}\ }{\mcl begin}{\idt \ ...\ }{\mcl end}{\idt \ \ }{\cmt (*\ N,\ E,\ S,\ W\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt \char124{}\ \_\ {-}\char62{}\ }{\mcl begin}{\idt \ ...\ }{\mcl end}{\idt \ \ \ \ \ \ \ \ \ \ \ \ \ \ }{\cmt (*\ autres\ cas\ *)}}\par
+
+\medskip }
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+On notera que les cas doivent être des nombres et non des noms de constantes~:
+`{\idt \char124{}\ nord\ {-}\char62{}}' ne signifie pas `si l'orientation est le nord' mais déclare un 
+nouvel identificateur {\idt nord} qui convient pour toutes les valeurs, de sorte que
+les cas suivants ne servent jamais (le compilateur le signale par `{\tt this match case is unused}', 
+ce cas n'est pas utilisé).
+ 
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newpage                 % Si on termine le chapitre par une page blanche
+\thispagestyle{empty}

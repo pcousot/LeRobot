@@ -1,0 +1,29 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ dotted\ square}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ dotted\ line\ of\ n\ dots,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ assuming\ n\ \char62{}\ 1.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ dottedLine(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(8);\ pw(2);\ pu()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ l\ }{\mcl in}{\idt \ range(n\ {-}\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt dp();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dp();\ pd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ dotted\ square\ with\ p\ dots\ per\ side}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ (p\ \char62{}\ 1).}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ square(p):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ c\ }{\mcl in}{\idt \ range(4):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt dottedLine(p);\ qtr()}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt square(30);\ hideRobot();\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

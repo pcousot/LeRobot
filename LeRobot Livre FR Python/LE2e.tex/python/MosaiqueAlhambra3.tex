@@ -1,0 +1,79 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Mosaïque\ de\ l\textquotesingle{}Alhambra}}\par
+\vspace{\neglskip}\mbox{\blc {\idt tailleGrille\ =\ 3\ \ }{\cmt \#\ pixels}}\par
+\vspace{\neglskip}\mbox{\blc {\idt largeurMotif\ =\ 4\ \ }{\cmt \#\ fois\ la\ taille\ de\ la\ grille}}\par
+\vspace{\neglskip}\mbox{\blc {\idt hauteurMotif\ =\ 6\ \ }{\cmt \#\ fois\ la\ taille\ de\ la\ grille}}\par
+\vspace{\neglskip}\mbox{\blc {\idt tailleLigne\ =\ 7\ \ }{\cmt \#\ motifs\ d\textquotesingle{}une\ ligne\ impaire}}\par
+\vspace{\neglskip}\mbox{\blc {\idt nombreDeLignes\ =\ 12\ \ }{\cmt \#\ pair}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ un\ motif\ en\ forme\ de\ 8,\ en\ partant\ et\ en}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ arrivant\ à\ l\textquotesingle{}extrémité\ de\ la\ pointe\ inférieure}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ gauche,\ avec\ le\ robot\ orienté\ vers\ le\ nord.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ motif():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(2):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Côté\ gauche/droit\ (au\ dessus/dessous\ de\ la}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ pointe\ inférieure).}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt phtd();\ av();\ phtg();\ avf(hauteurMotif\ {-}\ 4)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt phtg();\ av();\ pqtd();\ av()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Dessus/dessous}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt phtd();\ avf(largeurMotif\ {-}\ 2);\ phtd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Haut/bas\ du\ côté\ droit/gauche\ (en\ dessus/dessous}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ de\ la\ pointe\ supérieure/inférieure).}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt av();\ phtd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Colorier\ et\ tourner\ le\ robot\ dans\ l\textquotesingle{}orientation}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ initiale.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtg();\ peindre();\ pqtd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Passer\ de\ la\ pointe\ inférieure\ gauche\ d\textquotesingle{}un\ motif\ à}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ celle\ du\ motif\ suivant\ sur\ la\ même\ ligne}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ horizontale\ à\ droite.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ motifSuivant():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ pqtd();\ avf(2\ *\ largeurMotif);\ pqtg();\ bc()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ une\ ligne\ horizontale\ comportant}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ tailleLigne\ motifs.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ ligneImpaire():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(tailleLigne):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt motif();\ motifSuivant()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ une\ ligne\ comportant\ (tailleLigne\ {-}\ 1)}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ motifs.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ lignePaire():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(tailleLigne\ {-}\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt motif();\ motifSuivant()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Revenir\ sur\ la\ pointe\ inférieure\ gauche\ du\ premier}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ motif\ d\textquotesingle{}une\ ligne.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ retourDebutDeLigne():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ pqtg()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt avf(2\ *\ largeurMotif\ *\ tailleLigne\ {-}\ largeurMotif)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtd();\ bc()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Passer\ de\ la\ pointe\ inférieure\ gauche\ d\textquotesingle{}un\ motif\ à}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ celle\ du\ motif\ à\ la\ verticale\ sur\ la\ ligne}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ suivante.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ ligneSuivante():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ avf({-}(hauteurMotif\ {-}\ 2));\ bc()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Paver\ avec\ un\ nombre\ de\ lignes\ égal\ à}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ nombreDeLignes.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pavage():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(nombreDeLignes\ //\ 2):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt ligneImpaire();\ retourDebutDeLigne()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt ligneSuivante()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt lignePaire();\ retourDebutDeLigne()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt ligneSuivante()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Placer\ le\ robot\ à\ la\ pointe\ inférieure\ gauche\ du}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ motif\ gauche\ de\ la\ première\ ligne.}}\par
+\vspace{\neglskip}\mbox{\blc {\idt lc();\ lg(tailleGrille);\ ag();\ eh();\ pdt()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt avf(hauteurMotif);\ pqtg();\ av();\ pqtg();\ bc()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pavage();\ st()}}\par
+
+\medskip }

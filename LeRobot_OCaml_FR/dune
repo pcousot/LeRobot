@@ -1,0 +1,19 @@
+; Bibliotheque LeRobot (equivalent de LeRobot.zo)
+(library
+ (name lerobot)
+ (wrapped false)
+ (modules utile Graph Grille Dessin Robot Peinture Principal Ecriture
+  Fleches Son Interaction LeRobot LibRobot)
+ (libraries graphics unix)
+ ; touches fleches : seconde connexion a XQuartz (fleches_stubs.c) ;
+ ; libX11 est deja lie par graphics
+ (foreign_stubs (language c) (names fleches_stubs)
+  (flags (:standard -I/opt/X11/include)))
+ (flags (:standard -w +a-4-9-26-27-32-33-35-37-39-40-41-42-44-45-69-70)))
+
+; Programmes : Dessiner (interface interactive) et mon_dessin (dessin enregistre)
+(executables
+ (names Dessiner mon_dessin)
+ (modules Dessiner mon_dessin)
+ (libraries lerobot)
+ (flags (:standard -w +a-4-9-26-27-32-33-35-37-39-40-41-42-44-45-69-70)))

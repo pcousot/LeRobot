@@ -1,0 +1,228 @@
+LeRobot -- traduction OCaml 5.7 de la version Caml Light (1998)
+=================================================================
+
+###### Prerequis ################
+
+  opam install graphics          (necessite XQuartz sur macOS)
+
+###### Compilation ##############
+
+  dune build
+
+Produit la bibliotheque `lerobot` (equivalent de LeRobot.zo) et les
+executables Dessiner et mon_dessin.
+
+###### Interface ################
+
+  dune exec ./Dessiner.exe
+
+###### Dessins personnels #######
+
+Ajouter le nom du fichier (sans .ml) a la stanza `executables` du
+fichier dune, puis `dune build`. Un dessin sauve depuis Dessiner
+(touche Entree, puis y) est ecrit dans mon_dessin.ml au format OCaml :
+
+  open LeRobot
+  let () = begin init_pict (); ce(); ... end
+
+###### Differences avec Caml Light ###
+
+- Les identificateurs de valeurs commencant par une majuscule sont
+  interdits en OCaml ; ils ont ete passes en minuscule :
+    ValOrientation   -> valOrientation
+    InterdireSorties -> interdireSorties
+    LgTl             -> lgTl
+    R_pn, R_av_effect ... (Robot)   -> r_pn, r_av_effect ...
+    G_lg, G_lgX ...       (Grille)  -> g_lg, g_lgX ...
+    RobN, RobNt ...       (Dessin)  -> robN, robNt ...
+  Les champs X et Y du robot sont devenus x et y.
+- Graph : display par defaut ($DISPLAY) au lieu de "gauguin:0".
+- Principal.wait : la boucle de calcul servant de temporisation est
+  remplacee par Unix.sleepf (0 a 90 ms selon la vitesse vt).
+- marquerUnePause / lireCar : courte pause dans la boucle pour que le
+  clignotement reste visible.
+- Les traces de mise au point commentees de Peinture.ml n'ont pas ete
+  reprises ; le test d'arret repete est factorise (test_arret).
+- Le comportement est par ailleurs inchange, y compris ses
+  particularites (vd/vg levent STOP et non Stop sur Echap, Fast_agd
+  rappelle ag, testbornes compare y a bsupx).
+- Fenetre agrandie a 800x700 (555x500 a l'origine) et barre du bas
+  portee a 24 pixels de haut avec un bord superieur de 2 pixels
+  (constantes dimX, dimY, hBar, epBord, yTexteBar dans Graph.ml) :
+  sous XQuartz la police par defaut ne tient pas dans 15 pixels et
+  set_font est sans effet.
+- Dessiner : un clic (ou un deplacement bouton enfonce) amene le robot,
+  sans tracer, au point de la grille le plus proche de la souris ; bouton
+  relache il ne bouge pas. En 1998 il suivait la souris pas a pas des
+  qu'elle bougeait, ce qui le deplacait sans le vouloir.
+- Dessiner : la touche w peint (peindre ; desactivee en 1998) et les
+  changements de couleur (touche *) sont enregistres : ils sont rejoues
+  apres un effacement et sauves dans mon_dessin.ml (cc 0..7, le nom de la
+  couleur en commentaire). La barre du bas indique * :cc w :peindre.
+- Points de la grille (commande dg, touche .) : carres de 2x2 pixels
+  (constante cotePointGrille dans Principal.ml) ; un seul pixel, comme
+  en 1998, est a peine visible sur un ecran Retina.
+- Robot agrandi 3 fois (constante echelleRobot dans Dessin.ml ; les
+  decalages de centrage et la zone sauvegardee sous le robot suivent).
+- Dessiner.ml : finsouris passe a false, un clic souris ne termine
+  plus le dessin (sur un trackpad un simple toucher le terminait).
+  Seule la touche Entree termine (puis y pour sauver dans mon_dessin.ml).
+- LeRobot.ml : les commandes de dessin sont enregistrees, de sorte que
+  st () a la fin d'un programme comme mon_dessin.ml rejoue bien le
+  dessin quand on change la vitesse (+ / -). En 1998 la liste des
+  commandes restait vide hors de Dessiner et le dessin disparaissait.
+- Principal.st : + et - changent seulement la vitesse (en 1998 chaque
+  appui relancait le dessin) ; une autre touche redessine, Echap quitte.
+
+###### Makefile #################
+
+  make              compile (dune build)
+  make Dessiner     lance le dessin interactif (demarre XQuartz si besoin)
+  make mon_dessin   lance mon_dessin.ml
+  make run PROG=x   lance x.ml (x doit figurer dans la stanza executables de dune)
+  ./robot.sh x.ml   compile x.ml sans dune (ocamlfind) et le lance ;
+                    x.ml peut etre n importe ou
+  make manual       compile ../LeRobot_Manual/LeRobot_Manual.pdf
+  make clean        efface _build et les fichiers auxiliaires du manuel
+
+###### Programmes du livre ###########
+
+Les programmes du livre "Premieres lecons de programmation en OCaml"
+sont dans livre/ (un sous-repertoire par chapitre, noms sans accents).
+Ils reprennent tous les programmes de "Premieres lecons de
+programmation en Turbo Pascal" (P., L., R. et T. Cousot, McGraw-Hill,
+1991), dans ../LeRobot Programs TurboPascal ; ceux des chapitres 1 et
+2 et de Didactitiels_et_jeux sont restes dans le style de la
+traduction automatique.
+
+  make run PROG=livre/04_ecriture_compil_execution/Stegosaure
+  make run PROG=livre/20_grille_polaire/LimaconDePascal
+
+Verification des dessins, un programme apres l'autre :
+
+  make verifier                      tous les programmes
+  make verifier DIR=02_interaction   un seul chapitre
+  make verifier DEPUIS=Chiffre4      reprendre a un programme
+
+XQuartz est demarre et mis au premier plan ; le titre de la fenetre
+du robot donne le numero et le nom du programme. Quand le dessin est
+fini, on repond DANS LA FENETRE DU ROBOT (consignes dans la barre du
+bas) : Entree = correct (programme suivant), r = relancer, q ou
+Echap = arreter (la commande pour reprendre est affichee), une autre
+touche commence une remarque, terminee par Entree, notee dans
+verification.txt. Les programmes qui posent des questions (readln)
+les posent dans le terminal. LEROBOT_MUET=1 coupe le son.
+
+La traduction automatique de Turbo Pascal vers OCaml a ete faite une
+fois pour toutes par un traducteur (pascal2ocaml.py, supprime depuis) ;
+Dessiner et Cocotte_errone ont ete traduits a la main, et les programmes
+de livre/ ont ete retouches a la main ensuite.
+
+Correspondances :
+- procedure P; -> let p () = ... ; procedure P(X : integer) -> let p x
+- parametre var -> reference (int ref) ; variables -> references
+  (x := !x + 1) ; for -> for ... done ; repeat ... until c ->
+  while begin ...; not c end do () done ; case -> match
+- function F : la valeur rendue est l'expression, ou !resultat
+- write/writeln/readln : dans le terminal qui a lance le programme
+
+Le module LibRobot.ml (include LeRobot, puis les complements des
+unites Robot1, Robot2 et Robot3 de Turbo Pascal) fournit ce qui manque
+a LeRobot pour ces programmes ; chaque programme commence par
+open LibRobot  :
+- init_pict () : grille de 12 pixels comme en Turbo Pascal (30 dans
+  LeRobot), robot au centre ;
+- couleurs blanc .. noir = numeros 0..7 attendus par cc et cf (les
+  couleurs de LeRobot sont des couleurs Graphics) ;
+- tracerReel / deplacerReel : Tracer et Deplacer de Pascal, en
+  coordonnees reelles du repere (tracer de LeRobot est en pixels) ;
+- ecrire (texte a la position du robot), message avec accents,
+  styleTexte et policeTexte (sans effet) ;
+- bip, biiip, delai, heure, date, random, tickCount, odd, sqr, round,
+  copy, pos, delete, insert, ensembles de caracteres (listes) ;
+- musique de Robot3 : note (hauteur, duree), silence, metronome,
+  nuance, constantes do0/d0 .. si, octave, diese, ronde .. croche...
+  (son par afplay ; LEROBOT_MUET=1 coupe le son) ;
+- interactionTP x y c ... : Interaction de Robot3 (le robot suit la
+  souris ; clic ou Entree pour finir ; x, y = deplacement en carreaux) ;
+- un programme qui finit sans st attend une touche avant de fermer.
+
+Corrections de Principal.ml decouvertes avec ces programmes :
+- rt : angle ramene dans [0, 360[ (au-dela de 270 degres, ou en
+  negatif, lgRT recevait un angle hors de [0, 90] et le robot partait
+  vers l'est) ;
+- tl : une longueur negative fait reculer le robot (elle etait
+  ramenee a 0) ; une grille de longueur nulle n'est plus propagee
+  (division par 0, puis erreur Xlib).
+- peindre : le robot est efface AVANT de lire la couleur du point de
+  depart (sinon on lisait le noir du robot et peindre en blanc une zone
+  blanche ne finissait pas : Couleurs) ; le remplissage par germes de
+  Peinture.ml, qui laissait des zones non peintes (TapisEgyptien) et
+  etait lent, est remplace par Peinture.remplir (remplissage par lignes
+  en memoire, image lue une seule fois).
+- traits epais : X11 arrondit les bouts des traits epais ; le crayon du
+  Macintosh est carre. Principal.trait remplit la trace du carre de cote
+  ec le long du segment (un rectangle pour un trait droit :
+  EpaisseurCrayon).
+- peindre (suite) : le remplissage remet le point courant sous le robot
+  (sinon le trait suivant partait du bout de la derniere ligne peinte :
+  traits parasites dans MotifDapresHoremis) ; si le point derriere le
+  robot est sur le trait (robot dans un coin a 30 ou 60 degres), on part
+  1 ou 2 pixels plus loin (faces noires de PavageCubesDeChristie).
+- lgRT accepte tout angle : lgX = |r cos t|, lgY = |r sin t| (Pentagone_1
+  fait lgRT (L, 144)) ; t n'est plus ramene dans [0, 90].
+- tl 0 ne fait rien (le robot garde sa grille et sa direction :
+  FloconTernaire).
+- tests de bord : la position est arrondie (un robot revenu sur le bord
+  du bas a 25.998 au lieu de 26 etait considere comme sorti : Rapporteur).
+- LibRobot.ml : rt garde la longueur du pas du robot (lgY au nord ou au
+  sud, lgX a l'est ou a l'ouest, la diagonale sinon) : lg 50; pe; rt 15; av
+  trace 50 et non 50 * sqrt 2 (RTsuccessifs, PavageDuDisque, NidDabeilles,
+  PavageDetoiles) ; les programmes commencent en noir (cc noir), pour que
+  peindre reconnaisse les traits ; dp trace un pixel avec le crayon normal
+  (ec 1), un disque avec ec 2 et un carre de cote ec au-dela (crayon carre
+  du Macintosh : PavageDiscretCarresCouleur).
+- sons (LibRobot.ml) : les notes ne sont plus jouees une par une (afplay
+  demarre avec un delai variable : rythme irregulier, surtout au debut des
+  chansons). Elles s'accumulent et sont jouees d'un seul tenant, par un seul
+  afplay, des que le programme fait autre chose (commande du robot, lecture
+  au clavier, st, fin du programme) ; le programme attend la fin du morceau.
+  Les signaux bip et biiip sonnent tout de suite, et lireCar joue d'abord
+  les notes en attente (un bip de refus doit s'entendre pendant la saisie).
+- lectures (readln, lireEntier, lireReel, lireChaine) : la question
+  s'affiche aussi dans la barre du bas de la fenetre du robot, et la
+  reponse peut y etre tapee (Entree pour valider) ou dans le terminal ; les
+  nombres acceptent la rangee du haut d'un clavier AZERTY sans majuscule.
+  interactionTP se termine aussi par toute touche qui n'est pas une
+  commande du robot (Addition_A_Completer : designer une case, taper le
+  chiffre). Les fleches deplacent aussi le robot d'un carreau (voir plus bas).
+  Les lignes ecrites depuis la derniere question (au plus deux) s'affichent
+  avec elle. sortie_terminal := false (Addition_A_Completer) : rien n'est
+  ecrit dans le terminal, tout le dialogue est dans la fenetre du robot.
+- lireCar : un clic ne compte que si le bouton s'enfonce pendant l'attente
+  (XQuartz signale parfois un bouton enfonce : la question recevait
+  aussitot la reponse '0').
+- positions -> pixels : arrondies (Robot.pixel) et non tronquees ; les
+  rangees de PavageHexagonalOndule, a 642.99 puis 617.01, se decalaient
+  d'un pixel et seule la premiere rangee etait peinte.
+- touches fleches (Fleches.ml, fleches_stubs.c) : Graphics ne rend pas
+  les touches qui ne donnent pas de caractere. Une seconde connexion a
+  XQuartz (Xlib) recoit les fleches tapees dans la fenetre du robot. Dans
+  Dessiner, une fleche deplace le robot d'un carreau sans tracer (comme la
+  souris, enregistre en translater (dx,dy) ; la place etait reservee
+  depuis 1998 dans Interaction.ml) ; dans interactionTP aussi
+  (Addition_A_Completer, Apprendre_Repere...). Pour lire aussi les fleches,
+  l'attente des evenements (Fleches.attendre) interroge le clavier et la
+  souris toutes les 10 ms au lieu de bloquer dans wait_next_event.
+  robot.sh passe -I _build/default pour trouver liblerobot_stubs.a.
+- bip-bip (Son.ml) : quand le robot refuse de sortir du cadre (Dessiner,
+  interactionTP), il proteste par deux bips de 880 Hz, joues par afplay
+  sans attendre (LEROBOT_MUET=1 coupe le son), en plus du message
+  ** SORTIE INTERDITE ** dans le terminal.
+
+Didactitiels_et_jeux/Chapeau.ml et PavageDeChapeaux.ml (hors du livre) : le
+« chapeau » de David Smith (2022), tuile unique aperiodique, et un pavage de
+la fenetre par 181 chapeaux (dune build ./livre/Didactitiels_et_jeux/Chapeau.exe).
+Spectre.ml et PavageDeSpectres.ml : le Spectre (2023), tuile unique
+aperiodique qu'il n'est jamais necessaire de retourner, et un pavage de la
+fenetre par 204 Spectres.

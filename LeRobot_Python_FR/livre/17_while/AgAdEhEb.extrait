@@ -1,0 +1,29 @@
+# Définition de la commande ag
+def auBordOuest():
+    lc(); pw()
+    while not tb():
+        av()
+
+def alOuest():
+    if tn():
+        auBordOuest(); pn()
+    elif tne():
+        auBordOuest(); pne()
+    elif te():
+        auBordOuest(); pe()
+    elif tse():
+        auBordOuest(); pse()
+    elif ts():
+        auBordOuest(); ps()
+    elif tsw():
+        auBordOuest(); psw()
+    elif tw():
+        auBordOuest()
+    else:
+        auBordOuest(); pnw()
+
+def ag():
+    if valBc():
+        alOuest(); bc()
+    else:
+        alOuest()

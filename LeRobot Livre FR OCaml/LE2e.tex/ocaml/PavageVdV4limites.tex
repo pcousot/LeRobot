@@ -1,0 +1,53 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Pavage\ irrégulier\ dans\ le\ style\ de\ M.\ C.\ Escher,}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt inspiré\ d\textquotesingle{}un\ motif\ de\ N.\ J.\ van\ de\ Vecht.\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Motif\ de\ N.\ J.\ van\ de\ Vecht,\ le\ robot\ partant\ en}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt haut\ à\ gauche\ et\ arrivant\ en\ bas\ à\ gauche\ orienté}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt vers\ le\ nord.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ motif\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt pqtd\ ();\ avf\ 4;\ pqtd\ ();\ avf\ 3;\ pqtd\ ();\ av\ ();\ pqtd\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt avf\ 3;\ pdt\ ();\ avf\ 3;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt av\ ();\ pqtd\ ();\ av\ ();\ pqtg\ ();\ av\ ();\ pqtg\ ();\ av\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt pqtd\ ();\ av\ ();\ pqtd\ ();\ avf\ 3;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt pqtd\ ();\ av\ ();\ pqtd\ ();\ av\ ();\ pqtg\ ();\ av\ ();\ pqtg\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt av\ ();\ pqtd\ ();\ av\ ();\ pqtd\ ();\ avf\ 3;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt pdt\ ();\ avf\ 3;\ pqtd\ ();\ avf\ 3;\ lc\ ();\ pdt\ ();\ avf\ 6;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt pdt\ ();\ bc\ ()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ une\ colonne\ de\ motifs\ de\ hauteurs\ 2,\ 4,\ 6,}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt 8,\ 10,\ 8,\ 6,\ 4,\ 2,\ le\ robot\ partant\ en\ haut\ à\ gauche\ et}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt arrivant\ en\ bas\ à\ droite\ (c\textquotesingle{}est{-}à{-}dire\ en\ bas\ à}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt gauche\ de\ la\ colonne\ suivante)\ orienté\ vers\ le\ nord.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ colonne\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lgY\ 1.;\ eh\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 5\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lgY\ (float\_of\_int\ (2\ *\ i));\ motif\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 4\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lgY\ (float\_of\_int\ (10\ {-}\ (2\ *\ i)));\ motif\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt pqtd\ ();\ avf\ 4;\ pqtg\ ()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ un\ pavage\ irrégulier\ constitué\ de\ colonnes}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt de\ largeurs\ 0,\ 2,\ 4,\ 6,\ ...,\ 14,\ 16,\ 14,\ ...,\ 2,\ 0.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ pavage\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lgX\ 1.;\ ag\ ();\ lgX\ 0.;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 8\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt colonne\ ();\ lgX\ (float\_of\_int\ (2\ *\ i))}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 8\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt colonne\ ();\ lgX\ (float\_of\_int\ (16\ {-}\ (2\ *\ i)))}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt colonne\ ()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt pavage\ ();\ st\ ()}}\par
+
+\medskip }

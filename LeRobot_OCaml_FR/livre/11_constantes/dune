@@ -1,0 +1,2 @@
+(executables (names CroixDeMalte_1 CroixDeMalte_2 HeliceSinguliere Canardeau)
+ (libraries lerobot) (flags (:standard -w -35)))

@@ -1,0 +1,45 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ un\ pavage\ de\ roues\ dentées}}\par
+\vspace{\neglskip}\mbox{\blc {\idt tailleGrille\ =\ 10}}\par
+\vspace{\neglskip}\mbox{\blc {\idt nombreDeMotifsParLigne\ =\ 7}}\par
+\vspace{\neglskip}\mbox{\blc {\idt nombreDeLignes\ =\ 14}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Avancer\ le\ robot\ tout\ droit,\ jusqu\textquotesingle{}à\ deux\ carreaux}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ du\ bord\ nord\ du\ cadre.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ enHaut():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt eh();\ pdt();\ avf(2)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ le\ motif\ du\ pavage}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ roueDentee():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(4):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt av();\ pqtd();\ vd();\ pqtg();\ vg();\ pqtg()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pavage():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ l\ }{\mcl in}{\idt \ range(1,\ nombreDeLignes\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt lc();\ enHaut();\ ag()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt avf(l);\ pqtg();\ av()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Décalage\ en\ début\ de\ ligne}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl if}{\idt \ l\ \%\ 5\ ==\ 2:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt avf(2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl elif}{\idt \ l\ \%\ 5\ ==\ 3:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt avf(4)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl elif}{\idt \ l\ \%\ 5\ ==\ 4:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt av()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl elif}{\idt \ l\ \%\ 5\ ==\ 0:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt avf(3)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Dessiner\ une\ ligne\ de\ motifs}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pqtg();\ bc()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(nombreDeMotifsParLigne\ {-}\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt roueDentee()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt translater(5,\ 0)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt roueDentee()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt lg(tailleGrille);\ pavage();\ st()}}\par
+
+\medskip }

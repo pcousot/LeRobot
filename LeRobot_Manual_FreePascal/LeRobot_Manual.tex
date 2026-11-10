@@ -1,0 +1,388 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  rulecolor=\color{gray!50},
+  backgroundcolor=\color{gray!8},
+  breaklines=true,
+  upquote=true,
+  showstringspaces=false,
+  extendedchars=true,
+  inputencoding=utf8,
+  literate={é}{{\'e}}1 {è}{{\`e}}1 {à}{{\`a}}1 {ç}{{\c c}}1 {É}{{\'E}}1,
+  xleftmargin=0.5em,
+  xrightmargin=0.5em
+}
+\setlength{\emergencystretch}{3em}
+\newcommand{\kbd}[1]{\texttt{#1}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+\title{LeRobot (Free Pascal) User Manual}
+\author{}
+\date{9 November 2026}
+
+\begin{document}
+\maketitle
+
+LeRobot is a drawing robot you steer on screen: either live, with the mouse
+and keyboard (Dessiner), or by writing a short Pascal program of robot
+commands (such as \kbd{Dessin\_du\_Robot.p}). This version compiles the
+Turbo Pascal programs of the 1991 book \emph{Premières leçons de
+programmation en Turbo Pascal} (Macintosh) with Free Pascal, unchanged, and
+runs them in the robot window of the OCaml and Python versions, with the
+same behaviour. It lives in
+the folder \kbd{LeRobot\_FreePascal\_FR} of the \kbd{LeRobot} folder, which can
+be anywhere (commands below are typed in a Terminal window opened in the
+\kbd{LeRobot} folder); the installation
+is described in the \emph{LeRobot (Free Pascal) Installation Manual}
+(\kbd{LeRobot\_Install.pdf}).
+
+\tableofcontents
+
+%======================================================================
+\section{Getting started}
+
+You need Free Pascal (\kbd{fpc}), a Python linked to Tk 8.6 or later (for
+example the one from python.org), and the folders \kbd{LeRobot\_FreePascal\_FR}
+and \kbd{LeRobot\_Python\_FR} side by side (see the installation manual). There
+is no XQuartz: the robot window is an ordinary macOS window.
+
+There are two ways to start a program:
+\begin{itemize}
+\item \textbf{The application} \kbd{LeRobotFreePascal.app} (in
+  \kbd{LeRobot\_FreePascal\_FR}): double-click it to run Dessiner; drop a
+  \kbd{.p} file on its icon to compile and run that program.
+\item \textbf{The script} \kbd{robot.sh}, in a Terminal window opened in
+  \kbd{LeRobot\_FreePascal\_FR}: \kbd{./robot.sh path/to/Program.p}. The
+  program can be in any folder.
+\end{itemize}
+Both compile the program with Free Pascal (the compiler messages appear
+only if there is an error), then run it. The compiled programs are kept in
+the folder \kbd{\_build}, which can be deleted at any time.
+
+\paragraph{How it works.} The Macintosh of 1991 drew with QuickDraw, which
+does not exist any more. The units \kbd{Robot1}, \kbd{Robot2} and
+\kbd{Robot3} of this version send each command of the program (\kbd{av},
+\kbd{lg(12)}, \dots) to the robot window of the Python version, which draws
+it and answers. The program itself is an ordinary compiled Pascal program:
+\kbd{write}, \kbd{writeln} and \kbd{readln} use the Terminal window.
+
+The robot window is $800 \times 700$ points. The large white area is where
+the robot draws; the strip along the bottom is the message bar.
+
+%======================================================================
+\section{Part 1 --- Interactive drawing (Dessiner)}
+
+In Dessiner you give the robot commands with single keys and move it with
+the mouse or the arrow keys; press Enter when you are done, then \kbd{y} to
+save the drawing as a Pascal program.
+
+\subsection{Launch}
+Double-click \kbd{LeRobotFreePascal.app}, or:
+\begin{lstlisting}[language=bash]
+cd LeRobot_FreePascal_FR
+./robot.sh livre/Didactitiels_et_jeux/Dessiner.p
+\end{lstlisting}
+\kbd{Dessiner.p} is the program of 1991: it calls the procedure
+\kbd{interaction} of the robot with the drawing and saving options. The
+robot appears in the centre, pointing north. The window comes to the front
+with the keyboard focus; if keys do nothing, click in the window.
+
+\subsection{The window}
+\begin{itemize}
+\item \textbf{Drawing area} --- the large white area.
+\item \textbf{Message bar} (bottom) --- a reminder of the keys, ending with
+  \kbd{* :cc w :peindre\ \ Entree :fin}.
+\item \textbf{Colour box} (small robot near the right of the bar) --- shows
+  the current pen colour.
+\item \textbf{Enter icon} (far right) --- the Enter symbol; it blinks when
+  the robot waits for a key.
+\end{itemize}
+
+\subsection{Moving the robot with the mouse or the arrow keys}
+Click on a grid point (or move the pointer with the button held down) and
+the robot jumps to the nearest grid point, without drawing. The arrow keys
+move it one grid step left, right, up or down, also without drawing. When
+the pointer moves with the button released, the robot does not move.
+
+If the robot would go past the edge of the drawing area, it stays where it
+is and the terminal prints \kbd{** SORTIE INTERDITE ** translater}
+(``forbidden exit''), with a beep-beep. This is only a warning.
+
+\subsection{Keyboard commands}
+The robot draws only when its pen is down (\kbd{b}; it is down at the
+start). One step is one grid square.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{@{}l l L@{}}
+\toprule
+\textbf{Key} & \textbf{Command} & \textbf{What it does} \\
+\midrule
+\kbd{b} & bc & Pen down: the robot draws as it moves \\
+\kbd{l} & lc & Pen up: the robot moves without drawing \\
+\kbd{a} & av & Move forward one step \\
+\kbd{)} & vd & Curved turn to the right (draws an arc) \\
+\kbd{(} & vg & Curved turn to the left (draws an arc) \\
+\kbd{+} & pqtd & Quarter turn right ($90^\circ$) \\
+\kbd{-} & pqtg & Quarter turn left ($90^\circ$) \\
+\kbd{d} & phtd & Eighth turn right ($45^\circ$) \\
+\kbd{g} & phtg & Eighth turn left ($45^\circ$) \\
+\kbd{c} & dc & Draw a small cross (+) \\
+\kbd{p} & dp & Draw a point \\
+\kbd{.} & dg & Draw the grid points \\
+\kbd{*} & cc & Next pen colour (shown in the colour box) \\
+\kbd{w} & peindre & Paint the closed area behind the robot with the pen colour \\
+Arrow keys & translater & Move one step left, right, up or down, without drawing \\
+Backspace & --- & Undo the last command \\
+Enter & --- & Finish the drawing \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Colours cycle in this order: white, yellow, blue, violet, green, red,
+indigo, black. To paint, put the robot so that its back is inside a closed
+area, then press \kbd{w}.
+
+\subsection{Finishing and saving}
+\begin{enumerate}
+\item Press \textbf{Enter}. The bar asks:
+  \emph{Voulez-vous sauver dans \dots/Dessin\_du\_Robot.p ? (y/n)}
+\item Press \kbd{y} to save. Every command you used, including mouse and
+  arrow moves (written as \kbd{translater(dx, dy)}) and colour changes
+  (written as \kbd{cc(n)} with the colour name in a comment), is written to
+  \kbd{Dessin\_du\_Robot.p} as a Pascal program (see Part~2), and the
+  window closes. The Terminal prints the command to replay it.
+\item Press any other key to close without saving.
+\end{enumerate}
+Saving always overwrites \kbd{Dessin\_du\_Robot.p}, in the
+\kbd{LeRobot\_FreePascal\_FR} folder. To keep an earlier drawing, copy that
+file under another name first.
+
+%======================================================================
+\section{Part 2 --- Running a robot program}
+
+A robot program is a Pascal program that uses the unit \kbd{Robot1} and
+lists robot commands in order. It draws the picture by itself, then waits
+so you can replay it at another speed or close it with Esc.
+
+\subsection{Run Dessin\_du\_Robot.p}
+\begin{lstlisting}[language=bash]
+cd LeRobot_FreePascal_FR && ./robot.sh Dessin_du_Robot.p
+\end{lstlisting}
+or drop \kbd{Dessin\_du\_Robot.p} on \kbd{LeRobotFreePascal.app}. A saved
+drawing looks like this:
+\begin{lstlisting}[language=Pascal]
+{$mode macpas}
+program Dessin_du_Robot;
+ uses Robot1, Robot2;
+ { Mon joli dessin, engendre par Dessiner }
+begin
+ ce;
+ av; av; pqtd; av; av; cc(2); { bleu }
+ av; translater(5, 3); av; vg; av; st;
+end.
+\end{lstlisting}
+
+\subsection{Write your own program}
+Create a file anywhere, for example \kbd{Maison.p}:
+\begin{lstlisting}[language=Pascal]
+program Maison;
+ uses Robot1;
+ { Dessiner un carre }
+begin
+ av; av; pqtd; av; av; pqtd;
+ av; av; pqtd; av; av; pqtd;
+ st;
+end.
+\end{lstlisting}
+Run it with \kbd{./robot.sh path/to/Maison.p} from the
+\kbd{LeRobot\_FreePascal\_FR} folder, or drop it on \kbd{LeRobotFreePascal.app}.
+
+Every program follows the same pattern:
+\begin{itemize}
+\item \kbd{uses Robot1;} after the \kbd{program} line. All the commands are
+  in \kbd{Robot1}; \kbd{Robot2} and \kbd{Robot3} (sounds, texts, input in
+  1991) are empty and may be listed too, as in the programs of the book.
+  The window opens at the first command, with the robot in the centre,
+  pointing north, pen down, in black, with a grid of 12 points.
+\item The robot starts with its pen down, so every move draws: call
+  \kbd{lc} to move without drawing, and \kbd{bc} to draw again.
+\item \kbd{st} last: shows the speed screen and keeps the window open.
+  Without it, the bar says \emph{Fin du programme : taper une touche ou
+  cliquer} and the window closes at the next key or click.
+\item Commands without arguments are written without parentheses
+  (\kbd{av}, not \kbd{av()}); commands are separated by \kbd{;}. Pascal
+  does not distinguish upper and lower case: \kbd{AV}, \kbd{Av} and
+  \kbd{av} are the same command.
+\item The program may be written in UTF-8 (accents allowed in strings and
+  comments) or come from the Macintosh of 1991 (MacRoman encoding, Mac
+  units such as \kbd{Memtypes}, \kbd{Quickdraw}): \kbd{robot.sh} converts
+  the latter first, into \kbd{\_build/convertis}, without changing the
+  original. The line numbers of the error messages stay those of the
+  original.
+\end{itemize}
+
+\subsection{Errors}
+\begin{itemize}
+\item \textbf{Compilation errors} are found by Free Pascal before the
+  program runs; the window does not open. The message gives the line and
+  column:
+\begin{lstlisting}
+Maison.p(5,2) Error: Identifier not found "avv"
+Maison.p(5,2) Error: Wrong number of parameters specified for call to "av"
+\end{lstlisting}
+\item \textbf{Leaving the window}: when the robot would go past the edge,
+  the program stops with a beep-beep and the Terminal prints
+  \kbd{Erreur : le robot sortirait du cadre (av)}; the window stays open
+  to show the drawing made so far.
+\end{itemize}
+
+\subsection{Programs of the book}
+The folder \kbd{livre} holds the 407 programs of the book, one subfolder per
+chapter (the same names as in the OCaml and Python versions):
+\begin{lstlisting}[language=bash]
+./robot.sh livre/20_grille_polaire/LimaconDePascal.p
+./verifier.sh                         # all programs, one after the other
+./verifier.sh 02_interaction          # one chapter
+./verifier.sh '' FriseDeTriangles     # resume at a program
+\end{lstlisting}
+With \kbd{verifier.sh}, answer in the robot window when a drawing is
+finished: Enter = correct (next program), \kbd{r} = run it again, \kbd{q}
+or Esc = stop (the command to resume is printed), any other key starts a
+remark, ended by Enter, noted in \kbd{verification.txt}. Compilation errors
+are noted there too (\kbd{Cocotte-errone.p} has one on purpose, as in the
+book). A program that never ends by itself (\kbd{Boucle1}, \kbd{Boucle2},
+\kbd{MontreDigitale}) is stopped with Esc. Programs that ask questions
+(\kbd{readln}) ask them in the Terminal: click in the Terminal window to
+answer. \kbd{LEROBOT\_MUET=1} turns the sound off.
+
+The programs are the Macintosh programs of 1991, converted once by \kbd{outils/convertir.py} (UTF-8, units of the robot, directive
+\kbd{\{\$mode macpas\}} for the Macintosh dialect of Pascal); their text is
+unchanged. Some of them were changed later in the OCaml and Python editions
+of the book, so a few drawings differ from those versions.
+
+\subsection{Replaying at another speed}\label{sec:replay}
+When the program reaches \kbd{st}, the bar shows:
+\begin{lstlisting}
++ : plus vite   - : moins vite   vitesse : N     autre touche : redessiner   Echap : quitter
+\end{lstlisting}
+\begin{itemize}
+\item \kbd{+} / \kbd{-} --- change the speed from 0 to 10 (default 10, the
+  fastest). Only the number changes.
+\item Any other key, for example the space bar --- clear the window and
+  redraw at the chosen speed; the speed screen comes back when it is done.
+\item Esc --- close the window.
+\end{itemize}
+At speed 1 each command takes about 0.1\,s. Speed 0 is step-by-step mode:
+the robot does one command each time you press a key. While the robot
+draws, Esc (or \kbd{\S} or \kbd{\#}) stops the program.
+
+\subsection{Command reference}
+One step is one grid square. Commands are in French; the table gives the
+English meaning. The numbers in brackets are parameters (\kbd{integer} or
+\kbd{real}); \kbd{var} parameters receive a result.
+
+\begin{longtable}{@{}p{0.42\linewidth} p{0.53\linewidth}@{}}
+\toprule
+\textbf{Command} & \textbf{Meaning} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\kbd{av} & Move forward one step \\
+\kbd{avf(n)} & Move forward $n$ steps (backwards if $n < 0$) \\
+\kbd{vd} / \kbd{vg} & Curved turn right / left (draws an arc) \\
+\kbd{phtd} / \kbd{phtg} & Turn $45^\circ$ right / left \\
+\kbd{pqtd} / \kbd{pqtg} & Turn $90^\circ$ right / left \\
+\kbd{p3htd} / \kbd{p3htg} & Turn $135^\circ$ right / left \\
+\kbd{pdt} & Turn around ($180^\circ$) \\
+\kbd{pn} \kbd{pne} \kbd{pe} \kbd{pse} \kbd{ps} \kbd{psw} \kbd{pw} \kbd{pnw} & Face N, NE, E, SE, S, SW, W, NW \\
+\kbd{pivoter(n)} & Face direction $n$ (\kbd{nord} = 0, \kbd{nordEst} = 1 \dots\ \kbd{nordOuest} = 7) \\
+\kbd{rt(a)} & Turn by $a$ degrees (anticlockwise), keeping the step length \\
+\kbd{bc} / \kbd{lc} & Pen down / pen up \\
+\kbd{dp} / \kbd{dc} & Draw a point (a square of side \kbd{ec}) / a small cross \\
+\kbd{cc(n)} & Pen colour $n$ (\kbd{blanc} = 0, \kbd{jaune}, \kbd{bleu}, \kbd{violet}, \kbd{vert}, \kbd{rouge}, \kbd{indigo}, \kbd{noir} = 7) \\
+\kbd{ec(n)} & Pen thickness $n$ (a square pen, as on the Macintosh) \\
+\kbd{cf(n)} & Clear the window and fill it with background colour $n$ \\
+\kbd{peindre} & Paint the closed area behind the robot with the pen colour \\
+\kbd{translater(dx, dy)} & Move $dx$ steps across and $dy$ steps up, without drawing \\
+\kbd{tracer(x, y)} & Go to window pixel $(x, y)$, drawing if the pen is down \\
+\kbd{deplacer(x, y)} & Go to grid point $(x, y)$, counted from the centre \\
+\kbd{tl(l)} & Move forward $l$ points, the grid following the robot \\
+\kbd{ce} & Go to the centre \\
+\kbd{eh} \kbd{eb} \kbd{ad} \kbd{ag} & Go to the top, bottom, right or left edge \\
+\kbd{dg} & Draw the grid points \\
+\kbd{lg(x)} / \kbd{lgX(x)} / \kbd{lgY(x)} & Set the step size (both directions / across / up) \\
+\kbd{lgRT(r, t)} & Step of length $r$ at angle $t$ (polar grid) \\
+\kbd{montrerRobot} / \kbd{cacherRobot} & Show / hide the robot \\
+\kbd{autoriserSorties} / \kbd{interdireSorties} & Allow / forbid moving past the window edge \\
+\kbd{vt(n)} & Set the speed (0 to 10) \\
+\kbd{pp} / \kbd{ex} & Step-by-step mode / full speed \\
+\kbd{message('text')} & Write a message in the bottom bar \\
+\kbd{ecrire('text')} & Write a text at the robot's position \\
+\kbd{entierEnChaine(n)}, \kbd{reelEnChaine(x)} & A number as a string, for \kbd{message} and \kbd{ecrire} \\
+\kbd{lireCar(c)} & Wait for a key in the robot window; its character is put in \kbd{c} (a \kbd{var} parameter of type \kbd{char}) \\
+\kbd{interaction(x, y, c, \dots)} & Let the user move the robot (see \kbd{Dessiner.p}) \\
+\kbd{note(h, d)}, \kbd{silence(d)}, \kbd{bip} & Play a note, a rest, a beep \\
+\kbd{delai(t)} & Wait $t$ seconds \\
+\kbd{heure(h, m, s)}, \kbd{date(j, m, a)} & The time, the date (\kbd{var} parameters) \\
+\kbd{write}, \kbd{writeln}, \kbd{readln} & Write and read in the Terminal (standard Pascal) \\
+\kbd{st} & End: show the speed screen \\
+\end{longtable}
+
+Test functions such as \kbd{tb} (would the next step leave the window?)
+and the values \kbd{valX}, \kbd{valLgX}, \kbd{valOrientation}, \dots\ are
+listed with all the other commands, constants (colours, directions, notes)
+and their parameter types in the interface of
+\kbd{unites/Robot1.pas}. The architecture and the conversion of the
+programs are described in the \kbd{README.md} file of
+\kbd{LeRobot\_FreePascal\_FR}.
+
+%======================================================================
+\section{Troubleshooting}
+
+\begin{longtable}{@{}p{0.27\linewidth} p{0.33\linewidth} p{0.34\linewidth}@{}}
+\toprule
+\textbf{Symptom} & \textbf{Cause} & \textbf{Fix} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\emph{Prog.p(5,2) Error: Identifier not found "avv"} & A command misspelled (or a missing \kbd{uses Robot1;}) & Correct line 5, column 2 \\
+\addlinespace
+\emph{Wrong number of parameters specified for call to "av"} & \kbd{av()} or \kbd{av(3)} written for \kbd{av} & Write \kbd{av} without parentheses, or \kbd{avf(3)} \\
+\addlinespace
+\emph{Erreur : le robot sortirait du cadre (av)} & The robot was asked to move past the window edge & Change the program, or call \kbd{autoriserSorties} \\
+\addlinespace
+\kbd{** SORTIE INTERDITE ** translater} in the terminal & In Dessiner, a move past the window edge & Only a warning \\
+\addlinespace
+The program never ends & An endless loop (\kbd{while true}, \kbd{repeat \dots\ until false}, endless recursion) & Press Esc in the robot window \\
+\addlinespace
+The program waits and the window shows nothing new & It asks a question with \kbd{readln} in the Terminal & Click in the Terminal window and answer \\
+\addlinespace
+Keys do nothing in the window & The window does not have keyboard focus & Click in the window \\
+\addlinespace
+Digits are not accepted & French AZERTY keyboard: the top row gives \& é " \dots\ without Shift & For \kbd{lireCar}, use Shift or the numeric keypad \\
+\addlinespace
+\emph{Ce programme doit etre lance par robot.sh} & The compiled program was started by itself & Use \kbd{./robot.sh Prog.p} or \kbd{LeRobotFreePascal.app} \\
+\addlinespace
+A saved drawing was lost & Saving from Dessiner always overwrites \kbd{Dessin\_du\_Robot.p} & Copy it under a new name before saving again \\
+\addlinespace
+Text font cannot be changed & \kbd{policeTexte} and \kbd{styleTexte} have no effect & None; texts use Helvetica 13 \\
+\end{longtable}
+
+\end{document}

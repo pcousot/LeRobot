@@ -1,0 +1,1 @@
+(executables (names CroixGrecque_1 CroixGrecque_2 Nombre888_1 Nombre888_2 EtoileAstroidale PivotementsDuRobot CroixPotencee CroixDouble CroixPapale CroixTreflee CroixDeSaintAndre Loupe DoubleCarreCrante) (libraries lerobot))

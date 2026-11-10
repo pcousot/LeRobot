@@ -1,0 +1,2 @@
+(executables (names CouronnesLosangiques Echiquier1 PavageTriangulaireDuCarre)
+ (libraries lerobot) (flags (:standard -w -35)))

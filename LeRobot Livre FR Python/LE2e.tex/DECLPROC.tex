@@ -1,0 +1,289 @@
+Nous avons appris au chapitre \ref{ch:proc-pascal} à déclarer et à appeler des procédures sans paramètres
+nous permettant de répéter plusieurs fois la même séquence de commmandes du
+\robot\ à des endroits différents dans le programme. Au chapitre \ref{ch:appel} nous avons
+utilisé des commandes du \robot\ qui sont des appels de procédures avec paramètres,
+l'usage d'un ou plusieurs paramètres per\-met\-tant à la procédure de faire des séquences
+de commandes similaires mais différentes selon la valeur des paramètres. Nous allons maintenant
+voir comment déclarer des procédures avec paramètres en \python. Commençons
+par un exemple simple~:
+
+\bigskip
+
+ {\raggedright 
+ {}\hfill\vbox to 0pt{\vspace*{\baselineskip}\vspace*{3cm}
+ \includevspacePostScript[-\baselineskip]{CarrePointille}{0.3}{0.3}}\hspace*{30mm}%
+ \label{prog:CarrePointille}
+ \input python/CarrePointille.tex
+ }
+La procédure {\idt traitPointille} permet de tracer un trait en pointillé cons\-ti\-tué par une succession de
+{\idt n} pixels noirs séparés par $(${\idt n}$ - 1)$ pixels blancs, le nom\-bre {\idt n} de points étant
+passé en paramètre de cette procédure. Dans la déclaration `{\mcl def}\ {\idt traitPointille(n):}',
+le paramètre {\idt n} est écrit entre les parenthèses qui suivent le nom de la procédure,
+parenthèses qui restent vides {\idt ()} pour les procédures sans paramètres. Il n'est pas nécessaire d'indiquer que {\idt n} est
+un nombre entier~: \python\ ne le demande pas, et c'est seulement au moment de l'exécution,
+en calculant l'expression {\idt n - 1}, qu'il utilise la valeur de {\idt n}.
+La procédure {\idt carre} permet de dessiner un carré
+en pointillé, le nombre {\idt p} de points par côté étant passé en paramètre. L'appel {\idt carre(30)}
+indique qu'il faut exécuter la procédure {\idt carre} avec un paramètre {\idt p} égal à 30. De ce fait la
+procédure {\idt traitPointille} est appelée quatre fois avec un paramètre {\idt n} égal à {\idt p} soit
+30. On dit que {\idt p} est le {\em paramètre formel}\index{Paramètre formel}  (dont on ne connaît pas encore la valeur
+au moment de la déclaration de la procédure et que l'on désigne par un identificateur) et que 
+30 est le {\em paramètre effectif}\index{Paramètre effectif} (c'est-à-dire
+la valeur du paramètre formel pour cet appel de la procédure).
+
+De manière générale, les déclarations et appels de procédures avec pa\-ra\-mè\-tres ont  la forme
+suivante~:
+
+\index{Paramètre formel}\index{Déclaration de procédure}\index{Identificateur}
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Déclaration de procédure avec paramètres~:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ \cmt \#\ \small\rm Spécification : ce que fait la procédure}\par 
+\mbox{\blc\ \ \ \mcl def\blc\hspace{0.3em}\blanc\hspace{0.3em}\idt nomDeLaProcedure(%
+paramFormel1\footnote{\ Un paramètre formel est un identificateur.},\ paramFormel2,\ \dots):}\par 
+\mbox{\blc\ \ \ \ \ \ \ \small\rm \ldots\ Instructions du corps de la procédure%
+\footnote{\ Les expressions  figurant dans ces instructions peuvent utiliser les paramètres formels
+{\idt paramFormel1}, \ldots\ de la procédure.}
+ (indentées) \ldots}\par 
+\medskip}
+\end{minipage}\\ \hline 
+\end{tabular}
+\end{center}
+
+\index{Paramètre effectif}\index{Appel de procédure}
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Appel de procédure avec paramètres~:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ \idt nomDeLaProcedure(paramEffectif1%
+\footnote{\ Un paramètre effectif est une expression entière (ou une couleur, etc.).},\ paramEffectif2,\ \dots%
+\footnote{\ Les paramètres effectifs sont donnés dans l'ordre où apparaissent les pa\-ra\-mè\-tres
+formels correspondants.})}\par 
+\medskip}
+\end{minipage}\\ \hline 
+\end{tabular}
+\end{center}
+
+On remarquera que les paramètres, formels dans la déclaration de procédure comme effectifs
+dans l'appel de procédure, sont placés entre parenthèses et séparés par des
+virgules. Par exemple pour dessiner un rectangle de hauteur 3 et de largeur 4 avec la 
+procédure {\idt rectangle} déclarée par `{\mcl def}\ {\idt rectangle(hauteur,\ largeur):}' dans le programme
+{\idt MacintoshSE.py} du dossier 
+{\idt livre/\allowbreak 13\_decl\_procedure\_avec\_parame}, on écrit {\idt rectangle(3,\ 4)}.
+Si l'on oublie les parenthèses en écrivant {\idt rectangle\ 3,\ 4}, \python\ refuse le programme
+avant de l'exécuter avec le message `{\tt SyntaxError: invalid syntax}' (erreur de syntaxe).
+Un paramètre effectif peut être une expression,
+comme dans {\idt demiCercleDroit(2\ *\ tailleGrille)} (page \pageref{prog:HeliceEnCouleur})
+ou {\idt avf(-3)}~: elle est calculée avant l'appel de la procédure. Attention à bien placer
+la parenthèse fermante~: {\idt demiCercleDroit(2)\ *\ tailleGrille} serait
+compris comme la multiplication par {\idt tailleGrille} du résultat de l'appel {\idt demiCercleDroit(2)}, 
+ce qui n'a pas de sens. Après avoir dessiné le demi-cercle, \python\ s'arrête avec le message~:
+`{\tt TypeError: unsupported operand type(s) for *: 'NoneType' and 'int'}'
+(types d'opérandes non permis pour {\idt *}~: {\idt NoneType} et entier). {\idt NoneType} est le type
+de la valeur {\mcl None} (`rien' en anglais) que rend un appel de procédure.
+
+Le nombre de paramètres effectifs doit être égal au nombre de paramètres formels.
+Si l'on écrit {\idt rectangle(3)}, \python\ s'arrête, quand le \robot\ arrive à cet appel,
+avec le message
+`{\tt TypeError: rectangle() missing 1 required positional argument: 'largeur'}'
+(il manque à {\idt rectangle()} un paramètre obligatoire~: {\idt largeur}) et si l'on écrit
+{\idt rectangle(3,\ 4,\ 5)}, avec le message
+`{\tt TypeError: rectangle() takes 2 positional arguments but 3 were given}'
+({\idt rectangle()} prend 2 paramètres mais 3 ont été donnés).
+
+
+Une procédure avec 
+paramètres formels peut être appelée plusieurs fois dans un programme avec des 
+pa\-ra\-mè\-tres effectifs
+qui peuvent être différents à chaque fois.
+
+Les paramètres formels d'une procédure sont des noms {\em locaux} à la procédure~: ils ne sont utilisables que dans le
+corps de la procédure (ailleurs, \python\ répondrait par exemple
+`{\tt NameError: name 'hauteur' is not defined}'). Par conséquent des procédures différentes peuvent avoir des
+paramètres formels portant le même nom bien qu'il s'agisse de paramètres différents. 
+
+Ces différents 
+points sont illustrés dans l'exemple ci-dessous.
+
+\begin{exemple}[Spirale segmentée]{\rm
+~Le programme ci-dessous dessine une spirale constituée de paires de segments de droite
+de longueurs successives 1, 2, 3, \ldots, 19~:
+
+\newpage
+ {\raggedright 
+ \mbox{}\hspace*{40mm}\vbox to 0pt{\vspace*{\baselineskip}\vspace*{4cm}
+\includevspacePostScript[-\baselineskip]{SpiraleSegmentee}{0.7}{0.7}}
+ \input python/SpiraleSegmentee.tex
+ }
+\noindent $\Box$ }
+\end{exemple}
+
+
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercices}{Écrire des programmes \python\ comportant des procédures avec
+paramètres pour réaliser les dessins suivants~:
+
+\tiret la croix à trois branches transversales, l'hélice coloriée, le mi\-cro-\-or\-di\-na\-teur,
+le logo en couleur, la chenille (où le nombre
+d'anneaux du corps de la chenille est passé en paramètre de la procédure de dessin), la pirogue 
+(où le nombre de rameurs est un paramètre) représentés à la page \pageref{fig:crx3b}$\:$;
+
+\tiret les carrés inscrits les uns dans les autres
+ou la version peinte de ce dessin représenté à la figure \ref{fig:carinspt} (page \pageref{fig:carinspt})$\:$;
+
+\tiret l'arabesque inspirée par la coupole du mausolée du Sultan
+         Qayt-\-Bay re\-pré\-sen\-tée à la figure \ref{fig:arab2} (page \pageref{fig:arab2})$\:$;
+
+\tiret la péniche de la figure \ref{fig:transports} (page \pageref{fig:transports}) où le nombre
+         de hublots est donné en paramètre$\:$;
+
+\tiret le pavage de Golomb de la figure \ref{fig:golomb} (page \pageref{fig:golomb}).
+
+\noindent $\Box$}\end{exercices}
+\twocolumn
+\begin{figure}[h]
+%\hspace{-3.363cm} 
+\includevspacePostScript[4.9cm]{Arabesque2}{0.95}{0.95}
+ \caption{Arabesque}\label{fig:arab2}
+\end{figure}
+\vfill
+\begin{figure}[h]
+%\hspace{-3.363cm} 
+\includevspacePostScript[0.0cm]{HeliceEnCouleur}{0.95}{0.95}
+ \caption{Hélice coloriée}
+ %\label{fig:helice}
+\end{figure}
+\vfill
+\begin{figure}[h]
+%\hspace{-3.363cm} 
+\includevspacePostScript[0.0cm]{MacintoshSE}{0.95}{0.95}
+ \caption{Ancien micro-ordinateur}
+ %\label{fig:MacSE}
+\end{figure}
+\mbox{}
+\newpage
+\begin{figure}[!h]
+%\hspace{-3.363cm} 
+\includevspacePostScript[5.3cm]{LogoEnCouleur}{0.95}{0.95}%
+\caption{Logo en couleur}%
+%\label{fig:Logoc}
+\end{figure}
+\begin{figure}[!h]
+%\hspace{-3.363cm} 
+\includevspacePostScript[1.0cm]{Chenille}{0.95}{0.95}%
+\caption{Chenille}%
+%\label{fig:chenille}
+\end{figure}
+\begin{figure}[!h]
+%\hspace{-3.363cm} 
+\includevspacePostScript[1.0cm]{Pirogue_1}{0.95}{0.95}%
+\caption{Pirogue}%
+%\label{fig:pirog1}
+\end{figure}
+\vfil
+\begin{figure}[!h]
+\includevspacePostScript[0.0cm]{Croix3branches}{0.95}{0.95}%
+\caption{Croix à trois branches}%
+\label{fig:crx3b}%
+\end{figure}
+\onecolumn
+\begin{figure}[h]
+\includevspacePostScript[5.7cm]{CarresInscritsPeints}{0.95}{0.95}
+ \caption{Motif de carrés inscrits de Horemis}\label{fig:carinspt}
+\end{figure}
+\begin{corrige}{
+Nous donnons un programme, les autres se trouvant dans le dossier 
+{\idt livre/\allowbreak 13\_decl\_procedure\_avec\_parame}~:
+\label{prog:HeliceEnCouleur}
+\input python/HeliceEnCouleur.tex
+\noindent $\Box$}\end{corrige}
+
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+
+On distingue en \python, les définitions des identificateurs de leurs utilisations. \index{Identificateur}
+Les   {\em occurrences de définition} figurent dans une déclaration de
+constante ou de procédure ({\mcl def}) comme nom de constante, de procédure ou de paramètre formel.
+Les  {\em occurrences d'utilisation} de ces identificateurs sont les noms de constante ou de
+paramètre formel utilisés dans une expression entière ou les noms de procédure utilisés dans des appels.
+
+ Il se peut qu'un même identificateur ait plusieurs occurrences de définition dans un programme. De ce fait il se
+ pose le problème d'établir la correspondance entre les occurrences d'utilisation et de définition d'un même
+ identificateur. Par 
+exemple l'identificateur peut être utilisé pour nommer une constante du programme et des paramètres
+formels dans des procédures. En \python, ces procédures peuvent être imbriquées les unes dans les
+ autres (en déclarant avec {\mcl def} une procédure {\idt p2} à l'intérieur du corps d'une procédure {\idt p1},
+ avec une indentation de plus), comme dans l'exemple ci-après~:
+ 
+\smallskip
+
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt n\ =\ 17}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ p1(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl def}{\idt \ p2(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt ...}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt ...\ n\ ...\ \ }{\cmt \#1}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt ...}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ...}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt p2(n)\ \ }{\cmt \#2}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ...}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt ...}}\par
+\vspace{\neglskip}\mbox{\blc {\idt p1(n)\ \ }{\cmt \#3}}\par
+\vspace{\neglskip}\mbox{\blc {\idt ...}}\par
+
+\medskip }
+
+On dit que le programme a une {\em structure de blocs}. \index{Structure de blocs}Ces blocs sont formés par les procédures imbriquées 
+ les unes dans les autres, le programme étant  considéré comme le bloc le plus externe. 
+ 
+ La {\em règle de 
+ visibilité}\index{Visibilité} des identificateurs en \python\ dit que l'occurrence d'utilisation d'un identificateur
+ se réfère à l'occurrence de définition du bloc le plus interne où figure cette occurrence d'utilisation et
+ qui contient une occurrence de définition de l'identificateur. 
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+ 
+ 
+Dans l'exemple ci-dessus,
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+ \item l'occurrence d'utilisation de {\idt n} à la ligne marquée {\cmt \#1} se réfère au paramètre formel de la procédure {\idt p2}$\:$;
+\item l'occurrence d'utilisation de {\idt n} à la ligne marquée {\cmt \#2} se réfère au paramètre formel de la procédure {\idt p1}$\:$;
+ \item l'occurrence d'utilisation de {\idt n} à la ligne marquée {\cmt \#3} se réfère à la constante 17.
+\end{list}
+
+La structure de blocs, que l'on retrouve dans \python, a été introduite par {\sc algol 60} \cite{algol60}. Ce langage fut créé par un groupe
+d'experts européens et américains  réunis dans le groupe de travail WG2.1 de l'IFIP (International Federation of 
+Information Processing) qui regroupe toutes les associations nationales d'informaticiens. C'est l'ancêtre d'une famille
+de langages parmi lesquels on compte \pascal, {\sc Ada} et {\sc Modula}.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

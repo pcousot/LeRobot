@@ -1,0 +1,29 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Calcul\ de\ la\ taille\ de\ la\ fenêtre\ de\ déplacement\ du}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ robot}}\par
+\vspace{\neglskip}\mbox{\blc {\idt largeur\ =\ 0}}\par
+\vspace{\neglskip}\mbox{\blc {\idt hauteur\ =\ 0}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ largeurFenetreRobot():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl global}{\idt \ largeur}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lg(1);\ lc();\ ce();\ ag();\ pe();\ largeur\ =\ 0}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl while}{\idt \ }{\mcl not}{\idt \ tb():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt largeur\ +=\ 1;\ av()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ hauteurFenetreRobot():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl global}{\idt \ hauteur}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lg(1);\ lc();\ ce();\ eb();\ pn();\ hauteur\ =\ 0}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl while}{\idt \ }{\mcl not}{\idt \ tb():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt hauteur\ +=\ 1;\ av()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt largeurFenetreRobot();\ hauteurFenetreRobot()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt message(}{\cha \char34{}(\char34{}}{\idt \ +\ str(largeur)\ +\ }{\cha \char34{}\ x\ \char34{}}{\idt \ +\ str(hauteur)\ +\ }{\cha \char34{})\char34{}}{\idt )}}\par
+\vspace{\neglskip}\mbox{\blc {\idt marquerUnePause()}}\par
+
+\medskip }

@@ -1,0 +1,97 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Écrire\ et\ faire\ entendre\ des\ signes\ en\ code\ Morse}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Passer\ au\ début\ de\ la\ ligne\ suivante}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ aLaLigne():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ ag();\ ps();\ av();\ pe();\ av();\ bc()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Point}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pt():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dp();\ bip();\ lc();\ av();\ bc();\ delai(0.1)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Blanc}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ bl():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ av();\ bc();\ delai(0.1)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Trait}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ tr():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av();\ biiip();\ lc();\ av();\ bc();\ delai(0.1)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Alphabet}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ a():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pt();\ tr();\ bl(...)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ z():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tr();\ tr();\ pt();\ pt();\ bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Chiffres}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ c1():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pt();\ tr();\ tr();\ tr();\ tr();\ bl(...)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ c0():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tr();\ tr();\ tr();\ tr();\ tr();\ bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Ponctuation}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ point():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pt();\ pt();\ pt();\ pt();\ pt();\ pt();\ bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ virgule():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pt();\ tr();\ pt();\ tr();\ pt();\ tr();\ bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pointVirgule():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tr();\ tr();\ tr();\ pt();\ pt();\ pt();\ bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ deuxPoints():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tr();\ pt();\ tr();\ pt();\ tr();\ pt();\ bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pointDInterrogation():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pt();\ pt();\ tr();\ tr();\ pt();\ pt();\ bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pointDExclamation():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tr();\ tr();\ pt();\ pt();\ tr();\ tr();\ bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ traitDUnion():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tr();\ pt();\ pt();\ pt();\ pt();\ tr();\ bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ apostrophe():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tr();\ tr();\ tr();\ tr();\ bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ barreDeDivision():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tr();\ tr();\ tr();\ tr();\ tr();\ tr();\ bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Fin\ de\ mot}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ finDeMot():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ av();\ bc();\ delai(0.6)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ erreur():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(11):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pt()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ debutTransmission():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ec(2);\ eh();\ aLaLigne()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tr();\ pt();\ tr();\ pt();\ tr();\ pt();\ tr();\ bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ finTransmission():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pt();\ tr();\ pt();\ tr();\ pt();\ tr();\ pt();\ bl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt debutTransmission()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt a();\ b();\ c();\ d();\ e();\ aLaLigne()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt f();\ g();\ h();\ i();\ j();\ k();\ l();\ aLaLigne()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt m();\ n();\ o();\ p();\ q();\ r();\ s();\ aLaLigne()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt t();\ u();\ v();\ w();\ x();\ y();\ aLaLigne()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt z();\ c1();\ c2();\ c3();\ aLaLigne()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt c4();\ c5();\ c6();\ c7();\ c8();\ aLaLigne()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt c9();\ c0();\ point();\ virgule();\ aLaLigne()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pointVirgule();\ deuxPoints();\ pointDInterrogation()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pointDExclamation();\ aLaLigne()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt traitDUnion();\ apostrophe();\ barreDeDivision()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt aLaLigne();\ erreur();\ finTransmission();\ st()}}\par
+
+\medskip }

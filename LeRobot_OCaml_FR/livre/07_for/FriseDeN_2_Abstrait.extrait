@@ -1,0 +1,17 @@
+open LibRobot
+
+(* Dessiner une frise de N avec une boucle "for" *)
+
+let () =
+  (* Nord *)
+  ag ();
+  (* Nord *)
+  for j = 1 to 16 do
+    (* Nord *) av (); (* Nord *) av ();
+    (* Nord *) pdt (); (* Sud *) vg ();
+    (* Est *) vd (); (* Sud *) pdt ()
+    (* Nord *)
+  done;
+  (* Nord *)
+  st ()
+  (* Nord *)

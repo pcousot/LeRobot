@@ -1,0 +1,49 @@
+open LibRobot
+
+(* Jouer "Ma Normandie" *)
+
+let melodie () =
+  metronome moderato; (* mesure 3/4 *)
+  nuance mezza_voce;
+  silence soupir; silence soupir;
+  for i = 1 to 2 do
+    silence demi_soupir; note re croche;
+    note re croche; note sol croche;
+    note sol croche_pointee;
+    note si double_croche; note si croche_pointee;
+    note (octave + mi) double_croche;
+    note (octave + re) noire; note (octave + re) croche;
+    silence demi_soupir; silence demi_soupir;
+    note re croche;
+    note (octave + d0) croche; note si croche;
+    note la croche_pointee; note (octave + re) croche;
+    note si croche_pointee; note la double_croche;
+    note sol croche
+  done;
+  silence demi_soupir; note re croche;
+  note (octave + d0) croche; note (octave + re) croche;
+  note (octave + d0) noire_pointee; note re croche;
+  note si croche; note (octave + d0) croche;
+  note si noire;
+  note si croche; note re croche;
+  note la croche; note si croche; note la noire_pointee;
+  note re croche;
+  note sol croche; note la croche; note sol noire_pointee;
+  note re croche;
+  note re croche; note sol croche;
+  note sol croche_pointee;
+  note si double_croche; note si croche;
+  note (octave + mi) croche;
+  note (octave + re) noire;
+  note (octave + re) double_croche;
+  silence quart_de_soupir; note (octave + re) croche;
+  note (octave + d0) croche_pointee;
+  note si double_croche;
+  note si croche_pointee; note la double_croche;
+  note (sol + diese) croche; note la croche;
+  note mi croche_pointee; note re double_croche;
+  note sol noire_pointee; silence demi_soupir;
+  silence soupir
+
+let () =
+  melodie ()

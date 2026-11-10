@@ -1,0 +1,82 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Alhambra\ mosaic}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gridSize\ =\ 3\ \ }{\cmt \#\ pixels}}\par
+\vspace{\neglskip}\mbox{\blc {\idt patternWidth\ =\ 4\ \ }{\cmt \#\ times\ the\ grid\ size}}\par
+\vspace{\neglskip}\mbox{\blc {\idt patternHeight\ =\ 6\ \ }{\cmt \#\ times\ the\ grid\ size}}\par
+\vspace{\neglskip}\mbox{\blc {\idt rowLength\ =\ 7\ \ }{\cmt \#\ patterns\ of\ an\ odd\ row}}\par
+\vspace{\neglskip}\mbox{\blc {\idt numberOfRows\ =\ 12\ \ }{\cmt \#\ even}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ an\ 8{-}shaped\ pattern,\ starting\ and}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ ending\ at\ the\ end\ of\ the\ lower\ left}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ point,\ with\ the\ robot\ facing\ north.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pattern():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(2):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Left/right\ side\ (above/below\ the}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ lower\ point).}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt etr();\ fd();\ etl();\ fdn(patternHeight\ {-}\ 4)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt etl();\ fd();\ qtr();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Top/bottom}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt etr();\ fdn(patternWidth\ {-}\ 2);\ etr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Top/bottom\ of\ the\ right/left\ side\ (above/below}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ the\ upper/lower\ point).}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fd();\ etr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Colour\ and\ turn\ the\ robot\ to\ its\ initial}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ orientation.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtl();\ paint();\ qtr()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Go\ from\ the\ lower\ left\ point\ of\ a\ pattern\ to\ that}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ of\ the\ next\ pattern\ on\ the\ same\ horizontal}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ row\ to\ the\ right.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ nextPattern():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ qtr();\ fdn(2\ *\ patternWidth);\ qtl();\ pd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ horizontal\ row\ containing}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ rowLength\ patterns.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ oddRow():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(rowLength):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pattern();\ nextPattern()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ row\ containing\ (rowLength\ {-}\ 1)}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ patterns.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ evenRow():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(rowLength\ {-}\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pattern();\ nextPattern()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Go\ back\ to\ the\ lower\ left\ point\ of\ the\ first}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ pattern\ of\ a\ row.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ backToRowStart():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ qtl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdn(2\ *\ patternWidth\ *\ rowLength\ {-}\ patternWidth)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr();\ pd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Go\ from\ the\ lower\ left\ point\ of\ a\ pattern\ to}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ that\ of\ the\ pattern\ straight\ below,\ on\ the}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ next\ row.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ nextRow():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ fdn({-}(patternHeight\ {-}\ 2));\ pd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Tile\ with\ a\ number\ of\ rows\ equal\ to}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ numberOfRows.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ tiling():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(numberOfRows\ //\ 2):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt oddRow();\ backToRowStart()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt nextRow()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt evenRow();\ backToRowStart()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt nextRow()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Place\ the\ robot\ at\ the\ lower\ left\ point\ of\ the}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ left\ pattern\ of\ the\ first\ row.}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pu();\ gs(gridSize);\ gl();\ gt();\ ht()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt fdn(patternHeight);\ qtl();\ fd();\ qtl();\ pd()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt tiling();\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

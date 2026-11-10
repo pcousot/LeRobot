@@ -1,0 +1,33 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ des\ serpentines}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Construire\ une\ serpentine\ de\ hauteur\ n\ en\ partant\ de}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ son\ coin\ inférieur\ ouest}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ serpentineE(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ n\ \char62{}\ 0:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Construire\ la\ base\ de\ largeur\ n,\ d\textquotesingle{}ouest\ en\ est}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pe();\ avf(n);\ pn();\ av()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Construire\ la\ serpentine\ supérieure\ de\ hauteur}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ n\ {-}\ 1\ en\ partant\ de\ son\ coin\ inférieur\ est}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt serpentineW(n\ {-}\ 1)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Construire\ une\ serpentine\ de\ hauteur\ n\ en\ partant\ de}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ son\ coin\ inférieur\ est}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ serpentineW(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ n\ \char62{}\ 0:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Construire\ la\ base\ de\ largeur\ n,\ d\textquotesingle{}est\ en\ ouest}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pw();\ avf(n);\ pn();\ av()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Construire\ la\ serpentine\ supérieure\ de\ hauteur}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ n\ {-}\ 1\ en\ partant\ de\ son\ coin\ inférieur\ ouest}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt serpentineE(n\ {-}\ 1)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt lg(6);\ eb();\ ad();\ serpentineW(18);\ eb();\ ag()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt serpentineE(18);\ st()}}\par
+
+\medskip }

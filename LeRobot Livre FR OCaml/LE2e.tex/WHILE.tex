@@ -1,0 +1,319 @@
+\section{Le robot est-il au bord du cadre$\:$?}
+Nous avons vu dans le chapitre précédent que les fonctions booléennes {\idt tn ()}, {\idt tne ()}, {\idt te ()}, {\idt tse ()}, {\idt ts ()},
+ {\idt tsw ()}, {\idt tw ()}, {\idt tnw ()} peuvent être utilisées dans les instructions
+ de test ``if'' pour connaître l'orientation du \robot. Une autre  fonction booléenne,
+ {\idt tb ()}, permet de \underline{t}ester si
+ le \robot\ est au \underline{b}ord du cadre. Plus précisément {\idt tb ()} vaut {\idt true} (vrai)
+ si l'exécution supposée de la  commande {\idt av ()} fait sortir
+ le \robot\ de son cadre de déplacement.  L'expression booléenne
+ {\idt tb ()} vaut {\idt false} (faux) si l'exécution supposée
+ de la  commande {\idt av ()} ne déplace le \robot\ qu'à l'intérieur de son cadre de déplacement.
+Par exemple, on peut
+ définir une commande {\idt avSansSortir ()} qui ordonne au \robot\ d'exécuter un {\idt av ()} si cela ne le
+ fait pas sortir du cadre~:
+
+\input ocaml/AvSansSortirDuCadre.tex
+
+{\sloppy\noindent Les parenthèses de {\mcl not}\ {\idt (tb ())} sont indispensables. Si l'on écrit
+{\mcl not}\ {\idt tb ()}, le compilateur comprend que l'on donne deux paramètres {\idt tb}
+et {\idt ()} à {\mcl not} et répond `{\tt The function not has type bool -> bool. It is
+applied to too many arguments}' (la fonction {\mcl not} reçoit trop de paramètres). Si l'on
+oublie les parenthèses vides en écrivant {\mcl not}\ {\idt tb}, il répond
+`{\tt The value tb has type unit -> bool but an expression was expected of type bool}'
+(la valeur {\idt tb} est une fonction alors que l'on attendait un booléen) et suggère
+`{\tt Did you forget to provide () as argument?}' (avez-vous oublié de donner {\idt ()}
+en paramètre$\:$?).\par}
+
+%\pagebreak
+\section{Boucle ``while''}
+
+ Une boucle ``while'' permet de répéter l'exécution d'une séquence d'ins\-truc\-tions zéro
+ou plusieurs fois en testant à chaque itération s'il faut s'arrêter ou continuer. Le mot anglais
+``while'' qui se prononce très approximativement `oua$\cdots$i$\cdots$le' signifie `tant que'. La boucle ``while'' permet de
+répéter l'exécution d'une séquence d'instructions tant que la valeur d'une expression booléenne
+est {\idt true} (vrai). Par exemple, le programme suivant permet de tracer un trait horizontal au milieu
+de l'écran en orientant le \robot\ vers l'est et en répétant des {\idt av ()} tant que le \robot\ ne sort
+pas du cadre~:
+
+ \input ocaml/TraitHorizontal.tex
+
+Le résultat de l'exécution de ce programme est présenté en réduction dans la figure ci-dessous,
+les cadres de déplacement du \robot\ et d'affichage des messages d'erreurs étant en pointillé~:
+
+ \vspace{0.4cm}
+
+ \includevspacePostScript[4.4cm]{TraitHorizontal}{0.95}{0.95}
+
+ \vspace{0.4cm}
+
+\noindent  Une boucle ``while'' a toujours la forme suivante~:
+
+\index{Boucle ``while''}\index{Expression booléenne}
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Boucle``while''~:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ {\mcl while}\hspace{0.3em}\blanc\hspace{0.3em} {\small\rm Expression booléenne} \hspace{0.3em}\blanc\hspace{0.3em}{\mcl do}}\par
+\mbox{\blc\ \ \ \ \ \small\rm  \ldots\ Instructions répétées (séparées par des `$;$') \ldots}\par
+\mbox{\blc\ \ \ {\mcl done}}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+\noindent La  séquence d'instructions séparées par des `$;$' qui est répétée tant que la valeur de
+l'{Expression booléenne} vaut {\idt true} (vrai) s'appelle le {\em corps de
+la boucle}\index{Corps de boucle}. Comme pour la boucle ``for'', on ne met pas de
+point-virgule après la dernière instruction du corps de la boucle, avant le {\mcl done}.
+Si l'{Expression booléenne}  vaut {\idt false} quand on commence l'exécution de la
+boucle ``while'' alors cette exécution se termine immédiatement sans que le corps de la boucle ne soit
+exécuté. Si l'{Expression booléenne}  vaut toujours {\idt true} à chaque itération
+alors l'exécution de la boucle ``while'' ne se termine jamais$\:$!
+On peut tout de même arrêter l'ordinateur en coupant le courant. Des méthodes plus re\-com\-man\-da\-bles sont expliquées
+ci-après.
+
+\underline{Une erreur grave} est d'écrire un corps de boucle qui ne
+change pas la valeur de l'Expression booléenne. Par exemple si l'on écrit
+{\mcl while}\ {\mcl not}\ {\idt (tb ())}\ {\mcl do}\ {\idt pqtd ()}\ {\mcl done}, le \robot\
+tourne sur place sans jamais s'approcher du bord, et l'ordinateur boucle éternellement.
+
+On utilise de préférence les boucles ``for'' (dont l'exécution se termine toujours) en réservant
+l'usage des boucles ``while'' au cas où le nombre d'ité\-ra\-tions n'est pas calculable par une expression entière avant de
+commencer à exécuter le corps de la boucle.
+
+\begin{exemple}[Cadre]{\rm Le programme ci-dessous permet de tracer un ca\-dre au\-tour d'un dessin~:
+
+ {\raggedright
+
+ \vspace{0.4cm}
+
+ \includevspacePostScript[4.4cm]{TracerCadre}{0.95}{0.95}
+
+ \vspace{0.4cm}
+
+\input ocaml/TracerCadre.tex
+ }
+\noindent $\Box$ }\end{exemple}
+
+Tous les programmes que nous avions écrits jusqu'alors se terminaient. Ceci veut dire que
+ toute exécution du programme prend un temps fini, qui semble parfois long, mais on peut être sûr qu'en attendant suffisamment
+ longtemps, on pourra toujours
+ observer un résultat. Si par exemple on a levé le crayon du \robot\ et oublié  de le baisser
+ par la suite, le résultat est une feuille blanche mais l'exécution du programme se termine tout de
+ même.
+
+ Avec la boucle ``while'', on peut écrire des programmes dont l'exécution ne se termine pas.  C'est
+ le cas pour le programme suivant~:
+
+ \input ocaml/Boucle1.tex
+
+ \noindent Le \robot\ tourne au centre de l'écran, tant que l'ordinateur marche et que l'on n'intervient pas.
+ On peut l'arrêter en tapant, dans la fenêtre du \robot, sur l'une des touches
+ \begin{picture}(12,12)(0, 2) %touche d'echappement
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny esc}}
+  \end{picture}\hspace{0.3ex},
+  \begin{picture}(12,12)(0, 2) %touche §
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny \S}}
+  \end{picture}\hspace{0.3ex} ou
+  \begin{picture}(12,12)(0, 2) %touche #
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny \#}}
+  \end{picture}\hspace{0.3ex}.  L'exécution du programme prend fin car avant
+d'exécuter une commande, le \robot\ regarde si l'utilisateur n'a pas tapé sur l'une de
+ces touches pour lui demander de s'arrêter.
+
+  Par contre si l'on exécute le programme \ocaml\ suivant~:
+
+ \input ocaml/Boucle2.tex
+
+ \noindent l'exécution boucle sans s'arrêter même si l'on tape sur les touches d'arrêt
+  \begin{picture}(12,12)(0, 2) %touche d'echappement
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny esc}}
+  \end{picture}\hspace{0.3ex},
+  \begin{picture}(12,12)(0, 2) %touche §
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny \S}}
+  \end{picture}\hspace{0.3ex} ou
+  \begin{picture}(12,12)(0, 2) %touche #
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny \#}}
+  \end{picture}\hspace{0.3ex}
+puisque le \robot\ ne reçoit
+  aucune commande pendant que l'ordinateur exécute cette boucle, dont le corps
+  est réduit à {\idt ()}, une instruction qui ne fait rien.
+
+  Pour arrêter l'exécution de ce programme, il faut revenir à la fenêtre de terminal
+  dans laquelle on l'a lancé, par exemple avec la commande~:
+  \begin{center}{\idt ./robot.sh livre/17\_while/Boucle2.ml}\end{center}
+  \noindent maintenir la touche contrôle
+\begin{picture}(22,12)(0, 2) %touche Ctrl
+\put(0,0){\framebox(22,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny Ctrl}}
+\end{picture}\hspace{0.3ex}
+enfoncée et taper sur la touche
+\begin{picture}(12,12)(0, 2) %touche C
+\put(0,0){\framebox(12,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny C}}
+\end{picture}\hspace{0.3ex}. Le système d'exploitation de l'ordinateur interrompt alors
+le programme, quoi qu'il soit en train de faire.
+
+Si le programme a été lancé en faisant glisser son icône sur l'application \texttt{LeRobotOCaml.app}, une fenêtre
+de terminal s'ouvre, que l'on peut sélectionner avec la souris pour taper Ctrl+C.
+
+%  Sur les premiers Macintosh, pour lesquels ce livre a été écrit à l'origine, il 
+%  fallait appuyer sur la touche d'interruption (marquée d'un cercle)
+%  placée sur le côté de l'ordinateur (figure \ref{fig:interrupt}) en évitant d'appuyer sur 
+%  la touche de réinitialisation (marquée d'un triangle) qui revenait à éteindre puis à 
+%  rallumer le Macintosh.
+%
+%\begin{figure}[htbp]
+%  \includevspacePostScript[2.9cm]{Interrupt}{0.95}{0.95}
+%  \caption{Touches de réinitialisation et d'interruption des premiers Macintosh}\label{fig:interrupt}
+%\end{figure}
+  
+\clearpage
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercices}{Écrire des programmes \ocaml\  utilisant des boucles ``while'' pour réaliser les
+dessins suivants~:
+
+\tiret  la frise de la figure \ref{fig:FriTri} ci-dessous$\:$;
+% (page \pageref{fig:FriTri})$\:$;
+
+\tiret  la grille des points d'arrêt du \robot\ de la figure \ref{fig:DgQuGr} (page \pageref{fig:DgQuGr}),
+sans utiliser bien entendu la commande {\idt dg ()}$\:$;
+
+\tiret  le quadrillage de la figure \ref{fig:DgQuGr} (page \pageref{fig:DgQuGr})$\:$;
+
+\tiret  le grillage de la figure \ref{fig:DgQuGr} (page \pageref{fig:DgQuGr}) obtenu en superposant deux
+qua\-dril\-la\-ges dont un est tourné d'un huitième de tour.
+
+Dans tous les cas le dessin doit être le plus grand possible et s'inscrire à l'intérieur du cadre fixé pour les
+déplacements du \robot\ sur l'écran de l'ordinateur.
+
+\noindent $\Box$}\end{exercices}
+
+\vspace*{-1ex}%
+\begin{exercice}{Définir les commandes {\idt ag ()},  {\idt ad ()},  {\idt eh ()} et  {\idt eb ()} par des procédures comportant
+des boucles ``while'' (on utilisera la fonction booléenne {\idt valBc ()} qui vaut {\idt true} si et
+seulement si le crayon du \robot\ est baissé).
+\noindent $\Box$}\end{exercice}
+
+\begin{figure}[htbp]
+ \includevspacePostScript[4.4cm]{FriseDeTriangles}{0.9}{0.9}
+ \caption{Frise de triangles (dans un écran réduit)}\label{fig:FriTri}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[14.6cm]{DgQuadGrillage}{0.95}{0.95}
+ \caption{Points d'arrêt, quadrillage et grillage sur un écran réduit}\label{fig:DgQuGr}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace*{-1ex}%
+\begin{corrige}{
+Nous donnons un programme, les autres se trouvant dans le dossier {\idt livre/\allowbreak 17\_while}~:
+\input ocaml/FriseDeTriangles.tex
+\noindent $\Box$}\end{corrige}
+\begin{corrige}{
+Nous donnons le corrigé pour la commande {\idt ag}, les autres se trouvant dans le programme
+{\idt AgAdEhEb} du dossier {\idt livre/\allowbreak 17\_while}~:
+\input ocaml/AgAdEhEb.tex
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+
+ Dans d'autres langages de programmation, comme \pascal, on trouve une autre forme de
+ répétition non bornée, la boucle ``repeat'' (qui signifie répéter en anglais).
+ Elle a la forme suivante~:
+
+ \index{Boucle ``while''}
+\begin{center}
+\begin{minipage}{10cm}
+{\raggedright
+\mcl repeat\\
+\blc\ \ \small\rm  \ldots\ Instructions répétées (séparées par des `$;$') \ldots\\
+\mcl until\hspace{0.3em}\blanc\hspace{0.3em} \small\rm Expression booléenne\\
+}\end{minipage}
+\end{center}
+
+\noindent Le corps de la boucle est répété ({\idt repeat}) jusqu'à ({\idt until}) ce que la valeur de
+ l'{\small\rm Expression booléenne} soit égale à {\idt true}. Il est donc toujours exécuté
+ au moins une fois.
+%\vspace{\abovedisplayskip}
+%\end{minipage}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\noindent \framebox[\textwidth]{
+%\begin{minipage}{\myparboxwidth}
+%\setlength{\parindent}{2em}
+%\small \sf
+%\vspace{\abovedisplayskip}
+\indent La boucle ``repeat'' n'existe pas en \ocaml, mais on peut toujours l'exprimer
+à l'aide d'une boucle ``while''. Une boucle ``repeat''~:
+ {
+\parindent \parindentprog
+\medskip
+
+\pagebreak[3]
+\mbox{\blc  \blk\mcl repeat}\par
+\mbox{\blc  \blk\blk\small\rm Corps de la boucle}\par
+\mbox{\blc  \blk\mcl until {\small\rm Expression booléenne}}\par
+
+\medskip }
+
+\noindent peut s'écrire en \ocaml\ avec une boucle ``while'' comme suit~:
+{
+\parindent \parindentprog
+\medskip
+
+\mbox{\blc  \blk\small\rm Corps de la boucle$;$}\par
+\mbox{\blc  \blk\mcl while\ not\ \idt (\small\rm Expression booléenne\idt )\ \mcl do}\par
+\mbox{\blc  \blk\blk\small\rm Corps de la boucle}\par
+\mbox{\blc  \blk\mcl done}\par
+
+\medskip }
+
+\noindent  De la même façon, une boucle ``while''~:
+
+{
+\parindent \parindentprog
+\medskip
+
+\mbox{\blc  \blk\mcl while\ \small\rm Expression booléenne\ \mcl do}\par
+\mbox{\blc  \blk\blk\small\rm Corps de la boucle}\par
+\mbox{\blc  \blk\mcl done}\par
+
+\medskip }
+
+\noindent pourrait se réécrire avec une boucle ``repeat'' comme suit~:
+
+{
+\parindent \parindentprog
+\medskip
+
+\mbox{\blc  \blk\mcl if\ \small\rm Expression booléenne\ \mcl then}\par
+\mbox{\blc  \blk\blk\mcl repeat}\par
+\mbox{\blc  \blk\blk\blk\small\rm Corps de la boucle}\par
+\mbox{\blc  \blk\blk\mcl until\ not\ \idt (\small\rm Expression booléenne\idt )}\par
+
+\medskip }
+
+L'usage de l'une ou l'autre forme d'itération ne dépend que du fait que le corps de la boucle
+peut ne jamais être exécuté (boucle ``while'') ou doit toujours l'être au moins une fois
+(boucle ``repeat''). Les concepteurs d'\ocaml\ ont jugé que la boucle ``while'' suffisait.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

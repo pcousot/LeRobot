@@ -1,0 +1,15 @@
+(* Notes *)
+let ut = 0
+let d0 = 0
+let re = 2
+let mi = 4
+let fa = 5
+let sol = 7
+let la = 9
+let si = 11
+(* Altérations *)
+let bemol = -1
+let becarre = 0
+let diese = 1
+(* Octaves *)
+let octave = 12

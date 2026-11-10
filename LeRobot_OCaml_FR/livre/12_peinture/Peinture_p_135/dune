@@ -1,0 +1,3 @@
+(executables (names BalleEnCouleur MosaiqueAlhambra1 MosaiqueAlhambra2
+  MosaiqueAlhambra3 MosaiqueAlhambra4 PavageCarreaux3Couleurs)
+ (libraries lerobot) (flags (:standard -w -35)))

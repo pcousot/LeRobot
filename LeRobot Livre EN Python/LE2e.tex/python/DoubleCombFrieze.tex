@@ -1,0 +1,26 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ frieze\ shaped\ like\ a\ double\ comb}}\par
+\vspace{\neglskip}\mbox{\blc {\idt numberOfTeeth\ =\ 30}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gl();\ fe()}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ numberOfTeeth\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Horizontal\ line}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ i\ \%\ 2\ ==\ 1:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Tooth\ pointing\ down}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt qtr();\ fd();\ ht();\ fd();\ qtr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Tooth\ pointing\ up}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt qtl();\ fd();\ ht();\ fd();\ qtl()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

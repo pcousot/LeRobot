@@ -1,0 +1,33 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ the\ net\ of\ a\ truncated\ tetrahedron}}\par
+\vspace{\neglskip}\mbox{\blc {\idt sideLength\ =\ 24}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ faceAndCorner():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Hexagon}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr();\ gsRT(sideLength,\ 60);\ etl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(6):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fd();\ rot(60)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Equilateral\ triangle}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ht();\ fd();\ qtr();\ fd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ truncatedTetrahedronNet():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(2):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Face,\ bottom\ corner}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt faceAndCorner();\ pu();\ tetr();\ fdn(2);\ etl();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt tetr();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Face,\ top\ corner}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt faceAndCorner();\ pu();\ fd();\ etl();\ fdn(2);\ qtl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pd()}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt truncatedTetrahedronNet();\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

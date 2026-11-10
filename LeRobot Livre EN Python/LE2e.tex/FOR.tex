@@ -1,0 +1,508 @@
+\section{Repetitions}
+%\label{sec:7:1:repetitions}
+
+We have already seen a few examples of \python\ programs in which a
+sequence of \robot\ commands or of procedure calls is repeated
+many times in a row. This is the case, for example, in the program {\idt FriezeOfN\_1}, whose execution produces the frieze below:
+
+%\vspace{\baselineskip}
+\vspace*{8mm}%
+\noindent\includevspacePostScript[1cm]{FriseDeN}{0.95}{0.95}
+\vspace*{-1cm}%
+\input{python/FriezeOfN_1.tex}
+
+To avoid repeating the same sequences of in\-struc\-tions over and over,
+we are going to study a new statement of the \python\ language called the
+{\em ``for'' loop}\index{For loop@``for'' loop} (``for'' is an ordinary English word, so the statement reads almost like an English sentence%
+\footnote{\ We call it a ``for'' loop, using the very word that is
+written in the program.}). Here is the
+program {\idt FriezeOfN\_1} drawing the frieze below,
+rewritten using a ``for'' loop:
+
+%\vspace{\baselineskip}
+\vspace*{8mm}%
+\noindent\includevspacePostScript[1cm]{FriseDeNprime}{0.95}{0.95}
+\vspace*{-1cm}%
+\label{prog:FriseDeN_2}
+\input{python/FriezeOfN_2.tex}
+
+\noindent In plain English, the loop `{\mcl for}\ {\idt j}\ {\mcl in}\ {\idt range(16):}\ \ldots'
+can be read as `for j among the first 16 numbers do \ \ldots'. The English word {\mcl in}
+has its usual meaning. The English word {\idt range} means
+`sequence' or `span'.
+
+The sequence of statements to be repeated is written on the lines that follow the colon `{\idt :}',
+shifted to the right. It is called the
+{\em body of the loop}\index{Loop body}. The \index{Iteration}{\em number of iterations}, that is, the
+number of times the body of the loop must be repeated, is given
+between the parentheses of {\idt range}. In our example, the body of the loop
+`{\idt  fd();\ fd();\ ht();\ cl();\ cr();\ ht()}' must be repeated 16 times
+in a row.
+
+\section{The loop counter}
+%\label{sec:7:3:decls}
+
+Just after the word {\mcl for} we find the name {\idt j} of a
+{\em counter}\index{Loop counter}. The computer uses this counter to
+count the number of times it has to repeat the sequence of statements in the
+``for'' loop, exactly as we might do by counting on our fingers!
+To do so, the computer uses a cell of its memory, which successively contains
+the integers 0, 1, 2, \ldots, 15. Indeed, {\idt range(16)} denotes the sequence of
+16 integers that starts at 0 and stops just before 16 (like computer scientists,
+\python\ counts from 0). We say that {\idt j} is an integer
+{\em variable}\index{Variable}\index{Integer variable} since its value varies
+from one iteration to the next.
+
+We have to give a name to this counter. It is an identifier that we can choose
+as we please (here, for example, {\idt  j}), following the rule for
+identifiers: it begins with a letter (or an underscore `\_'), contains only letters, digits and underscores, and must not be a reserved word of
+\python. If we write `{\mcl for}\ {\idt 1st}\ {\mcl in}\ \ldots', \python\ answers
+`{\tt SyntaxError: invalid decimal literal}' (since
+{\idt 1st} begins with a digit). If we write `{\mcl for}\ {\mcl in}\ {\mcl in}\ \ldots',
+it answers `{\tt SyntaxError: invalid syntax}'.
+
+In \python, there is no need to announce in advance that we are going to use
+a counter%
+\footnote{\ Other languages such as \pascal\ require the counter to be {\em declared} at the beginning
+of the program or of the procedure, stating that it denotes an integer.}:
+the counter is created by the ``for'' loop itself. \python\
+knows that it is an integer since it takes the values 0, 1, 2, \ldots\ After the
+loop, the counter keeps the last value it took (15 in our example), but
+it is better not to use it: if the loop did not perform any iteration, the
+counter does not exist and \python\ reports the error
+`{\tt NameError: name 'j' is not defined}'.
+
+For the counter to take the values 1, 2, 3, \ldots, 16, we would write
+`{\mcl for}\ {\idt j}\ {\mcl in}\ {\idt range(1,\ 17):}'. In general,
+{\idt range(}$a${\idt ,\ }$b${\idt )} denotes the sequence of integers from $a$ to $b-1$:
+it starts at $a$ and stops just {\em before} $b$. Thus {\idt range(1,\ 5)} denotes
+1, 2, 3, 4 and {\idt range(}$n${\idt )}, which is an abbreviation of
+{\idt range(0,\ }$n${\idt )}, denotes the $n$ numbers 0, 1, \ldots, $n-1$.
+For the counter to go from 1 to $n$, we therefore write
+`{\mcl for}\ {\idt i}\ {\mcl in}\ {\idt range(1,\ }$n${\idt \ +\ 1):}'.
+
+The loop counter of the program {\idt FriezeOfN\_2} is only used to count the iterations.
+It is then simpler to write {\idt range(16)}.
+We will see in the next chapter that its value can also be used in the body of
+the loop.
+
+\section{The ``for'' loop}
+%\label{sec:7:4:for}
+
+A {\em ``for'' loop}\index{For loop@``for'' loop} has the following form:\\
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em ``For'' loop:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ {\mcl for}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm Identifier}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl in}\hspace{0.3em}\blanc\hspace{0.3em}{\idt range(}{\small\rm Number of iterations}{\idt ):}}\par
+\mbox{\blc\ \ \ \ \ \ \ \small\rm  \ldots\ Statements of the body of the loop (indented) \ldots}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+\noindent The identifier is the name of the iteration counter.
+The sequence of statements that is repeated is called the {\em body of
+the loop}\index{Loop body}. Like the body of a procedure, it is written on the lines
+that follow the colon `{\idt :}', all shifted to the right by the same number of
+blanks (usually four), one statement per line or several statements on the same
+line separated by `{\idt ;}'. It is this shift, called {\em indentation}\index{Indentation},
+that tells \python\ where the body of the loop begins and ends: the loop
+ends at the first line that is no longer shifted.
+
+Do not forget the blanks \hspace{0.3em}\blanc\hspace{0.3em} around the word {\mcl in}.
+If we write {\idt jin} instead of {\idt j}\ {\mcl in}, or {\idt inrange} instead of
+{\mcl in}\ {\idt range}, \python\ no longer recognizes the word {\mcl in} and reports
+`{\tt SyntaxError: invalid syntax}'. If we forget the colon `{\idt :}' at the end
+of the {\mcl for} line, \python\ reports `{\tt SyntaxError: expected ':'}'.
+
+A ``for'' loop is itself a statement. The statements that follow it
+are written without any shift, at the same level as the {\mcl for}, like the {\idt st()} of the
+program {\idt FriezeOfN\_2}. If we also shifted the line {\idt st()}, it would be part
+of the body of the loop and would be repeated 16 times! If we forget to shift the body
+of the loop, \python\ reports
+`{\tt IndentationError: expected an indented block after 'for' statement on line 5}'.
+If the lines of the body are not all shifted by the same number of blanks,
+\python\ reports `{\tt IndentationError: unexpected indent}' or
+`{\tt IndentationError: unindent does not match any outer indentation level}'.
+
+If the `Number of iterations' is smaller than 1 (0, for example), the statements of the
+body of the loop are not executed at all. \underline{Do not put} \underline{a semicolon `{\idt $;$}'} \underline{after the colon}: \python\ then reports `{\tt SyntaxError: invalid syntax}' just after the colon.
+
+When the body of the loop is short, the whole loop can be written on a single
+line, as in `{\mcl for}\ {\idt i\ }{\mcl in}\ {\idt range(10):\ fd()}'.
+Extra blanks inside a line only serve to make the
+program easier to read, but those at the beginning of a line matter.
+
+\begin{exemple}[Frieze of spikes]{\rm
+ The following frieze:\\[20mm]
+\includevspacePostScript[1cm]{FriseDePointes}{0.95}{0.95}%
+\\[1ex]
+is produced by the program below:
+\input{python/FriezeOfSpikes.tex}
+\noindent $\Box$}
+\end{exemple}
+
+\section{Using a ``for'' loop in a procedure}
+%\label{sec:7:5:for-proc}
+
+The body of a procedure can contain ``for'' loops, like any
+other statement:
+\index{Loop counter}
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Procedure declaration:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+\medskip
+\mbox{\blc\ \ \ {\mcl def}\hspace{0.3em}\blanc\hspace{0.3em}\idt procedureName():}\par
+\mbox{\blc\ \ \ \ \ \ \ \small\rm \ldots\ Statements of the body of the procedure%
+\footnote{\ Including ``for'' loops using counters {\idt i}, {\idt j}, \ldots}
+(indented) \ldots}\par
+\medskip
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+Since the counter of a loop is only used in the body of that loop and since it
+starts again from its first value at each new loop, the same
+identifier can serve as a counter in several different loops,
+whether they are in different procedures or one after the other
+in the same procedure. This is illustrated in the program
+{\idt Arrow} below, where different loop
+counters, used in different procedures ({\idt
+fletching} and {\idt shaft}), have the same name {\idt i}.
+
+\noindent\begin{minipage}{\textwidth}
+\begin{exemple}[Arrow]{\rm \ \\[7cm]
+\includePostScript{FlecheVerticale}{0.95}{0.95}%
+\vspace*{-7cm}%
+\input{python/Arrow.tex}
+\noindent $\Box$ }\end{exemple}
+\end{minipage}
+
+
+\section{Nested ``for'' loops (in\-de\-pen\-dent)}
+%\label{sec:7:6:for-for-ind}
+
+The body of a ``for'' loop:
+
+\mbox{\blc\ \ \ {\mcl for}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm Identifier1}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl in}\hspace{0.3em}\blanc\hspace{0.3em}{\idt range(}{\small\rm Number of iterations1}{\idt ):}}\par
+\mbox{\blc\ \ \ \ \ \ \ \small\rm  \ldots}\par
+
+\noindent can itself contain ``for'' loops:
+
+\mbox{\blc\ \ \ {\mcl for}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm Identifier1}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl in}\hspace{0.3em}\blanc\hspace{0.3em}{\idt range(}{\small\rm Number of iterations1}{\idt ):}}\par
+\mbox{\blc\ \ \ \ \ \ \ \small\rm  \ldots}\par
+\mbox{\blc\ \ \ \ \ \ \ {\mcl for}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm Identifier2}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl in}\hspace{0.3em}\blanc\hspace{0.3em}{\idt range(}{\small\rm Number of iterations2}{\idt ):}}\par
+\mbox{\blc\ \ \ \ \ \ \ \ \ \ \ \small\rm  \ldots}\par
+\mbox{\blc\ \ \ \ \ \ \ \small\rm  \ldots}\par
+
+\noindent We then say that the ``for'' loops are {\em nested}.
+The loop using the
+counter {\small\rm Identifier2} to perform
+{\small\rm Number of iterations2} iterations is called the
+ {\em inner loop}. The loop using the counter {\small\rm Identifier1} to perform
+{\small\rm Number of iterations1} iterations is called the {\em outer loop}.
+The body of the inner loop is shifted twice: once because it is part
+of the body of the outer loop, a second time because it is the body of the inner
+loop. The inner loop ends at the first line that returns to the shift
+of its {\mcl for}; the outer loop at the first line that returns to the shift of the
+first {\mcl for}. So it is the shift that indicates, without ambiguity, which {\mcl for}
+each statement belongs to. Consider, for example,
+the drawing of a square:
+\par\noindent\begin{minipage}{\linewidth}
+\vbox to 0pt{\includevspacePostScript[20mm]{Carre1}{0.95}{0.95}}%
+\input{python/Square_1.tex}
+\end{minipage}
+
+By replacing the procedure calls by their bodies, we obtain
+two nested loops:
+
+%\includePostScript{Carre1}{0.95}{0.95}
+\input{python/Square_2.tex}
+
+The inner loop is used to build one side while the
+outer loop draws the four sides.
+
+\newpage
+\section{Nested ``for'' loops (dependent)}
+%\label{sec:7:7:for-for-dep}
+
+In nested ``for'' loops, the number of iterations
+of the in\-ner loop may be dif\-fer\-ent each time the body of
+the outer loop is executed. Let us begin by considering the simple
+example of line segments of lengths 1, 2, 3, \ldots\ arranged in a spiral
+(the drawing is shown below at scale $\frac{1}{2}$ with the grid):\\[5cm]
+\includePostScript{SpiraleCarree-1}{0.95}{0.95}%
+\vspace*{-5cm}%
+\input{python/SquareSpiral_1.tex}
+\vspace{2.6cm}% le listing Python est plus court que la figure placee a cote
+
+The number of iterations in the inner ``for'' loop is equal to the value
+of the counter {\idt i} of the outer loop, that is, successively 1, 2,
+3, \ldots, 22 (since {\idt range(1,\ 23)} stops just before 23). The program {\idt SquareSpiral\_1} is therefore equivalent to the
+program {\idt SquareSpiral\_2} below, in which the ``for'' loops have been
+eliminated to show exactly which sequence of commands is executed
+by the \robot.
+
+%\special{SpiraleCarree-1.ps 0.24 0.24 scale 0 -342 translate}
+\input{python/SquareSpiral_2.tex}
+
+\section{Invariants of ``for'' loops}
+%\label{sec:7:8:inv}
+
+When we draw a frieze like this one:\\[9mm]
+\includevspacePostScript[9mm]{FriseDeTildes}{0.95}{0.95}%
+\vspace*{-9mm}%
+
+\noindent with a ``for'' loop, the \robot\ must always be facing
+the same direction
+and be in the same position with respect to the next pattern to be
+drawn by executing
+the body of the loop. In other words, at the end of the body of the
+loop we must
+put the \robot\ back in its starting position:
+\input{python/FriezeOfTildes.tex}
+We say that the position of the \robot\ is an {\em invariant}\index{Invariant} of the loop, in the sense
+that it must be the same at each iteration.
+
+If, in our example, we draw one pattern and then the next one without putting
+the \robot\ back in its starting position in between, we get the following result, which,
+it must be admitted, does not look much like the original:\\[5cm]
+\includePostScript{FriseDeTildesErr1}{0.95}{0.95}%
+\vspace*{-5cm}
+\input{python/FriezeOfTildesWrong1.tex}
+
+If we remember to move the \robot\ back but forget to turn it
+back in the right direction, the result is even stranger:
+
+% figure et programme insecables (sinon, a un saut de page, l'espace
+% negatif fait remonter le programme au-dessus de l'en-tete)
+\noindent\begin{minipage}{\linewidth}
+\vspace*{25mm}
+\includePostScript{FriseDeTildesErr2}{0.95}{0.95}%
+\vspace*{-25mm}
+\input{python/FriezeOfTildesWrong2.tex}
+\end{minipage}
+
+A good way to find the errors in a ``for'' loop is therefore
+to look for the invariant, that is, the position and orientation in
+which the \robot\ must be before drawing the pattern by
+executing the body of the loop. We must then check that the \robot\ is
+correctly placed when we enter the loop for the first time
+and that it is correctly placed again after executing the body of the loop.
+
+The same notion of invariant applies to procedures. Before each
+call of a procedure, the robot must be in one or several
+possible states, which must be perfectly defined by whether the
+\robot's pen is up or down
+and by the position and orientation
+of the \robot\ with respect to the figure drawn by the procedure.
+
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercices}{\ \\
+
+\vspace{-\baselineskip}
+\tiret Write \python\ programs using ``for'' loops to draw
+some of the friezes of figure
+\ref{fig:Frise-1}  page \pageref{fig:Frise-1}.
+
+\tiret Write \python\ programs using ``for'' loops in pro\-ce\-dures
+to draw some of the friezes of figure
+\ref{fig:Frise-2}  page \pageref{fig:Frise-2}.
+
+\tiret Write \python\ programs to draw some of the rosettes,
+friezes and tiling of figure
+\ref{fig:Ro-Fr-Pa}  page \pageref{fig:Ro-Fr-Pa}, using independent
+nested ``for'' loops.
+
+\tiret Write \python\ programs to draw some of the spirals,
+grids and other organ pipes of figure
+\ref{fig:SpirQuadTuy}  below, using dependent nested
+``for'' loops.
+
+\tiret Write a \python\ program to draw the tiling of
+figure \ref{fig:PavCLC} below, stating precisely the
+invariants of the procedures and of the ``for'' loops.
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.5cm]{SpirQuadTuy}{0.95}{0.95}
+ \caption{Grids, squares, spiral and organ pipes}
+ \label{fig:SpirQuadTuy}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[7.1cm]{PavageCarresTrianglesCercles}{0.95}{0.95}
+ \caption{Tiling of squares, triangles and circles}\label{fig:PavCLC}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[17.8cm]{Frise-1}{0.95}{0.95}
+ \caption{Friezes (1)}\label{fig:Frise-1}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[17.8cm]{Frise-2}{0.95}{0.95}
+ \caption{Friezes (2)}\label{fig:Frise-2}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[17.8cm]{Ro-Fr-Pa}{0.95}{0.95}
+ \caption{Rosettes, friezes and tiling}\label{fig:Ro-Fr-Pa}
+\end{figure}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corriges}{
+\renewcommand{\carrenoir}{\hspace{-4mm}\rule{1.5mm}{1.5mm}\hspace{2.5mm}}
+We give a few programs; the others are in the folder
+{\idt book/\allowbreak 07\_for}:
+\input{python/NotchedFrieze.tex}
+\input{python/TriangularGrid.tex}
+\input{python/TilingSquaresTrianglesCircles.tex}
+\noindent $\Box$\vfill}\end{corriges}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+
+The ``for'' loop is one of the first linguistic notions to have
+appeared in computer science, since it was invented at ETH Zürich
+ in 1952 by Heinz Rutishauser \cite{rutishauser}.
+
+Comparing the drawings that can be obtained using the ``for''
+loop with those that can be made in interactive mode gives a measure
+of the power of computers when it comes to performing repetitive tasks
+quickly. In this respect the computer is very clearly different
+from non-programmable calculators. We also understand
+that this computing power has nothing to do with any form
+of thought or intelligence, except that of the programmer of
+the computer.
+
+In \python, we use a loop {\mcl for} {\idt i} {\mcl in} {\idt range(}$n_1${\idt ,\ }$n_2${\idt ):}
+ \ldots\ to repeat
+the body of the loop (the indented statements that follow
+the colon) $n_2 - n_1$ times, unless $n_2 \leq n_1$, in which case the body of the loop is not
+executed. At each iteration, the loop counter {\idt i} takes the
+successive values $n_1$, $n_1 + 1$, $n_1 + 2$, \ldots, $n_2 - 1$. In the form {\mcl for}
+{\idt i} {\mcl in} {\idt range(}$n_1${\idt ,\ }$n_2${\idt ,\ -1):} \ldots,
+{\idt i} takes the successive values $n_1$, $n_1 - 1$, $n_1 - 2$, \ldots, $n_2 + 1$,
+unless $n_2 \geq n_1$, in which case the loop is not executed; for example,
+{\mcl for} {\idt i} {\mcl in} {\idt range(}$n${\idt ,\ 0,\ -1):} makes {\idt i} take the
+values $n$, $n-1$, \ldots, 1 (the third number, here $-1$, is the step
+that is added to the counter at each iteration). If the body of the loop modifies the
+value of the counter, this has no effect on the following iterations: at each
+iteration, the counter takes the next value of the {\idt range} sequence.
+When the counter is of no use in the body of the loop, \python\ programmers
+often name it `\_', as in
+{\mcl for}\ {\idt \_\ }{\mcl in}\ {\idt range(16):}\ \ldots
+
+Using ``for'' loops trains the ability to perceive
+when a drawing can be decomposed into a number of identical
+sub-drawings (in the case of a simple loop) or similar ones (in the case
+of nested loops). This is a daily exercise for the computer scientist,
+who must know how to decompose a complex task into simple subtasks,
+which sometimes requires an enormous amount of imagination.
+It is a first step towards acquiring the inductive
+reasoning of sci\-en\-tists who, from specific observations,
+create a general hypothesis accounting for these observations,
+a hypothesis that remains to be validated in all possible cases, here in
+a completely experimental way, by looking at the drawing on
+the screen. Mathematicians call such a hypothesis,
+induced from experience and not yet proved, a {\em conjecture}.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+This inductive reasoning was long confused with reasoning
+by mathematical induction, which is essential in mathematics. It took more than a
+millennium for mathematicians
+(Fermat\footnote{\ \href{https://en.wikipedia.org/wiki/Pierre_de_Fermat}{Pierre de Fermat}, 1601--1665, French mathematician.},
+Pascal\footnote{\ \href{https://en.wikipedia.org/wiki/Blaise_Pascal}{Blaise Pascal}, 1623--1662, French mathematician.}
+in particular) to fully
+understand reasoning by induction (\cite{knuth2} page 17).
+
+For the time being
+we are only at the beginnings, the absence of a correct induction
+ still being accepted in reasoning
+by induction: if the drawing is right
+for the basic pattern and for
+the first repetition of the pattern, then it is deemed correct, the only
+remaining problem, fitting the drawing into the window, being solved by simple
+experimentation.
+
+The notion of {\em invariant} (that is, for our \robot, the
+description of its possible positions and orientations at the beginning of the
+body of the loops) is due to Turing%
+\footnote{\ \href{https://en.wikipedia.org/wiki/Alan_Turing}{Alan Turing}, English computer scientist.} in 1949; it was forgotten, then rediscovered by
+Naur%
+\footnote{\ \href{https://en.wikipedia.org/wiki/Peter_Naur}{Peter Naur}, Danish computer scientist.} in 1966 and Floyd%
+\footnote{\ \href{https://en.wikipedia.org/wiki/Robert_W._Floyd}{Robert Floyd}, American computer scientist.} in 1967.
+It relies
+on reasoning by induction: if the invariant is true when we
+enter the loop for the first time (that is, the
+position and orientation of the \robot\ conform to the description
+given in the invariant) and if, assuming that the invariant is true at the
+beginning of the execution of the body of the loop, it is still true after
+the execution of this loop body, then the invariant is always true at the
+beginning of each iteration of the loop and is still true when
+we exit the loop. The notion applies equally well to procedures: we
+can use an
+{\em entry invariant} describing the positions and orientations of the
+\robot\ before the call and an {\em exit invariant} describing
+these positions and orientations after the call, so that the body of the
+procedure can be understood without having to look at all the places
+where it is called to find out under which conditions the procedure is called.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+The computer can be used to manipulate programs, in
+particular to discover automatically invariants of simple form
+at each point of a program. This is the purpose of the
+{\em abstract interpretation} of programs
+\cite{CousotIA}. For the \robot, for example, a simple form
+of invariant is the set of its possible orientations,
+ignoring the position of its pen, its coordinates on
+the screen, etc. The possible orientations of the concrete \robot\ can be
+computed by executing the program with an abstract \robot\ that
+executes the commands of the concrete \robot\ without moving
+but simply changing its orientation. For this abstract \robot,
+the command {\idt fd} does nothing since it does not change the orientation of the
+concrete \robot; the command {\idt cr} has the same effect as
+{\idt qtr}; etc. During the abstract execution, the possible orientations
+of the abstract \robot\ are written as comments
+at each point of the program. The abstract execution of the program
+stops once the results have stabilized. For example, for the program {\idt FriezeOfN\_2} (page
+\pageref{prog:FriseDeN_2}), we find:
+
+\input{python/FriezeOfN_2_Abstract.tex}
+
+The rule of signs is an example of abstract interpretation used
+in mathematics. The sign of an expression can be
+computed using the sign of the variables, which replaces their values,
+thanks to abstract operations such as $\oplus + \oplus = \oplus$,
+$\oplus - \ominus = \oplus$, $\oplus \times \ominus = \ominus$, etc. The price
+to pay for this simplification is of course the imprecision of the
+results, as for $\oplus + \ominus$.
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

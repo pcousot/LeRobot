@@ -1,0 +1,100 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Write\ and\ sound\ out\ signs\ in\ Morse\ code}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Go\ to\ the\ start\ of\ the\ next\ line}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ newLine():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ gl();\ fs();\ fd();\ fe();\ fd();\ pd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dot}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ dot():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dp();\ beep();\ pu();\ fd();\ pd();\ delay(0.1)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Blank}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ blank():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ fd();\ pd();\ delay(0.1)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dash}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ dash():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd();\ longBeep();\ pu();\ fd();\ pd();\ delay(0.1)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Alphabet}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ a():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dot();\ dash();\ blank(...)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ z():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dash();\ dash();\ dot();\ dot();\ blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Digits}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ c1():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dot();\ dash();\ dash();\ dash();\ dash();\ blank(...)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ c0():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dash();\ dash();\ dash();\ dash();\ dash();\ blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Punctuation}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ fullStop():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dot();\ dot();\ dot();\ dot();\ dot();\ dot();\ blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ comma():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dot();\ dash();\ dot();\ dash();\ dot();\ dash();\ blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ semicolon():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dash();\ dash();\ dash();\ dot();\ dot();\ dot();\ blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ colon():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dash();\ dot();\ dash();\ dot();\ dash();\ dot();\ blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ questionMark():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dot();\ dot();\ dash();\ dash();\ dot();\ dot();\ blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ exclamationMark():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dash();\ dash();\ dot();\ dot();\ dash();\ dash();\ blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ hyphen():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dash();\ dot();\ dot();\ dot();\ dot();\ dash();\ blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ apostrophe():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dash();\ dash();\ dash();\ dash();\ blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ slash():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dash();\ dash();\ dash();\ dash();\ dash();\ dash();\ blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ End\ of\ word}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ endOfWord():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ fd();\ pd();\ delay(0.6)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ error():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(11):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt dot()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ startOfTransmission():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pw(2);\ gt();\ newLine()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dash();\ dot();\ dash();\ dot();\ dash();\ dot();\ dash();\ blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ endOfTransmission():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dot();\ dash();\ dot();\ dash();\ dot();\ dash();\ dot();\ blank()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt startOfTransmission()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt a();\ b();\ c();\ d();\ e();\ newLine()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt f();\ g();\ h();\ i();\ j();\ k();\ l();\ newLine()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt m();\ n();\ o();\ p();\ q();\ r();\ s();\ newLine()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt t();\ u();\ v();\ w();\ x();\ y();\ newLine()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt z();\ c1();\ c2();\ c3();\ newLine()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt c4();\ c5();\ c6();\ c7();\ c8();\ newLine()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt c9();\ c0();\ fullStop();\ comma();\ newLine()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt semicolon();\ colon();\ questionMark()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt exclamationMark();\ newLine()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt hyphen();\ apostrophe();\ slash()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt newLine();\ error();\ endOfTransmission();\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

@@ -1,0 +1,26 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ une\ croix\ grecque}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ cote():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av();\ av();\ av()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ extremite():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtg();\ av();\ pqtg()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ le\ côté\ gauche,\ l\textquotesingle{}extrémité\ puis\ le\ côté}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ droit\ d\textquotesingle{}une\ branche,\ et\ orienter\ le\ robot\ en}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ direction\ de\ la\ branche\ suivante.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ branche():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt cote();\ extremite();\ cote();\ pqtd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ croix():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt branche();\ branche();\ branche();\ branche()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt croix();\ st()}}\par
+
+\medskip }

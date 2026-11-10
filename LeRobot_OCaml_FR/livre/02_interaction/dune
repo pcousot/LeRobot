@@ -1,0 +1,3 @@
+; Programmes (chapitre 2) repris de la traduction de Turbo Pascal (programmes/02_interaction)
+(executables (names Cercles2Tailles Chiffre4 Chiffre9 DessinMaximal LettreF LettreT Octogone RoseDesVents8Directions)
+ (libraries lerobot) (flags (:standard -w +a-4-9-21-26-27-32-33-35-37-39-40-41-42-44-45-50-69-70)))

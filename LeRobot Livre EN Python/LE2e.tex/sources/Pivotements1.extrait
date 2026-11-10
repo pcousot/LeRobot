@@ -1,0 +1,9 @@
+# Turns the robot on the spot a quarter turn
+#   to the right
+def qtr():
+    etr(); etr()
+
+# Turns the robot on the spot a quarter turn
+#   to the left
+def qtl():
+    etl(); etl()

@@ -1,0 +1,15 @@
+# Programmes du livre traduits ou corriges a la main (ocaml2py --dossier
+# ne les ecrase pas). Chemins relatifs a livre/, sans .ml
+14_repere_cartesien/Apprendre_Repere           # parametre reference (borne)
+14_repere_cartesien/Apprendre_Translation      # parametre reference (borne)
+20_grille_polaire/PavageDuTriangleAlaEscherPt   # List.fold_left
+Didactitiels_et_jeux/Addition_A_Completer      # parametre reference (r)
+04_ecriture_compil_execution/CocotteErronee    # erreurs volontaires (en Python) :
+#   import oublie, chaine de documentation """ non fermee, pgtg, st( non ferme
+Didactitiels_et_jeux/Dessiner                  # commentaire adapte a Python
+01_specifications/ChienACompleter              # commentaire adapte a Python
+17_while/Boucle1                               # coquille du commentaire corrigee (esc)
+19_expressions_rationnelles/ErreursDarrondi          # texte "0.1 + 0.2" (et non +.)
+19_expressions_rationnelles/ErreursDarrondiAddition  # idem
+04_ecriture_compil_execution/StegosaureIllisible   # lignes de 64 caracteres au plus (livre)
+22_variables_E_S/Factorielle                    # ligne coupee (livre)

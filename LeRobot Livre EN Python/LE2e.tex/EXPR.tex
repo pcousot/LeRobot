@@ -1,0 +1,372 @@
+A computer can perform {\em additions} $(15 + 3) = 18$, {\em subtractions}
+$(15 - 3) = 12$,
+{\em multiplications} $(15 \ast 3) = 45$ and {\em divisions} of integers $(15 \;/\!/\; 3) = 5$.
+If the division does not come out exactly,
+the result is the integer quotient. The remainder is given
+by the {\em modulo} operation, written {\idt \%}. For example
+$(17 \;/\!/\; 3) = 5$ and $(17 \;${\idt \%}$\; 3) = 2$ because dividing the dividend $17$
+by the divisor $3$ gives the quotient $5$ and the remainder $2$. In mathematics a cross
+`$\times$' is used to denote multiplication, whereas in \python\ the asterisk $\ast$ is used.
+This avoids confusing the multiplication sign `$\times$' with the lowercase letter {\idt x}.
+Likewise, two slashes `{\idt //}' are used for integer division rather than the sign
+`$\div$', which is not found on computer keyboards.
+Be careful not to write a single slash `{\idt /}': in \python, it does not give the
+integer quotient ($17 \;/\; 3$ is not $5$). We will see later that it is used to compute with
+decimal numbers.
+
+To do a calculation involving several operations, we use pa\-ren\-the\-ses. For example
+$((2 \ast 3) - 1)$ is equal to 5. The calculation begins by evaluating the innermost
+expression in parentheses.
+For example $((((5 + 1) \ast 3) - 4) \;/\!/\; 2) = (((6 \ast 3) - 4) \;/\!/\; 2) =
+((18 - 4) \;/\!/\; 2) = (14 \;/\!/\; 2) = 7$.
+
+\index{Integer expression}In these {\em integer expressions}
+we can also use the value of the counters of ``for'' loops. For example,
+during the successive iterations in the body of the loop
+``{\mcl for}\ {\idt i}\ {\mcl in}\ {\idt range(1,\ 6):}\ \ldots'',
+the counter {\idt i} is $1$, then $2$, then $3$, then $4$ and finally $5$.
+In this loop body the expression $((2 \ast ${\idt  i}$) - 1)$ therefore successively has the value
+$((2 \ast 1) - 1) = 1$, $((2 \ast 2) - 1) = 3$, $((2 \ast 3) - 1) = 5$, $((2 \ast 4) - 1) = 7$ and finally
+$((2 \ast 5) - 1) = 9$.
+
+\begin{exemple}[Pyramid]
+To draw the pyramid below, we can start from the top and draw, from
+top to bottom, successive rectangles of lengths 1, 3, 5, 7, 9. The length of the
+side of the {\idt i}$^{\rm th}$ rectangle counting from the top is
+therefore $((2\;\ast\;${\idt  i}$) - 1)$. In the program, this expression is written
+`{\idt 2\ *\ i\ -\ 1}' between the parentheses of {\idt range} to give the number of iterations
+of the loop that draws one side of the rectangle.
+
+\pagebreak[3]
+\vspace*{22mm}%
+\includePostScript{Pyramide}{0.95}{0.95}%
+\vspace*{-22mm}%
+\input python/Pyramid.tex
+\end{exemple}
+
+%\pagebreak
+\needspace{24\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercice}{ Complete the program {\idt SawtoothStakes}, replacing the
+ellipsis `{\idt ...}' by an integer expression, so as to
+ob\-tain the row of stakes shown below:
+
+\raggedright{
+\vspace*{20mm}%
+\includePostScript{PiquetsEnDentsDeScie}{0.95}{0.95}\ \\%
+}
+
+
+\input python/SawtoothStakes.tex
+\noindent $\Box$}\end{exercice}
+\begin{exercice}{ Write \python\ programs commanding the \robot\ to produce the
+geometric drawings of figure  \ref{fig:spcf} (page  \pageref{fig:spcf}). $\Box$}\end{exercice}
+\begin{exercice}{{\bf (Difficult)} Complete the program {\idt WavesOfStakes} to
+draw the row of stakes shown below:
+
+\pagebreak[3]
+\raggedright{
+\vspace{0.5cm}
+
+\includevspacePostScript[2.0cm]{VaguesDePiquets}{0.95}{0.95}
+}
+
+\input python/WavesOfStakes.tex
+\noindent $\Box$}\end{exercice}
+\begin{figure}[hb]%[htbp]
+ \includevspacePostScript[9.3cm]{SpiralesEtQuad}{0.95}{0.95}
+\caption{Greek key, spirals, triangular tiling and fringed square}
+ \label{fig:spcf}
+\end{figure}
+
+\clearpage
+
+\begin{exercice}{{\bf (Difficult)}
+\begin{enumerate}
+\item Write a \python\ program to draw the tiling of Nicomachus\@%
+\footnote{\ Nicomachus of Gerasa, Greek mathematician, c.\ 1st century AD.}
+shown in figure
+\ref{fig:Nicomaque}  page \pageref{fig:Nicomaque} using dependent nested
+``for'' loops. Describe the loop invariants
+by comments in the program. The tiling of Nicomachus is made of 10
+rings consisting of squares whose side lengths
+are respectively 1, 2, 3, 4, \ldots, 10.
+
+\item Compute the area of the square in two different ways
+suggested by figure \ref{fig:Nicomaque2}
+page \pageref{fig:Nicomaque2}:
+ \begin{enumerate}
+  \item by computing the length of the half-side of the square, obtained by adding
+        those of the squares of the tiling,
+  \item by computing the area of the quarter of the large square delimited by
+   the diagonals of this large square (see this part in green in
+   figure \ref{fig:Nicomaque2}, page \pageref{fig:Nicomaque2}), the area of this quarter of the large square
+   being obtained by adding the areas of the small squares that make it up.
+ \end{enumerate}
+\item Deduce the equality:
+\[ 1^{3} + 2^{3} + 3^{3} + 4^{3} + \ldots + 10^{3} = (1 + 2 + 3 + 4 + \ldots + 10)^{2}\]
+\end{enumerate}
+\noindent $\Box$}\end{exercice}
+\begin{figure}[htbp]
+ \includevspacePostScript[11.7cm]{Nicomaque}{0.95}{0.95}
+ \caption{Tiling of Nicomachus (Scale $\frac{1}{4})$}
+ \label{fig:Nicomaque}
+\end{figure}
+
+\begin{corrige} {The missing integer expression in the program {\idt Saw\-tooth\-Stakes} is:
+\begin{center}
+$(1 + ((${\idt i}$ - 1)\;${\idt \%}$\;5))$
+\end{center}
+which successively takes the values $1$, $2$, $3$, $4$, $5$, $1$, $2$, $3$, \dots when {\idt i} takes the
+values $1$, $2$, $3$, $4$, $5$, $6$, $7$, $8$, \ldots
+\noindent $\Box$}\end{corrige}
+\begin{corrige} {We give one program; the others are in the folder
+{\idt book/\allowbreak 08\_integer\_expressions}:
+\input python/TrapezoidalSpiral.tex
+\noindent $\Box$}\end{corrige}
+\begin{corrige} {The missing integer expression in the program {\idt WavesOfStakes} is the following:
+\begin{center}
+$(((6-${\idt j}$)\ast ((${\idt i}$+1)\;${\idt \%}$\;2))+(${\idt j}$\ast(${\idt i}$\;${\idt \%}$\;2)))$
+\end{center}
+When {\idt i} is odd, $((${\idt i}$+1)\;${\idt \%}$\;2) = 0$ and $(${\idt i}$\;${\idt \%}$\;2) = 1$,
+so the expression is equal to {\idt j}. When {\idt i} is even, $((${\idt i}$+1)\;${\idt \%}$\;2) = 1$ and
+$(${\idt i}$\;${\idt \%}$\;2) = 0$, so the expression is equal to $(6-${\idt j}$)$.
+$\Box$}\end{corrige}
+\begin{corrige}{\hfill
+\input python/NicomachusTiling.tex
+\begin{figure}[htbp]
+ \includevspacePostScript[12.1cm]{Nicomaque2}{0.95}{0.95}
+ \caption{Side and area of the square of Nicomachus (Scale $\frac{1}{4}$)}
+ \label{fig:Nicomaque2}
+\end{figure}
+If we divide one side of the large square in two, the length of this
+half-side is the sum $(1 + 2 + \ldots + 10)$ of the lengths of the squares
+of sizes 1, 2, 3, \ldots, 10 of the tiling. This can be seen clearly in
+figure \ref{fig:Nicomaque2}  page \pageref{fig:Nicomaque2} thanks to the
+ruler that we have placed below and to the right of the large square.
+The area of the large square is therefore the square of the length of its side, that is:
+\[(2 \times (1 + 2 + \ldots + 10))^{2} = 4 \times (1 + 2 + \ldots + 10)^{2}\]
+
+If we divide the large square along its diagonals, we obtain a
+triangle, as shown in green in
+figure \ref{fig:Nicomaque2} (page \pageref{fig:Nicomaque2}). This triangle
+contains 1 square of side length 1, 2 squares of side
+length 2, \ldots, 10 squares of side length 10. Its area is
+therefore $1 \times 1^{2} + 2 \times 2^{2} + \ldots + 10  \times  10^{2}$, that is,
+$1^{3} + 2^{3} + \ldots + 10^{3}$. By turning this triangle 4 times, we
+cover the large square completely. The area of the large square is
+therefore:
+\[4 \times (1^{3} + 2^{3} + \ldots + 10^{3})\]
+
+The result is the same whichever way we compute the area
+of the square of Nicomachus. Consequently:
+\[4 \times (1^{3} + 2^{3} + \ldots + 10^{3}) = 4 \times (1 + 2 + \ldots + 10)^{2}\]
+that is:
+\[ 1^{3} + 2^{3} + \ldots + 10^{3} = (1 + 2 + \ldots + 10)^{2}\]
+
+Another proof of this identity was given by Al-Karaji\/\@\footnote{\ Al-Karaji,
+late 10th -- early 11th century, Persian mathematician.} and relies on tiling the square with
+L-shaped pieces (gnomons), as illustrated below:
+
+\begin{figure}[htbp]
+ \includevspacePostScript[6.3cm]{AlKaragi}{0.95}{0.95}
+ \caption{Tiling of Al-Karaji}
+ %\label{fig:AlKaragi}
+\end{figure}
+
+\noindent The area of the outer L-shape with short side 10 is:
+\begin{center}
+$\begin{array}{ll}
+(2 \times 10 \times (1 + 2 + \ldots + 10))  - 10^{2} & = 2 \times 10 \times \frac{10 \times (10 +1)}{2} - 10^{2}\\
+& = -10^{3} + 10^{2} - 10^{2} = 10^{3}
+\end{array}$
+\end{center}
+The area of the L-shape with short side 9 is $9^{3}$, that of the L-shape with short side 8 is $8^{3}$,  \ldots,
+the area of the small square is $1 = 1^{3}$.
+Consequently, the area of the large square, which
+is the sum of the areas of the small square and of the L-shapes, is $1^{3} + 2^{3} + \ldots + 10^{3}$.
+On the other hand, the length of the side of the large square is $(1 + 2 + \ldots + 10)$, so its area is
+$(1 + 2 + \ldots + 10)^{2}$. Since the area of the large square is the same whichever way
+we compute it, we obtain:
+\[ 1^{3} + 2^{3} + \ldots + 10^{3} = (1 + 2 + \ldots + 10)^{2}\]
+To justify that $(1 + 2 + \ldots + 10) = \frac{10 \times (10 +1)}{2}$, we use a rectangle of
+width 10 and length (10 +1), half of which is tiled as follows:
+
+\begin{figure}[htbp]
+ \includevspacePostScript[4.3cm]{S1p2p3Etc}{0.95}{0.95}
+ \caption{Computing $1 + 2 + 3 + \ldots + 10$}
+ %\label{fig:1+2+3etc}
+\end{figure}
+
+Another geometric justification of the equality
+$1^{3} + 2^{3} + \ldots + 10^{3} = (1 + 2 + \ldots + 10)^{2}$, proposed by S. Go\-lomb
+\cite{golomb1}, is illustrated below:
+%à la figure \ref{fig:golomb} (page \pageref{fig:golomb}).
+
+\begin{figure}[htbp]
+ \includevspacePostScript[6.0cm]{Golomb}{0.95}{0.95}
+ \caption{Tiling of Golomb}
+ \label{fig:golomb}
+\end{figure}
+
+\noindent The length of the side of the large square is indeed $(1 + 2 + \ldots + 10)$, so its area is
+$(1 + 2 + \ldots + 10)^{2}$. This area is equal to the sum of the areas of the squares
+making up the tiling, that is, 1 square of side 1, 2 squares of side 2, \ldots, 10
+squares of side 10. Note
+that for the squares with an even side length, shown in yellow in the figure,
+there is an
+overlap of two small squares, shown in red. But each of these small squares
+is adjacent to an uncovered region of the same size, shown in white. We can therefore
+remove one of the two overlapping small squares to fill the hole and obtain a perfect tiling.
+ The area is therefore equal to $1^{3} + 2^{3} + \ldots + 10^{3}$.
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+\indent \index{Integer expression}To make learning the syntax of \python\ easier, we write integer
+expressions with parentheses.  {\em Unary} integer expressions (with
+a single {\em operand} $E$) have the form $(-E)$ where $-$ is the minus sign {\em operator}.
+{\em Binary} integer expressions (with a left {\em operand} $E_1$ and a right
+operand $E_2$) have the form $(E_1\,$ {\mcl op} $\,E_2)$ where {\mcl op} is one of the
+{\em operators} of addition $+$, subtraction $-$, multiplication $\ast$, integer
+division {\idt //} or remainder of integer division {\idt \%} (modulo).
+The operands $E$, $E_1$ and $E_2$ are an integer con\-stant (positive such as $1$, $17345$
+(without blanks), \ldots
+or negative such as $-10$, $-5247$, \ldots), a variable (for now a ``for'' loop
+counter such as {\idt i}) or an integer
+{\em subexpression} of the form we have just described.
+
+Computing the value of an expression is called {\em evaluating} the expression. The rules
+for evaluating fully parenthesized expressions are very simple. The value of a
+constant is the integer denoted by this constant. The value of a variable {\idt i} used
+as a counter in the body $C$ of a loop {\mcl for}\ {\idt i}\ {\mcl in}\ {\idt range(1,\ }$n${\idt \ +\ 1):}\ $C$
+(where $n \geq 1$ is an integer constant) is successively 1, then 2,
+then \dots, then $n$ during the successive iterations of the loop. The value of an expression $(-E)$
+is obtained by computing the value $v$ of the expression $E$ and then applying the minus sign to it. The
+value of an expression $(E_1\,$ {\mcl op} $\,E_2)$ is obtained by first computing the value
+$v_1$ of the expression $E_1$, then computing the value $v_2$ of the expression $E_2$, then
+computing the value $v_1\,$ {\mcl op} $\,v_2$ of the result. The same evaluation rules
+apply to the subexpressions $E$, $E_1$ and $E_2$.
+
+\indent To avoid cumbersome notation, in \python\ we can follow the common practice in
+mathematics of using {\em priority rules} (also called {\em precedence
+rules}) that allow us to remove
+some redundant parentheses.
+The evaluation rules for integer expressions are
+defined and illustrated below:
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item In \python, as in mathematics, the integer expression
+$10 - 10 - 10$ is equal to $((10 - 10) - 10)$, that is, $-10$.  Likewise $ 2 \ast 7 \,/\!/
+\, 3\,${\idt \%}$\, 2$ is equal to $(((2 \ast 7) \,/\!/\, 3)\,${\idt \%}$\, 2)$, that is, $0$.
+In both cases the rule is that operators of the same {\em priority} (namely $+$ and
+$-$ on the one hand; $\ast$, {\idt //} and {\idt \%} on the other) are evaluated from left to right.
+\item The expression $8 + - 2 \ast 3$ is equal to $(8 + ((-2) \ast 3))$, that is, $2$.  Likewise
+\hbox{$1 - 5\,/\!/\,2$}
+is equal to $(1 - (5\,/\!/\,2))$, that is, $-1$. The rule is that when there are operators of
+different priorities, the operators of highest priority are evaluated first.
+\end{list}
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\noindent In \python\ the priorities are as follows:
+
+\vspace{-6pt}
+
+\begin{center}
+\hspace{1.0cm}\begin{tabular}{|l|l|l|} \hline
+\multicolumn{3}{|l|}{\em Priority of integer operators} \\ \hline \hline
+$-$ (unary)                                & unary operators & high priority \\ \hline
+$\ast$\ {\idt //}\ {\idt \%} & multiplicative operators & medium priority \\ \hline
+$+$, $-$ (binary) & additive operators & low priority \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{-6pt}
+
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item The expression $(8 + - 2) \ast 3$ is equal to $((8 + (- 2)) \ast 3)$, that is, $18$.  Likewise
+\hbox{$(1 - 5)\,/\!/\,2$} is equal to $((1 - 5)\,/\!/\,2)$, that is, $-2$. In both cases we
+begin by evaluating the subexpressions in parentheses.
+\item When the division of a negative number does not come out exactly, \python\ rounds the
+quotient down, that is, towards the smaller integer: $-7\,/\!/\,2$ is equal to $-4$
+(and not $-3$ as in \ocaml\ or in \pascal) and the remainder $-7\;${\idt \%}$\;2$ is equal to $1$
+(and not $-1$ as in \ocaml), so that we always have
+$((-7\,/\!/\,2) \ast 2) + (-7\;${\idt \%}$\;2) = -7$. With a positive divisor, the remainder
+{\idt \%} is therefore always positive or zero.
+\end{list}
+
+\smallskip
+
+\noindent Equivalently, the order of evaluation of expressions can be defined
+by stating to which operators the operands of an expression are bound:
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item An operand appearing between two operators of different priorities is bound to the operator
+of higher priority (so $2 + 3 \ast 5 = (2 + (3 \ast 5))$).
+\item An operand appearing between two operators of the same priority is bound to the operator
+on the left (so $2 - 3 - 5 = ((2 - 3) - 5)$).
+\item Expressions in parentheses are evaluated before being used as operands.
+\end{list}
+
+\smallskip
+
+The rules for evaluating expressions change from one programming language to another.
+For example, in {\sc apl} \cite{iverson1}, there are no operator priorities (because there are
+too many operators in the language to hope to remember them) and expressions are right-associative,
+so that $10 - 10 - 10 = (10 - (10 - 10)) = (10 - 0) = 10$. This rule, contrary
+to mathematical tradition, has the advantage that the grammatical analysis of expressions is greatly
+simplified for the computer.
+
+Programming languages more classical than {\sc apl} fol\-low the mathematical
+convention of left-to-right evaluation with priorities.
+
+
+However, some languages have a great many operators.
+For example, the {\sc C} language \cite{kernighan1} has 43 different operators divided into
+15 lev\-els of pri\-or\-i\-ty.
+The priorities of the operators are therefore not easy to remember.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+Moreover, the rules change from one language to
+another, which makes life difficult for computer scientists
+who use several languages every day. To avoid mistakes they use redundant
+parentheses,
+which is what we advise beginners to do.
+
+Finally, note that in \python\ integers are not limited: we can compute
+with integers of several hundred digits, the only limit being the size of the
+computer's memory. This is not the case in all languages. In \pascal\ on the first
+personal computers, integers had to lie between $-32768$ and $32767$. In \ocaml,
+they lie between {\idt min\_int} $= -4611686018427387904$ and
+{\idt max\_int} $= 4611686018427387903$ and beyond that, the calculation gives a
+wrong result without warning: $(${\idt max\_int}$ + 1)$ is equal to {\idt min\_int}!
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

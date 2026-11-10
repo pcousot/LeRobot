@@ -1,0 +1,13 @@
+from LibRobot import *
+
+...
+# 10
+cl()  # ERROR: cr
+cl(); qtr(); qtr(); fd(); fd(); fd()
+qtr(); fd(); fd(); qtr(); fd(); cr(); cl()
+...
+# Draw the belly
+cl(); qtl()  # ERROR: qtr
+fd(); fd(); fd()
+...
+st()

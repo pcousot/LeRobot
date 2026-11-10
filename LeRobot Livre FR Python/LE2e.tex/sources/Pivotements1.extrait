@@ -1,0 +1,9 @@
+# Fait pivoter le robot sur place d'un quart de tour
+#   à droite
+def pqtd():
+    phtd(); phtd()
+
+# Fait pivoter le robot sur place d'un quart de tour
+#   à gauche
+def pqtg():
+    phtg(); phtg()

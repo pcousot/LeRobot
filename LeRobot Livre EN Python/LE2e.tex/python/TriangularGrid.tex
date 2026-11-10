@@ -1,0 +1,37 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ triangular\ grid\ pattern}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ 10\ rows\ of\ squares\ side\ by\ side}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ horizontally}}\par
+\vspace{\neglskip}\mbox{\blc {\idt qtr()}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ 11):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ a\ row\ of\ i\ squares\ side\ by\ side}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ horizontally,\ starting\ at\ the\ top\ left\ and}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ arriving\ at\ the\ top\ right,\ the\ robot\ facing}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ east\ in\ both\ cases.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(i):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Draw\ a\ square,\ starting\ from\ the\ upper}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ left\ corner\ and\ arriving\ at\ the\ upper}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ right\ corner,\ the\ robot\ facing\ east\ in}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ both\ cases.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl for}{\idt \ k\ }{\mcl in}{\idt \ range(4):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt fd();\ qtr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Go\ back,\ without\ drawing,\ to\ the\ start\ of\ the}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ next\ row,\ the\ robot\ facing\ east\ at}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ departure\ and\ on\ arrival.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ ht()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(i):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtl();\ fd();\ qtl();\ pd()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

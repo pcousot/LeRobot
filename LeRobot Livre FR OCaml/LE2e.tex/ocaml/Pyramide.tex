@@ -1,0 +1,35 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ une\ pyramide\ de\ 5\ étages.\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\cmt (*\ Orienter\ le\ robot\ à\ l\textquotesingle{}ouest.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt pqtg\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 5\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Partant\ du\ coin\ inférieur\ gauche\ d\textquotesingle{}un\ étage\ avec\ le}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt robot\ orienté\ à\ l\textquotesingle{}ouest,\ dessiner\ le\ coin\ inférieur}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt gauche\ de\ l\textquotesingle{}étage\ inférieur\ et\ pivoter\ à\ l\textquotesingle{}est.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av\ ();\ pqtg\ ();\ av\ ();\ pqtg\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Dessiner\ le\ i{-}ème\ étage\ rectangulaire.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Côté\ inférieur\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ =\ 1\ }{\mcl to}{\idt \ ((2\ *\ i)\ {-}\ 1)\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt av\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Extrémité\ droite\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtg\ ();\ av\ ();\ pqtg\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Côté\ supérieur\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ =\ 1\ }{\mcl to}{\idt \ ((2\ *\ i)\ {-}\ 1)\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt av\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Redescendre\ au\ coin\ inférieur\ gauche\ et\ orienter}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt le\ robot\ à\ l\textquotesingle{}ouest.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtg\ ();\ av\ ();\ pqtd\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt st\ ()}}\par
+
+\medskip }

@@ -1,0 +1,33 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ Maltese\ cross}}\par
+\vspace{\neglskip}\mbox{\blc {\idt width\ =\ 20\ \ }{\cmt \#\ Width\ of\ an\ arm}}\par
+\vspace{\neglskip}\mbox{\blc {\idt length\ =\ 30\ \ }{\cmt \#\ Length\ of\ an\ arm}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ vertical\ arm\ with\ the\ robot}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ facing\ north\ or\ south}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ verticalArm():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gsX(width);\ gsY(length)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt cl();\ ht();\ fd();\ fd();\ ht();\ cl();\ qtl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ horizontal\ arm\ with\ the\ robot}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ facing\ east\ or\ west}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ horizontalArm():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gsX(length);\ gsY(width)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt cl();\ ht();\ fd();\ fd();\ ht();\ cl();\ qtl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ malteseCross():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(2):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt verticalArm();\ horizontalArm()}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt malteseCross();\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

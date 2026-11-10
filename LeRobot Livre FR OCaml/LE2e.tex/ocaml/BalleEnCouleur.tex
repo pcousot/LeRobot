@@ -1,0 +1,31 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ et\ peindre\ une\ balle\ en\ couleur\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ epaisseurBord\ =\ 3}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ demiRayon\ =\ 30}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ quartDeFigure\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lg\ (float\_of\_int\ demiRayon);\ vg\ ();\ vg\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lg\ (float\_of\_int\ (2\ *\ demiRayon));\ vg\ ();\ ce\ ();\ pdt\ ()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Placer\ le\ robot\ dans\ la\ zone\ à\ peindre\ et\ peindre\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ peindreQuartDeFigure\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lg\ (float\_of\_int\ (demiRayon\ /\ 2));}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lc\ ();\ ce\ ();\ pqtd\ ();\ av\ ();\ bc\ ();\ peindre\ ()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt ec\ epaisseurBord;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 4\ }{\mcl do}{\idt \ quartDeFigure\ ()\ }{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 2\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt cc\ bleu;\ peindreQuartDeFigure\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt cc\ violet;\ peindreQuartDeFigure\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt st\ ()}}\par
+
+\medskip }

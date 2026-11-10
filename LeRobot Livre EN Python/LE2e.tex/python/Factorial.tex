@@ -1,0 +1,36 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Read\ an\ integer\ n\ and\ write\ its\ factorial\ n!}}\par
+\vspace{\neglskip}\mbox{\blc {\idt nmin\ =\ 0}}\par
+\vspace{\neglskip}\mbox{\blc {\idt nmax\ =\ 20}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Read\ the\ value\ of\ n\ from\ the\ keyboard,\ repeating}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ until\ nmin\ \char60{}=\ n\ \char60{}=\ nmax}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ readN():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt write(}{\cha \char34{}n\ =\ \char34{}}{\idt )}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt n\ =\ readInt()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ nmin\ \char60{}=\ n\ }{\mcl and}{\idt \ n\ \char60{}=\ nmax:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl return}{\idt \ n}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt writeln(}{\cha \char34{}n\ must\ be\ between\ \char34{}}{\idt ,\ str(nmin),\ }{\cha \char34{}\ and\ \char34{}}{\idt ,}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk\blk\blk{\idt str(nmax),\ }{\cha \char34{}!\ Try\ again.\char34{}}{\idt )}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl return}{\idt \ readN()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt n\ =\ readN()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Compute\ f\ =\ n!}}\par
+\vspace{\neglskip}\mbox{\blc {\idt f\ =\ 1}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ n\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt f\ =\ f\ *\ i}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Write\ f}}\par
+\vspace{\neglskip}\mbox{\blc {\idt writeln(}{\cha \char34{}n!\ =\ \char34{}}{\idt ,\ str(f))}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt readln()}}\par
+
+\nopagebreak\medskip }\nopagebreak

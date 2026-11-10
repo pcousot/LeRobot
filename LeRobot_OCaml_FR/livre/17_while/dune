@@ -1,0 +1,6 @@
+(executables
+ (names TraitHorizontal AvSansSortirDuCadre TracerCadre Boucle1
+  Boucle2 FriseDeTriangles PointsDarret Quadrillage Grillage
+  AgAdEhEb)
+ (libraries lerobot)
+ (flags (:standard -w -35)))

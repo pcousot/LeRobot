@@ -1,0 +1,32 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ le\ symbole\ chinois\ du\ Yin\ Yang}}\par
+\vspace{\neglskip}\mbox{\blc {\idt tailleQuadrillage\ =\ 3}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ cercle():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt vd();\ vd();\ vd();\ vd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Demi\ cercle\ inférieur}}\par
+\vspace{\neglskip}\mbox{\blc {\idt lg(6\ *\ tailleQuadrillage)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pqtd();\ vg();\ vg()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Demi\ cercle\ supérieur}}\par
+\vspace{\neglskip}\mbox{\blc {\idt lg(6\ *\ tailleQuadrillage)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt vd();\ vd()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Cercle\ du\ pourtour}}\par
+\vspace{\neglskip}\mbox{\blc {\idt lg(12\ *\ tailleQuadrillage)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cercle()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Petit\ cercle\ blanc}}\par
+\vspace{\neglskip}\mbox{\blc {\idt lg(2\ *\ tailleQuadrillage)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt lc();\ pqtd();\ avf(2);\ pqtg();\ bc();\ cercle()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Peindre\ la\ zone\ noire}}\par
+\vspace{\neglskip}\mbox{\blc {\idt lc();\ pqtd();\ avf(4);\ peindre()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Petit\ cercle\ noir}}\par
+\vspace{\neglskip}\mbox{\blc {\idt avf(2);\ pqtg();\ bc();\ cercle();\ pqtg();\ peindre()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\medskip }

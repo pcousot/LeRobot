@@ -1,0 +1,32 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ and\ paint\ a\ ball\ in\ colour}}\par
+\vspace{\neglskip}\mbox{\blc {\idt edgeThickness\ =\ 3}}\par
+\vspace{\neglskip}\mbox{\blc {\idt halfRadius\ =\ 30}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ quarterOfFigure():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(halfRadius);\ cl();\ cl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(2\ *\ halfRadius);\ cl();\ gc();\ ht()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Place\ the\ robot\ in\ the\ area\ to\ paint\ and\ paint}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ paintQuarterOfFigure():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(halfRadius\ //\ 2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ gc();\ qtr();\ fd();\ pd();\ paint()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt pw(edgeThickness)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(4):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt quarterOfFigure()}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(2):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pc(blue);\ paintQuarterOfFigure()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pc(violet);\ paintQuarterOfFigure()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

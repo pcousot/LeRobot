@@ -1,0 +1,32 @@
+# compiled files (remade on each computer)
+_build/
+__pycache__/
+*.o
+*.ppu
+*.cm[iotx]
+*.cmti
+*.cmxa
+*.a
+*.exe
+# results of runs and checks
+LeRobot_FreePascal_FR/Dessin_du_Robot
+LeRobot_FreePascal_FR/Dessin_du_Robot.p
+verification.txt
+check.txt
+captures/
+tools/spectre/*.json
+!LeRobot_Python_EN/tools/spectre/spectres_20.2_17.1.json
+# LaTeX intermediate files
+*.aux
+*.log
+*.toc
+*.out
+*.idx
+*.ind
+*.ilg
+*.mx1
+*.mx2
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+.DS_Store

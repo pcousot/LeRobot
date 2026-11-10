@@ -1,0 +1,58 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Build\ a\ magic\ square\ of\ odd\ order}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Read\ from\ the\ keyboard\ the\ (odd)\ order\ n\ of\ the\ square}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ readOrder():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt write(}{\cha \char34{}Order\ of\ the\ magic\ square\ (odd),\ n\ =\ \char34{}}{\idt )}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt n\ =\ readInt()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ n\ \char62{}\ 0\ }{\mcl and}{\idt \ n\ \%\ 2\ ==\ 1:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl return}{\idt \ n}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl return}{\idt \ readOrder()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Put\ the\ robot\ at\ the\ bottom\ left\ corner\ of\ the\ square:}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ one\ step\ above\ and\ to\ the\ right\ of\ the\ window\textquotesingle{}s\ corner}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ origin():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gb();\ gl();\ translate(1,\ 1)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Write\ the\ text\ s\ centred\ on\ the\ robot\textquotesingle{}s\ position}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ (technical\ procedure,\ see\ the\ complete\ program\ in}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ the\ folder\ book/22\_variables)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ writeCentred(s):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ...}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Display\ the\ element\ c\ at\ the\ centre\ of\ cell\ (i,\ j)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ display(i,\ j,\ c):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt origin();\ translate(2\ *\ i\ {-}\ 1,\ 2\ *\ j\ {-}\ 1)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt writeCentred(str(c))}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt n\ =\ readOrder()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ the\ matrix\ in\ the\ robot\textquotesingle{}s\ window}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gs(20);\ hideRobot()}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ k\ }{\mcl in}{\idt \ range(n\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt origin();\ translate(2\ *\ k,\ 0);\ fn();\ fdn(2\ *\ n)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt origin();\ translate(0,\ 2\ *\ k);\ fe();\ fdn(2\ *\ n)}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Fill\ in\ the\ magic\ square}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Row\ i\ and\ column\ j\ of\ the\ cell\ to\ fill}}\par
+\vspace{\neglskip}\mbox{\blc {\idt i\ =\ (n\ +\ 1)\ //\ 2}}\par
+\vspace{\neglskip}\mbox{\blc {\idt j\ =\ n}}\par
+\vspace{\neglskip}\mbox{\blc {\idt display(i,\ j,\ 1)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ c\ }{\mcl in}{\idt \ range(2,\ n\ *\ n\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ c\ \%\ n\ !=\ 1:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt i\ =\ i\ \%\ n\ +\ 1}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt j\ =\ j\ \%\ n\ +\ 1}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt j\ {-}=\ 1}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt display(i,\ j,\ c)}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

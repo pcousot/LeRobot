@@ -1,0 +1,32 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ segmented\ spiral}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Turn\ left\ then\ move\ the\ robot\ straight\ ahead}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ l\ times\ the\ grid\ size\ to\ form\ a}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ quarter\ turn.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ quarterTurn(l):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtl();\ fdn(l)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ two\ successive\ quarter\ turns\ to\ form}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ a\ half\ turn.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ halfTurn(l):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt quarterTurn(l)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt quarterTurn(l)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ spiral\ of\ n\ half\ turns}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ spiral(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ l\ }{\mcl in}{\idt \ range(1,\ n\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt halfTurn(l)}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gs(6);\ spiral(19);\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

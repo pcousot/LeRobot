@@ -1,0 +1,722 @@
+\section{Structure des programmes} 
+%\label{sec:4:ecrir-progs} 
+
+De même que pour écrire correctement en français il faut respecter
+des règles précises d'orthographe et de grammaire, l'écriture de
+programmes corrects est soumise à un certain nombre de {\em règles
+de syntaxe}\index{Règle de syntaxe} heureusement plus simples que pour le français. La différence
+est que des phrases françaises comportant des fautes d'orthographe ou
+de grammaire peuvent rester compréhensibles par des francophones alors
+qu'un programme comportant des 
+{\em erreurs syntaxiques}\index{Erreur syntaxique} ne peut
+pas être traduit dans le langage de l'or\-di\-na\-teur, ni donc exécuté.
+Cette traduction est effectuée par un programme (appelé {\em interpréteur})\index{Interpréteur}
+prévu pour indiquer nos erreurs mais pas pour les corriger. Pour corriger
+nos erreurs de manière satisfaisante, l'interpréteur devrait pouvoir comprendre 
+nos intentions, un problème bien difficile.
+
+Le programme {\idt Cocotte} ci-dessous est un exemple de
+programme \python\ correct.
+
+\begin{exemple}[Programme syntaxiquement correct]{\hfill
+\label{prog:Cocotte} \input python/Cocotte.tex
+\noindent $\Box$ }\end{exemple}
+
+\noindent Tous nos programmes \python\ de pilotage du \robot\ ont la même forme :
+
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Programme \python\ :}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ {\mcl from}\hspace{0.3em}\blanc\hspace{0.3em}{\idt LibRobot}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl import}\hspace{0.3em}\blanc\hspace{0.3em}{\idt *}}\par 
+\mbox{\blc\ \ \ \cmt \#\ \small\rm Commentaire expliquant ce que fait le programme}\par 
+\mbox{\blc\ \ \ \small\rm  \ldots\ Instructions du programme (une par ligne, ou séparées par des `$;$') \ldots}\par 
+\medskip}
+\end{minipage}\\ \hline 
+\end{tabular}
+\end{center}
+
+Un programme \python\ est rangé dans un fichier dont le nom se termine par {\idt .py}.
+Le nom du programme est celui de ce fichier, sans le {\idt .py}~: le programme 
+{\idt Cocotte} est rangé dans le fichier {\idt Cocotte.py}.
+
+Ce nom est choisi par le programmeur
+à sa convenance, de façon à évoquer ce à quoi sert son programme.
+ La seule règle à res\-pec\-ter est que le nom du programme
+ne doit comporter que des lettres minuscules ou
+majuscules non accentuées\footnote{\ Les accents n'existent pas en anglais
+(à de très rares exceptions près, comme dans les mots `naïve', `protégé' ou
+`rôle' empruntés au français).}, des chiffres ou
+des soulignés `\_'\footnote{\ Le souligné `\_' ne doit pas être confondu avec le tiret `-'.}
+et doit commencer par une lettre. Par exemple {\idt  S}, 
+{\idt  LeStegosaure} ou {\idt  Le\_Stegosaure} sont des noms corrects de
+programmes alors que {\idt  1S}, 
+{\idt  s!}, {\idt  Le\ Stegosaure} ou {\idt  Le-Stégosaure} ne respectent
+pas la règle d'écriture des noms de programmes. 
+
+Un programme \python\ commence par la ligne `{\mcl from}\ {\idt LibRobot}\ {\mcl import}\ {\idt *}'.
+Les mots anglais {\mcl from} et {\mcl import} signifient `de' et `importer'~: cette ligne 
+importe de la 
+{\em bibliothèque}\index{Bibliothèque} {\idt LibRobot} toutes (c'est le sens de l'étoile `{\idt *}') 
+les commandes du 
+\robot, sans quoi l'ordinateur ne les connaîtrait pas. Elle ouvre aussi la fenêtre 
+dans laquelle le \robot\ dessine.
+
+Il y a obligatoirement un blanc
+entre le mot {\mcl from} et le nom {\idt LibRobot}, ainsi qu'entre {\idt LibRobot} et le 
+mot {\mcl import}. Dans un livre il y a des blancs partout et même, en y regardant bien,
+plus de blanc que toute autre chose. Mettre un blanc dans un livre pour dire qu'il faut taper
+un blanc est donc idiot parce que la plupart des lecteurs ne s'intéressent pas aux 
+blancs dans les livres mais simplement à ce qui y est écrit.
+Nous utiliserons donc le symbole `\blanc' pour écrire nos blancs noir sur \hbox{blanc$\:$!}
+Autrement dit nous écrivons \blanc\ pour dire qu'il faut taper sur la grande barre 
+située en bas du clavier de l'or\-di\-na\-teur qui s'appelle la 
+{\em barre d'espacement}\index{Barre d'espacement}
+pour obtenir un blanc `\ ' dans le programme. 
+Nous ne le faisons pas dans les programmes donnés en exemple qui sont
+présentés comme ils apparaissent à l'écran. De même, à la fin d'une 
+ligne il faut taper sur la touche de retour à la ligne 
+\framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex} ou \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{return}}\hspace{0.3ex} pour passer au début de la
+ligne suivante. Nous ne l'écrivons pas dans les livres car tous les lecteurs savent
+qu'il faut passer au début de la ligne suivante quand ils sont arrivés en fin de ligne. 
+
+Après le commentaire qui explique ce que fait le programme
+viennent les instructions 
+du programme. Elles sont écrites dans l'ordre où elles doivent être exécutées par
+l'or\-di\-na\-teur, en commençant au début de la ligne (sans blanc devant~: nous verrons 
+au chapitre suivant que les blancs en début de ligne ont un sens précis en \python). 
+On peut écrire une instruction par ligne ou bien plusieurs instructions sur une même ligne 
+en les séparant par des points-virgules, sans point-virgule après la dernière de la ligne. 
+Les instructions du programme
+peuvent être des commandes du \hbox{\robot\ :} {\idt av}, {\idt vg}, {\idt vd}, {\idt pqtd}, 
+{\idt pqtg}, {\idt phtd}, {\idt phtg}, {\idt lc}, {\idt bc}, {\idt dc}, {\idt dp}, 
+{\idt dg} ou {\idt st}, chacune suivie de {\idt ()}. En général les programmes de pilotage du \robot\ se
+terminent par la commande {\idt st()} qui permet d'attendre que nous
+tapions sur une touche avant que le dessin ne 
+disparaisse à la fin de l'exécution du programme.
+
+Les textes qui commencent par le signe {\cmt \#} et se poursuivent jusqu'à la fin de 
+la ligne sont des {\em commentaires} ignorés par l'ordinateur.
+
+Le pro\-gram\-me
+{\idt CocotteErronee} ci-dessous contient
+plusieurs erreurs très courantes chez les débutants.
+
+\begin{exemple}[Programme syntaxiquement incorrect]{\hfill
+
+\label{prog:Cocotte-errone} \input python/CocotteErronee.tex
+\noindent Les erreurs dans ce programme sont les \hbox{suivantes :}
+\begin{list}{$\scriptscriptstyle\bullet$}{
+\renewcommand{\labelwidth}{3mm}
+\renewcommand{\labelsep}{3mm}
+\renewcommand{\leftmargin}{10mm}
+\renewcommand{\rightmargin}{0mm}
+}
+\item[1.] la ligne `{\mcl from}\ {\idt LibRobot}\ {\mcl import}\ {\idt *}' a été oubliée$\:$;
+\item[2.] le texte qui explique ce que fait le programme a été écrit entre triples 
+guillemets {\cha \char34\char34\char34} (c'est une {\em chaîne de documentation}, que l'on 
+peut utiliser comme un commentaire de plusieurs lignes) mais les triples guillemets 
+fermants {\cha \char34\char34\char34} ont été oubliés$\:$;
+\item[3.] l'instruction {\idt pgtg()} n'est pas une commande du \robotErr$\:$;
+\item[4.] la parenthèse ouverte de la dernière commande {\idt st(} n'est pas fermée.
+\end{list}
+\noindent $\Box$ }\end{exemple}
+
+
+Un exemple compliqué de programme \python\ syntaxiquement correct
+est donné ci-\hbox{dessous :}
+\begin{exemple}[Le stégosaure]{\rm
+Le programme \python\ de pilotage du \robot\ pour
+dessiner le sté\-go\-sau\-re re\-pré\-sen\-té  à la fi\-gu\-re
+\ref{fig:stegosaure} (page \pageref{fig:stegosaure}) est le \hbox{suivant :}
+\label{prog:Stegosaure} \input python/Stegosaure.tex
+\noindent $\Box$ }\end{exemple}
+
+\section{Commentaires} 
+%\label{sec:4:comment} 
+
+Un programme \python\ peut comporter des {\em commentaires}\index{Commentaire} qui sont
+des textes français quelconques écrits après le signe {\cmt \#\ \ldots}, jusqu'à la fin de la 
+ligne. Un commentaire peut occuper toute une ligne ou bien suivre les instructions 
+d'une ligne, comme dans {\idt vg()\ \ }{\cmt \#\ ERREUR\ :\ vd}.
+Un texte de plusieurs lignes peut aussi être placé entre triples guillemets 
+{\cha \char34\char34\char34\ \ldots\ \char34\char34\char34}~: c'est une 
+{\em chaîne de documentation}\index{Chaîne de documentation}, que l'ordinateur 
+lit mais qui ne commande rien au \robot.
+L'or\-di\-na\-teur ne tient pas compte de ces commentaires qui sont uniquement
+destinés à expliquer l'usage et le principe de fonctionnement du
+programme aux lecteurs de ce programme. Si l'on enlève tous les
+commentaires d'un programme, il devient illisible pour un humain mais
+rien n'est changé pour l'or\-di\-na\-teur.
+
+\begin{exemple}[Le stégosaure \underline{illisible}]{\rm
+En enlevant tous les com\-men\-tai\-res du programme {\idt Stegosaure}
+de la page \pageref{prog:Stegosaure}, ainsi que les blancs et les passages à la 
+ligne inutiles, on obtient un programme \python\
+totalement illisible mais qui dessine parfaitement bien le 
+sté\-go\-sau\-re re\-pré\-sen\-té  à la fi\-gu\-re
+\ref{fig:stegosaure} (page \hbox{\pageref{fig:stegosaure}) :}
+{\small\input{python/StegosaureIllisible.tex}}
+Cet exemple montre également que la disposition des instructions du
+programme est importante. L'espacement entre instructions et les
+alignements convenables facilitent grandement la lecture des
+programmes.
+\noindent $\Box$ }\end{exemple}
+
+
+
+\section{Interprétation des programmes} 
+%\label{sec:4:compil-progs} 
+L'{\em interprétation}\index{Interprétation} d'un programme \python\ consiste à le traduire 
+dans le langage de l'or\-di\-na\-teur
+appelé {\em langage machine}\index{Langage machine} et à le faire exécuter par l'ordinateur. 
+Elle est faite par un programme
+que l'on appelle l'\index{Interpréteur}{\em interpréteur} \python\@\footnote{\ La commande 
+{\tt ./robot.sh Cocotte.py}, tapée dans une 
+fenêtre de terminal placée dans le dossier {\tt LeRobot\_Python\_FR}, appelle l'interpréteur 
+{\tt python3} pour faire exécuter le programme {\tt Cocotte.py}. Faire glisser l'icône de 
+{\tt Cocotte.py} sur celle de l'application {\tt LeRobotPython.app} fait la même chose.}.
+L'interpréteur procède en deux temps~:
+\begin{list}{$\scriptscriptstyle\bullet$}{
+\renewcommand{\rightmargin}{0mm}
+}
+\item il lit d'abord {\em tout} le programme pour vérifier qu'il respecte les règles 
+de syntaxe de \python\ et le traduire$\:$; s'il trouve une erreur syntaxique, il le signale 
+et s'arrête sans rien exécuter$\:$;
+\item puis, si le programme est syntaxiquement correct, il fait exécuter ses 
+instructions par l'ordinateur, les unes après les autres.
+\end{list}
+Certaines erreurs ne peuvent être découvertes que pendant ce second temps, au moment où 
+l'or\-di\-na\-teur arrive à l'instruction fautive, par exemple l'appel d'une commande qui n'existe 
+pas. L'exécution s'arrête alors, mais le \robot\ a déjà fait tout le dessin demandé 
+par les instructions précédentes.
+Bien évidemment le programme \python\ et sa traduction pilotent
+le \robot\ de la même façon. Cette manière de procéder nous 
+évite d'avoir à apprendre le langage machine. Il est bien difficile
+de comprendre ce langage machine car tous les programmes s'écrivent
+uniquement avec des 0 et \hbox{des 1$\:$!}
+
+\section{Erreurs syntaxiques} 
+%\label{sec:4:err-compil} 
+
+Pour pouvoir exécuter un programme \python, il ne faut pas qu'il contienne
+d'erreurs syntaxiques\index{Erreur de programmation}\index{Erreur syntaxique} violant les règles
+d'écriture des programmes. En cas d'erreur l'interpréteur explique 
+brièvement, en anglais, la cause de l'erreur et désigne l'endroit du programme
+où l'er\-reur a été trouvée (le numéro de la ligne, par exemple {\tt line 15}, puis la ligne 
+elle-même et, en dessous, un ou plusieurs 
+accents circonflexes {\idt \char94} sous le texte fautif). Le message commence par 
+le nom de l'erreur, par exemple {\tt SyntaxError} (erreur de syntaxe). Il convient alors de
+corriger l'erreur et de relancer le programme.
+
+Une erreur découverte pendant l'exécution est signalée de la même façon, mais le 
+message commence par {\tt Traceback (most recent call last):} (historique, l'appel le plus 
+récent en dernier) et se termine par le nom de l'erreur, par exemple {\tt NameError} 
+(erreur de nom).
+
+\begin{exemple}[Programme syntaxiquement incorrect]{\rm
+\hfill Le pro\-gram\-me {\idt CocotteErronee} de la page 
+\pageref{prog:Cocotte-errone}
+contient plusieurs des erreurs les plus fréquentes pour
+un programme aussi simple.
+Quand on lance ce programme {\idt CocotteErronee}, l'interpréteur commence par indiquer
+`{\tt SyntaxError: unterminated triple-quoted string literal (detected at line 15)}' 
+(chaîne entre triples guillemets non terminée, détectée à la ligne 15) en désignant 
+le {\cha \char34\char34\char34} de la 
+première ligne~: les triples guillemets fermants ont été oubliés à la fin du 
+texte qui explique ce que fait le programme, si bien que tout le reste du 
+programme, jusqu'à la dernière ligne 15, fait partie de ce texte$\:$!
+Ayant ajouté les {\cha \char34\char34\char34} oubliés à la fin de la première ligne, 
+une nouvelle tentative indique
+`{\tt SyntaxError: \textquotesingle{}(\textquotesingle{} was never closed}' (la parenthèse `{\idt (}' n'a jamais été fermée) 
+en désignant la parenthèse de {\idt st(} à la ligne 15. Nous la fermons en écrivant {\idt st()}.
+Le programme est maintenant syntaxiquement correct et son exécution peut commencer. 
+Elle s'arrête aussitôt, sur la première instruction, avec le message 
+`{\tt NameError: name \textquotesingle{}phtd\textquotesingle{} is not defined}' (le nom {\idt phtd} n'est pas défini). 
+Ayant oublié la ligne `{\mcl from}\ {\idt LibRobot}\ {\mcl import}\ {\idt *}', 
+l'interpréteur ignore la signification des commandes du \robotErr, et la fenêtre 
+du \robot\ ne s'est même pas ouverte. 
+Après avoir ajouté cette ligne au début du programme, nous pouvons le relancer.
+La fenêtre s'ouvre, le \robot\ dessine le premier trait de l'arrière de la cocotte, 
+puis tout s'arrête avec le message 
+`{\tt NameError: name \textquotesingle{}pgtg\textquotesingle{} is not defined. Did you mean: \textquotesingle{}phtg\textquotesingle{}?}' 
+(le nom {\idt pgtg} n'est pas défini. Vouliez-vous dire {\idt phtg}$\:$?) qui désigne la 
+ligne où se trouve {\idt pgtg()}. C'est une faute de
+frappe que nous corrigeons en remplaçant {\idt  pgtg} par {\idt  phtg}. 
+Nous obtenons ainsi laborieusement le programme {\idt Cocotte} de la page 
+\pageref{prog:Cocotte} qui est correct (au commentaire près, écrit avec {\cmt \#} dans {\idt Cocotte}).
+L'interpréteur s'arrête à la première erreur qu'il trouve~: il faut donc 
+relancer le programme après chaque correction. On remarquera que les deux erreurs 
+de syntaxe ont été signalées avant toute exécution, alors que les deux noms inconnus 
+n'ont été découverts qu'au cours de l'exécution, au moment où l'or\-di\-na\-teur est arrivé 
+à l'instruction fautive.
+\noindent $\Box$ }\end{exemple}
+
+
+\section{Exécution des programmes} 
+%\label{sec:4:exec-progs} 
+L'{\em exécution}\index{Exécution} d'un programme consiste à faire réaliser par
+l'or\-di\-na\-teur les actions définies par les instructions du programme. Comme dans notre cas les instructions sont des
+commandes du \robot, l'exécution du programme permet de piloter le
+\robot. 
+
+{\newcommand{\touche}[1]{{\begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny #1}}\end{picture}\hspace{0.3ex}}}
+Quand le \robot\ a terminé son dessin, la commande {\idt st()} affiche en bas de 
+la fenêtre les touches qui permettent de \hbox{continuer :}
+\begin{list}{$\scriptscriptstyle\bullet$}{
+\renewcommand{\rightmargin}{0mm}
+}
+\item diminuer (en tapant une ou plusieurs fois sur la touche moins \touche{$-$}) 
+ou augmenter (en tapant une ou plusieurs fois sur la touche plus \touche{$+$}) 
+la vitesse du \robot\ (qui peut varier de 0 à 10)$\:$;
+\item faire redessiner tout le dessin par le \robot, à la vitesse choisie, en tapant 
+sur une autre touche, par exemple la touche de retour à la ligne \framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex} ou \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{return}}\hspace{0.3ex}$\:$; 
+quand le \robot\ dessine trop rapidement pour pouvoir observer le
+dé\-rou\-le\-ment du dessin, il suffit de diminuer sa vitesse puis de lui faire 
+redessiner le dessin$\:$;
+\item arrêter définitivement l'exécution du programme en tapant sur la 
+touche d'échappement\index{Touche d'échappement} \touche{Esc} (ou sur l'une des touches 
+\touche{\S} ou \touche{\#}), ce qui donne l'écran de la figure
+\ref{fig:ecran-arret} (page \pageref{fig:ecran-arret}).
+\end{list}
+
+\index{Exécution (interruption)}\index{Interruption de l'exécution}Pendant 
+l'exécution d'un programme de pilotage du \robot, nous
+pouvons aussi arrêter le dessin du \robot\ à tout moment en tapant sur la touche 
+d'échappement \touche{Esc} (ou sur \touche{\S} ou \touche{\#}). 
+Le dessin reste alors affiché tel qu'il était à cet instant, jusqu'à ce que nous tapions 
+sur une touche. Par exemple si nous interrompons l'exécution
+du programme {\idt Stegosaure} de la page \pageref{prog:Stegosaure}
+au moment où le \robot\ termine le dessin de la patte avant gauche,
+nous obtenons un écran semblable à celui de la figure
+\ref{fig:ecran-stop} de la page \pageref{fig:ecran-stop}.
+}
+
+\begin{figure}[p] %[htbp]
+ \includevspacePostScript[7.6cm]{ecran-stop}{0.95}{0.95}
+ \caption{Écran de l'or\-di\-na\-teur après un stop}\label{fig:ecran-stop}
+\end{figure}
+
+\begin{figure}[p] %[htbp]
+ \includevspacePostScript[7.6cm]{ecran-arret}{0.95}{0.95}
+ \caption{Écran de l'or\-di\-na\-teur avant l'arrêt définitif}
+ \label{fig:ecran-arret}
+\end{figure}
+
+\clearpage
+\section{Erreurs logiques} 
+%\label{sec:4:err-exec} 
+
+\index{Erreur logique}\index{Erreur de programmation}Après avoir éliminé toutes les erreurs syntaxiques c'est-à-dire 
+les erreurs de programmation qui relèvent de la violation des règles de grammaire 
+du langage \python, nous ne sommes pas encore au bout de nos peines avant de pouvoir
+contempler le \hbox{dessin$\:$!} Il reste encore les
+{\em erreurs logiques}
+que nous découvrirons à l'exécution du programme.
+
+La première erreur possible est que la succession de commandes que notre
+programme demande à l'or\-di\-na\-teur de donner au \robot\ conduise celui-ci
+en dehors du cadre. C'est le cas du programme suivant :
+\input python/SortirDuCadre.tex
+\noindent Ce programme donne le triste résultat 
+ci-dessous, accompagné dans la fenêtre de terminal du message 
+`{\tt Erreur ligne 8 de SortirDuCadre.py : le robot sortirait du cadre (av)}'~:
+%indiqué à la figure \ref{fig:ecran-sortir} (page \pageref{fig:ecran-sortir}).
+\begin{figure}[htbp]
+ \includevspacePostScript[7.6cm]{ecran-sortir}{0.95}{0.95}
+ \caption{Écran de l'or\-di\-na\-teur quand le robot sort du cadre}
+ %\label{fig:ecran-sortir}
+\end{figure}
+
+La deuxième erreur possible est que nous nous soyons trompés dans
+le programme et que le dessin obtenu ne ressemble pas du tout à ce
+que nous avions imaginé. Par exemple, le programme {\idt StegosaureErrone}
+ci-dessous est une version logiquement erronée mais syntaxiquement 
+correcte du programme {\idt Stegosaure} de la page \pageref{prog:Stegosaure}. 
+\input python/StegosaureErrone.tex
+L'auteur de ce programme {\idt StegosaureErrone} a par deux fois confondu sa gauche 
+et sa droite. Le 
+résultat de l'exécution de ce programme tel
+que représenté
+ci-dessous
+(figure \ref{fig:StegosaureErrone}) %page \pageref{fig:StegosaureErrone} 
+éton\-ne\-rait plus d'un pa\-lé\-on\-to\-lo\-gue$\:$!
+\begin{figure}[htbp]
+ \includehvspacePostScript[105mm,6.8cm]{StegosaureErrone}{0.95}{0.95}
+ \caption{Stégosaure plutôt raté}
+ \label{fig:StegosaureErrone}
+\end{figure}
+
+Une troisième erreur, propre aux débutants en \python, est d'oublier les parenthèses 
+{\idt ()} après une commande du \robot, par exemple `{\idt av;\ pqtd()}' au lieu de 
+`{\idt av();\ pqtd()}'. Le programme est syntaxiquement correct mais le \robot\ n'avance pas 
+car {\idt av} sans {\idt ()} désigne la commande sans demander de l'exécuter. 
+L'interpréteur \python\ ne signale rien du tout~: ni erreur, ni même 
+un {\em avertissement}\index{Avertissement}. 
+Seul le dessin, auquel il manque un trait, révèle l'erreur. Il faut donc toujours 
+vérifier que chaque commande est bien suivie de ses parenthèses.
+
+\section{Comment localiser les erreurs logiques dans le programme} 
+%\label{sec:4:trouv-err-exec} 
+
+Pour trouver les erreurs logiques dans le programme il faut s'imaginer
+que l'on exécute le programme à la place du \robotErr. Quand le programme 
+est très long ceci n'est pas facile.
+Le mieux est donc de suivre l'exécution du programme en mode {\em pas à pas},
+\index{Exécution en pas à pas}
+ce qui permet de suivre les commandes transmises par l'or\-di\-na\-teur au \robotErr\ pour localiser l'erreur avec précision. Quand l'erreur est
+localisée, il faut arrêter l'exécution
+du programme pour pouvoir la corriger dans le programme. Une fois
+que c'est fait, on peut relancer le programme pour tenter une nouvelle
+exécution.
+{\newcommand{\touche}[1]{{\begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny #1}}\end{picture}\hspace{0.3ex}}}
+\begin{list}{$\scriptscriptstyle\bullet$}{
+\renewcommand{\rightmargin}{0mm}
+}
+\item Pour passer en mode pas à pas nous \hbox{pouvons :}
+\end{list}
+\begin{list}{-}{
+\renewcommand{\labelwidth}{3mm}
+\renewcommand{\labelsep}{3mm}
+\renewcommand{\leftmargin}{15mm}
+\renewcommand{\rightmargin}{0mm}
+}
+  \item à la fin du dessin, réduire la vitesse à zéro en tapant plusieurs fois sur la touche
+  \touche{$-$} puis faire redessiner le dessin en tapant sur la touche de retour à la ligne
+  \framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex} ou \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{return}}$\:$;
+  \item ou insérer une instruction {\idt pp()} dans le programme \python, un
+  peu avant l'endroit supposé de l'erreur. Cette instruction {\idt pp()} fait passer
+  l'or\-di\-na\-teur en mode d'exécution {\underline p}as à {\underline p}as.
+\end{list}
+\begin{list}{$\scriptscriptstyle\bullet$}{
+\renewcommand{\rightmargin}{0mm}
+}
+\item En mode pas à pas, l'or\-di\-na\-teur attend que nous lui donnions
+l'ordre d'exécuter chaque commande du \robot\ en tapant sur une touche, par exemple la 
+touche de retour à la ligne \framebox[11.mm][l]{$\hookleftarrow$~~~}\hspace{0.3ex} ou \hspace{0.3ex}\framebox[11.mm][l]{~~\tiny\texttt{return}}. On peut donc suivre
+le déroulement de l'exécution du programme instruction après
+instruction, ce qui permet en général de trouver assez facilement l'erreur.
+\enlargethispage{2\baselineskip}% touches return ajoutees page 50 : garder la fin de la liste sur la page
+\item Quand l'erreur est localisée avec précision dans le programme, on
+ peut arrêter l'exécution du programme en tapant sur
+ la touche d'é\-chap\-pe\-ment \touche{Esc} (ou sur \touche{\S} ou \touche{\#}).
+\item[]  Il est également possible de programmer le retour à une vitesse
+   d'\underline{ex}é\-cu\-tion normale en insérant une instruction {\idt ex()}
+  dans le programme.
+\end{list}
+}
+Il faut presque toujours plusieurs essais avant que le programme soit 
+lo\-gi\-que\-ment correct.
+Quand il l'est, on est souvent tenté de l'améliorer. Le plus difficile
+est alors de savoir quand \hbox{s'arrêter$\:$!}
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{@{}|l|p{11cm}|@{}} \hline
+{\idt st()} & \underline{st}oppe l'exécution du programme à la fin du dessin. 
+             La vitesse peut être diminuée par
+ \begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{$\scriptscriptstyle -$}}\end{picture}\hspace{0.3ex} (minimum 0) ou augmentée par
+ \begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{$\scriptscriptstyle +$}}\end{picture}\hspace{0.3ex} (maximum 10).
+			 Toute autre touche fait redessiner le dessin à la vitesse indiquée. 
+			 L'exécution  s'arrête définitivement en tapant sur 
+			 \begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny esc}}\end{picture}\hspace{0.3ex} ou 
+  \begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny \S}}\end{picture}\hspace{0.3ex} ou
+  \begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny \#}}\end{picture}\hspace{0.3ex}.\\ \hline
+{\idt pp()} & exécute la suite du programme en mode \underline{p}as
+             à \underline{p}as (vitesse 0)~: chaque commande du \robot\ 
+			s'exécute en tapant sur une touche.\\ \hline
+{\idt ex()} & exécute la suite du programme en mode \underline{ex}écution
+             normale (vitesse 10). \\ \hline
+\end{tabular}
+\end{center}
+\label{tab:cmd-vit1}
+\caption{Commandes de contrôle du mode de pilotage du \protect\robot}
+\end{table}
+
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercices}{\ \\
+
+\vspace{-\baselineskip}
+\noindent \begin{minipage}[t]{88mm}
+\tiret Écrire, mettre au point et exécuter des programmes \python\ de dessin du
+\robot\ tel qu'il est stylisé ci-contre avec son
+crayon baissé et son crayon levé.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{44mm}
+\vspace{2.0cm}\includePostScript{Robot+BC+LC}{0.95}{0.95}
+\hspace{-4.4cm}  % 4.4cm de large
+\end{minipage}
+
+\noindent \begin{minipage}[t]{103mm}
+\tiret  Écrire, mettre au point et exécuter un programme \python\ qui
+pilote le \robot\ pour lui faire dessiner le chien représenté
+ci-contre.
+\end{minipage}
+\hfill
+\begin{minipage}[t]{29mm}
+\vspace{2.3cm}\includePostScript{Chien}{0.95}{0.95}
+\hspace{-2.9cm}  % 2.9cm de large
+\end{minipage}
+
+\noindent \begin{minipage}[t]{103mm}
+\tiret  Programmer les dessins de la
+pa\-ge \pageref{fig:quadrilateres}.
+\end{minipage}
+
+\vspace{1.5mm}
+
+\tiret  Programmer le dessin de vos initiales en lettres majuscules
+dans le style de la lettre {\tt H} en relief représentée à la
+figure \ref{fig:h-relief} (page \pageref{fig:h-relief}).
+
+\noindent $\Box$}\end{exercices}
+
+\newpage
+\begin{corrige}{Nous donnons un programme, les autres se trouvant dans le dossier {\idt livre}.
+\input python/Chien.tex
+\noindent $\Box$}\end{corrige}
+
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+Le cycle écriture, mise au point syntaxique, traduction, mise au point
+logique et exécution des programmes s'est considérablement
+raccourci ces dernières années grâce aux progrès fantastiques
+de l'architecture des or\-di\-na\-teurs qu'il convient de comprendre très
+schématiquement. 
+Un micro-or\-di\-na\-teur \hbox{comprend :}
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item une unité arithmétique et logique pour faire des calculs et
+manipuler des données,
+\item une mémoire pour conserver temporairement des données
+et des programmes (son contenu est perdu quand on coupe l'électricité),
+\end{list}
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item un ou plusieurs disques durs magnétiques ou à état solid (SSD)
+ pour conserver en permanence des fichiers contenant des données ou des programmes,
+\item des prises (USB) pour brancher des clés de mémoire qui permettent de
+conserver en permanence des fichiers
+contenant des données ou des programmes ou les échanger avec d'autres
+or\-di\-na\-teurs,
+\item un clavier pour entrer des données ou des programmes en mémoire,
+\item un écran graphique pour visualiser des textes et des images,
+\item une souris pour désigner des points sur l'écran graphique,
+\item un bus pour permettre des échanges rapides de données et de
+programmes entre ces différents organes.
+\end{list}
+
+Quand on met l'or\-di\-na\-teur en marche, il est cablé pour charger dans
+sa mémoire et exécuter un programme rangé en permanence sur disque
+que l'on appelle le {\em système d'exploitation}\index{Système d'exploitation}. Ce programme a pour
+tâche essentielle de gérer tous les organes de l'or\-di\-na\-teur et de
+dialoguer avec l'utilisateur grâce à un {\em interpréteur de commandes}\index{Interpréteur de commandes}
+qui va attendre que l'utilisateur lui donne des ordres par l'intermédiaire
+du clavier et les exécuter immédiatement les uns après les autres
+jusqu'à ce que l'utilisateur lui donne l'ordre d'éteindre
+l'or\-di\-na\-teur. Parmi les commandes de l'interpréteur, citons par exemple la
+suppression d'un fichier rangé sur disque ou le lancement de
+l'exécution d'un programme écrit en langage machine (généralement
+appelé {\em programme d'application}\index{Programme d'application}) comme par exemple un {\em
+éditeur de texte} pour créer un texte et le ranger dans un fichier
+ou un {\em interpréteur} pour traduire un programme \python\ en langage machine et le faire 
+exécuter.
+
+Les premières interfaces entre l'homme et la machine étaient purement textuelles. On tape sur
+le clavier et on voit le résultat sur une imprimante vite remplacée par un écran avec seulement
+des lignes de texte de longueur maximale 80 caractères. Les écrans en noir et blanc furent
+remplacés pat des écrans couleur (comme on voit encore dans l'application \texttt{terminal}).
+Puis sont apparus les écrans graphiques constitués de très petits pixels de couleur. Le
+fenêtrage permet de donner l'illusion de plusieurs écrans graphiques sur un seul. Puis vint
+l'idée d'icônes pour représenter les fichiers et des applications sur lesquels on peut
+double cliquer pour lancer une application. Par exemple,  un double click sur l'icône de
+\texttt{LeRobotPython.app} lance le programme de dessin interactif tandis que faire glisser l'icône
+d'un programme du \robot\ sur cette icône de l'application \texttt{LeRobotPython.app} exécute ce programme
+en faisant apparaître la fenêtre de dessin et le terminal. Noter qu'il faut cliquer sur
+l'une ou l'autre des fenêtres pour l'utiliser. On peut arrêter le programme par Control+C ou
+ctrl+C (que les informaticiens notent \^{}C) en sélectionnant la fenêtre terminal ou en fermant cette fenêtre ou encore avec la touche  d'échappement (\texttt{esc}) dans la fenêtre graphique.
+
+% (pas d'espace en bas de ce cadre : il tient dans la page)
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+
+Les or\-di\-na\-teurs sont {\em binaires} en ce sens que toutes les données, en
+particulier les programmes, sont représentés par des suites de 0 et
+de 1. L'or\-di\-na\-teur fonctionne en transférant une instruction du programme
+depuis une case de sa mémoire
+dans son unité arithmétique et logique (via le bus) et en 
+l'exécutant (ce qui en général modifie le contenu de la mémoire,
+du disque, de l'écran, etc.) puis en recommençant ainsi avec l'instruction
+rangée dans la case suivante de sa mémoire. Certaines instructions
+dites {\em instructions de branchement} permettent d'indiquer que l'instruction suivante
+est rangée dans une case mémoire de numéro donné.
+
+
+Pour exécuter un programme écrit en langage machine rangé sur disque,
+le système d'exploitation demande à l'unité arithmétique et
+logique de charger ce programme en mémoire c'est-à-dire de
+recopier le programme dans un endroit de la mémoire
+qui était inoccupé puis d'exécuter une instruction de branchement
+à la première instruction de ce programme. Le programme doit se terminer
+par une instruction de branchement en retour vers le système 
+d'exploitation. Les or\-di\-na\-teurs modernes possèdent également la fa\-cul\-té
+d'interrompre l'exécution du programme en cours puis de la reprendre
+ultérieurement comme si rien ne s'était passé. Entre temps, c'est
+le système d'exploitation qui s'exécute pour réagir en fonction de
+la cause de l'interruption. Par exemple si l'utilisateur a bougé la souris,
+ses nouvelles coordonnées sont rangées en mémoire. Si l'horloge
+sonne, ce qui arrive tous les soixantièmes de seconde par exemple, l'heure 
+est mise à jour, etc. En particulier l'utilisateur dispose
+de boutons ou de touches (%touche Esc (touche d'echappement)
+\begin{picture}(14,12)(0, 2) 
+\put(0,0){\framebox(14,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny Esc}}
+\end{picture}\hspace{0.3ex},
+%touche §
+\begin{picture}(12,12)(0, 2)
+\put(0,0){\framebox(12,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny \S}}
+\end{picture}\nolinebreak\hspace{0.3ex}\nolinebreak,
+%touche #
+\begin{picture}(12,12)(0, 2)
+\put(0,0){\framebox(12,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny \#}}
+\end{picture}\hspace{0.3ex} 
+ pour notre \robot) permettant d'interrompre
+l'exécution de son programme s'il constate une erreur.
+
+
+Parmi les applications que peut exécuter le système d'exploitation, 
+il y en a une qui nous intéresse particulièrement, c'est l'interpréteur \python.
+
+Les environnements de programmation modernes (comme {\tt IDLE}, fourni avec \python) 
+se chargent de l'édition du texte du
+programme, c'est-à-dire de sa création et de ses modifications
+par interaction avec l'utilisateur. Le 
+programme \python\ est affiché sur l'écran et rangé en mémoire 
+au fur et à mesure que
+l'utilisateur le tape au clavier. Il est prévu qu'il puisse le modifier
+en utilisant diverses touches de fonctions et la souris. La possibilité
+lui est également offerte de sauvegarder son texte sur le disque dur
+dans un fichier dont il doit donner le nom.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+
+Quand l'édition de texte est terminée, l'environnement peut
+faire traduire le programme en un programme équivalent
+écrit en langage machine. Pour les langages dits {\em compilés}\index{Compilation}, 
+comme \ocaml\ ou C, cette traduction est faite une fois pour toutes par 
+un {\em compilateur}\index{Compilateur}~: le programme compilé est rangé
+sur disque, puis l'utilisateur retourne au niveau du système d'exploitation pour 
+charger en mémoire
+et exécuter son programme compilé comme expliqué précédemment.
+
+Pendant la phase de débogage du programme, il est plus rapide de 
+ranger le programme traduit directement en mémoire, le traducteur
+se chargeant lui-même de son exécution puis reprenant la main quand
+cette exécution est terminée ou interrompue. C'est ainsi que procède 
+l'interpréteur \python, à chaque fois qu'on lui demande d'exécuter un programme.
+
+\vfill
+
+On comprend les progrès considérables qui ont été faits depuis les
+premiers or\-di\-na\-teurs pour lesquels il fallait modifier le cablage pour
+changer le programme \cite{levy1} :
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item le programme étant rangé en mémoire (selon l'idée de
+Von Neumann\footnote{\ \href{https://en.wikipedia.org/wiki/John_von_Neumann}{John von Neumann}, 1903--1957, mathématicien américain.})
+et la mémoire reliée à des disques rapides, il est possible de
+changer le programme de la machine presque \hbox{instantanément$\:$;}
+\item l'usage de langages de haut niveau comme \python\ ou \ocaml\ et d'interpréteurs 
+ou de compilateurs
+performants, permet d'éviter d'avoir à programmer en un langage
+machine \hbox{ingrat$\:$;}
+\item l'écran alphanumérique permet à l'utilisateur d'éditer son programme
+de manière interactive au clavier, ce qui fait gagner un temps 
+considérable par rapport aux manipulations de cartes perforées en carton
+encore utilisées dans les années \hbox{1970$\:$;}
+\item la puissance de calcul, liée à la densité des transitors sur
+les puces informatiques (qui varie de quelques milliards à plusieurs centaines de milliards
+de transistors en 2016) permet de gérer des écrans
+graphiques directement reliés à la mémoire, ce qui permet des
+modifications très rapides et donc l'usage de fenêtres, souris, \hbox{etc$\:$;}
+\item la taille de la mémoire (quelques milliards de caractères, Go, Gigaoctets) et
+des disques (quelques milliers de milliards de caractères, To, Teraoctets) permet d'envisager des
+programmes et des données de plus en plus grands et donc des applications
+de plus en plus sophistiquées.
+\end{list}
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+La taille des plus grands programmes que l'on peut actuellement écrire
+se chiffre maintenant en dizaines ou centaines de millions de lignes, ce qui est considérable
+et ne va pas sans difficultés car on atteint les limites de la
+compréhension humaine. Une formation de l'esprit, une 
+nouvelle rigueur, plus précise encore que la logique des mathématiciens,
+devient la qualité première qui, en plus de l'imagination et du sens de
+l'esthétique, fait les bons informaticiens.
+
+\indent Un peu de méthode aide
+également beaucoup. Toute l'histoire des langages de programmations
+est remplie d'inventions permettant de formuler plus clairement la façon
+d'organiser les données en mémoire ou les calculs de l'or\-di\-na\-teur. A
+chaque fois les capacités humaines, donc la taille limite des plus grands
+ programmes, ont été repoussées. 
+Une idée très ancienne de structuration des calculs, due à Von Neumann et Turing%
+\footnote{\ \href{https://en.wikipedia.org/wiki/Alan_Turing}{Alan Turing}, 1912--1954, mathématicien anglais.} est celle
+de {\em procédure}, on disait autrefois {\em routine}
+ou {\em sous-programme}. Nous commençons à l'introduire dans le chapitre suivant.
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{empty}

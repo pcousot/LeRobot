@@ -1,0 +1,32 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Calcul\ de\ la\ taille\ de\ la\ fenêtre\ de\ déplacement\ du}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt robot\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ largeur\ =\ ref\ 0}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ hauteur\ =\ ref\ 0}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ largeurFenetreRobot\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lg\ 1.;\ lc\ ();\ ce\ ();\ ag\ ();\ pe\ ();\ largeur\ :=\ 0;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl while}{\idt \ }{\mcl not}{\idt \ (tb\ ())\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt largeur\ :=\ !largeur\ +\ 1;\ av\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ hauteurFenetreRobot\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lg\ 1.;\ lc\ ();\ ce\ ();\ eb\ ();\ pn\ ();\ hauteur\ :=\ 0;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl while}{\idt \ }{\mcl not}{\idt \ (tb\ ())\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt hauteur\ :=\ !hauteur\ +\ 1;\ av\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt largeurFenetreRobot\ ();\ hauteurFenetreRobot\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt message\ (}{\cha \char34{}(\char34{}}{\idt \ \char94{}\ string\_of\_int\ !largeur\ \char94{}\ }{\cha \char34{}\ x\ \char34{}}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt \char94{}\ string\_of\_int\ !hauteur\ \char94{}\ }{\cha \char34{})\char34{}}{\idt );}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt marquerUnePause\ ()}}\par
+
+\medskip }

@@ -1,0 +1,35 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ the\ Chinese\ Yin\ Yang\ symbol}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gridSize\ =\ 3}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ circle():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt cr();\ cr();\ cr();\ cr()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Lower\ half\ circle}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gs(6\ *\ gridSize)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt qtr();\ cl();\ cl()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Upper\ half\ circle}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gs(6\ *\ gridSize)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cr();\ cr()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Outer\ circle}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gs(12\ *\ gridSize)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt circle()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Small\ white\ circle}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gs(2\ *\ gridSize)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pu();\ qtr();\ fdn(2);\ qtl();\ pd();\ circle()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Paint\ the\ black\ area}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pu();\ qtr();\ fdn(4);\ paint()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Small\ black\ circle}}\par
+\vspace{\neglskip}\mbox{\blc {\idt fdn(2);\ qtl();\ pd();\ circle();\ qtl();\ paint()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

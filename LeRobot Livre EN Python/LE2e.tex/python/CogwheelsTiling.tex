@@ -1,0 +1,48 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ tiling\ of\ cogwheels}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gridSize\ =\ 10}}\par
+\vspace{\neglskip}\mbox{\blc {\idt numberOfPatternsPerRow\ =\ 7}}\par
+\vspace{\neglskip}\mbox{\blc {\idt numberOfRows\ =\ 14}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Move\ the\ robot\ straight\ on,\ up\ to\ two\ squares\ from}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ the\ frame\textquotesingle{}s\ north\ edge.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ nearTheTop():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gt();\ ht();\ fdn(2)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ the\ pattern\ of\ the\ tiling}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ cogwheel():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(4):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fd();\ qtr();\ cr();\ qtl();\ cl();\ qtl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ tiling():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ l\ }{\mcl in}{\idt \ range(1,\ numberOfRows\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pu();\ nearTheTop();\ gl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fdn(l);\ qtl();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Offset\ at\ the\ start\ of\ the\ row}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl if}{\idt \ l\ \%\ 5\ ==\ 2:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt fdn(2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl elif}{\idt \ l\ \%\ 5\ ==\ 3:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt fdn(4)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl elif}{\idt \ l\ \%\ 5\ ==\ 4:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl elif}{\idt \ l\ \%\ 5\ ==\ 0:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt fdn(3)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Draw\ a\ row\ of\ patterns}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt qtl();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(numberOfPatternsPerRow\ {-}\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt cogwheel()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt translate(5,\ 0)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt cogwheel()}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gs(gridSize);\ tiling();\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

@@ -1,0 +1,47 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ et\ peindre\ une\ fleur\ stylisée}}\par
+\vspace{\neglskip}\mbox{\blc {\idt tailleGrille\ =\ 12}}\par
+\vspace{\neglskip}\mbox{\blc {\idt epaisseurTige\ =\ 3}}\par
+\vspace{\neglskip}\mbox{\blc {\idt epaisseurBord\ =\ 1}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt eb();\ lg(tailleGrille)}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Bas\ de\ la\ tige}}\par
+\vspace{\neglskip}\mbox{\blc {\idt ec(epaisseurTige);\ pqtd();\ vg()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt av();\ av();\ av()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Feuille\ droite\ :}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ dessiner\ le\ pourtour}}\par
+\vspace{\neglskip}\mbox{\blc {\idt ec(epaisseurBord);\ vd();\ pqtd();\ vd()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ peindre\ l\textquotesingle{}intérieur}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cc(vert);\ phtg();\ peindre();\ p3htd()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Feuille\ gauche\ :}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ dessiner\ le\ pourtour}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cc(noir);\ vg();\ pqtg();\ vg()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ peindre\ l\textquotesingle{}intérieur}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cc(vert);\ phtd();\ peindre();\ p3htg()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Haut\ de\ la\ tige}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cc(noir);\ ec(epaisseurTige)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt av();\ av();\ av();\ av()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Coeur\ :}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ dessiner\ le\ pourtour\ du\ coeur}}\par
+\vspace{\neglskip}\mbox{\blc {\idt ec(epaisseurBord);\ pqtd()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt vg();\ vg();\ vg();\ vg()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ pétales}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cc(noir);\ pqtd();\ vg();\ vg();\ vg()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cc(violet);\ phtd();\ peindre();\ phtd()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cc(noir);\ pqtd();\ vg();\ vg();\ vg()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cc(violet);\ phtd();\ peindre();\ phtd()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cc(noir);\ pqtd();\ vg();\ vg();\ vg()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cc(violet);\ phtd();\ peindre();\ phtd()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cc(noir);\ pqtd();\ vg();\ vg();\ vg()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt cc(violet);\ phtd();\ peindre();\ phtd()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ peindre\ l\textquotesingle{}intérieur\ du\ coeur}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pqtd();\ cc(jaune);\ peindre()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\medskip }

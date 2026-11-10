@@ -1,0 +1,24 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ des\ stries\ sur\ les\ côtés\ d\textquotesingle{}un\ octogone}}\par
+\vspace{\neglskip}\mbox{\blc {\idt lc();\ avf(5);\ bc();\ lg(4)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(8):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Dessiner\ 10\ stries\ de\ longueurs\ 2,\ 4,\ ...,\ 20.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(1,\ 11):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Dessiner\ une\ strie\ de\ longueur\ (2\ *\ j)\ centrée}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ sur\ un\ côté\ de\ l\textquotesingle{}octogone.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt avf(j);\ avf({-}2\ *\ j);\ avf(j)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Passer\ à\ la\ strie\ suivante\ (sans\ tracer\ le\ côté}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ de\ l\textquotesingle{}octogone).}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt lc();\ pqtd();\ av();\ pqtg();\ bc()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Tourner\ le\ robot\ perpendiculairement\ au\ côté}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ suivant.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt phtd()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\medskip }

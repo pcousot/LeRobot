@@ -1,0 +1,36 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ four{-}bladed\ propeller\ in\ colour}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gridSize\ =\ 18}}\par
+\vspace{\neglskip}\mbox{\blc {\idt edgeThickness\ =\ 2}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ leftHalfCircle(r):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(r);\ cl();\ cl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ rightHalfCircle(r):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(r);\ cr();\ cr()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ blade(c):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ the\ outline\ of\ the\ blade}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pw(edgeThickness);\ pc(black)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt leftHalfCircle(gridSize)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt rightHalfCircle(gridSize)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt rightHalfCircle(2\ *\ gridSize)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Paint\ the\ inside\ of\ the\ blade}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr();\ gs(gridSize)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ fdn(3);\ pc(c);\ paint();\ fdn({-}3);\ pd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ propeller():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt blade(blue);\ blade(indigo);\ blade(violet);\ blade(red)}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt propeller();\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

@@ -1,0 +1,375 @@
+\section{Parity}
+The tests we have made so far in ``if'' statements were about the
+orientation of the \robot.  In \python\ it is also
+possible to make tests on the values of parameters and of
+``for'' loop counters.  It can be useful to test the counter
+in the body of a loop in order to perform different actions at
+each iteration.  Take for example the drawing of the frieze shaped like a
+double comb below:
+
+ {\raggedright
+  \includevspacePostScript[1.5cm]{FriseDoublePeigne}{1.0}{1.0}
+   }
+
+The teeth of the comb being drawn from left to right, the
+$1^{\mathrm{st}}$, $3^{\mathrm{rd}}$,
+$5^{\mathrm{th}}$, \ldots\ point downwards whereas
+the $2^{\mathrm{nd}}$, $4^{\mathrm{th}}$,
+$6^{\mathrm{th}}$, \ldots\ point upwards.  In
+the drawing program we use a loop counter {\idt i} which
+is 1 when we draw the $1^{\mathrm{st}}$ tooth, 2 when we
+draw the $2^{\mathrm{nd}}$, \ldots\ Consequently when the
+value of the loop counter is {\em odd} (that is 1, 3, 5,
+\ldots) a tooth must be drawn downwards whereas if the value
+of the counter is {\em even} (that is 2, 4, 6, \ldots) a tooth must be
+drawn upwards.  \index{Parity}A number is odd
+when the remainder of its division by 2 is equal to 1. To test that the
+value of the counter {\idt i} is odd we therefore use the boolean
+expression {\idt i \% 2 == 1} which is {\mcl True} when the remainder
+{\idt i \% 2} of the integer division of {\idt i} by 2 is equal to 1 and
+{\mcl False} when this remainder is equal to 0, that is when
+{\idt i} is even.  Note that the equality test is written with two
+equal signs {\idt ==}, the single sign {\idt =} being reserved for the
+declaration of constants such as {\idt numberOfTeeth = 30}.
+
+\input{python/DoubleCombFrieze.tex}
+
+\section{Comparison of integers}
+
+If {\idt i} is a loop counter or an integer parameter of a procedure,
+the boolean expression {\idt i > 10} is {\mcl True}
+if the value of {\idt i} is strictly greater than 10 and {\mcl
+False} otherwise, that is if the value of {\idt
+i} is less than or equal to 10.  The mathematical symbols $\leq$
+(less than or equal) and $\geq$ (greater than or equal) are written {\idt <=} and
+{\idt >=} in \python\ (because the mathematical symbols $\leq$ and $\geq$ are
+not found on computer keyboards whereas {\idt <}, {\idt >}
+and {\idt =} are always there).  For example the boolean
+expressions {\idt 10 <= 10} and {\idt 10 <= 20} are {\mcl True}
+whereas {\idt 10 <= 9} is {\mcl False}.  In
+\python, as we have seen, equality is written with two equal signs {\idt ==}
+since the usual mathematical symbol {\idt =} is used to declare constants.
+The mathematical symbol $\neq$ (different) is written {\ttfamily\idt !=}.
+For example {\idt 10 == 10} and {\ttfamily\idt 10 != 20} are {\mcl True}
+whereas {\ttfamily\idt 10 != 10} and {\idt 10 == 20} are {\mcl
+False}\footnote{\ If by mistake one writes {\mcl if}\ {\idt i = 10:}
+instead of {\mcl if}\ {\idt i == 10:}, \python\ rejects the program with
+the message {\idt SyntaxError: invalid syntax. Maybe you meant '==' or ':='
+instead of '='?}}.
+Boolean expressions comparing
+integers or values of integer parameters can be used in the test
+of the ``if'' statement.  For example the command {\idt fdn(n)} which
+makes the \robot\ move forward {\idt n} times if the value of {\idt n} is
+positive, makes it move backward if the value of {\idt n} is negative and which
+does not change its position when the value of {\idt n} is zero can
+be defined as follows:
+
+\input python/DefinitionFdn.tex
+
+\noindent Note that the negative actual parameter of the call
+{\idt fdn(-5)} is simply written with its sign, between the parentheses of
+the call. To move backward, the \robot\ makes a half turn, moves forward {\idt -n} times
+(which is positive) and makes a half turn again.
+
+More generally, we can use the operators {\idt <} (strictly less than), {\idt <=} (less than or equal),
+{\idt ==} (equal), {\ttfamily\idt !=} (different), {\idt >=} (greater than or equal) and {\idt >} (strictly greater than) to compare the values
+of two integer expressions, as for example {\idt i <= l} in the following program which draws the paper streamer
+below. The command {\idt gs} accepts an integer, as
+in {\idt gs(20)} or {\idt gs(i)}, as well as a number with a decimal part, written
+with a point as in {\idt gs(20.5)} (we will come back to this
+in chapter 19, devoted to rational expressions):
+
+ \includevspacePostScript[1.5cm]{Serpentin}{0.95}{0.95}
+ \input python/Streamer.tex
+
+\section{Negation, conjunction and disjunction}
+
+The {\em negation} \index{Negation} of a boolean expression $E$ is written {\mcl not} $E$, which reads `not $E$'. If the
+value of $E$ is {\mcl True} then that of {\mcl not} $E$ is {\mcl False} whereas if the value of $E$ is {\mcl False} then
+that of {\mcl not} $E$ is {\mcl True}. For example  {\mcl not} {\idt (5 \% 2 == 1)} is {\mcl False} since
+{\idt 5 \% 2 == 1} is {\mcl True}, {\idt 5} being odd. The parentheses are
+not indispensable but make the expression more readable (we will see why in the Addenda). This can be summarised by the following truth table:
+
+\begin{center}
+\begin{tabular}{|c|c|} \hline
+$E$ & {\mcl not} $E$\\ \hline \hline
+{\mcl True} & {\mcl False}\\ \hline
+{\mcl False} & {\mcl True}\\ \hline
+\end{tabular}
+\end{center}
+
+The {\em conjunction} \index{Conjunction} of two boolean expressions $E_{1}$ and $E_{2}$ is written $E_{1}$ {\mcl and} $E_{2}$,
+which reads `$E_{1}$ and $E_{2}$'. The value of $E_{1}$ {\mcl and} $E_{2}$ is {\mcl True} if and
+only if the value of $E_{1}$ and that of $E_{2}$ are {\mcl True}. If either of the boolean
+expressions $E_{1}$ or
+$E_{2}$ is {\mcl False} then the conjunction $E_{1}$ {\mcl and} $E_{2}$ is {\mcl False} too.
+For example  {\idt 5 >= 0} {\mcl and} {\idt 5 \% 2 == 1} is {\mcl True} since
+{\idt 5} is positive and odd. This can be summarised by the following truth table:
+
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline
+$E_{1}$ & $E_{2}$ & $E_{1}$ {\mcl and} $E_{2}$\\ \hline \hline
+{\mcl True} & {\mcl True} & {\mcl True}\\ \hline
+{\mcl True} & {\mcl False} & {\mcl False}\\ \hline
+{\mcl False} & {\mcl True} & {\mcl False}\\ \hline
+{\mcl False} & {\mcl False} & {\mcl False}\\ \hline
+\end{tabular}
+\end{center}
+
+The {\em disjunction} \index{Disjunction} of two boolean expressions $E_{1}$ and $E_{2}$ is written $E_{1}$ {\mcl or} $E_{2}$,
+which reads `$E_{1}$ or $E_{2}$'. The value of $E_{1}$ {\mcl or} $E_{2}$ is {\mcl True} if and
+only if the value of $E_{1}$ or that of $E_{2}$ is {\mcl True}. If the values of $E_{1}$ and of
+$E_{2}$ are  {\mcl False} then the disjunction $E_{1}$ {\mcl or} $E_{2}$ is {\mcl False} too.
+For example  {\idt 4 >= 0} {\mcl or} {\idt 4 \% 2 == 1} is {\mcl True} since
+{\idt 4} is positive, even though {\idt 4} is even. This can be summarised by the following truth table:
+
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline
+$E_{1}$ & $E_{2}$ & $E_{1}$ {\mcl or} $E_{2}$\\ \hline \hline
+{\mcl True} & {\mcl True} & {\mcl True}\\ \hline
+{\mcl True} & {\mcl False} & {\mcl True}\\ \hline
+{\mcl False} & {\mcl True} & {\mcl True}\\ \hline
+{\mcl False} & {\mcl False} & {\mcl False}\\ \hline
+\end{tabular}
+\end{center}
+
+Conjunction and disjunction can be implemented simply with an electric circuit as shown in figure
+\ref{fig:andor}
+below
+%(page \pageref{fig:andor})
+with the con\-ven\-tion that {\mcl True} represents a closed switch
+and a lit bulb (the current flows) and {\mcl False} represents an open switch
+and an unlit bulb (the current does not flow).
+
+\begin{figure}[htbp]
+ \includevspacePostScript[4.3cm]{CircuitsAndOr}{0.95}{0.95}
+ \caption{Electric circuits implementing logical conjunction and\label{fig:andor}}
+\centering{disjunction}
+\end{figure}
+
+A disjunction is used in the following program to test whether the \robot\ is facing north or
+east:
+
+\vspace{0.3cm}
+ {\raggedright
+ \includevspacePostScript[0.5cm]{FriseEnOr}{1.0}{1.0}
+\input {python/GoldenFrieze.tex}
+  }
+
+\section{Boolean expressions}
+
+The table below summarises the rules for writing boolean expressions and the rules for computing their value
+in \python:
+
+\index{Boolean expression} \index{Test}
+
+\begin{center}
+\protect\frenchspacing
+\begin{tabular}{@{}|l|p{6.8cm}|@{}} \hline
+\multicolumn{2}{|l|}{\em Boolean expressions:} \\ \hline \hline
+{\mcl True} & Value `true'.\\
+{\mcl False} & Value `false'.\\ \hline
+{\small\rm Integer expr.$_{1}$} {\idt <=} {\small\rm Integer expr.$_{2}$}& {\mcl True} if and only if the value of {\small\rm Integer expr.$_{1}$} is
+                                 less than or equal to that of {\small\rm Integer expr.$_{2}$}.\\
+{\small\rm Integer expr.$_{1}$} {\idt <} {\small\rm Integer expr.$_{2}$}& {\mcl True} if and on\-ly if the va\-lue of {\small\rm Integer expr.$_{1}$} is
+                                 strictly less than that of {\small\rm Integer expr.$_{2}$}.\\
+{\small\rm Integer expr.$_{1}$} {\idt ==} {\small\rm Integer expr.$_{2}$}& {\mcl True} if and on\-ly if the value of {\small\rm Integer expr.$_{1}$} is
+                                 equal to that of {\small\rm Integer expr.$_{2}$}.\\
+{\small\rm Integer expr.$_{1}$} {\ttfamily\idt !=} {\small\rm Integer expr.$_{2}$}& {\mcl True} if and on\-ly if the value of {\small\rm Integer expr.$_{1}$} is
+                                 different from that of {\small\rm Integer expr.$_{2}$}.\\ \hline
+\end{tabular}
+\end{center}
+\begin{center}
+\protect\frenchspacing
+\begin{tabular}{@{}|l|p{6.8cm}|@{}} \hline
+{\small\rm Integer expr.$_{1}$} {\idt >} {\small\rm Integer expr.$_{2}$}& {\mcl True} if and on\-ly if the va\-lue of {\small\rm Integer expr.$_{1}$} is
+                                 strictly greater than that of {\small\rm Integer expr.$_{2}$}.\\
+{\small\rm Integer expr.$_{1}$} {\idt >=} {\small\rm Integer expr.$_{2}$}& {\mcl True} if and only if the value of {\small\rm Integer expr.$_{1}$} is
+                                greater than or equal to that of {\small\rm Integer expr.$_{2}$}.\\ \hline
+                                \end{tabular}
+\end{center}
+\begin{center}
+\protect\frenchspacing
+\begin{tabular}{@{}|l|p{6.8cm}|@{}} \hline
+{\mcl not} {\small\rm Bool. expr.} & {\mcl True} if and only if the value of {\small\rm Bool. expr.} is
+                                equal to {\mcl False}.\\ \hline
+{\small\rm Bool. expr.$_{1}$} {\mcl and} {\small\rm Bool. expr.$_{2}$}& {\mcl True} if and only if the values of {\small\rm Bool. expr.$_{1}$} and
+                                 of {\small\rm Bool. expr.$_{2}$} are equal to {\mcl True}.\\
+{\small\rm Bool. expr.$_{1}$} {\mcl or} {\small\rm Bool. expr.$_{2}$}& {\mcl True} if and only if the value of {\small\rm Bool. expr.$_{1}$}
+                                 or that of {\small\rm Bool. expr.$_{2}$} is equal to {\mcl True}.\\ \hline
+\end{tabular}
+\end{center}
+
+\index{Boolean function}A boolean expression can be given a name to
+make programs more readable. For example:
+
+\noindent\begin{minipage}{\textwidth}
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ is\ n\ odd?}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ isOdd(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl return}{\idt \ n\ \%\ 2\ ==\ 1}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ is\ n\ even?}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ isEven(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl return}{\idt \ n\ \%\ 2\ ==\ 0}}\par
+
+\medskip }
+\end{minipage}
+
+\noindent These declarations look like declarations of procedures with parameters
+but their body is not a sequence of instructions for the
+\robot: the {\mcl return} instruction is followed by a
+boolean expression whose value is computed at each call and returned as
+the result of the call.
+We say that {\idt isOdd} and {\idt isEven} are {\em boolean functions} because their evaluation always returns a boolean (a value of type {\idt bool}, that is {\mcl True} or {\mcl False}).
+For example {\idt isOdd(5)} is {\mcl True} and {\idt isEven(5)} is
+{\mcl False}. They can be used in a test such as {\mcl if}\ {\idt isOdd(i):}
+\ldots\ or in a boolean expression such as {\mcl not}\ {\idt isOdd(i)}. The orientation
+tests {\idt tn()}, {\idt te()}, \ldots\ of the \robot\ are also boolean
+functions, declared in the {\idt LibRobot} library.
+
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercices}{Write \python\ programs using parity tests to produce
+the following drawings:
+
+\tiret  the pyramidal serpentine and the grid of figure \ref{fig:serpyrgricr} below;
+%(page \pageref{fig:serpyrgricr});
+
+\tiret   the octagonal tiling and the tiling of interlaced hexagons of figure \ref{fig:pavocthex} (page \pageref{fig:pavocthex}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+  \includevspacePostScript[6.0cm]{SerpPyr+GrilleDeCr}{0.95}{0.95}
+ \caption{Pyramidal serpentine and grid of crosses}\label{fig:serpyrgricr}
+\end{figure}
+\begin{figure}[htbp]
+\includevspacePostScript[5.4cm]{PavageOctoHexa}{0.95}{0.95}
+ \caption{Tilings of juxtaposed octagons and of interlaced hexagons}\label{fig:pavocthex}
+\end{figure}
+\begin{exercices}{Write \python\ programs using boo\-le\-an expressions comparing
+integer values to produce the following drawings (the second one is difficult):
+
+\tiret  the digital digits of figure \ref{fig:alphabet} (page \pageref{fig:alphabet}) where the digit to draw
+is passed as a parameter of the drawing procedure;
+
+\tiret  the tiling of cogwheels of figure \ref{fig:pavrd} below;
+
+\tiret  the Egyptian carpet of figure \ref{fig:tapegyp} (page \pageref{fig:tapegyp}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.7cm]{PavageRoueDentee}{0.95}{0.95}
+ \caption{Tiling of cogwheels}\label{fig:pavrd}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[7.2cm]{TapisEgyptien}{0.95}{0.95}
+ \caption{Egyptian carpet\label{fig:tapegyp}}
+\end{figure}
+\begin{exercices}{Write \python\ programs using negations, conjunctions or disjunctions of boolean
+expressions to produce the following drawings (the second one is difficult):
+
+\tiret  the zebra-striped square of figure \ref{fig:carzeb} (page \pageref{fig:carzeb});
+
+\tiret  the Alhambra mosaic shown in figure \ref{fig:mosaic6} (page \pageref{fig:mosaic6}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.8cm]{CarreZebree}{0.95}{0.95}
+ \caption{Zebra-striped square}\label{fig:carzeb}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.7cm]{MosaiqueAlhambra6}{0.95}{0.95}
+ \caption{Alhambra mosaic}\label{fig:mosaic6}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corrige}{
+We give one program, the others being in the folder
+{\idt book/\allowbreak 16\_boolean\_expressions}:
+\input python/PyramidalSerpentine.tex
+\noindent $\Box$}\end{corrige}
+\begin{corrige}{
+We give one program, the third one being in the folder
+{\idt book/\allowbreak 16\_boolean\_expressions}:
+\input python/CogwheelsTiling.tex
+\noindent $\Box$}\end{corrige}
+\begin{corrige}{
+We give one program, the first one being in the folder
+{\idt book/\allowbreak 16\_boolean\_expressions}:
+\input python/AlhambraMosaic6.tex
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+
+ In \python\ the priorities of integer and boolean operators are defined as follows:
+
+ \vspace{\baselineskip}
+
+ \index{Operator priority}
+\begin{center}
+\begin{tabular}{|l|l|l|} \hline
+\multicolumn{3}{|l|}{\em Priority of integer and boolean operators:} \\ \hline \hline
+{\idt f(x)} (call) & function calls & highest priority \\ \hline
+$-$ (unary) & opposite & \\ \hline
+$\ast$, {\idt //}, {\idt \%} & multiplicative operators & \\ \hline
+$+$, $-$ (binary) & additive operators & \\ \hline
+{\idt <}, {\idt <=}, {\idt ==}, {\ttfamily\idt !=}, {\idt >=}, {\idt >}  & relational operators & \\ \hline
+{\mcl not} & negation & \\ \hline
+{\mcl and} & conjunction & \\ \hline
+{\mcl or} & disjunction & lowest priority \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{\baselineskip}
+
+ \noindent For example the boolean expression `{\mcl True\ and\ False\ or\ False}' is eva\-lu\-at\-ed as
+ `{\idt (}{\mcl True\ and\ False}{\idt )}\ {\mcl or\ False}' and is therefore equal to {\mcl False}.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\indent These priorities are close to the usual mathematical conventions. For
+example `{\idt 0\ <=\ i}\ {\mcl and}\ {\idt i\ <\ 100}' is evaluated as
+`{\idt (0\ <=\ i)}\ {\mcl and}\ {\idt (i\ <\ 100)}', which is indeed what we mean. This was not
+the case in older languages such as \pascal, where this expression was
+incorrect and all the parentheses had to be written. \python\ even allows
+writing `{\idt 0\ <=\ i\ <\ 100}' as in mathematics.
+
+Since {\mcl not} has a lower priority than the relational operators,
+`{\mcl not}\ {\idt i\ \%\ 2\ ==\ 1}' is evaluated as `{\mcl not}\ {\idt (i\ \%\ 2\ ==\ 1)}',
+which is indeed what we mean. This is not the case in other languages
+such as \pascal\ or \ocaml, where {\mcl not} applies to what immediately follows it,
+like a function call, so that the parentheses must be written.
+When in doubt, one can always add parentheses.
+
+Finally, \python\ evaluates conjunctions and disjunctions from left to right and stops as soon
+as the result is known: in $E_{1}$ {\mcl and} $E_{2}$, if $E_{1}$ is {\mcl False}
+then $E_{2}$ is not computed since the conjunction is necessarily {\mcl False}; likewise
+in $E_{1}$ {\mcl or} $E_{2}$, if $E_{1}$ is {\mcl True} then $E_{2}$ is not
+computed.
+
+The term ``boolean'' ({\idt bool} in \python) comes from Boole\footnote{\ \href{https://en.wikipedia.org/wiki/George_Boole}{George Boole}, British mathematician, 1815--1864.},
+ creator of modern mathematical logic.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage                 % If the chapter ends with a blank page
+\thispagestyle{empty}

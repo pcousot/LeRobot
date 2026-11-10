@@ -1,0 +1,55 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Construire\ un\ carré\ magique\ d\textquotesingle{}ordre\ impair}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Lire\ au\ clavier\ l\textquotesingle{}ordre\ n\ (impair)\ du\ carré}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ lireOrdre():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt write(}{\cha \char34{}Ordre\ du\ carré\ magique\ (impair),\ n\ =\ \char34{}}{\idt )}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt n\ =\ lireEntier()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ n\ \char62{}\ 0\ }{\mcl and}{\idt \ n\ \%\ 2\ ==\ 1:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl return}{\idt \ n}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl return}{\idt \ lireOrdre()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Placer\ le\ robot\ au\ coin\ inférieur\ gauche\ du\ carré\ :\ un}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ pas\ au{-}dessus\ et\ à\ droite\ du\ coin\ de\ la\ fenêtre}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ origine():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt eb();\ ag();\ translater(1,\ 1)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Écrire\ le\ texte\ s\ centré\ sur\ la\ position\ du\ robot}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ (procédure\ technique,\ voir\ le\ programme\ complet\ dans}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ le\ dossier\ livre/22\_variables\_E\_S)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ ecrireCentre(s):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ...}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Afficher\ l\textquotesingle{}élément\ c\ au\ centre\ de\ la\ case\ (i,\ j)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ afficher(i,\ j,\ c):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt origine();\ translater(2\ *\ i\ {-}\ 1,\ 2\ *\ j\ {-}\ 1)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ecrireCentre(str(c))}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt n\ =\ lireOrdre()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ la\ matrice\ dans\ la\ fenêtre\ du\ robot}}\par
+\vspace{\neglskip}\mbox{\blc {\idt lg(20);\ cacherRobot()}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ k\ }{\mcl in}{\idt \ range(n\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt origine();\ translater(2\ *\ k,\ 0);\ pn();\ avf(2\ *\ n)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt origine();\ translater(0,\ 2\ *\ k);\ pe();\ avf(2\ *\ n)}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Remplir\ le\ carré\ magique}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Ligne\ i\ et\ colonne\ j\ de\ la\ case\ à\ remplir}}\par
+\vspace{\neglskip}\mbox{\blc {\idt i\ =\ (n\ +\ 1)\ //\ 2}}\par
+\vspace{\neglskip}\mbox{\blc {\idt j\ =\ n}}\par
+\vspace{\neglskip}\mbox{\blc {\idt afficher(i,\ j,\ 1)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ c\ }{\mcl in}{\idt \ range(2,\ n\ *\ n\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ c\ \%\ n\ !=\ 1:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt i\ =\ i\ \%\ n\ +\ 1}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt j\ =\ j\ \%\ n\ +\ 1}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt j\ {-}=\ 1}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt afficher(i,\ j,\ c)}}\par
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\medskip }

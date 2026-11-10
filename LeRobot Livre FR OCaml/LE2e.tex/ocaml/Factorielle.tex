@@ -1,0 +1,37 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Lire\ un\ entier\ n\ et\ écrire\ sa\ factorielle\ n!\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ nmin\ =\ 0}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ nmax\ =\ 20}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Lire\ au\ clavier\ la\ valeur\ de\ n,\ en\ recommençant}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt tant\ que\ l\textquotesingle{}on\ n\textquotesingle{}a\ pas\ nmin\ \char60{}=\ n\ \char60{}=\ nmax\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ }{\mcl rec}{\idt \ lireN\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt write\ [}{\cha \char34{}n\ =\ \char34{}}{\idt ];}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl let}{\idt \ n\ =\ lireEntier\ ()\ }{\mcl in}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl if}{\idt \ nmin\ \char60{}=\ n\ \&\&\ n\ \char60{}=\ nmax\ }{\mcl then}{\idt \ n}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl else}{\idt \ }{\mcl begin}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt writeln\ [}{\cha \char34{}n\ doit\ être\ compris\ entre\ \char34{}}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk\blk{\idt string\_of\_int\ nmin;\ }{\cha \char34{}\ et\ \char34{}}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk\blk{\idt string\_of\_int\ nmax;\ }{\cha \char34{}\ !\ Recommencer.\char34{}}{\idt ];}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lireN\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl end}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl let}{\idt \ n\ =\ lireN\ ()\ }{\mcl in}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\cmt (*\ Calculer\ f\ =\ n!\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl let}{\idt \ f\ =\ ref\ 1\ }{\mcl in}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ n\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt f\ :=\ !f\ *\ i}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\cmt (*\ Écrire\ f\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt writeln\ [}{\cha \char34{}n!\ =\ \char34{}}{\idt ;\ string\_of\_int\ !f];}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt readln\ ()}}\par
+
+\medskip }

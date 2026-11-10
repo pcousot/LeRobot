@@ -1,0 +1,362 @@
+\section{Parité}
+Les tests que nous avons faits jusqu'à présent dans les instructions
+``if'' concernaient l'orientation du \robot.  En \ocaml\ il est
+possible de faire des tests concernant les valeurs des paramètres et des
+compteurs de boucles ``for''.  Il peut être utile de faire un test sur le compteur
+dans le corps d'une boucle pour exécuter des actions différentes à
+chaque itération.  Prenons l'exemple du dessin de la frise en forme de
+double peigne ci-dessous~:
+
+ {\raggedright
+  \includevspacePostScript[1.5cm]{FriseDoublePeigne}{1.0}{1.0}
+   }
+
+Les dents du peigne étant dessinées de gauche à droite, les
+$1^{\mathrm{\grave{e}re}}$, $3^{\mathrm{\grave{e}me}}$,
+$5^{\mathrm{\grave{e}me}}$, \ldots\ sont dirigées vers le bas alors
+que les $2^{\mathrm{\grave{e}me}}$, $4^{\mathrm{\grave{e}me}}$,
+$6^{\mathrm{\grave{e}me}}$, \ldots\ sont dirigées vers le haut.  Dans
+le programme de dessin on utilise un compteur de boucle {\idt i} qui
+vaut 1 quand on dessine la $1^{\mathrm{\grave{e}re}}$ dent, 2 quand on
+dessine la $2^{\mathrm{\grave{e}me}}$, \ldots\ Par conséquent quand la
+valeur du compteur de boucle est {\em impaire} (c'est-à-dire 1, 3, 5,
+\ldots) il faut dessiner une dent vers le bas tandis que si la valeur
+du compteur est {\em paire} (c'est-à-dire 2, 4, 6, \ldots) il faut
+dessiner une dent vers le haut.  \index{Parité}Un nombre est impair
+quand le reste de sa division par 2 est égal à 1. Pour tester que la
+valeur du compteur {\idt i} est impaire on utilise donc l'expression
+booléenne {\idt i mod 2 = 1} qui vaut {\idt true} (vrai) quand le reste
+{\idt i mod 2} de la division entière de {\idt i} par 2 est égal à 1 et
+{\idt false} (faux) quand ce reste est égal à 0, c'est-à-dire quand
+{\idt i} est pair.
+\newpage
+
+\input{ocaml/FriseDoublePeigne.tex}
+
+\section{Comparaison d'entiers}
+
+Si {\idt i} est un compteur de boucle ou un paramètre entier de procédure,
+l'expression booléenne {\idt i > 10} est {\idt true} (vraie)
+si la valeur de {\idt i} est strictement plus grande que 10 et {\idt
+false} (fausse) dans le cas contraire c'est-à-dire si la valeur de {\idt
+i} est inférieure ou égale à 10.  Les symboles mathématiques $\leq$
+(inférieur ou égal) et $\geq$ (supérieur ou égal) se notent {\idt <=} et
+{\idt >=} en \ocaml\ (car les symboles mathématiques $\leq$ et $\geq$ ne
+se trouvent pas sur les claviers d'ordinateurs alors que {\idt <}, {\idt >}
+et {\idt =} sont toujours présents).  Par exemple les expressions
+booléennes {\idt 10 <= 10} et {\idt 10 <= 20} valent {\idt true}
+(vrai) tandis que {\idt 10 <= 9} vaut {\idt false} (faux).  En
+\ocaml\ on note l'égalité avec le symbole mathématique usuel {\idt =}.
+Par contre le symbole mathématique $\neq$ (différent) se note {\idt <>}.
+Par exemple {\idt 10 = 10} et {\idt 10 <> 20} valent {\idt true}
+(vrai) tandis que {\idt 10 <> 10} et {\idt 10 = 20} valent {\idt
+false} (faux)\footnote{\ On rencontre aussi en \ocaml\ les symboles
+{\idt ==} et {\ttfamily\idt !=}, qui ont un autre sens. Pour comparer des
+entiers, il faut toujours utiliser {\idt =} et {\idt <>}.}.
+On peut utiliser les expressions booléennes de
+comparaison d'entiers ou de valeurs de paramètres entiers dans le test
+de l'instruction ``if''.  Par exemple la commande {\idt avf n} qui
+fait avancer le \robot\ {\idt n} fois si la valeur de {\idt n} est
+positive, le fait reculer si la valeur de {\idt n} est négative et qui
+ne change pas sa position quand la valeur de {\idt n} est nulle peut
+se définir comme suit~:
+
+\input ocaml/DefinitionAvf.tex
+
+\noindent On remarquera que le paramètre effectif {\idt -5} de l'appel
+{\idt avf (-5)} doit être placé entre parenthèses. Si l'on écrit
+{\idt avf -5}, le compilateur comprend que l'on veut soustraire 5 de
+{\idt avf}$\:$!
+
+De manière plus générale, on peut utiliser les opérateurs {\idt <} (strictement inférieur), {\idt <=} (inférieur ou égal),
+{\idt =} (égal), {\idt <>} (différent), {\idt >=} (supérieur ou égal) et {\idt >} (strictement supérieur) pour comparer les valeurs
+de deux expressions entières comme par exemple {\idt i <= l} dans le programme suivant qui trace le serpentin
+ci-dessous. La commande {\idt lg} attend un nombre écrit avec un point, comme
+dans {\idt lg 20.}$\:$; pour lui donner la valeur d'une expression entière comme
+{\idt i}, on la convertit avec {\idt float\_of\_int} (comme nous l'expliquerons
+au chapitre 19, consacré aux expressions rationnelles)~:
+
+ \includevspacePostScript[1.5cm]{Serpentin}{0.95}{0.95}
+ \input ocaml/Serpentin.tex
+
+\section{Négation, conjonction et disjonction}
+
+La {\em négation} \index{Négation} d'une expression booléenne $E$ s'écrit {\mcl not} $E$, le mot anglais {\mcl not} signifiant `non'. Si la
+valeur de $E$ est {\idt true} alors celle de {\mcl not} $E$ est {\idt false} tandis que si la valeur de $E$ est {\idt false} alors
+celle de {\mcl not} $E$ est {\idt true}. Par exemple  {\mcl not} {\idt (5 mod 2 = 1)} vaut {\idt false} puisque
+{\idt 5 mod 2 = 1} vaut {\idt true}, {\idt 5} étant impair. Les parenthèses sont
+indispensables (nous verrons pourquoi dans l'Addenda). Ceci peut se résumer par la table de vérité suivante~:
+
+\begin{center}
+\begin{tabular}{|c|c|} \hline
+$E$ & {\mcl not} $E$\\ \hline \hline
+{\idt true} & {\idt false}\\ \hline
+{\idt false} & {\idt true}\\ \hline
+\end{tabular}
+\end{center}
+
+La {\em conjonction} \index{Conjonction} de deux expressions booléennes $E_{1}$ et $E_{2}$ s'écrit $E_{1}$ {\idt \&\&} $E_{2}$,
+ce qui se lit `$E_{1}$ et $E_{2}$'. La valeur de $E_{1}$ {\idt \&\&} $E_{2}$ est {\idt true} (vrai) si et
+seulement si la valeur de $E_{1}$ et celle de $E_{2}$ sont {\idt true} (vrai). Si l'une des expressions
+booléennes $E_{1}$ ou
+$E_{2}$ vaut {\idt false} (faux) alors la conjonction $E_{1}$ {\idt \&\&} $E_{2}$ vaut également {\idt false} (faux).
+Par exemple  {\idt 5 >= 0 \&\& 5 mod 2 = 1} vaut {\idt true} puisque
+{\idt 5} est positif et impair. Ceci peut se résumer par la table de vérité suivante~:
+
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline
+$E_{1}$ & $E_{2}$ & $E_{1}$ {\idt \&\&} $E_{2}$\\ \hline \hline
+{\idt true} & {\idt true} & {\idt true}\\ \hline
+{\idt true} & {\idt false} & {\idt false}\\ \hline
+{\idt false} & {\idt true} & {\idt false}\\ \hline
+{\idt false} & {\idt false} & {\idt false}\\ \hline
+\end{tabular}
+\end{center}
+
+La {\em disjonction} \index{Disjonction} de deux expressions booléennes $E_{1}$ et $E_{2}$ s'écrit $E_{1}$ {\idt ||} $E_{2}$,
+ce qui se lit `$E_{1}$ ou $E_{2}$'. La valeur de $E_{1}$ {\idt ||} $E_{2}$ est {\idt true} (vrai) si et
+seulement si la valeur de $E_{1}$ ou celle de $E_{2}$ est {\idt true} (vrai). Si les valeurs de $E_{1}$ et de
+$E_{2}$ sont  {\idt false} (faux) alors la disjonction $E_{1}$ {\idt ||} $E_{2}$ vaut également {\idt false} (faux).
+Par exemple  {\idt 4 >= 0 || 4 mod 2 = 1} vaut {\idt true} puisque
+{\idt 4} est positif et bien que {\idt 4} soit pair. Ceci peut se résumer par la table de vérité suivante~:
+
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline
+$E_{1}$ & $E_{2}$ & $E_{1}$ {\idt ||} $E_{2}$\\ \hline \hline
+{\idt true} & {\idt true} & {\idt true}\\ \hline
+{\idt true} & {\idt false} & {\idt true}\\ \hline
+{\idt false} & {\idt true} & {\idt true}\\ \hline
+{\idt false} & {\idt false} & {\idt false}\\ \hline
+\end{tabular}
+\end{center}
+
+La conjonction et la disjonction peuvent se réaliser simplement avec un circuit électrique comme on le voit à la figure
+\ref{fig:andor}
+ci-dessous
+%(page \pageref{fig:andor})
+avec la con\-ven\-tion que {\idt true} représente l'interrupteur fermé
+et l'ampoule allumée (le courant passe) et {\idt false} représente l'interrupteur ouvert
+et l'ampoule éteinte (le courant ne passe pas).
+
+\begin{figure}[htbp]
+ \includevspacePostScript[4.3cm]{CircuitsAndOr}{0.95}{0.95}
+ \caption{Circuits électriques réalisant la conjonction et\label{fig:andor}}
+\centering{la disjonction logiques}
+\end{figure}
+
+Une disjonction est utilisée dans le programme suivant pour tester si le \robot\ est orienté au nord ou à
+l'est~:
+
+\vspace{0.3cm}
+ {\raggedright
+ \includevspacePostScript[0.5cm]{FriseEnOr}{1.0}{1.0}
+\input {ocaml/FriseEnOr.tex}
+  }
+
+\section{Expressions booléennes}
+
+La table ci-dessous résume les règles d'écriture et les règles de calcul de la valeur
+des expressions booléennes en \ocaml~:
+
+\index{Expression booléenne} \index{Test}
+
+\begin{center}
+\protect\frenchspacing
+\begin{tabular}{@{}|l|p{6.8cm}|@{}} \hline
+\multicolumn{2}{|l|}{\em Expressions booléennes~:} \\ \hline \hline
+{\idt true} & Valeur `vrai'.\\
+{\idt false} & Valeur `faux'.\\ \hline
+{\small\rm Expr. entière$_{1}$} {\idt <=} {\small\rm Expr. entière$_{2}$}& {\idt true} si et seulement si la valeur de l'{\small\rm Expr. entière$_{1}$} est
+                                 inférieure ou égale à celle de l'{\small\rm Expr. entière$_{2}$}.\\
+{\small\rm Expr. entière$_{1}$} {\idt <} {\small\rm Expr. entière$_{2}$}& {\idt true} si et seu\-le\-ment si la va\-leur de l'{\small\rm Expr. entière$_{1}$} est
+                                 strictement inférieure à celle de l'{\small\rm Expr. entière$_{2}$}.\\
+{\small\rm Expr. entière$_{1}$} {\idt =} {\small\rm Expr. entière$_{2}$}& {\idt true} si et seu\-le\-ment si la valeur de l'{\small\rm Expr. entière$_{1}$} est
+                                 égale à celle de l'{\small\rm Expr. entière$_{2}$}.\\
+{\small\rm Expr. entière$_{1}$} {\idt <>} {\small\rm Expr. entière$_{2}$}& {\idt true} si et seu\-le\-ment si la valeur de l'{\small\rm Expr. entière$_{1}$} est
+                                 différente de celle de l'{\small\rm Expr. entière$_{2}$}.\\ \hline
+\end{tabular}
+\end{center}
+\begin{center}
+\protect\frenchspacing
+\begin{tabular}{@{}|l|p{6.8cm}|@{}} \hline
+{\small\rm Expr. entière$_{1}$} {\idt >} {\small\rm Expr. entière$_{2}$}& {\idt true} si et seu\-le\-ment si la va\-leur de l'{\small\rm Expr. entière$_{1}$} est
+                                 strictement supérieure à celle de l'{\small\rm Expr. entière$_{2}$}.\\
+{\small\rm Expr. entière$_{1}$} {\idt >=} {\small\rm Expr. entière$_{2}$}& {\idt true} si et seulement si la valeur de l'{\small\rm Expr. entière$_{1}$} est
+                                supérieure ou égale à celle de l'{\small\rm Expr. entière$_{2}$}.\\ \hline
+                                \end{tabular}
+\end{center}
+\begin{center}
+\protect\frenchspacing
+\begin{tabular}{@{}|l|p{6.8cm}|@{}} \hline
+{\mcl not} {\idt (}{\small\rm Expr. bool.}{\idt )} & {\idt true} si et seulement si la valeur de l'{\small\rm Expr. bool.} est
+                                égale à {\idt false}.\\ \hline
+{\small\rm Expr. bool.$_{1}$} {\idt \&\&} {\small\rm Expr. bool.$_{2}$}& {\idt true} si et seulement si les valeurs de l'{\small\rm Expr. bool.$_{1}$} et
+                                 de l'{\small\rm Expr. bool.$_{2}$} sont égales à {\idt true}.\\
+{\small\rm Expr. bool.$_{1}$} {\idt ||} {\small\rm Expr. bool.$_{2}$}& {\idt true} si et seulement si la valeur de l'{\small\rm Expr. bool.$_{1}$}
+                                 ou celle de l'{\small\rm Expr. bool.$_{2}$} est égale à {\idt true}.\\ \hline
+\end{tabular}
+\end{center}
+
+\index{Fonction booléenne}On peut donner un nom à une expression booléenne pour
+rendre les programmes plus lisibles. Par exemple~:
+
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ n\ est-il\ impair\ ?\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ estImpair\ n\ =\ n\ }{\mcl mod}{\idt \ 2\ =\ 1}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ n\ est-il\ pair\ ?\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ estPair\ n\ =\ n\ }{\mcl mod}{\idt \ 2\ =\ 0}}\par
+
+\medskip }
+
+\noindent Ces déclarations ressemblent à des déclarations de procédures avec paramètres
+mais ce qui suit le signe {\idt =} n'est pas une suite d'instructions pour le
+\robot~: c'est une expression booléenne dont la valeur est calculée à chaque appel.
+On dit que {\idt estImpair} et {\idt estPair} sont des {\em fonctions booléennes} car leur évaluation retourne toujours un booléen. Comme leur paramètre est entier, on dit qu'elles ont pout type \texttt{int $\rightarrow$ bool}.
+Par exemple {\idt estImpair 5} vaut {\idt true} et {\idt estPair 5} vaut
+{\idt false}. On peut les utiliser dans un test comme {\mcl if}\ {\idt estImpair i}\ {\mcl then}
+\ldots\ ou dans une expression booléenne comme {\mcl not}\ {\idt (estImpair i)}. Les tests
+d'orientation {\idt tn ()}, {\idt te ()}, \ldots\ du \robot\ sont également des fonctions
+booléennes, déclarées dans la bibliothèque {\idt LibRobot}.
+
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercices}{Écrire des programmes \ocaml\  utilisant des tests de parité pour réaliser
+les dessins suivants~:
+
+\tiret  la serpentine pyramidale et la grille de la figure \ref{fig:serpyrgricr} ci-dessous$\:$;
+%(page \pageref{fig:serpyrgricr})$\:$;
+
+\tiret   le pavage octogonal et le pavage d'hexagones entrelacés de la figure \ref{fig:pavocthex} (page \pageref{fig:pavocthex}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+  \includevspacePostScript[6.0cm]{SerpPyr+GrilleDeCr}{0.95}{0.95}
+ \caption{Serpentine pyramidale et grille de croix}\label{fig:serpyrgricr}
+\end{figure}
+\begin{figure}[htbp]
+\includevspacePostScript[5.4cm]{PavageOctoHexa}{0.95}{0.95}
+ \caption{Pavages d'octogones juxtaposés et d'hexagones entrelacés}\label{fig:pavocthex}
+\end{figure}
+\begin{exercices}{Écrire des programmes \ocaml\  utilisant des expressions boolé\-en\-nes de comparaison de
+valeurs entières pour réaliser les dessins suivants (le deuxième est difficile)~:
+
+\tiret  les chiffres digitaux de la figure \ref{fig:alphabet} (page \pageref{fig:alphabet}) où le chiffre à dessiner
+est passé en paramètre de la procédure de dessin$\:$;
+
+\tiret  le pavage de roues dentées de la figure \ref{fig:pavrd} ci-dessous$\:$;
+
+\tiret  le tapis égyptien de la figure \ref{fig:tapegyp} (page \pageref{fig:tapegyp}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.7cm]{PavageRoueDentee}{0.95}{0.95}
+ \caption{Pavage de roues dentées}\label{fig:pavrd}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[7.2cm]{TapisEgyptien}{0.95}{0.95}
+ \caption{Tapis égyptien\label{fig:tapegyp}}
+\end{figure}
+\begin{exercices}{Écrire des programmes \ocaml\  utilisant des négations, conjonctions ou disjonctions d'expressions
+booléen\-nes pour réaliser les dessins suivants (le deuxième est difficile)~:
+
+\tiret  le carré zébré de la figure \ref{fig:carzeb} (page \pageref{fig:carzeb})$\:$;
+
+\tiret  la mosaïque de l'Alhambra représentée à la figure \ref{fig:mosaic6} (page \pageref{fig:mosaic6}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.8cm]{CarreZebree}{0.95}{0.95}
+ \caption{Carré zébré}\label{fig:carzeb}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.7cm]{MosaiqueAlhambra6}{0.95}{0.95}
+ \caption{Mosaïque de l'Alhambra}\label{fig:mosaic6}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corrige}{
+Nous donnons un programme, les autres se trouvant dans le dossier
+{\idt livre/\allowbreak 16\_expressions\_booleennes}~:
+\input ocaml/SerpentinePyramidale.tex
+\noindent $\Box$}\end{corrige}
+\begin{corrige}{
+Nous donnons un programme, le troisième se trouvant dans le dossier
+{\idt livre/\allowbreak 16\_expressions\_booleennes}~:
+\input ocaml/PavageRouesDentees.tex
+\noindent $\Box$}\end{corrige}
+\begin{corrige}{
+Nous donnons un programme, le premier se trouvant dans le dossier
+{\idt livre/\allowbreak 16\_expressions\_booleennes}~:
+\input ocaml/MosaiqueAlhambra6.tex
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+
+ En \ocaml\ les priorités des opérateurs entiers et booléens sont définies comme suit~:
+
+ \vspace{\baselineskip}
+
+ \index{Priorité des opérateurs}
+\begin{center}
+\begin{tabular}{|l|l|l|} \hline
+\multicolumn{3}{|l|}{\em Priorité des opérateurs entiers et booléens~:} \\ \hline \hline
+{\idt f x} (appel), $-$ (unaire)  & appels de fonctions & priorité la plus forte \\ \hline
+$\ast$, {\idt /}, {\mcl mod} & opérateurs multiplicatifs & \\ \hline
+$+$, $-$ (binaires) & opérateurs additifs & \\ \hline
+{\idt <}, {\idt <=}, {\idt =}, {\idt <>}, {\idt >=}, {\idt >}  & opérateurs de relation & \\ \hline
+{\idt \&\&} & conjonction & \\ \hline
+{\idt ||} & disjonction & priorité la plus faible \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{\baselineskip}
+
+ \noindent Par exemple l'expression booléenne `{\idt  true\ \&\&\ false\ ||\ false}' s'é\-va\-lue com\-me
+ `{\idt  (true\ \&\&\ false)\ ||\ false}' et est donc égale à {\idt false}.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\indent Ces priorités sont proches des conventions mathématiques usuelles. Par
+exemple `{\idt  0\ <=\ i\ \&\&\ i\ <\ 100}' s'évalue comme
+`{\idt  (0\ <=\ i)\ \&\&\ (i\ <\ 100)}', ce qui est bien ce que l'on veut dire. Il n'en était
+pas de même dans des langages plus anciens comme \pascal, où cette expression était
+incorrecte et où il fallait écrire toutes les parenthèses.
+
+Comme {\mcl not} s'applique à ce qui le suit immédiatement, à la manière d'un appel de
+fonction, `{\mcl not}\ {\idt i\ mod\ 2\ =\ 1}' s'évalue comme `{\idt (}{\mcl not}\ {\idt i)\ mod\ 2\ =\ 1}'
+qui est refusé par le compilateur puisque `{\mcl not}\ {\idt i}' est un booléen, que l'on ne peut pas diviser par 2. Il faut
+donc écrire `{\mcl not}\ {\idt (i\ mod\ 2\ =\ 1)}'. Dans le doute, on peut toujours
+ajouter des parenthèses.
+
+Enfin, \ocaml\ évalue les conjonctions et les disjonctions de gauche à droite et s'arrête dès
+que le résultat est connu~: dans $E_{1}$ {\idt \&\&} $E_{2}$, si $E_{1}$ vaut {\idt false}
+alors $E_{2}$ n'est pas calculée puisque la conjonction vaut forcément {\idt false}$\:$; de
+même dans $E_{1}$ {\idt ||} $E_{2}$, si $E_{1}$ vaut {\idt true} alors $E_{2}$ n'est pas
+calculée.
+
+Le terme ``booléen'' ou ``booléien'' ({\idt bool} en \ocaml) vient de Boole\footnote{\ \href{https://fr.wikipedia.org/wiki/George_Boole}{George Boole}, mathématicien britannique, 1815--1864.},
+ créateur de la logique mathématique moderne.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage                 % Si on termine le chapitre par une page blanche
+\thispagestyle{empty}

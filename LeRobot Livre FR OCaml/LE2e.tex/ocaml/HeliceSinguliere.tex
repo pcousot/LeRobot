@@ -1,0 +1,31 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ une\ hélice\ singulière\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ xbase\ =\ 13\ \ }{\cmt (*\ Largeur\ de\ la\ grille\ de\ base\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ybase\ =\ 8\ \ \ }{\cmt (*\ Hauteur\ de\ la\ grille\ de\ base\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ nombreDeFeuilles\ =\ 8\ \ }{\cmt (*\ Feuilles\ d\textquotesingle{}une\ pale\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ nombreDePales\ =\ 4\ \ \ \ \ }{\cmt (*\ Pales\ de\ l\textquotesingle{}hélice\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ pale\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ nombreDeFeuilles\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Dessiner\ un\ quart\ d\textquotesingle{}ellipse,\ de\ dimension}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt (xbase\ *\ i,\ ybase\ *\ i),\ sans\ changer}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt l\textquotesingle{}orientation\ initiale\ du\ robot\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lgX\ (float\_of\_int\ (xbase\ *\ i));}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lgY\ (float\_of\_int\ (ybase\ *\ i));}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av\ ();\ pqtg\ ();\ av\ ();\ pqtg\ ();\ vg\ ();\ pqtg\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ j\ =\ 1\ }{\mcl to}{\idt \ nombreDePales\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pale\ ();\ pqtd\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt st\ ()}}\par
+
+\medskip }

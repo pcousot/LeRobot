@@ -1,0 +1,29 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ un\ carré\ en\ pointillé\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Tracer\ un\ trait\ pointillé\ de\ n\ points,}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt en\ supposant\ n\ \char62{}\ 1.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ traitPointille\ n\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lg\ 8.;\ ec\ 2;\ lc\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ l\ =\ 1\ }{\mcl to}{\idt \ n\ {-}\ 1\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt dp\ ();\ av\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt dp\ ();\ bc\ ()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Tracer\ un\ carré\ pointillé\ avec\ p\ points\ par\ côté}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (p\ \char62{}\ 1).\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ carre\ p\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ c\ =\ 1\ }{\mcl to}{\idt \ 4\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt traitPointille\ p;\ pqtd\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt carre\ 30;\ cacherRobot\ ();\ st\ ()}}\par
+
+\medskip }

@@ -1,0 +1,1 @@
+(executables (names SpiraleArithmetique SpiraleDor CarresImbriquesPeints SpiraleDeBaravelle MotifDeBeard ErreursDarrondi ErreursDarrondiAddition) (libraries lerobot) (flags (:standard -w -35)))

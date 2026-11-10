@@ -1,0 +1,94 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ tiling\ of\ squares,\ triangles\ and\ circles}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ square\ with\ sides\ of\ size\ 2,\ the\ robot}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ starting\ from\ the\ lower\ left\ corner\ facing\ east,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ and\ arriving\ pen\ down\ at\ the\ lower\ right\ corner}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ also\ facing\ east.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ square():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ the\ square.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd();\ fd();\ qtl();\ fd();\ fd();\ qtl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd();\ fd();\ qtl();\ fd();\ fd();\ qtl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Advance\ to\ the\ lower\ right\ corner.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd();\ fd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ two\ triangles\ joined\ at\ a\ vertex}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ inscribed\ in\ an\ invisible\ square\ of\ the\ grid\ of}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ side\ 2,\ starting\ from\ the\ lower\ left\ corner\ of\ the\ square}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ facing\ east,\ and\ arriving\ at\ the\ lower\ right}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ corner,\ pen\ down\ and\ facing\ east.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ triangles():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ fd();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtl();\ fd();\ fd();\ tetl();\ fd();\ tetl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd();\ fd();\ tetr();\ fd();\ tetl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ fd();\ pd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ circle\ of\ radius\ 1\ inscribed\ in\ an\ invisible}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ square\ of\ the\ grid\ of\ side\ 2,\ starting\ from\ the}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ lower\ left\ corner\ of\ the\ square\ facing\ east,\ and}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ arriving\ at\ the\ lower\ right\ corner\ of\ the\ square,\ pen}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ down\ and\ facing\ east.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ circle():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ fd();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt cl();\ cl();\ cl();\ cl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ fd();\ pd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ row\ made\ of\ a\ pattern\ repeated\ 7}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ times,\ the\ pattern\ being\ made\ of\ a\ square,\ triangles}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ and\ a\ circle\ side\ by\ side,\ the\ robot\ starting\ from\ the}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ lower\ left\ corner\ of\ the\ row\ facing\ east,\ and}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ arriving\ at\ the\ lower\ right\ corner\ also\ facing}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ east.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ rowSquare():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(7):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ The\ robot\ is\ pen\ down,\ facing\ east,\ at\ the\ bottom}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ left\ of\ the\ pattern}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt square();\ triangles();\ circle()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Like\ rowSquare,\ with\ the\ pattern\ made\ of\ triangles,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ a\ circle\ and\ a\ square.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ rowTriangles():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(7):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt triangles();\ circle();\ square()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Like\ rowSquare,\ with\ the\ pattern\ made\ of\ a\ circle,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ a\ square\ and\ triangles.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ rowCircle():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(7):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt circle();\ square();\ triangles()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Bring\ the\ robot\ from\ the\ lower\ right\ corner\ of\ a\ row}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ to\ the\ lower\ left\ corner\ of\ the\ next\ row,\ without}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ drawing,\ facing\ east\ and\ pen\ down.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ newRow():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ gl();\ qtr();\ fd();\ fd();\ qtl();\ pd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Tile\ the\ screen\ with\ 11\ rows\ of\ patterns\ starting\ with}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ a\ square,\ then\ with\ triangles,\ then\ with\ a}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ circle,\ from\ the\ upper\ right\ corner\ to\ the\ lower}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ right\ corner\ of\ the\ screen,\ the\ robot\ facing\ east.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ tiling():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ rows\ 1\ to\ 9\ from\ top\ to\ bottom.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(3):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt newRow();\ rowSquare()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt newRow();\ rowTriangles()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt newRow();\ rowCircle()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ rows\ 10\ then\ 11.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt newRow();\ rowSquare()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt newRow();\ rowTriangles()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Go\ to\ the\ upper\ right\ corner,\ facing\ east.}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gt();\ gr();\ qtr()}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Tile\ the\ screen.}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt tiling();\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

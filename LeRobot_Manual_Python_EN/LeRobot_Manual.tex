@@ -1,0 +1,344 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage[hidelinks]{hyperref}
+
+\lstset{
+  basicstyle=\ttfamily\small,
+  columns=fullflexible,
+  keepspaces=true,
+  frame=single,
+  rulecolor=\color{gray!50},
+  backgroundcolor=\color{gray!8},
+  breaklines=true,
+  upquote=true,
+  showstringspaces=false,
+  extendedchars=true,
+  inputencoding=utf8,
+  literate={é}{{\'e}}1 {è}{{\`e}}1 {à}{{\`a}}1 {ç}{{\c c}}1 {É}{{\'E}}1,
+  xleftmargin=0.5em,
+  xrightmargin=0.5em
+}
+\setlength{\emergencystretch}{3em}
+\newcommand{\kbd}[1]{\texttt{#1}}
+\newcolumntype{L}{>{\raggedright\arraybackslash}X}
+
+\title{LeRobot (Python, English names) User Manual}
+\author{}
+\date{10 November 2026}
+
+\begin{document}
+\maketitle
+
+LeRobot is a drawing robot you steer on screen: either live, with the mouse
+and keyboard (Draw), or by writing a short Python program of robot commands
+(such as \kbd{my\_drawing.py}). This is the edition with English command
+names, used by the book \emph{First Programming Lessons in Python}: the
+robot moves forward with \kbd{fd()}, turns a quarter turn to the right with
+\kbd{qtr()}, puts its pen down with \kbd{pd()}, and so on. It is the same
+robot as the French edition (folder \kbd{LeRobot\_Python\_FR}, commands
+\kbd{av()}, \kbd{pqtd()}, \kbd{bc()}, \dots), itself translated from the
+OCaml and 1998 Caml Light versions: same window, same drawings. It lives in
+the folder \kbd{LeRobot\_Python\_EN} of the \kbd{LeRobot} folder, which can
+be anywhere (commands below are typed in a Terminal window opened in the
+\kbd{LeRobot} folder); the installation is described in the \emph{LeRobot
+(Python, English names) Installation Manual} (\kbd{LeRobot\_Install.pdf}).
+
+\tableofcontents
+
+%======================================================================
+\section{Getting started}
+
+You need a Python linked to Tk 8.6 or later, for example the one from
+python.org (see the installation manual). There is nothing to compile and
+no XQuartz: the robot window is an ordinary macOS window.
+
+There are three ways to start a program:
+\begin{itemize}
+\item \textbf{The application} \kbd{LeRobotPythonEN.app} (in
+  \kbd{LeRobot\_Python\_EN}): double-click it to run Draw; drop a \kbd{.py}
+  file on its icon to run that program.
+\item \textbf{The script} \kbd{robot.sh}, in a Terminal window opened in
+  \kbd{LeRobot\_Python\_EN}: \kbd{./robot.sh path/to/Program.py}. The program
+  can be in any folder.
+\item \textbf{Python directly}, for the files of the \kbd{LeRobot\_Python\_EN}
+  folder itself: \kbd{python3 Draw.py}, \kbd{python3 my\_drawing.py}.
+\end{itemize}
+If the \kbd{python3} of the Terminal is the one of macOS (linked to the old
+Tk 8.5), LeRobot notices it and starts itself again with the python.org
+Python; nothing has to be done.
+
+The window is $800 \times 700$ points. The large white area is where the
+robot draws; the strip along the bottom is the message bar.
+
+%======================================================================
+\section{Part 1 --- Interactive drawing (Draw)}
+
+In Draw you give the robot commands with single keys and move it with
+the mouse or the arrow keys; press Return when you are done, then \kbd{y} to
+save the drawing as a program.
+
+\subsection{Launch}
+Double-click \kbd{LeRobotPythonEN.app}, or:
+\begin{lstlisting}[language=bash]
+cd LeRobot_Python_EN && python3 Draw.py
+\end{lstlisting}
+The robot appears in the centre, pointing north. The window comes to the
+front with the keyboard focus; if keys do nothing, click in the window.
+
+\subsection{The window}
+\begin{itemize}
+\item \textbf{Drawing area} --- the large white area.
+\item \textbf{Message bar} (bottom) --- a reminder of the keys, ending with
+  \kbd{* :pc w :paint\ \ Return :end}.
+\item \textbf{Colour box} (small robot near the right of the bar) --- shows
+  the current pen colour.
+\item \textbf{Return icon} (far right) --- the Return symbol; it blinks when
+  the robot waits for a key.
+\end{itemize}
+
+\subsection{Moving the robot with the mouse or the arrow keys}
+Click on a grid point (or move the pointer with the button held down) and
+the robot jumps to the nearest grid point, without drawing. The arrow keys
+move it one grid step left, right, up or down, also without drawing. When
+the pointer moves with the button released, the robot does not move.
+
+If the robot would go past the edge of the drawing area, it stays where it
+is and the terminal prints \kbd{** EXIT FORBIDDEN ** translate}, with a
+beep-beep. This is only a warning.
+
+\subsection{Keyboard commands}
+The robot draws only when its pen is down (\kbd{d}; it is down at the
+start). One step is one grid square.
+
+\begin{center}
+\begin{tabularx}{\linewidth}{@{}l l L@{}}
+\toprule
+\textbf{Key} & \textbf{Command} & \textbf{What it does} \\
+\midrule
+\kbd{d} & pd & \underline{P}en \underline{d}own: the robot draws as it moves \\
+\kbd{u} & pu & \underline{P}en \underline{u}p: the robot moves without drawing \\
+\kbd{f} & fd & Move \underline{f}orwar\underline{d} one step \\
+\kbd{)} & cr & \underline{C}urve to the \underline{r}ight (a quarter circle) \\
+\kbd{(} & cl & \underline{C}urve to the \underline{l}eft (a quarter circle) \\
+\kbd{+} & qtr & \underline{Q}uarter \underline{t}urn \underline{r}ight ($90^\circ$) \\
+\kbd{-} & qtl & \underline{Q}uarter \underline{t}urn \underline{l}eft ($90^\circ$) \\
+\kbd{r} & etr & \underline{E}ighth \underline{t}urn \underline{r}ight ($45^\circ$) \\
+\kbd{l} & etl & \underline{E}ighth \underline{t}urn \underline{l}eft ($45^\circ$) \\
+\kbd{c} & dc & \underline{D}raw a small \underline{c}ross (+) \\
+\kbd{p} & dp & \underline{D}raw a \underline{p}oint \\
+\kbd{.} & dg & \underline{D}raw the \underline{g}rid points \\
+\kbd{*} & pc & Next \underline{p}en \underline{c}olour (shown in the colour box) \\
+\kbd{w} & paint & Paint the closed area behind the robot with the pen colour \\
+Arrow keys & translate & Move one step left, right, up or down, without drawing \\
+Backspace & --- & Undo the last command \\
+Return & --- & Finish the drawing \\
+\bottomrule
+\end{tabularx}
+\end{center}
+
+Colours cycle in this order: white, yellow, blue, violet, green, red,
+indigo, black. To paint, put the robot so that its back is inside a closed
+area, then press \kbd{w}.
+
+\subsection{Finishing and saving}
+\begin{enumerate}
+\item Press \textbf{Return}. The bar asks:
+  \emph{Do you want to save in my\_drawing.py? (y/n)}
+\item Press \kbd{y} to save. Every command you used, including mouse and
+  arrow moves (written as \kbd{translate(dx, dy)}) and colour changes
+  (written as \kbd{pc(n)} with the colour name in a comment), is written to
+  \kbd{my\_drawing.py} as a Python program (see Part~2), and the window
+  closes.
+\item Press any other key to close without saving.
+\end{enumerate}
+Saving always overwrites \kbd{my\_drawing.py}, in the folder of
+Draw. To keep an earlier drawing, copy that file under another name
+first.
+
+%======================================================================
+\section{Part 2 --- Running a robot program}
+
+A robot program is a Python file that lists robot commands in order. It
+draws the picture by itself, then waits so you can replay it at another
+speed or close it with Esc.
+
+\subsection{Run my\_drawing.py}
+\begin{lstlisting}[language=bash]
+cd LeRobot_Python_EN && python3 my_drawing.py
+\end{lstlisting}
+or \kbd{make my\_drawing}, or drop \kbd{my\_drawing.py} on
+\kbd{LeRobotPythonEN.app}. A saved drawing looks like this:
+\begin{lstlisting}[language=Python]
+# My lovely drawing
+from LeRobot import *
+
+init_pict(); gc()
+fd(); fd(); qtr(); fd(); fd(); pc(2)  # blue
+fd(); translate(5, 3); fd(); cl(); fd(); st()
+\end{lstlisting}
+
+\subsection{Write your own program}
+Create a file anywhere, for example \kbd{house.py}:
+\begin{lstlisting}[language=Python]
+from LibRobot import *
+
+# Draw a square
+fd(); fd(); qtr(); fd(); fd(); qtr()
+fd(); fd(); qtr(); fd(); fd(); qtr()
+st()
+\end{lstlisting}
+Run it with \kbd{./robot.sh path/to/house.py} from the
+\kbd{LeRobot\_Python\_EN} folder, or drop it on \kbd{LeRobotPythonEN.app}.
+
+Every program follows the same pattern:
+\begin{itemize}
+\item \kbd{from LibRobot import *} first. It opens the window, puts the
+  robot in the centre, pointing north, pen down, in black, with a grid of
+  12 points (the settings of the book's programs). \kbd{from LeRobot import *}
+  gives the original interface used by \kbd{my\_drawing.py}: a grid of 30
+  points, and the program must start with \kbd{init\_pict(); gc()}.
+\item The robot starts with its pen down, so every move draws: call
+  \kbd{pu()} to move without drawing, and \kbd{pd()} to draw again.
+\item \kbd{st()} last: shows the speed screen and keeps the window open.
+  Without it, the bar says \emph{End of the program: press a key or click}
+  and the window closes at the next key or click.
+\item Commands without arguments take \kbd{()}; commands are separated by
+  \kbd{;} or written on separate lines.
+\end{itemize}
+
+\subsection{Programs of the book}
+The folder \kbd{book} holds the 406 programs of the book \emph{First
+Programming Lessons in Python}, one subfolder per chapter:
+\begin{lstlisting}[language=bash]
+./robot.sh book/20_polar_grid/LimaconOfPascal.py
+make run PROG=book/21_recursion/DragonCurve
+make check                         # all programs, one after the other
+make check DIR=02_interaction      # one chapter
+make check FROM=FriezeOfTriangles  # resume at a program
+\end{lstlisting}
+With \kbd{make check}, answer in the robot window when a drawing is
+finished: Return = correct (next program), \kbd{r} = run it again, \kbd{q}
+or Esc = stop (the command to resume is printed), any other key starts a
+remark, ended by Return, noted in \kbd{check.txt}. A program that never
+ends by itself (\kbd{Loop1}, \kbd{Loop2}, \kbd{DigitalClock}) is stopped
+with Esc. Programs that ask questions show them in the bottom bar and in
+the Terminal; answer in either. \kbd{LEROBOT\_MUET=1} turns the sound off.
+These programs are the English translations of those of the French
+edition, and draw exactly the same pictures; \kbd{tools/renames} gives the
+French name of each one.
+
+\subsection{Replaying at another speed}\label{sec:replay}
+When the program reaches \kbd{st()}, the bar shows:
+\begin{lstlisting}
++: faster   -: slower   speed: N     other key: redraw   Esc: quit
+\end{lstlisting}
+\begin{itemize}
+\item \kbd{+} / \kbd{-} --- change the speed from 0 to 10 (default 10, the
+  fastest). Only the number changes.
+\item Any other key, for example the space bar --- clear the window and
+  redraw at the chosen speed; the speed screen comes back when it is done.
+\item Esc --- close the window.
+\end{itemize}
+At speed 1 each command takes about 0.1\,s. Speed 0 is step-by-step mode:
+the robot does one command each time you press a key. While the robot
+draws, Esc (or \kbd{\S} or \kbd{\#}) stops the program.
+
+\subsection{Command reference}
+One step is one grid square. The underlined letters give the mnemonic.
+Commands with two numbers take them as two arguments: \kbd{moveTo(x, y)}.
+
+\begin{longtable}{@{}p{0.42\linewidth} p{0.53\linewidth}@{}}
+\toprule
+\textbf{Command} & \textbf{Meaning} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+\kbd{fd()} & Move \underline{f}orwar\underline{d} one step \\
+\kbd{fdn(n)} & Move \underline{f}orwar\underline{d} $n$ steps (backwards if $n < 0$) \\
+\kbd{cr()} / \kbd{cl()} & \underline{C}urve \underline{r}ight / \underline{l}eft (draws a quarter circle) \\
+\kbd{etr()} / \kbd{etl()} & \underline{E}ighth \underline{t}urn \underline{r}ight / \underline{l}eft ($45^\circ$) \\
+\kbd{qtr()} / \kbd{qtl()} & \underline{Q}uarter \underline{t}urn \underline{r}ight / \underline{l}eft ($90^\circ$) \\
+\kbd{tetr()} / \kbd{tetl()} & \underline{T}hree \underline{e}ighths of a \underline{t}urn \underline{r}ight / \underline{l}eft ($135^\circ$) \\
+\kbd{ht()} & \underline{H}alf \underline{t}urn ($180^\circ$) \\
+\kbd{fn()} \kbd{fne()} \kbd{fe()} \kbd{fse()} \kbd{fs()} \kbd{fsw()} \kbd{fw()} \kbd{fnw()} & \underline{F}ace \underline{n}orth, NE, E, SE, S, SW, W, NW \\
+\kbd{face(n)} & Face direction $n$ (\kbd{north} = 0, \kbd{northEast} = 1 \dots\ \kbd{northWest} = 7) \\
+\kbd{rot(a)} & \underline{Rot}ate by $a$ degrees (anticlockwise), keeping the step length \\
+\kbd{pd()} / \kbd{pu()} & \underline{P}en \underline{d}own / \underline{u}p \\
+\kbd{dp()} / \kbd{dc()} & \underline{D}raw a \underline{p}oint (a square of side \kbd{pw}) / a small \underline{c}ross \\
+\kbd{pc(n)} & \underline{P}en \underline{c}olour $n$ (\kbd{white} = 0, \kbd{yellow}, \kbd{blue}, \kbd{violet}, \kbd{green}, \kbd{red}, \kbd{indigo}, \kbd{black} = 7) \\
+\kbd{pw(n)} & \underline{P}en \underline{w}idth $n$ (a square pen, as on the Macintosh) \\
+\kbd{bg(n)} & Clear the window and fill it with \underline{b}ack\underline{g}round colour $n$ \\
+\kbd{paint()} & Paint the closed area behind the robot with the pen colour \\
+\kbd{translate(dx, dy)} & Move $dx$ steps across and $dy$ steps up, without drawing \\
+\kbd{drawTo(x, y)} & Go to window pixel $(x, y)$, drawing if the pen is down \\
+\kbd{moveTo(x, y)} & Go to grid point $(x, y)$, counted from the centre \\
+\kbd{fdl(l)} & Move \underline{f}orwar\underline{d} a \underline{l}ength of $l$ points, the grid following the robot \\
+\kbd{gc()} & \underline{G}o to the \underline{c}entre \\
+\kbd{gt()} \kbd{gb()} \kbd{gr()} \kbd{gl()} & \underline{G}o to the \underline{t}op, \underline{b}ottom, \underline{r}ight or \underline{l}eft edge \\
+\kbd{dg()} & \underline{D}raw the \underline{g}rid points \\
+\kbd{gs(x)} / \kbd{gsX(x)} / \kbd{gsY(x)} & Set the \underline{g}rid \underline{s}ize (both directions / across / up) \\
+\kbd{gsRT(r, t)} & Grid step of length $r$ at angle $t$ (polar grid) \\
+\kbd{showRobot()} / \kbd{hideRobot()} & Show / hide the robot \\
+\kbd{allowExits()} / \kbd{forbidExits()} & Allow / forbid moving past the window edge \\
+\kbd{sp(n)} & Set the \underline{sp}eed (0 to 10) \\
+\kbd{ss()} / \kbd{ex()} & \underline{S}tep by \underline{s}tep / normal \underline{ex}ecution (full speed) \\
+\kbd{message("text")} & Write a message in the bottom bar \\
+\kbd{label("text")} & Write a text at the robot's position \\
+\kbd{readInt()} / \kbd{readChar()} & Read an integer / a key \\
+\kbd{write(\dots)} / \kbd{writeln(\dots)} & Write in the Terminal \\
+\kbd{st()} & End (\underline{st}op): show the speed screen \\
+\end{longtable}
+
+Test functions such as \kbd{tb()} (\underline{t}est \underline{b}order:
+would the next step leave the window?), \kbd{tn()} \dots\ \kbd{tnw()}
+(\underline{t}est whether the robot faces \underline{n}orth \dots) and the
+values \kbd{valX()}, \kbd{valGsX()}, \kbd{valPc()}, \kbd{valOrientation()},
+\dots\ are also available; so are the music commands (\kbd{note(C, quarter)},
+\kbd{rest(half)}, \kbd{metronome(n)}, \kbd{dynamics(n)}), the texts
+(\kbd{textFont}, \kbd{textSize}, \kbd{intToString}, \dots) and the time
+(\kbd{clock()}, \kbd{date()}, \kbd{delay(t)}). The complete list, with the
+French name of each command, is in the \kbd{README.md} file of
+\kbd{LeRobot\_Python\_EN} (table \kbd{NOMS} of \kbd{noms.py}).
+
+%======================================================================
+\section{Troubleshooting}
+
+\begin{longtable}{@{}p{0.27\linewidth} p{0.33\linewidth} p{0.34\linewidth}@{}}
+\toprule
+\textbf{Symptom} & \textbf{Cause} & \textbf{Fix} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+The program hangs, no window & No Python with Tk 8.6 on this Mac & Install Python from python.org (installation manual) \\
+\addlinespace
+\emph{No module named 'LibRobot'} & The program is not in \kbd{LeRobot\_Python\_EN} and was started with \kbd{python3} & Use \kbd{./robot.sh Program.py} or \kbd{LeRobotPythonEN.app} \\
+\addlinespace
+\emph{NameError: name 'av' is not defined} & A program written for the French edition & Run it with \kbd{LeRobot\_Python\_FR}, or replace the French names (\kbd{tools/fr2en.py} does it) \\
+\addlinespace
+\emph{Error line N of Prog.py: the robot would leave the frame (fd)} & The robot was asked to move past the window edge & Change the program, or call \kbd{allowExits()} \\
+\addlinespace
+\kbd{** EXIT FORBIDDEN ** translate} in the terminal & In Draw, a move past the window edge & Only a warning \\
+\addlinespace
+\emph{Error line N of Prog.py: endless recursion (stack full)} & A procedure that calls itself forever & Check the stopping case of the recursion \\
+\addlinespace
+The program never ends & An endless loop (\kbd{while True}) & Press Esc in the robot window \\
+\addlinespace
+Keys do nothing in the window & The window does not have keyboard focus & Click in the window \\
+\addlinespace
+A saved drawing was lost & Saving from Draw always overwrites \kbd{my\_drawing.py} & Copy \kbd{my\_drawing.py} under a new name before saving again \\
+\addlinespace
+Text font cannot be changed & \kbd{textFont} and \kbd{textStyle} have no effect & None; texts use Helvetica 13 \\
+\end{longtable}
+
+\end{document}

@@ -1,0 +1,76 @@
+Our \robot\ can jump to the edge or to the centre of the frame (which delimits
+the drawing area on the computer screen), without changing
+its orientation and without drawing anything. It is exactly as if we could
+ carry it
+by hand and put it down at the edge or at the centre of the frame, as one can do with a
+remote-controlled car. The computer does it for us thanks to the commands
+given in the table below and illustrated in figure
+\ref{fig:ecrangdhbc} (page \pageref{fig:ecrangdhbc}) (the underlined letters give the abbreviation of the names of the commands):
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{@{}|l|p{11cm}|@{}} \hline
+{\tt gl()} & (\underline{g}o to the \underline{l}eft) places the \robot\ on the left of the screen, without changing its
+                  vertical position or its orientation, and without drawing anything.\\ \hline
+{\tt gr()} & (\underline{g}o to the \underline{r}ight) places the \robot\ on the right of the screen, without changing its
+                  vertical position or its orientation, and without drawing anything.\\ \hline
+{\tt gt()} & (\underline{g}o to the \underline{t}op) places the \robot\ at the top of the screen, without changing its
+                  horizontal position or its orientation, and without drawing anything.\\ \hline
+{\tt gb()} & (\underline{g}o to the \underline{b}ottom) places the \robot\ at the bottom of the screen, without changing its
+                  horizontal position or its orientation, and without drawing anything.\\ \hline
+{\tt gc()} & (\underline{g}o to the \underline{c}entre) places the \robot\ at the centre of the screen, without changing its orientation, and
+                  without drawing anything.\\ \hline
+\end{tabular}
+\end{center}
+%\label{tab:ag-ad-eh-eb-ce}
+\caption{Jumps of the \protect\robot\ to the edge and to the centre of the frame}
+\end{table}
+
+{\samepage %1
+\begin{figure}[ht]
+\includevspacePostScript[7.2cm]{ecran-ag-ad-eh-eb-ce}{0.95}{0.95}
+\caption{Jumps of the \protect\robot\ to the edge and to the centre of the frame}
+\label{fig:ecrangdhbc}
+\end{figure}
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercice}{
+Write a \python\ program that draws crosses at the edge and at the centre of the screen
+as shown in the figure below.
+\noindent $\Box$}\end{exercice}
+\vspace*{15mm}
+\noindent\begin{minipage}{\textwidth}\LEcaptype{figure}
+\includevspacePostScript[6.5cm]{CroixDeCoins}{0.95}{0.95}
+ \caption{Crosses at the edge and at the centre of the frame}
+ %\label{fig:CroixDeCoins}
+\end{minipage}
+} %1
+
+
+\newpage
+\begin{corrige}{\ \\
+
+\vspace{-\baselineskip}
+\input python/CornerCrosses.tex
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+
+The commands that move the \robot\ to the edge of the frame will be defined in \python\ later, after
+we have explained the notions of test and iteration. We introduce them right now so that we can easily draw
+friezes.  In the next chapter these friezes with repetitive patterns will allow us to introduce simply
+the notion of bounded iteration.
+
+The command {\idt gc()}, which brings the \robot\ back to the centre, will be essential as soon as we use a Cartesian coordinate system to designate the points
+of the grid.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\thispagestyle{empty}

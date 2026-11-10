@@ -1,0 +1,33 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ une\ croix\ de\ Malte\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ largeur\ =\ 20.\ \ \ }{\cmt (*\ Largeur\ d\textquotesingle{}une\ branche\ \ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ longueur\ =\ 30.\ \ }{\cmt (*\ Longueur\ d\textquotesingle{}une\ branche\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ une\ branche\ verticale\ avec\ le\ robot}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt orienté\ au\ nord\ ou\ au\ sud\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ brancheVerticale\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lgX\ largeur;\ lgY\ longueur;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt vg\ ();\ pdt\ ();\ av\ ();\ av\ ();\ pdt\ ();\ vg\ ();\ pqtg\ ()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ une\ branche\ horizontale\ avec\ le\ robot}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt orienté\ à\ l\textquotesingle{}est\ ou\ à\ l\textquotesingle{}ouest\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ brancheHorizontale\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lgX\ longueur;\ lgY\ largeur;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt vg\ ();\ pdt\ ();\ av\ ();\ av\ ();\ pdt\ ();\ vg\ ();\ pqtg\ ()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ croixDeMalte\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 2\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt brancheVerticale\ ();\ brancheHorizontale\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt croixDeMalte\ ();\ st\ ()}}\par
+
+\medskip }

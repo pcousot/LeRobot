@@ -1,0 +1,33 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ une\ hélice\ à\ quatre\ pales\ en\ couleur}}\par
+\vspace{\neglskip}\mbox{\blc {\idt tailleGrille\ =\ 18}}\par
+\vspace{\neglskip}\mbox{\blc {\idt epaisseurDuBord\ =\ 2}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ demiCercleGauche(r):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lg(r);\ vg();\ vg()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ demiCercleDroit(r):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lg(r);\ vd();\ vd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pale(c):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Dessiner\ le\ pourtour\ de\ la\ pale}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ec(epaisseurDuBord);\ cc(noir)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt demiCercleGauche(tailleGrille)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt demiCercleDroit(tailleGrille)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt demiCercleDroit(2\ *\ tailleGrille)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Peindre\ l\textquotesingle{}intérieur\ de\ la\ pale}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtd();\ lg(tailleGrille)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ avf(3);\ cc(c);\ peindre();\ avf({-}3);\ bc()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ helice():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pale(bleu);\ pale(indigo);\ pale(violet);\ pale(rouge)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt helice();\ st()}}\par
+
+\medskip }

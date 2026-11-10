@@ -1,0 +1,27 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ une\ hélice\ singulière}}\par
+\vspace{\neglskip}\mbox{\blc {\idt xbase\ =\ 13\ \ }{\cmt \#\ Largeur\ de\ la\ grille\ de\ base}}\par
+\vspace{\neglskip}\mbox{\blc {\idt ybase\ =\ 8\ \ }{\cmt \#\ Hauteur\ de\ la\ grille\ de\ base}}\par
+\vspace{\neglskip}\mbox{\blc {\idt nombreDeFeuilles\ =\ 8\ \ }{\cmt \#\ Feuilles\ d\textquotesingle{}une\ pale}}\par
+\vspace{\neglskip}\mbox{\blc {\idt nombreDePales\ =\ 4\ \ }{\cmt \#\ Pales\ de\ l\textquotesingle{}hélice}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pale():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ nombreDeFeuilles\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Dessiner\ un\ quart\ d\textquotesingle{}ellipse,\ de\ dimension}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ (xbase\ *\ i,\ ybase\ *\ i),\ sans\ changer}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ l\textquotesingle{}orientation\ initiale\ du\ robot}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt lgX(xbase\ *\ i)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt lgY(ybase\ *\ i)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt av();\ pqtg();\ av();\ pqtg();\ vg();\ pqtg()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(nombreDePales):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pale();\ pqtd()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\medskip }

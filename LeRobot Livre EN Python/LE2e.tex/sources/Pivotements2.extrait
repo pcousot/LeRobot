@@ -1,0 +1,11 @@
+# Turns the robot on the spot 3 eighths of a
+#   turn to the right
+def tetr():
+    qtr(); etr()
+# Turns the robot on the spot 3 eighths of a
+#   turn to the left
+def tetl():
+    qtl(); etl()
+# Turns the robot on the spot a half turn
+def ht():
+    qtr(); qtr()

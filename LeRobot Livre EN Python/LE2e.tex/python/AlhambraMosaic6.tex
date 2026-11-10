@@ -1,0 +1,62 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ an\ Alhambra\ mosaic}}\par
+\vspace{\neglskip}\mbox{\blc {\idt gridSize\ =\ 8\ \ }{\cmt \#\ must\ be\ even}}\par
+\vspace{\neglskip}\mbox{\blc {\idt numberOfRows\ =\ 4}}\par
+\vspace{\neglskip}\mbox{\blc {\idt numberOfColumns\ =\ 8}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ halfPattern():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt etr();\ fd();\ etr();\ fd();\ qtl();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(gridSize\ //\ 2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tetr();\ fd();\ qtl();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(gridSize)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tetr();\ fd();\ qtl();\ fd();\ etr();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tetr();\ fdn(2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(gridSize\ //\ 2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt etl();\ fd();\ qtr();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(gridSize);\ etl();\ fdn(2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Paint}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdn({-}1);\ etl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ tsw()\ }{\mcl or}{\idt \ tne():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pc(yellow)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pc(indigo)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt paint()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pc(black);\ etr();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Put\ the\ robot\ back\ in\ its\ initial\ orientation}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pattern():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt halfPattern()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ qtr();\ fdn(5);\ qtr();\ fd();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt halfPattern()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ doublePattern():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pattern()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Next\ pattern}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ etl();\ fdn(2);\ tetr();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pattern()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gs(gridSize);\ gt();\ gl()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt translate(1,\ {-}3)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(1,\ numberOfRows\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(numberOfColumns\ //\ 2):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt doublePattern()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Next\ double\ pattern}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pu();\ etr();\ fdn(2);\ tetl();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Next\ row}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ j\ \%\ 2\ ==\ 1:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pu();\ ht();\ fdn(6);\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pu();\ fdn(4);\ ht();\ pd()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

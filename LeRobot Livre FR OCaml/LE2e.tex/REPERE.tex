@@ -1,0 +1,213 @@
+\index{Repère cartésien}\index{Coordonnées cartésiennes}
+Pour repérer la position du \robot\ sur l'écran, nous utilisons un {\em repère cartésien}
+tel qu'il est représenté à la figure \ref{fig:repcar} ci-dessous~:
+
+\begin{figure}[htbp]
+ \includevspacePostScript[6.2cm]{RepereCartesien}{0.95}{0.95}
+ \caption{Coordonnées dans un repère cartésien}\label{fig:repcar}
+\end{figure}
+
+L'{\em origine\/} $0$ du repère est située au centre de la grille. L'axe horizontal $OX$ est 
+appelé l'axe des {\em abscisses\/}\index{Abscisse}. L'axe vertical $OY$ est 
+appelé l'axe des {\em ordonnées\/}\index{Ordonnée}. Ces deux axes sont gradués. La longueur des
+graduations sur l'axe des abscisses est égale à la longueur du côté horizontal d'un carreau 
+ de la grille comptée en pixels. De même, la longueur des
+graduations sur l'axe des ordonnées est égale à la longueur du côté vertical d'un carreau
+de la grille comptée en pixels. 
+
+Un point de la grille est repéré par ses {\em  coordonnées cartésiennes}\index{Coordonnées cartésiennes} qui sont
+deux entiers $(X, Y)$, le premier étant son {\em abscisse} et le second son {\em ordonnée}. Par exemple le 
+point de la grille situé au centre de la grille a pour coordonnées $(0, 0)$. Les points situés
+à droite de l'origine $O$ ont une abscisse positive. Les points situés
+à gauche de l'origine $O$ ont une abscisse négative (précédée du signe moins $-$). 
+De même, les points situés au dessus
+de l'origine $O$ ont une ordonnée positive tandis que les points situés
+en dessous de l'origine $O$ ont une ordonnée négative.  A titre d'exemple, quelques points de 
+la grille sont repérés sur la figure \ref{fig:repcar}  (page \pageref{fig:repcar}) par leurs 
+coordonnées.  
+
+L'abscisse X d'un point A est la distance à l'origine de sa projection sur l'axe $OX$
+(c'est-à-dire du point d'intersection
+de l'axe $OX$ avec la droite parallèle à l'axe $OY$ passant par A). De même, l'ordonnée Y d'un point 
+A est la distance à l'origine de sa projection sur l'axe $OY$
+(c'est-à-dire du point d'intersection
+de l'axe $OY$ avec la droite parallèle à l'axe $OX$ passant par A). Par exemple sur la figure
+\ref{fig:coorA}, 
+ci-dessous,
+on a $X = 6$ et $Y = 7$\footnote{\ On trouvera dans le dossier {\idt livre/\allowbreak 14\_repere\_cartesien}
+un programme \ocaml, {\idt Apprendre\_Repere}, permettant d'apprendre à repérer des points du plan avec
+un repère cartésien.}.
+
+\begin{figure}[htbp]
+ \includevspacePostScript[4.1cm]{AbscisseOrdonnee}{0.95}{0.95}
+ \caption{Point A d'abscisse X = 6 et d'ordonnée Y = 7}
+ \label{fig:coorA}
+\end{figure}
+
+La commande {\idt deplacer\ (x,\ y)} place le \robot\ sur le point de la grille de coordonnées cartésiennes $(x, y)$. 
+L'orientation et la position du crayon du \robot\ restent inchangées. 
+
+Par exemple, la commande {\idt deplacer\ (0,\ 0)} place le \robot\ à l'origine du repère
+cartésien au centre de la grille\footnote{\ La commande {\idt ce ()} a l'effet supplémentaire
+de recentrer si nécessaire l'origine du repère exactement au centre de l'écran.}. 
+Un exemple est donné ci-après~:
+
+\clearpage
+\vspace*{-1cm}
+ {\raggedright 
+ \vbox to 0pt{\vspace*{\baselineskip}\vspace*{6cm}%
+ \includevspacePostScript[-\baselineskip]{LigneDeCarres}{0.95}{0.95}}%
+ \label{prog:LigneDeCarres1}
+ \input ocaml/LigneDeCarres1.tex
+ }
+
+La commande {\idt translater\ (x,\ y)} permet de translater le \robot\ de $(x, y)$
+sans changer son orientation\footnote{\ On trouvera dans le dossier {\idt livre/\allowbreak 14\_repere\_cartesien}
+un programme \ocaml, {\idt Apprendre\_Translation}, permettant d'apprendre à translater des points du plan 
+repérés par des coordonnées cartésiennes.}. Un exemple de translation d'un rectangle est donné à la figure 
+\ref{fig:extrans} ci-dessous.
+\begin{figure}[h]
+\includevspacePostScript[6.0cm]{Translater}{0.95}{0.95}%
+ \caption{Translation (17, -8) de A en B}\label{fig:extrans}
+\end{figure}
+\newpage
+Une translation du \robot\ de $(x, y)$ consiste à augmenter (ou diminuer si $x$ est négatif)
+son abscisse de $x$ et à augmenter (ou diminuer si $y$ est négatif)
+son ordonnée de $y$. Si le centre de la grille de coordonnées $(0, 0)$ est exactement au centre
+de l'écran, on peut définir le déplacement à l'aide de la translation comme suit~:
+
+{
+\parindent \parindentprog
+\medskip
+
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ deplacer\ (x,\ y)\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt ce\ ();\ translater\ (x,\ y)}}\par
+
+\medskip }
+
+\noindent Comme le montre cet exemple, les commandes {\idt deplacer} et {\idt translater}
+reçoivent leurs deux paramètres {\em ensemble}, entre parenthèses et séparés par une virgule~:
+{\idt (x,\ y)} forme un seul paramètre, appelé un {\em couple} d'entiers (alors que
+les deux paramètres de l'appel {\idt rectangle\ 3\ 4} du chapitre précédent sont séparés
+par un blanc).
+
+
+Le programme {\idt LigneDeCarres1} de la page
+\pageref{prog:LigneDeCarres1} peut être réécrit en uti\-li\-sant une
+commande de translation au lieu d'une commande de dé\-pla\-ce\-ment
+com\-me suit~:\\
+{\raggedright%
+\vspace{\baselineskip}%
+\vbox to 0pt{\vspace*{\baselineskip}\vspace*{6cm}%
+\includevspacePostScript[-\baselineskip]{LigneDeCarres}{0.95}{0.95}}%
+\vspace*{-1cm}%
+\input ocaml/LigneDeCarres2.tex
+}
+ 
+ Avec la commande {\idt translater\ (x,\ y)}, le déplacement du \robot\ est relatif à sa position de
+départ tandis qu'avec la commande {\idt deplacer\ (x,\ y)}, le déplacement du \robot\ est relatif 
+à l'origine du repère cartésien.
+ 
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercices}{Écrire des programmes \ocaml\  utilisant les commandes
+{\idt de\-pla\-cer} et {\idt translater} pour réaliser les dessins suivants~:
+
+\tiret  les pavages obtenus par répétition de divers motifs inscrits dans un carré de
+dimension $(6 \times 6)$ de la figure \ref{fig:pm6x6} (page \pageref{fig:pm6x6})$\:$;
+
+\tiret  le pavage de quadrilatères de la figure \ref{fig:pavqua} (page \pageref{fig:pavqua})$\:$;
+
+\tiret  la mosaïque de l'Alhambra relevée par Escher \cite{escher1} de la figure 
+\ref{fig:mosa5} (page \pageref{fig:mosa5}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[7.7cm]{PavageQuadrilateres}{0.95}{0.95}%
+ \caption{Pavage de quadrilatères}\label{fig:pavqua}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.8cm]{MosaiqueAlhambra5}{0.95}{0.95}
+ \caption{Mosaïque de l'Alhambra}\label{fig:mosa5}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[17.2cm]{PavageMotifs6x6}{0.95}{0.95}
+ \caption{Pavages de motifs $(6 \times 6)$}\label{fig:pm6x6}
+\end{figure}
+\begin{corrige}{
+Nous donnons le programme de dessin du pavage de quadrilatères de la figure \ref{fig:pavqua} (page 
+\pageref{fig:pavqua}), les autres programmes se trouvant dans le dossier {\idt livre/\allowbreak 14\_repere\_cartesien}. Il s'agit d'un pavage de
+l'écran avec des motifs inscrits dans des carrés $(6 \times 6)$, le motif de base étant
+dessiné à côté de la procédure qui le dessine.
+%\noindent\includePostScript{MotifPavageQuadrilateres}{0.95}{0.95}
+\input ocaml/PavageQuadrilateres.tex
+\noindent $\Box$}\end{corrige}
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+ 
+ Suivant les traces d'Apollonius\footnote{\ \href{https://fr.wikipedia.org/wiki/Apollonios_de_Perga}{Apollonius de Perge}, astronome et
+ mathématicien grec, 295 -- 230 av. J.-C.} qui avait donné informellement les équations
+ des coniques (cercles, ellipses, paraboles et hyperboles), Fermat et Descartes ont  été les premiers 
+ à ``mettre en équations'' des problèmes géométriques. 
+ Descartes a introduit la notion
+ de système de coordonnées planes, chaque point du plan étant défini par son abscisse $x$
+ et son ordonnée $y$ obtenues en projetant sur des axes $OX$ et $OY$, rectangulaires ou obliques. 
+ 
+ Une courbe algébrique est alors définie par la relation $f(x, y) = 0$ qui existe entre les coordonnées de
+ chacun de ses points. 
+Par exemple l'équation cartésienne du cercle de centre $(a, b)$ est
+ $x^{2} + y^{2} - 2 a x - 2 b y + c = 0$ avec le rayon $R$ tel que $R^{2} = a^{2} + b^{2} -c$
+ en supposant que $a^{2} + b^{2} \geq c$. 
+ 
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\indent  Descartes a exposé sa méthode dans un ouvrage
+ publié en 1637 et
+ intitulé ``La Géométrie'' qui, avec ``La Dioptrique'' et ``Les Météores'', constituaient les
+ appendices d'un des textes les plus célèbres de la philosophie, le fameux ``Discours de la 
+ méthode pour bien conduire sa raison et chercher la vérité 
+ dans les sciences'' où il expose sa philosophie méthodique et rationelle appelée depuis le
+{\em  cartésianisme}. L'idée d'équation apparaît plus clairement chez Fermat, qui a découvert
+ indépendamment de Descartes, vers 1629, le principe de base de la {\em géométrie
+ analytique}. Il ne l'a publié qu'en 1679 dans son ``Isagoge (Introduction aux lieux plans et solides)''.
+ 
+ Descartes n'avait étudié sérieusement que les coniques du second degré. 
+ Newton\footnote{\ \href{https://fr.wikipedia.org/wiki/Isaac_Newton}{Isaac Newton}, mathématicien, physicien et astronome anglais, 1642--1727.}
+ étudia les cubiques du troisième degré et les courbes de degré supérieur. On lui
+ doit aussi d'avoir employé systématiquement les coordonnées négatives dont Descartes se
+ méfiait. La Hire\footnote{\ \href{https://fr.wikipedia.org/wiki/Philippe_de_La_Hire}{Philippe de la Hire}, astronome et mathématicien français, 1640--1718}
+ introduisit en 1679 la considération d'un système de coordonnées spatiales, ce qui
+ revient à construire un  troisième axe de coordonnées $OZ$, perpendiculaire aux axes $OX$
+ et $OY$ définissant le plan. Un point dans l'espace est alors déterminé par trois nombres
+ réels $(x, y, z)$ et l'équation $f(x, y, z) = 0$ définit une surface gauche. 
+ Möbius\footnote{\ \href{https://fr.wikipedia.org/wiki/August_Ferdinand_Möbius}{August Ferdinand Möbius}, astronome et mathématicien allemand,
+ 1790--1868} et Plücker%
+ \footnote{\ \href{https://fr.wikipedia.org/wiki/Julius_Plücker}{Julius Plücker}, mathématicien et physicien allemand, 1801--1868} étendirent
+ la notion de coordonnées en introduisant les coordonnées homogènes \((X, Y, Z, T)\) telles que
+ $x = \frac{X}{T}$,  $y = \frac{Y}{T}$ et  $z = \frac{Z}{T}$. Ceci permet d'introduire les points
+ à l'infini $(X, Y, Z, 0)$ et les points imaginaires $X = A_{1} + i A_{2}$, $Y = B_{1} + i B_{2}$,
+ $Z = C_{1} + i C_{2}$ et $T = D_{1} + i D_{2}$ où $i^{2} = -1$. On peut alors considérer par
+ exemple des cercles imaginaires tels que $a^{2} + b^{2} < c$.
+ 
+ \vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newpage                               % Si on termine le chapitre par une page blanche
+\thispagestyle{empty}           % Si on termine le chapitre par une page blanche
+

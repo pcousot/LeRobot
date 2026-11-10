@@ -1,0 +1,21 @@
+(* Définition de la commande ag *)
+
+let auBordOuest () =
+  lc (); pw ();
+  while not (tb ()) do
+    av ()
+  done
+
+let alOuest () =
+  if tn () then begin auBordOuest (); pn () end
+  else if tne () then begin auBordOuest (); pne () end
+  else if te () then begin auBordOuest (); pe () end
+  else if tse () then begin auBordOuest (); pse () end
+  else if ts () then begin auBordOuest (); ps () end
+  else if tsw () then begin auBordOuest (); psw () end
+  else if tw () then auBordOuest ()
+  else begin auBordOuest (); pnw () end
+
+let ag () =
+  if valBc () then begin alOuest (); bc () end
+  else alOuest ()

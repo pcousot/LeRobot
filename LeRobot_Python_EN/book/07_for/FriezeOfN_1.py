@@ -1,0 +1,21 @@
+from LibRobot import *
+
+# Draw a frieze of N
+gl()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+fd(); fd(); ht(); cl(); cr(); ht()
+st()

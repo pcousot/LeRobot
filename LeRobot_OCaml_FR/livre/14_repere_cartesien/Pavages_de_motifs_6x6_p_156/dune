@@ -1,0 +1,4 @@
+(executables (names PavageCristaux PavageCroixBiseautees
+  PavageCroixSuisses PavageCroixSuissesOndulees PavageCroixSurCarres
+  PavageHelices)
+ (libraries lerobot) (flags (:standard -w -35)))

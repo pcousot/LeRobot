@@ -1,0 +1,6 @@
+(executables
+ (names FriseDoublePeigne DefinitionAvf Serpentin FriseEnOr
+  SerpentinePyramidale GrilleDeCroix PavageHexagonesEntrelaces
+  PavageRouesDentees TapisEgyptien CarreZebre MosaiqueAlhambra6)
+ (libraries lerobot)
+ (flags (:standard -w -35)))

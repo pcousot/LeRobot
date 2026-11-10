@@ -1,0 +1,39 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Copy-Paste on PC (Windows or Linux)          %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\index{Copy}
+\index{Paste}
+\begin{figure}[htbp]
+\newcommand{\toucheCtrl}{\begin{picture}(18,12)(0, 2)\put(0,0){\framebox(18,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny Ctrl}}\end{picture}\hspace{0.3ex}}%
+\newcommand{\toucheL}[1]{\begin{picture}(12,12)(0, 2)\put(0,0){\framebox(12,12)[lb]{}}\put(1.5,2){\makebox(0,0)[lb]{\tiny #1}}\end{picture}\hspace{0.3ex}}%
+\newcommand{\toucheMaj}{\framebox[11.mm][l]{\rule{0mm}{2.5mm}\raisebox{-0.75mm}[0mm][0mm]{\includevspacePostScript[3mm]{Shift}{0.95}{0.95}}}}%
+\begin{tabular}{@{}|p{13.2cm}|@{}} \hline
+\multicolumn{1}{|c|}{\raisebox{-2ex}{\rule{0ex}{5ex}} \em Selecting and copying a text on a PC (Windows or Linux)}
+\\  \hline \hline
+{ % start of the minipage
+\begin{minipage}[t]{13.2cm}
+\vspace{2ex}
+\begin{enumerate}
+\item Click with the mouse at the beginning of the text to be copied to place
+the blinking edit cursor there.
+\item Hold the shift key \toucheMaj\ down and click at the end
+of the text to be copied, so that the text to be copied
+appears {\em highlighted} (you can also drag the mouse
+from the beginning to the end of the text while holding its button down).
+\item Hold the control key \toucheCtrl\ down while pressing
+the key \toucheL{C} to {\em copy} the selected text.
+\item Click with the mouse at the place where the text is to be copied.
+\item Hold the control key \toucheCtrl\ down while pressing
+the key \toucheL{V} to {\em paste} the copied text.
+\end{enumerate}
+The copying operation (\toucheCtrl\toucheL{V}) at any place in the
+program can be repeated as many
+times as necessary. In case of error, \toucheCtrl\toucheL{Z} undoes the
+last change.
+\vspace{2ex}
+\end{minipage} 
+} % end of the minipage
+\\ \hline
+\end{tabular}
+\caption{Copy and paste on a PC (Windows or Linux)}\label{fig:PC-copier-coller}
+\end{figure}

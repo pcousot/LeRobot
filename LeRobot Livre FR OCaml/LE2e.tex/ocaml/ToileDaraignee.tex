@@ -1,0 +1,36 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ une\ toile\ d\textquotesingle{}araignée\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ hexagone\ r\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lgRT\ (float\_of\_int\ r,\ 60.);}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt ce\ ();\ pw\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 2\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc\ ();\ av\ ();\ av\ ();\ bc\ ();\ p3htd\ ();\ av\ ();\ phtd\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av\ ();\ av\ ();\ phtd\ ();\ av\ ();\ ce\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pe\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ diagonales\ r\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lgRT\ (float\_of\_int\ r,\ 60.);}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt psw\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 4\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av\ ();\ ce\ ();\ pqtd\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt ce\ ();\ pw\ ();\ avf\ 2;\ ce\ ();\ pe\ ();\ avf\ 2}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ toile\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 8\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt hexagone\ (5\ *\ i);}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt diagonales\ (5\ *\ i)}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt toile\ ();\ st\ ()}}\par
+
+\medskip }

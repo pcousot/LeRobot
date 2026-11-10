@@ -1,0 +1,290 @@
+
+So far we have used the computer to
+drive the \robot\ in {\em interactive}\index{Interactive mode} or
+{\em conversational}\index{Conversational mode} mode. In this mode of operation
+we press a key on the computer keyboard, which passes
+a command to the \robot, which carries it out immediately, unless by mistake
+we try to make it leave the frame, in which case it answers with
+a ``beep-beep''.
+We go on like this, correcting driving mistakes as
+the drawing takes shape, until we
+tell the computer that the drawing is finished.
+
+\smallskip
+
+Whereas the interactive control of the \robot\ corresponds to the immediate
+execution of a task, the programmed control of the \robot\ consists
+in separating the description of the task from its later executions.
+
+\smallskip
+
+More
+generally, the idea of {\em programming}\index{Programming} is the following:
+to get something done, the {\em programmer} writes a {\em program}\index{Program}
+(in a certain {\em language}\index{Programming language}) which describes precisely how
+to do this thing. Then he asks a {\em computer}\index{Computer} to run
+the program, following exactly the instructions given by the
+program. In other words, instead of doing the thing
+himself right away, the programmer explains to a computer how
+to do it in his place later! In this way we avoid having to carry out
+long and repetitive tasks, provided we know how to
+describe these tasks properly.
+
+\smallskip
+
+If he has made a mistake, the programmer
+must correct his errors by modifying the program. This is called
+{\em debugging}\index{Debug} the program. The {\em debugging}\index{Debugging}
+of the program consists in finding and then removing the {\em bugs}\index{Bug}, that is, the
+errors which show up during execution as malfunctions (such as, for
+example, {\idt qtl()} instead of {\idt qtr()}, or {\idt st()} forgotten at the end of the program)%
+\footnote{\ In the French edition we use the vocabulary recommended by the French ministerial
+terminology commission \cite{terminologie-info}, which translates {\em bug} by {\em bogue},
+a French word that sounds the same. The American word {\em bug}
+means small harmful insects and, more familiarly, germs
+and other viruses, as well as the little things that go wrong, such as errors
+in programs. Since the French {\em bogue} means the prickly husk
+of the chestnut, the idea of nuisance is kept. The husk also
+calls to mind a typographical slip. The French translation
+does not keep the American word's idea of a little grain of sand with dramatic
+consequences.}.
+The principle of computers controlled by a program has
+analogies with many human activities,
+as the table \hbox{below shows:}
+
+\begin{table}[htbp]
+\begin{center}
+\small
+\begin{tabular}{@{}|p{25mm}|p{30mm}|p{30mm}|p{30mm}|@{}}
+\hline
+{\em Programmer } & {\em Program } & {\em Computer } & {\em Drawing }  \\
+\hline \hline
+Head chef & Recipe & Cooks & Meal\\
+Com\-pos\-er & Musical work & Mu\-si\-cians & Con\-cert \\
+Au\-thor & Text of a play  & Ac\-tors & The\-a\-tre per\-for\-mance \\
+Cho\-re\-og\-ra\-pher & Cho\-re\-og\-ra\-phy & Dan\-cers & Bal\-let \\
+Di\-rec\-tor & Film & Film pro\-jec\-tor & Film show\-ing \\
+Wea\-ver & Punched cards & Jac\-quard loom & Jac\-quard fab\-ric\\
+%Ma\^\i\-tre-Êcu\-yer & Tex\-te de re\-pri\-se & Ca\-va\-lier et che\-val & Re\-pri\-se \hfill de dres\-sa\-ge \\
+Course de\-sign\-er & Course plan & Rider and horse & Show-jump\-ing round \\
+\hline
+\end{tabular}
+\end{center}
+%\label{tab:act-prog}
+\caption{Examples of programmed activities}
+\end{table}
+
+We are now going to learn to program computers
+in \python. Driving the \robot\ to make drawings will be our
+main application. To make our drawings in
+this programmed mode of operation, we proceed as follows:
+\begin{enumerate}
+\item We begin by writing a \python\ program in which we
+state the sequence of commands that the \robot\ must
+carry out to make the drawing we have in mind, or that
+we have drawn beforehand on a sheet of squared
+paper. This program is written with the help of the computer
+(with a text editor), which keeps it on disk in a file whose name ends
+with {\idt .py}, for example {\idt Square.py}.
+\item  Next we ask a program of the computer, the \python\ {\em in\-ter\-pre\-ter}\index{Interpreter},
+to read this program, to check that it is correctly written and to
+translate it into the {\em machine language}\index{Machine language} of the computer
+(or into a form very close to it). We say that the interpreter
+{\em interprets}\index{Interpret} the program. The translated program and the original
+\python\ program are equivalent in the sense that they describe
+exactly the same sequence of commands for the \robot. They are
+simply written in different languages.
+\item  Finally the interpreter has the translated program {\em executed}\index{Execution}
+by the computer. In doing so, the computer drives the \robot, asking it
+to carry out the commands in the order in which we
+wrote them in the original \python\ program.
+\end{enumerate}
+The last two steps are done with a single command, typed in
+a terminal window (see the next chapter):
+{\idt ./robot.sh Square.py} has the program {\idt Square.py} interpreted,
+that is, checked, translated and then executed. You can also drag
+the icon of the file {\idt Square.py} onto that of the application {\idt LeRobotPythonEN.app}.
+
+{ %1
+\newcommand{\touche}[1]{{
+\begin{picture}(12,12)(0, 2)
+\put(0,0){\framebox(12,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny #1}}
+\end{picture}\hspace{0.3ex}}}
+\begin{exemple}[Square]{\rm
+Suppose we want to draw the square opposite. The
+\python\ program will be the following:
+
+{\raggedright
+ \vspace{\baselineskip}
+\vspace*{1.3cm}%
+\includevspacePostScript[-\baselineskip]{PetitCarre}{0.95}{0.95}%
+\vspace*{-1.3cm}%
+ \input python/Square.tex
+ }
+\noindent When it runs this program,
+the computer passes to the \robot\ the order to carry out the sequence
+ of commands {\idt fd()} then {\idt fd()} then
+{\idt qtr()} then {\idt fd()} \ldots\ and finally {\idt qtr()}, exactly as if
+we had typed on the keyboard \touche{F} then, one after the other, \touche{F},
+\touche{+}, \touche{F}, \touche{F}, \touche{+}, \touche{F}, \touche{F},
+ \touche{+}, \touche{F}, \touche{F} and finally \hbox{\touche{+}\@.} The last command
+ {\idt st()} (from {\em stop}) tells the computer that it must wait until we press
+ the escape key \touche{Esc} to end the execution of the
+ program (another key makes it draw the drawing again). This leaves us time to admire the \robot's drawing
+ at our leisure before it disappears. The drawing is not lost since
+ we just have to run the program again to reproduce it.
+ \noindent $\Box$ }\end{exemple}
+ } %1
+
+We can see from this first example that the \python\ language, although
+designed in the Netherlands by Guido van Rossum at the {\sc Cwi} (the Centre for Mathematics
+and Computer Science in Amsterdam), uses English
+words such as `{\mcl from}' and `{\mcl import}':
+the first line of the program imports from the library
+{\idt LibRobot} all its commands, which is what the star `{\idt *}' stands for.
+Computer science keeps the traces of its English-speaking
+\hbox{origins!}
+
+For the moment it is enough for us to know
+that the computer that runs this program asks the \robot\ to carry out
+the commands that come after the line `{\mcl from}~{\idt LibRobot}~{\mcl import}~{\idt *}',
+one after the other, line after line, and from left to right on each line.
+Each command is followed by {\idt ()}, which means that it needs
+no further detail to be carried out. The
+semicolons that separate the commands on the same line can be understood as
+meaning `then'. There is no semicolon at the end of a line: going
+on to the next line is enough to say `then'. The line that begins with the sign
+`{\cmt \#}' is a comment, which the computer ignores (we shall come back to this in the next chapter).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercice}{
+%\label{exo:trouver-cocotte}
+Run the program {\idt Draw} for the interactive control
+of the \robot\ and give it the orders described by
+the following \python\ program (the correspondence between the keys of the
+keyboard and the commands of the \robot\ is given in table
+\ref{tab:cmd-inter} page \pageref{tab:cmd-inter}):
+\input python/Unknown.tex
+\noindent What drawing did you ask the \robot\ to make?
+\noindent $\Box$}\end{exercice}
+\begin{exercice}{
+%\label{exo:corriger-E}
+We would like the program below to draw the capital letter {\tt E}
+\hbox{opposite:}
+
+{\raggedright
+\vspace{\baselineskip}
+\vspace*{3cm}%
+\includevspacePostScript[-\baselineskip]{E-epaisse}{0.95}{0.95}
+\vspace*{-3cm}%
+ \label{prog:LettreEavecBogues}
+ \input python/LetterEWithBugs.tex
+ }
+\noindent This faulty program contains two bugs. Can you find them?
+\noindent $\Box$}\end{exercice}
+\begin{exercice}{
+%\label{exo:exec-stegosaure}
+Run the \python\ program {\idt Stegosaurus} found in the folder
+{\idt book} that comes with this book.
+\noindent $\Box$}\end{exercice}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corrige}{
+%\label{cor:trouver-cocotte}
+A paper bird (an origami ``cocotte'').
+\noindent $\Box$}\end{corrige}
+\begin{corrige}{
+%\label{cor:corriger-E}
+The program {\idt LetterEWithBugs} on page \pageref{prog:LettreEavecBogues}
+contains two bugs:\\
+\begin{minipage}[t]{115mm}
+\begin{enumerate}
+\item the command {\idt qtr()} on the third line
+should be a command {\idt qtl()},
+\item a command {\idt fd()} is missing on the last line but one.
+\end{enumerate}
+The result of running this program is shown opposite
+(with the \robot\ in its final position).
+The debugged program, which correctly draws the thick letter {\tt E}, is the following (the corrections are
+un\-der\-lined):
+\end{minipage}
+\hfill
+\begin{minipage}[t]{17mm}
+\vspace{3.2cm}\includePostScript{lettre-e-avec-bogues}{0.95}{0.95}%
+\hspace{-1.7cm}  % 1.7cm de large
+\end{minipage}
+\input python/LetterE.tex
+\noindent $\Box$}\end{corrige}
+\begin{corrige}{
+%\label{cor:exec-stegosaure}
+The \python\ program {\idt Ste\-go\-sau\-rus} is stored in the
+file {\idt Stegosaurus.py} of the folder {\idt book/\allowbreak 04\_writing\_running}.
+In a terminal window, opened in the folder {\idt LeRobot\_Python\_EN}, just
+type the command
+\begin{center}
+{\idt ./robot.sh book/04\_writing\_running/Stegosaurus.py}
+\end{center}
+which has the \python\ program {\idt Stegosaurus.py} interpreted: the window of the \robot\ opens
+and the stegosaurus is drawn. You get the same result by dragging the icon of the
+file {\idt Stegosaurus.py} onto that of the application {\idt LeRobotPythonEN.app}.
+
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+We owe to Seymour Papert, the author of {\sc Logo} \cite{logo}, the spreading of the idea
+of using drawing to learn the basic concepts of programming. However,
+the introduction of a grid spares us the use of angles and of lengths counted in
+pixels\@%
+\footnote{\ The {\em pixel}\index{Pixel} is the smallest
+element of the graphics screen that can be lit (white), unlit (black) or
+coloured, with more or fewer brightnesses and colours depending on
+the quality of the screen.}. The grid makes it very easy to draw
+arcs of
+circles, which is not straightforward in {\sc Logo}.
+
+The idea of using a
+grid to make geometric drawings is not new. It has long been known
+at school (see \cite{thevenet1} for example). It is found,
+as the basis of graphics programming exercises, in
+many high-level computing works, as in \TeX\@\footnote{\ \TeX, or rather its variant \LaTeX\
+\cite{lamport1}, is the programming language we have used to
+typeset this book.}\ for example (see \cite{knuth1} pages 389--390).
+The grid
+removes the problems of the discrete representation
+of continuous mathematical concepts on a finite screen. As a result
+our segments look like segments as we draw them on paper
+(and not like lines put side by side in a staircase), and our
+circles look like circles (and not
+like squares, as happens on graphics screens for circles that are too
+small).  Admittedly, the use of large squares limits the possibilities
+of drawing. Programming is all the easier if we take advantage
+of geometric shapes to guide the structure of programs.
+Once the basic notions have been learnt, we shall be able to vary the size of the grid
+so that, going to the limit set by the pixels of the screen,
+we recover all the possibilities offered by today's high-resolution
+graphics screens.
+
+In the next chapter we begin to write our first
+\python\ programs. The algorithms\@\footnote{\ An {\em algorithm} is the
+description of a sequence of operations on objects to
+accomplish a task. This word comes from the Latin version of the name of the
+Persian mathematician and astronomer al-Khwarizmi of the 9th
+century AD.
+His treatise {\em Al-Jabr wa l-muqabala} teaches how to solve algorithmically
+equations of the first and second degree with numerical coefficients.
+The term {\em algebra\/} derives from the very title of this treatise.
+} remain very simple since they
+consist in codifying the movement of the hand that draws.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

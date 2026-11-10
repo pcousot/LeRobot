@@ -1,0 +1,33 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ frieze\ of\ triangles\ from\ one\ edge\ to\ the\ other}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Reach\ the\ edge\ by\ moving\ straight\ ahead}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ toEdge():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl while}{\idt \ }{\mcl not}{\idt \ tb():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pattern():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ }{\mcl not}{\idt \ tb():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fd();\ tetl();\ fd();\ tetl();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl if}{\idt \ }{\mcl not}{\idt \ tb():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt fd();\ tetr();\ fd();\ tetr();\ fd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ frieze():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fne()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl while}{\idt \ }{\mcl not}{\idt \ tb():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pattern()}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt fw();\ toEdge();\ frieze();\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

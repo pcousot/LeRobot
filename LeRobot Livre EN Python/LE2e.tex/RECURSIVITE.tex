@@ -1,0 +1,464 @@
+In \python, a procedure can call another procedure declared earlier.
+A procedure can also call itself. It is then said to be
+{\em recursive}. It is declared
+with {\mcl def}, like any other procedure: there is nothing special to write. Recursive procedures \index{Recursive}are useful
+for making drawings like those of figure \ref{fig:desrec} (page
+\pageref{fig:desrec}). These recursive drawings have the peculiarity of being
+found again and again, endlessly, in reduced form inside themselves (exactly
+like the infinite image obtained between two mirrors facing each other). Since in practice it is
+not possible to draw a line smaller than a pixel of the screen, the drawing stops
+for very small drawings.
+\begin{figure}[htbp]
+ \includevspacePostScript[18.5cm]{DessinsRecursifs}{0.95}{0.95}
+ \caption{Recursive drawings}\label{fig:desrec}
+\end{figure}
+
+\section{Simple recursion}
+
+The structure of simple recursive drawings is understood by {\em induction} \index{Induction}on the size of the drawing.
+We must first understand the {\em base\/}, that is, how to make a drawing of size 0 (or 1).
+Then we must understand the {\em induction step\/}, that is,
+how to build a drawing of size $n$ using identical drawings of sizes $n-1$,
+$n-2$, \ldots\ strictly smaller than $n$.
+
+Let us take the example of the recursive paving stones
+of figure \ref{fig:pavec} (page \pageref{fig:pavec}).
+\begin{figure}[htbp]
+ \includevspacePostScript[6.8cm]{PavesRecursifs}{0.95}{0.95}
+ \caption{Recursive paving stones}\label{fig:pavec}
+\end{figure}
+A paving stone of size 0 is reduced to a point (more precisely a pixel of the screen).
+A paving stone of size $n$ consists of a paving stone of size $n - 1$
+surrounded by a square whose side is $n$ times the grid size, as explained in
+figure \ref{fig:indpavec} (page \pageref{fig:indpavec}).
+\begin{figure}[htbp]
+ \includevspacePostScript[8.3cm]{InductionPavesRecursifs}{0.95}{0.95}
+ \caption{Inductive construction rule of the recursive paving stones}\label{fig:indpavec}
+\end{figure}
+The recursive procedure {\idt pavingStone} that draws a recursive paving stone receives as parameter the size {\idt n}
+of the paving stone. If {\idt n} is zero, it draws a point. If {\idt n} is strictly positive then
+it draws a square of side {\idt n} and then calls itself recursively to draw a
+paving stone of size {\idt n - 1}.
+\ \\
+\input python/RecursivePavingStones.tex
+\noindent The name {\idt pavingStone} can be used in the body of the procedure {\idt pavingStone}
+itself: when \python\ executes the call {\idt pavingStone(n - 1)}, the declaration of {\idt pavingStone}
+is finished and the name {\idt pavingStone} is therefore known. A recursive procedure is thus
+declared and called exactly like the procedures we have seen so far.
+
+
+The recursive paving stones can also be drawn {\em iteratively}, that is, using
+a ``for'' or ``while'' loop. This would be more difficult with drawings like the draw sheet of a tennis
+tournament shown in figure \ref{fig:tabtour} below.
+\begin{figure}[htbp]
+ \includevspacePostScript[4.3cm]{Tournoi1-2-4-8-16}{0.95}{0.95}%
+ \caption{Inductive construction rule of the draw sheet\label{fig:tabtour}}
+ \centering{of a tennis tournament}
+\end{figure}
+
+The draw sheet of a tennis tournament with only one entrant consists of one horizontal line
+on which to write the name of this entrant, who is also the winner. The draw sheet of a
+tennis tournament with {\idt n} en\-trants is obtained by drawing a horizontal line
+on which to write the name of the winner, facing the point of a brace joining the
+sub-sheets used to determine the two finalists. Each of the sub-sheets contains roughly
+the same number of players, that is, {\idt n // 2} and
+{\idt n - n // 2} players respectively (recall that {\idt //} is integer division). The recursive procedure that draws the draw sheet of a
+tournament of {\idt n} players is given below and illustrated in the case where {\idt n} is 11.
+
+ {
+ %\vspace{\baselineskip}
+ \vbox to 0pt{\vspace*{3cm}\includevspacePostScript[3cm]{Tournoi11}{0.95}{0.95}}%
+ \input python/TournamentBracket.tex
+ }
+\section{Invariants}
+\index{Invariant}When writing a recursive procedure it is important to think about the {\em in\-va\-ri\-ant\/}
+of this procedure, that is, the hypotheses that the actual parameters
+of the procedure and the \robot\ must satisfy for the drawing to be correct. Let us take the example of a
+binary tree (see figure \ref{fig:arbin} below), a basic structure of
+programming, which we have already met in the form of the tennis tournament draw sheet.
+\begin{figure}[htbp]
+ \includevspacePostScript[6.6cm]{ArbreBinaire}{0.95}{0.95}
+ \caption{Inductive construction rule of a binary tree}\label{fig:arbin}
+\end{figure}
+
+\noindent The procedure that draws a binary tree is the following:
+
+\input python/BinaryTree.tex
+
+The first invariant is that the parameter {\idt l} of the procedure {\idt tree} must be
+greater than or equal to 1. This is
+true for the main call since {\idt l} $=$ 32. Any call
+makes further calls only if {\idt l} $>$ 1. Since
+{\idt l} $\geq 2$, we have
+$(${\idt l // 2}$) \geq 1$ and the invariant is true when the procedure is called recursively
+to draw the left subtree. Since
+{\idt l} $= (2 \ast (${\idt l // 2}$))$
+if {\idt l} is even and
+{\idt l} $= (2 \ast (${\idt l // 2}$)) + 1$
+if {\idt l} is odd, we have
+{\idt l} $\geq (2 \ast (${\idt l // 2}$))$ hence
+$(${\idt l} $- (${\idt l // 2}$)) \geq$ $(${\idt l // 2}$)$ so that
+$(${\idt l} $- (${\idt l // 2}$)) \geq 1$
+since $(${\idt l // 2}$) \geq 1$. The invariant is therefore also true when the
+procedure {\idt tree} is called recursively
+to draw the right subtree. Since the invariant is true for the main call
+and remains true for all subsequent calls, it is always true.
+
+In the same way one would check the invariant concerning the \robot, namely that before and after
+drawing the binary tree, the \robot\ is placed at the root of the tree, facing north with its
+pen down.
+
+\section{Non-termination}
+When using recursive procedures, it can happen that they call one another
+endlessly, exactly as in the case of ``while'' loops whose execution does not terminate. The
+simplest example is that of the procedure {\idt loopForever} below.
+
+\label{prog:NonTerminaison}
+\input python/NonTermination.tex
+A call of {\idt loopForever()} immediately causes a new call of {\idt loop\-Forever()}, and so
+on endlessly. At each call, the computer uses a little of its memory (called the
+{\em stack}\index{Stack}) to remember what remains to be done afterwards (here the {\idt st()} that follows
+the call). To avoid filling up the whole memory, \python\ limits the number of calls
+in progress to about 1000. Beyond that, an error occurs ({\idt RecursionError}), which the
+\robot's library reports with the message
+`{\tt Error line 5 of NonTermination.py:\ endless recursion (stack full)}'
+before the execution of the program stops (line 5 is the one with the call {\idt loopForever()} in the
+body of the procedure). In general
+the error is less obvious and occurs only for certain values of the parameters.
+This limit also means that a correct recursive procedure cannot call
+itself more than about 1000 times in a row: this is more than enough for our drawings,
+since in practice the drawing stops well before that, at the level of the pixel.
+
+\section{Mutual recursion}
+Consider the serpentines of figure \ref{fig:serprec} (page \pageref{fig:serprec}). There are
+two kinds of them. The serpentines
+{\idt E$\scriptscriptstyle n$} have
+a height $n$ and are drawn starting from their lower west corner, by drawing a
+horizontal line from west to east and then a vertical line to move to the east end of the floor above.
+The serpentines {\idt W$\scriptscriptstyle n$} have a height $n$ and are drawn
+starting from their lower east corner, by drawing a horizontal line from east to west and then a
+vertical line to move to the west end of the floor above.
+\begin{figure}[htbp]
+ \includevspacePostScript[4.4cm]{SerpentineRecursive}{0.95}{0.95}
+ \caption{Inductive construction rule of a serpentine}\label{fig:serprec}
+\end{figure}
+
+\noindent The procedures {\idt serpentineE} and {\idt serpentineW} in the program below
+draw a serpentine {\idt E$\scriptscriptstyle n$} and
+{\idt W$\scriptscriptstyle n$} respectively, their formal parameter {\idt n} having as actual value
+the height $n$ of the serpentine to be drawn.
+\input python/RecursiveSerpentine.tex
+\noindent Since a serpentine
+{\idt E$\scriptscriptstyle 0$} or {\idt W$\scriptscriptstyle 0$} of height zero is empty,
+the procedures {\idt serpentineE} and {\idt serpentineW} do nothing when the value $n$ of their
+parameter {\idt n} is negative or zero.
+To draw a serpentine {\idt E$\scriptscriptstyle n$} or {\idt W$\scriptscriptstyle n$} whose
+height $n \geq 1$ is the actual value of their formal parameter {\idt n}, the procedures
+{\idt serpentineE} and {\idt serpentineW} draw the
+base and then above it a serpentine {\idt W$\scriptscriptstyle n-1$}
+or {\idt E$\scriptscriptstyle n-1$} whose height is the value of {\idt n - 1}. Since
+the procedure {\idt serpentineE} calls the procedure {\idt serpentineW} and the procedure
+{\idt serpentineW} calls the procedure {\idt serpentineE}, these procedures are said to be
+{\em mutually recursive\/}.
+
+\index{Identifier}When using mutually recursive procedures in \python, one must
+respect the rule that {\em every identifier must be declared before it is
+used}. Yet the body of {\idt serpentineE} calls {\idt serpentineW}, which is declared
+after it. This is allowed because \python\ looks up the meaning of the name {\idt serpentineW} only
+when it executes this call, that is, during the execution of the main program
+{\idt serpentineW(18)}, when both procedures have already been declared. It is therefore enough to
+declare the two procedures one after the other, {\em before} the first call of either of them.
+Each one can then call the other (and itself). If, on the contrary, {\idt serpentineE} were called
+between the two declarations, execution would stop with the message
+`{\tt NameError:\ name 'serpentineW' is not defined}'.
+
+In general, declarations of mutually
+re\-cur\-sive procedures have the following form:
+
+\vfill
+
+\index{Procedure}
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Declaration of mutually recursive procedures:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+
+\mbox{\blc\ \ \ \cmt \#\ \small\rm Specification of the first procedure}\par
+\mbox{\blc\ \ \ \mcl def\idt\ procedureName$_{1}$%
+\footnote{\ A procedure name is an identifier.}%
+(formalParam$_{1}^{1}$\footnote{\ A formal parameter is an identifier.},\ formalParam$_{1}^{2}$,\ \dots):}\par
+\mbox{\blc\ \ \ \ \ \ \ \small\rm \ldots\ Instructions of the body of the procedure%
+\footnote{\ Including calls of the procedures {\idt pro\-ce\-dure\-Name$_{1}$} and
+{\idt pro\-ce\-dure\-Name$_{2}$}.}%
+\footnote{\ The expressions in these instructions can use the formal parameters
+{\idt formalParam$_{1}^{1}$}, {\idt formalParam$_{1}^{2}$}, \ldots\ of the procedure
+{\idt pro\-ce\-dure\-Name$_{1}$}. }
+ (indented) \ldots}\par
+
+\medskip
+
+\mbox{\blc\ \ \ \cmt \#\ \small\rm Specification of the second procedure}\par
+\mbox{\blc\ \ \ \mcl def\idt\ procedureName$_{2}$%
+(formalParam$_{2}^{1}$,\ formalParam$_{2}^{2}$,\ \dots):}\par
+\mbox{\blc\ \ \ \ \ \ \ \small\rm \ldots\ Instructions of the body of the procedure%
+\footnote{\ The expressions in these instructions can use the formal parameters
+{\idt formalParam$_{2}^{1}$}, {\idt formalParam$_{2}^{2}$}, \ldots\ of the procedure
+{\idt pro\-ce\-dure\-Name$_{2}$}.}
+ (indented) \ldots}\par
+
+\medskip
+
+\mbox{\blc\ \ \ \cmt \#\ \small\rm Instructions of the program (calls of the procedures)}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+\noindent In the same way, three or more mutually recursive procedures can be declared one after the other.
+
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercice}{The exercise consists in drawing {\em fractals} \cite{mandelbrot1}
+\cite{mandelbrot2}, that is,
+drawings that are found again endlessly, in reduced form, inside themselves.
+
+\tiret  Write a recursive \python\ procedure to build a Von Koch curve\/%
+\footnote{\ Von Koch, Swedish mathematician, 1870--1924.}, as
+shown in figure \ref{fig:segvonkoch} (page \pageref{fig:segvonkoch}). The curve $K_{0}$
+is a straight line segment. The curve $K_{1}$ is obtained by dividing the segment $K_{0}$ into three equal
+segments and replacing the middle one by an equilateral triangle without its base.
+The curve $K_{n}$ is obtained in the same way by dividing into three each of the segments of the curve
+ $K_{n-1}$. Write a program that draws a Von Koch snowflake, obtained by fragmenting in this way, outwards,
+ the sides of an equilateral triangle. Do the same for a Von Koch anti-snowflake, for which the
+ fragmentation is done towards the inside of the initial equilateral triangle. Use various fragmentations
+ of a segment to obtain other kinds of snowflakes like those of figure \ref{fig:flocvonkoch}
+ (page \pageref{fig:flocvonkoch}).
+
+\tiret Program the drawings of the recursive patterns of figure \ref{fig:desrec}
+(page \pageref{fig:desrec}).
+
+\tiret Write a \python\ program that draws the Sierpinski\/%
+\footnote{\ Waclaw Sierpinski, Polish mathematician, 1882--1969.}
+squares (figure \ref{fig:carsierp}  page \pageref{fig:carsierp}),
+triangles (figure \ref{fig:trisierp}  page \pageref{fig:trisierp}) and
+pentagons (figure \ref{fig:pensierp}  page \pageref{fig:pensierp}).
+
+\tiret Draw the plants of figure \ref{fig:vege}  (page \pageref{fig:vege}).
+
+\tiret Draw the Sedgewick squares \cite{sedgewick1} of figure \ref{fig:sedgew}  (page \pageref{fig:sedgew}).
+
+\tiret Draw the dragon curve of figure \ref{fig:dragon}  (page \pageref{fig:dragon})
+according to the construction rules of
+figure \ref{fig:consdragon}  (page \pageref{fig:consdragon}). The dragon curve of order $n$ is the one
+seen when looking edge-on at a sheet of paper that has been folded $n$ times
+onto itself and then unfolded at right angles.
+
+\tiret Draw the Hilbert\/%
+\footnote{\ David Hilbert, German mathematician, 1862--1943.}
+curve of figure \ref{fig:hilbert}  (page \pageref{fig:hilbert}) according to the construction rules of
+figure \ref{fig:conshilbert}  (page \pageref{fig:conshilbert}).
+
+\tiret Draw the Peano\/%
+\footnote{\ Giuseppe Peano, Italian mathematician, 1858--1932.}
+ curve of figure \ref{fig:peano}  (page \pageref{fig:peano}) according to the construction rules of
+figure \ref{fig:conspeano}  (page \pageref{fig:conspeano}).
+
+\tiret Write a \python\ procedure that writes in base 2 a number passed as parameter,
+noting that the binary representation $\beta(n)$ of a number $n$ is defined by:
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+  \item $\beta(-n) = -\beta(n)$ if $-n < 0$;
+  \item $\beta(0) = 0$;
+ \item $\beta(1) = 1$;
+ \item $\beta(n) = \beta(n $\ {\idt //}\ $ 2) \beta(n$\ {\idt \%}\ $2)$ if $n > 1$.
+\end{list}
+Do the same in bases 3, 8 and 16 (using the digits {\idt A}, {\idt B}, {\idt C}, {\idt D},
+{\idt E}, {\idt F} to denote the numbers 10, 11, 12, 13, 14, 15 respectively, and
+``{\idt label(}{\cha "d"}{\idt ); translate(1, 0)}''
+to write the digit \mbox{\cha d}).
+
+\noindent $\Box$}\end{exercice}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.1cm]{SegmentsVonKoch}{0.95}{0.95}
+ \caption{Von Koch curve}\label{fig:segvonkoch}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[2.4cm]{RegleDragon}{0.95}{0.95}
+ \caption{Construction rules of the dragon curve}\label{fig:consdragon}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.0cm]{RegleConsHilbert}{0.95}{0.95}
+ \caption{Construction rules of the Hilbert curves}\label{fig:conshilbert}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[18.2cm]{FloconsVonKoch}{0.95}{0.95}
+ \caption{Von Koch snowflakes}\label{fig:flocvonkoch}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[18.3cm]{CarreDeSierpinsky}{0.95}{0.95}
+ \caption{Sierpinski squares}\label{fig:carsierp}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[16.0cm]{TriangleDeSierpinsky}{0.95}{0.95}
+ \caption{Sierpinski triangles}\label{fig:trisierp}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[16.0cm]{PentagoneSierpinski}{0.95}{0.95}
+ \caption{Sierpinski pentagons}\label{fig:pensierp}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[12.5cm]{Vegetaux}{0.95}{0.95}
+ \caption{Fractal plants}\label{fig:vege}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[14.0cm]{Sedgewick}{0.95}{0.95}
+ \caption{Sedgewick's fractal star}\label{fig:sedgew}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[7.2cm]{Dragon}{0.95}{0.95}
+ \caption{Dragon curves of order 1, 2, \ldots, 8, 10 and 12}\label{fig:dragon}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[17.5cm]{Hilbert}{0.95}{0.95}
+ \caption{Hilbert curves of orders 1 to 6}\label{fig:hilbert}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[12.5cm]{RegleConsPeano}{0.95}{0.95}
+ \caption{Construction rules of the Peano curves}\label{fig:conspeano}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[12.2cm]{Peano}{0.95}{0.95}
+ \caption{Peano curves}\label{fig:peano}
+\end{figure}
+\pagebreak[3]
+\begin{corriges}{
+\renewcommand{\carrenoir}{\hspace{-4mm}\rule{1.5mm}{1.5mm}\hspace{2.5mm}}
+We give two programs, the others being in the folder {\idt book/\allowbreak 21\_recursion}:
+\label{prog:SegmentDeVonKoch}
+\input python/VonKochSegment.tex
+\pagebreak[3]
+\input python/DecimalToBinary.tex
+\renewcommand{\carrenoir}{}
+\noindent $\Box$}\end{corriges}
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+ The languages {\sc algol60} \cite{algol60} and then {\sc lisp} \cite{lisp} were the first to
+ introduce the use of recursion. The early controversy over the efficiency of recursive
+ procedures is now a thing of the past, compilation techniques being well established.
+ The idea of recursion was at the root of many advances in computer science, whether
+ recursive data structures (such as trees),
+ recursive algorithms (such as fast sorting algorithms) or, more recently,
+ functional programming, of which \ocaml\ is an example (\python\ borrows some of its ideas).
+
+The simplest way to understand a recursive
+ procedure is to imagine that at each call the computer executes a new {\em copy} of the
+ procedure.
+
+ To show that this succession of calls terminates, it is enough to show that there
+ exists an integer function of the values of the parameters which is po\-si\-tive and
+ strictly decreases over successive calls.
+ For example the procedure {\idt segment}
+ of the program {\idt VonKochSegment} (page \pageref{prog:SegmentDeVonKoch}) must be
+ called with a parameter {\idt n} that is positive or zero. If so, the recursive calls are of the form
+ {\idt  segment(n - 1)} with {\idt n} $> 0$, so that over successive calls the actual
+ parameters strictly decrease while remaining positive. This cannot go on forever.
+ Consequently the procedure {\idt segment} does not loop when it is called with an
+ initial parameter that is positive or zero.
+
+\index{Function} {\em Functions} are to expressions what procedures are to instructions. In
+ \python, a function declaration is written like a procedure declaration, but its body
+ contains an instruction {\mcl return}\index{return} {\em e} which
+ terminates the execution of the function and returns as result the value of the expression {\em e}. Procedures
+ are simply functions without {\mcl return} whose result we are not interested in, which is
+ the special value {\mcl None} (nothing).
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+
+
+ For example, a constant is a function without parameters, so
+ that a declaration such as:
+
+\smallskip
+\mbox{\blc  \blk\idt  gridSize\ =\ 15}\par
+\smallskip
+
+\noindent can be replaced by a function declaration:
+
+\smallskip
+\mbox{\blc  \blk\idt  \mcl def\idt \ gridSize():\ \mcl return\idt \ 15}\par
+\smallskip
+
+\noindent which is used by writing {\idt gridSize()}, like {\idt valGsX()}.
+As a second example, consider the computation of $2^{n}$ with $n \geq 0$, observing for the base
+that $2^{0} = 1$ and for the induction step that $2^{n} = 2 \ast 2^{n-1}$:
+
+\smallskip
+\mbox{\blc  \blk\idt  \mcl def\idt \ twoToThePower(n):}\par
+\mbox{\blc  \blk\blk\idt  \mcl if\idt \ n\ ==\ 0:}\par
+\mbox{\blc  \blk\blk\blk\idt  \mcl return\idt \ 1}\par
+\mbox{\blc  \blk\blk\idt  \mcl else\idt :}\par
+\mbox{\blc  \blk\blk\blk\idt  \mcl return\idt \ 2\ *\ twoToThePower(n\ {-}\ 1)}\par
+\smallskip
+
+%\vspace{\abovedisplayskip}
+%\end{minipage}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\noindent \framebox[\textwidth]{
+%\begin{minipage}{\myparboxwidth}
+%\setlength{\parindent}{2em}
+%\small \sf
+%\vspace{\abovedisplayskip}
+\noindent After this declaration, the expression {\idt twoToThePower(2)} is 4 and
+the ex\-pres\-sion {\idt twoToThePower(twoToThePower(2))} is 16 (the program
+{\idt TwoToThePower} in the folder {\idt book/\allowbreak 21\_recursion} draws the value of
+{\idt twoToThePower(16)}). Here {\mcl if}\ldots{\mcl else} chooses between two
+{\mcl return} instructions, hence between the two values that the function can return.
+
+ In \python\ one can use the trigonometric functions {\idt sin} (sine),
+ {\idt cos} (cosine), {\idt tan} (tangent) and {\idt atan} (arc tangent). Angles are expressed in
+ radians (an angle of $d$ degrees is {\idt d / 180 * pi} radians, the constant {\idt pi}
+ being $\pi \simeq 3.14159$). As for the
+ functions {\idt exp} (exponential) and
+ {\idt log} (natural logarithm), the
+  parameter is a number (integer or rational) and the
+result is of type {\idt float}. These functions and the constant {\idt pi} are provided by the
+\robot's library (they come from \python's {\idt math} module). For powers, one uses
+ {\idt a ** x}, which is $a^{x} = e^{x \ln a}$. One could define the tangent function oneself by:
+
+{
+\parindent \parindentprog
+\medskip
+\mbox{\blc  \blk\idt  \mcl def\idt \ tg(x):\ \mcl return\idt \ sin(x)\ /\ cos(x)}\par
+}
+
+\noindent When {\idt cos(x)} is {\idt 0.0}, the division causes an error and
+stops the program with the message `{\tt ZeroDivisionError:\ float division by zero}'.
+Because of rounding errors, this does not happen for
+{\idt tg(pi / 2)}: {\idt cos(pi / 2)} is {\idt 6.123233995736766e-17} and not {\idt 0.0}, so
+that {\idt tg(pi / 2)} is {\idt 1.633123935319537e+16}, a very large number instead of infinity.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+

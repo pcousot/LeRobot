@@ -1,0 +1,507 @@
+\section{Répétitions}
+%\label{sec:7:1:repetitions}
+
+Nous avons déjà vu quelques exemples de programmes \python\ dans lesquels une
+séquence de commandes du \robot\ ou d'appels de procédures se trouve répétée de
+nombreuses fois de suite. C'est le cas par exemple dans le programme {\idt FriseDeN\_1}
+dont l'exécution produit la frise ci-dessous~:
+
+%\vspace{\baselineskip}
+\vspace*{8mm}%
+\noindent\includevspacePostScript[1cm]{FriseDeN}{0.95}{0.95}
+\vspace*{-1cm}%
+\input{python/FriseDeN_1.tex}
+
+Pour éviter les répétitions successives des mêmes séquences d'ins\-truc\-tions,
+nous allons étudier une nouvelle instruction du langage \python\ qui s'appelle la
+{\em boucle ``for''}\index{Boucle ``for''} (le mot anglais ``for'', qui signifie ``pour'',
+se prononce comme il s'écrit%
+\footnote{\ Nous parlons de boucle ``for'' et non pas de boucle ``pour'' pour rester dans le
+contexte du vocabulaire utilisé dans le programme.}). Voici le
+programme {\idt FriseDeN\_1} de dessin de la frise ci-dessous
+réécrit en utilisant une boucle ``for''~:
+
+%\vspace{\baselineskip}
+\vspace*{8mm}%
+\noindent\includevspacePostScript[1cm]{FriseDeNprime}{0.95}{0.95}
+\vspace*{-1cm}%
+\label{prog:FriseDeN_2}
+\input{python/FriseDeN_2.tex}
+
+\noindent En français, la boucle `{\mcl for}\ {\idt j}\ {\mcl in}\ {\idt range(16):}\ \ldots'
+peut se traduire par  `pour j parmi les 16 premiers nombres faire \ \ldots'. Le mot anglais {\mcl in},
+qui signifie `dans', se prononce 'inne'. Le mot anglais {\idt range}, qui signifie
+`suite' ou `étendue', se prononce 'rèïndje'.
+
+La séquence d'instructions à répéter s'écrit sur les lignes qui suivent les deux-points `{\idt :}',
+décalées vers la droite. Elle s'appelle le
+{\em corps de la boucle}\index{Corps de boucle}. Le \index{Itération}{\em nombre d'itérations} c'est-à-dire le
+nombre de fois qu'il faut répéter le corps de la boucle est indiqué
+entre les parenthèses de {\idt range}. Dans notre exemple, il faut répéter 16 fois
+de suite le corps de la boucle  `{\idt  av();\ av();\ pdt();\ vg();\ vd();\ pdt()}'.
+
+\section{Le compteur de boucle}
+%\label{sec:7:3:decls}
+
+Juste après le mot {\mcl for} nous trouvons le nom {\idt j} d'un
+{\em compteur}\index{Comp\-teur de bou\-cle}. Ce compteur va servir à l'ordinateur pour
+compter le nombre de fois qu'il aura à répéter la séquence d'instructions dans la
+boucle ``for'', exactement comme nous pourrions le faire en comptant sur nos  doigts$\:$!
+Pour cela l'ordinateur utilise une case de sa mémoire, qui contient successivement
+les nombres entiers 0, 1, 2, \ldots, 15. En effet, {\idt range(16)} désigne la suite des
+16 nombres entiers qui commence à 0 et s'arrête juste avant 16 (comme les informaticiens,
+\python\ compte à partir de 0). On dit que {\idt j} est une
+{\em variable}\index{Variable}\index{Variable entière} entière puisque sa valeur varie
+d'une itération à l'autre.
+
+Nous devons donner un nom à ce compteur. C'est un identificateur que nous pouvons choisir
+comme il nous plaît (ici par exemple {\idt  j}), en respectant la règle des
+identificateurs~: il commence par une lettre (ou un souligné `\_'), ne contient que des lettres, des chiffres et des soulignés, et ne doit pas être un mot réservé de
+\python. Si l'on écrit `{\mcl for}\ {\idt 1er}\ {\mcl in}\ \ldots', \python\ répond
+`{\tt SyntaxError: invalid decimal literal}' (nombre décimal incorrect, puisque
+{\idt 1er} commence par un chiffre). Si l'on écrit `{\mcl for}\ {\mcl in}\ {\mcl in}\ \ldots',
+il répond `{\tt SyntaxError: invalid syntax}' (syntaxe incorrecte).
+
+En \python, il n'est pas nécessaire d'annoncer à l'avance que l'on va utiliser
+un compteur%
+\footnote{\ D'autres langages comme \pascal\ obligent à {\em déclarer} le compteur au début
+du programme ou de la procédure, en indiquant qu'il désigne un nombre entier.}~:
+le compteur est créé par la boucle ``for'' elle-même. \python\
+sait que c'est un nombre entier puisqu'il prend les valeurs 0, 1, 2, \ldots\ Après la
+boucle, le compteur garde la dernière valeur qu'il a prise (15 dans notre exemple), mais
+il vaut mieux ne pas s'en servir~: si la boucle n'a fait aucune itération, le
+compteur n'existe pas et \python\ indique l'erreur
+`{\tt NameError: name 'j' is not defined}' (le nom {\idt j} n'est pas défini).
+
+Pour que le compteur prenne les valeurs 1, 2, 3, \ldots, 16, on écrirait
+`{\mcl for}\ {\idt j}\ {\mcl in}\ {\idt range(1,\ 17):}'. De manière générale,
+{\idt range(}$a${\idt ,\ }$b${\idt )} désigne la suite des nombres entiers de $a$ à $b-1$~:
+elle commence à $a$ et s'arrête juste {\em avant} $b$. Ainsi {\idt range(1,\ 5)} désigne
+1, 2, 3, 4 et {\idt range(}$n${\idt )}, qui est une abréviation de
+{\idt range(0,\ }$n${\idt )}, désigne les $n$ nombres 0, 1, \ldots, $n-1$.
+Pour que le compteur aille de 1 à $n$, on écrit donc
+`{\mcl for}\ {\idt i}\ {\mcl in}\ {\idt range(1,\ }$n${\idt \ +\ 1):}'.
+
+Le compteur de la boucle du programme {\idt FriseDeN\_2} ne sert qu'à compter les itérations.
+Il est alors plus simple d'écrire {\idt range(16)}.
+Nous verrons au chapitre suivant que l'on peut aussi utiliser sa valeur dans le corps de
+la boucle.
+
+\section{La boucle ``for''}
+%\label{sec:7:4:for}
+
+Une {\em boucle ``for''}\index{Boucle ``for''} a la forme suivante~:\\
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Boucle ``for''~:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ {\mcl for}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm Identificateur}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl in}\hspace{0.3em}\blanc\hspace{0.3em}{\idt range(}{\small\rm Nombre d'itérations}{\idt ):}}\par
+\mbox{\blc\ \ \ \ \ \ \ \small\rm  \ldots\ Instructions du corps de la boucle (décalées) \ldots}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+\noindent L'identificateur est le nom du compteur d'itérations.
+La  séquence d'instructions qui est répétée s'appelle le {\em corps de
+la boucle}\index{Corps de boucle}. Comme le corps d'une procédure, elle s'écrit sur les lignes
+qui suivent les deux-points `{\idt :}', toutes décalées vers la droite du même nombre de
+blancs (quatre en général), une instruction par ligne ou plusieurs instructions sur une même
+ligne séparées par des `{\idt ;}'. C'est ce décalage, appelé {\em indentation}\index{Indentation},
+qui indique à \python\ où commence et où finit le corps de la boucle~: la boucle se
+termine à la première ligne qui n'est plus décalée.
+
+Il ne faut pas oublier les blancs \hspace{0.3em}\blanc\hspace{0.3em} autour du mot {\mcl in}.
+Si l'on écrit {\idt jin} au lieu de {\idt j}\ {\mcl in}, ou {\idt inrange} au lieu de
+{\mcl in}\ {\idt range}, \python\ ne reconnaît plus le mot {\mcl in} et signale
+`{\tt SyntaxError: invalid syntax}'. Si l'on oublie les deux-points `{\idt :}' à la fin
+de la ligne du {\mcl for}, \python\ indique `{\tt SyntaxError: expected ':'}'
+(deux-points attendu).
+
+Une boucle ``for'' est elle-même une instruction. Les instructions qui la suivent
+s'écrivent sans décalage, au même niveau que le {\mcl for}, comme le {\idt st()} du
+programme {\idt FriseDeN\_2}. Si l'on décalait aussi la ligne {\idt st()}, elle ferait partie
+du corps de la boucle et serait répétée 16 fois~! Si l'on oublie de décaler le corps
+de la boucle, \python\ indique
+`{\tt IndentationError: expected an indented block after 'for' statement on line 5}'
+(erreur d'indentation~: un bloc décalé est attendu après l'instruction {\mcl for} de la
+ligne 5). Si les lignes du corps ne sont pas toutes décalées du même nombre de blancs,
+\python\ signale `{\tt IndentationError: unexpected indent}' (décalage inattendu) ou
+`{\tt IndentationError: unindent does not match any outer indentation level}'
+(le retour à gauche ne correspond à aucun niveau de décalage précédent).
+
+Si le `Nombre d'itérations' est plus petit que 1 (0 par exemple)  les instructions du
+corps de la boucle ne sont pas exécutées du tout. \underline{Il ne faut pas mettre} \underline{de point-virgule `{\idt $;$}'} \underline{après les deux-points}~: \python\ signale alors `{\tt SyntaxError: invalid syntax}' juste après les deux-points.
+
+Quand le corps de la boucle est court, on peut écrire toute la boucle sur une seule
+ligne, comme dans `{\mcl for}\ {\idt i\ }{\mcl in}\ {\idt range(10):\ av()}'.
+Les blancs supplémentaires à l'intérieur d'une ligne servent seulement à rendre le
+programme plus lisible, mais ceux du début de ligne sont importants.
+
+\begin{exemple}[Frise de pointes]{\rm
+ La frise suivante~:\\[20mm]
+\includevspacePostScript[1cm]{FriseDePointes}{0.95}{0.95}%
+\\[1ex]
+est produite par le programme ci-dessous~:
+\input{python/FriseDePointes.tex}
+\noindent $\Box$}
+\end{exemple}
+
+\section{Utilisation de la boucle ``for'' dans une procédure}
+%\label{sec:7:5:for-proc}
+
+Le corps d'une procédure peut contenir des boucles ``for'', comme n'importe quelle
+autre instruction~:
+\index{Compteur de boucle}
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Déclaration de procédure~:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+\medskip
+\mbox{\blc\ \ \ {\mcl def}\hspace{0.3em}\blanc\hspace{0.3em}\idt nomDeLaProcedure():}\par
+\mbox{\blc\ \ \ \ \ \ \ \small\rm \ldots\ Instructions du corps de la procédure%
+\footnote{\ Y compris des boucles ``for'' utilisant des compteurs {\idt i}, {\idt j}, \ldots}
+(décalées) \ldots}\par
+\medskip
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+Puisque le compteur d'une boucle ne sert que dans le corps de cette boucle et qu'il
+repart de sa première valeur à chaque nouvelle boucle, un même
+identificateur peut servir de compteur dans plusieurs boucles différentes,
+qu'elles soient dans des procédures différentes ou les unes après les autres
+dans la même procédure. Ceci est illustré dans le programme
+{\idt Fleche} ci-dessous où des compteurs de boucles
+différents, utilisés dans des procédures différentes ({\idt
+empennage} et {\idt tige}), portent le même nom {\idt i}.
+
+\begin{exemple}[Flèche]{\rm \ \\[7cm]
+\includePostScript{FlecheVerticale}{0.95}{0.95}%
+\vspace*{-7cm}%
+\input{python/Fleche.tex}
+\noindent $\Box$ }\end{exemple}
+
+
+\section{Boucles ``for'' imbriquées (in\-dé\-pen\-dan\-tes)}
+%\label{sec:7:6:for-for-ind}
+
+Le corps d'une boucle ``for''~:
+
+\mbox{\blc\ \ \ {\mcl for}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm Identificateur1}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl in}\hspace{0.3em}\blanc\hspace{0.3em}{\idt range(}{\small\rm Nombre d'itérations1}{\idt ):}}\par
+\mbox{\blc\ \ \ \ \ \ \ \small\rm  \ldots}\par
+
+\noindent peut à nouveau contenir des boucles ``for''~:
+
+\mbox{\blc\ \ \ {\mcl for}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm Identificateur1}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl in}\hspace{0.3em}\blanc\hspace{0.3em}{\idt range(}{\small\rm Nombre d'itérations1}{\idt ):}}\par
+\mbox{\blc\ \ \ \ \ \ \ \small\rm  \ldots}\par
+\mbox{\blc\ \ \ \ \ \ \ {\mcl for}\hspace{0.3em}\blanc\hspace{0.3em}{\small\rm Identificateur2}\hspace{0.3em}\blanc\hspace{0.3em}{\mcl in}\hspace{0.3em}\blanc\hspace{0.3em}{\idt range(}{\small\rm Nombre d'itérations2}{\idt ):}}\par
+\mbox{\blc\ \ \ \ \ \ \ \ \ \ \ \small\rm  \ldots}\par
+\mbox{\blc\ \ \ \ \ \ \ \small\rm  \ldots}\par
+
+\noindent On dit alors que les  boucles ``for'' sont {\em imbriquées}.
+La boucle utilisant le
+compteur {\small\rm Identificateur2} pour faire
+{\small\rm Nombre d'itérations2} itérations s'appelle la
+ {\em boucle intérieure}. La boucle utilisant le compteur {\small\rm Identificateur1} pour faire
+{\small\rm Nombre d'itérations1} itérations s'appelle la {\em boucle extérieure}.
+Le corps de la boucle intérieure est décalé deux fois~: une fois parce qu'il fait partie
+du corps de la boucle extérieure, une deuxième fois parce qu'il est le corps de la boucle
+intérieure. La boucle intérieure se termine à la première ligne qui revient au décalage
+de son {\mcl for}~; la boucle extérieure à la première ligne qui revient au décalage du
+premier {\mcl for}. C'est donc le décalage qui indique, sans ambiguïté, à quel {\mcl for}
+appartient chaque instruction. Considérons par exemple
+le dessin d'un carré~:
+\par\noindent\begin{minipage}{\linewidth}
+\vbox to 0pt{\includevspacePostScript[20mm]{Carre1}{0.95}{0.95}}%
+\input{python/Carre_1.tex}
+\end{minipage}
+
+En remplaçant les appels des procédures par leurs corps, on obtient
+deux boucles imbriquées~:
+
+%\includePostScript{Carre1}{0.95}{0.95}
+\input{python/Carre_2.tex}
+
+La boucle intérieure sert à construire un côté tandis que la boucle
+ex\-té\-rieu\-re dessine les quatre côtés.
+
+\newpage
+\section{Boucles ``for'' imbriquées (dépendantes)}
+%\label{sec:7:7:for-for-dep}
+
+Dans des boucles ``for'' imbriquées, le nombre d'itérations
+dans la boucle in\-té\-rieu\-re peut être dif\-fé\-rent à chaque fois que le corps de
+la boucle extérieure est exécutée. Commençons par considérer l'exemple
+simple de segments de droite de longueurs 1, 2, 3, \ldots disposés en spirale
+(le dessin est représenté ci-dessous à l'échelle $\frac{1}{2}$ avec la grille)~:\\[5cm]
+\includePostScript{SpiraleCarree-1}{0.95}{0.95}%
+\vspace*{-5cm}%
+\input{python/SpiraleCarree_1.tex}
+\vspace{2.6cm}% le listing Python est plus court que la figure placee a cote
+
+Le nombre d'itérations dans la boucle ``for'' intérieure est égal à la valeur
+du compteur {\idt i} de la boucle extérieure, c'est-à-dire successivement à 1, 2,
+3, \ldots, 22 (puisque {\idt range(1,\ 23)} s'arrête juste avant 23). Le programme {\idt SpiraleCarree\_1} est donc équivalent au
+programme {\idt SpiraleCarree\_2} ci-dessous où les boucles ``for'' ont été
+éliminées pour montrer exactement quelle est la séquence de commandes exécutée
+par le \robot.
+
+%\special{SpiraleCarree-1.ps 0.24 0.24 scale 0 -342 translate}
+\input{python/SpiraleCarree_2.tex}
+
+\section{Invariants de boucles ``for''}
+%\label{sec:7:8:inv}
+
+Quand on dessine une frise comme celle-ci~:\\[9mm]
+\includevspacePostScript[9mm]{FriseDeTildes}{0.95}{0.95}%
+\vspace*{-9mm}%
+
+\noindent avec une boucle ``for'', il faut que le \robot\ se trouve toujours dans
+la même direction
+et dans la même position par rapport au prochain motif qui va être
+dessiné en exécutant
+le corps de la boucle. Autrement dit, à la fin du corps de la
+boucle il faut
+remettre le \robot\ dans la position de départ~:
+\input{python/FriseDeTildes.tex}
+On dit que la position du \robot\ est un {\em invariant}\index{Invariant} de la boucle en ce sens
+qu'elle doit être la même à chaque itération.
+
+Si dans notre exemple on dessine un motif puis le suivant sans remettre entre-temps
+le \robot\ dans la position de départ, on obtient le résultat suivant, dont
+il faut avouer qu'il n'est pas très ressemblant à l'original~:\\[5cm]
+\includePostScript{FriseDeTildesErr1}{0.95}{0.95}%
+\vspace*{-5cm}
+\input{python/FriseDeTildesErronee1.tex}
+
+Si l'on pense à faire reculer le \robot\ mais que l'on oublie de le remettre
+dans la bonne direction, le résultat est encore plus étrange~:
+
+% figure et programme insecables (sinon, a un saut de page, l'espace
+% negatif fait remonter le programme au-dessus de l'en-tete)
+\noindent\begin{minipage}{\linewidth}
+\vspace*{25mm}
+\includePostScript{FriseDeTildesErr2}{0.95}{0.95}%
+\vspace*{-25mm}
+\input{python/FriseDeTildesErronee2.tex}
+\end{minipage}
+
+Une bonne façon de trouver les erreurs dans une boucle ``for'' est donc
+de chercher l'invariant, c'est-à-dire la position et l'orientation dans
+lesquelles doit se trouver le \robot\ avant de dessiner le motif en
+exécutant le corps de la boucle. Il faut alors vérifier que le \robot\ est
+convenablement placé quand on arrive pour la première fois dans la boucle
+et qu'il l'est à nouveau après avoir exécuté le corps de la boucle.
+
+La même notion d'invariant s'applique pour les procédures. Avant chaque
+appel d'une procédure, il faut que le robot soit dans un ou plusieurs
+états possibles qui doivent être parfaitement définis par la position
+levée ou baissée du crayon du \robot\ et par la position et l'orientation
+du \robot\ par rapport à la figure dessinée par la procédure.
+
+\noindent\rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercices}{\ \\
+
+\vspace{-\baselineskip}
+\tiret Écrire des programmes \python\ utilisant des boucles ``for'' pour dessiner
+quelques-unes des frises de la figure
+\ref{fig:Frise-1}  page \pageref{fig:Frise-1}.
+
+\tiret Écrire des programmes \python\ utilisant des boucles ``for'' dans des pro\-cé\-du\-res
+pour dessiner quelques-unes des frises de la figure
+\ref{fig:Frise-2}  page \pageref{fig:Frise-2}.
+
+\tiret Écrire des programmes \python\ pour dessiner quelques-unes des rosaces,
+frises et pavage de la figure
+\ref{fig:Ro-Fr-Pa}  page \pageref{fig:Ro-Fr-Pa}, en utilisant des boucles
+``for'' imbriquées indépendantes.
+
+\tiret Écrire des programmes \python\ pour dessiner quelques-unes des spirales,
+quadrillages et autres tuyaux d'orgues de la figure
+\ref{fig:SpirQuadTuy}  ci-dessous, en utilisant des boucles
+``for'' imbriquées dépendantes.
+
+\tiret Écrire un programme \python\ pour dessiner le pavage de
+la figure \ref{fig:PavCLC} ci-dessous en indiquant avec précision les
+invariants des procédures et boucles ``for''.
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.5cm]{SpirQuadTuy}{0.95}{0.95}
+ \caption{Quadrillages, carrés, spirale et tuyaux d'orgues}
+ \label{fig:SpirQuadTuy}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[7.1cm]{PavageCarresTrianglesCercles}{0.95}{0.95}
+ \caption{Pavage de carrés, triangles et cercles}\label{fig:PavCLC}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[17.8cm]{Frise-1}{0.95}{0.95}
+ \caption{Frises (1)}\label{fig:Frise-1}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[17.8cm]{Frise-2}{0.95}{0.95}
+ \caption{Frises (2)}\label{fig:Frise-2}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[17.8cm]{Ro-Fr-Pa}{0.95}{0.95}
+ \caption{Rosaces, frises et pavage}\label{fig:Ro-Fr-Pa}
+\end{figure}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corriges}{
+\renewcommand{\carrenoir}{\hspace{-4mm}\rule{1.5mm}{1.5mm}\hspace{2.5mm}}
+Nous donnons quelques programmes, les autres se trouvant dans le dossier
+{\idt livre/\allowbreak 07\_for}~:
+\input{python/FriseCrantee.tex}
+\input{python/QuadrillageTriangulaire.tex}
+\input{python/PavageCarresTrianglesCercles.tex}
+\noindent $\Box$\vfill}\end{corriges}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+
+La boucle ``for'' est une des premières notions linguistiques qui soit
+apparue en informatique puisqu'elle fût inventée à l'ETH de Zürich
+ en 1952 par Heinz Rutishauser \cite{rutishauser}.
+
+La comparaison des dessins que l'on peut obtenir en utilisant la boucle
+``for'' avec ceux que l'on peut faire en mode interactif donne la mesure
+de la puissance des ordinateurs quand il s'agit d'effectuer rapidement des
+tâches répétitives. En cela l'ordinateur se distingue très
+nettement des calculettes non programmables. On comprend également
+que cette puissance de calcul n'a rien à voir avec une quelconque forme
+de pensée ou d'intelligence si ce n'est celle du programmeur de
+l'ordinateur.
+
+En \python, on utilise une boucle {\mcl for} {\idt i} {\mcl in} {\idt range(}$n_1${\idt ,\ }$n_2${\idt ):}
+ \ldots\ pour répéter
+$n_2 - n_1$ fois le corps de la boucle (les instructions décalées qui suivent
+les deux-points) sauf si $n_2 \leq n_1$ auquel cas le corps de la boucle n'est pas
+exécuté. A chaque itération, le compteur de boucle {\idt i} prend les
+valeurs successives $n_1$, $n_1 + 1$, $n_1 + 2$, \ldots, $n_2 - 1$. Dans la forme {\mcl for}
+{\idt i} {\mcl in} {\idt range(}$n_1${\idt ,\ }$n_2${\idt ,\ -1):} \ldots,
+{\idt i} prend les valeurs successives $n_1$, $n_1 - 1$, $n_1 - 2$, \ldots, $n_2 + 1$
+sauf si $n_2 \geq n_1$ auquel cas la boucle n'est pas exécutée~; par exemple
+{\mcl for} {\idt i} {\mcl in} {\idt range(}$n${\idt ,\ 0,\ -1):} fait prendre à {\idt i} les
+valeurs $n$, $n-1$, \ldots, 1 (le troisième nombre, ici $-1$, est le pas
+qui est ajouté au compteur à chaque itération). Si le corps de la boucle modifie la
+valeur du compteur, cela n'a pas d'effet sur les itérations suivantes~: à chaque
+itération, le compteur reprend la valeur suivante de la suite {\idt range}.
+Quand le compteur ne sert à rien dans le corps de la boucle, les programmeurs
+\python\ le nomment souvent `\_', comme dans
+{\mcl for}\ {\idt \_\ }{\mcl in}\ {\idt range(16):}\ \ldots
+
+L'utilisation de boucles ``for'' exerce la capacité de percevoir
+quand un dessin peut se décomposer en un certain nombre de sous-dessins
+identiques (dans le cas d'une boucle simple) ou similaires (dans le cas
+de boucles imbriquées). C'est un exercice quotidien pour l'informaticien
+qui doit savoir décomposer une tâche complexe en sous-tâches simples,
+ce qui demande parfois énormément d'imagination.
+Il s'agit d'un premier pas vers l'acquisition du raisonnement
+inductif des scien\-ti\-fi\-ques qui, à partir d'observations spécifiques,
+créent une hypothèse générale rendant compte de ces observations,
+hypothèse qu'il reste à valider dans tous les cas possibles, ici de
+manière tout à fait expérimentale, en observant le dessin à
+l'écran. Les mathématiciens appellent {\em conjecture} une telle
+hypothèse induite de l'expérience et non encore démontrée.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+Ce raisonnement inductif a longtemps été confondu avec le raisonnement
+par récurrence qui est essentiel en mathématiques. Il a fallu plus d'un
+millénaire pour que les mathématiciens
+(Fermat\footnote{\ \href{https://en.wikipedia.org/wiki/Pierre_de_Fermat}{Pierre de Fermat}, 1601--1665, mathématicien français.},
+Pascal\footnote{\ \href{https://en.wikipedia.org/wiki/Blaise_Pascal}{Blaise Pascal}, 1623--1662, mathématicien français.}
+notamment) comprennent
+pleinement ce raisonnement par récurrence (\cite{knuth2} page 17).
+
+Nous en
+sommes pour l'instant aux prémisses, l'absence d'induction correcte
+ étant encore admise dans le raisonnement
+par récurrence~: si le dessin est bien
+fait pour le motif de base et pour
+la première répétition du motif alors il est réputé correct, seul le
+problème du cadrage dans la fenêtre restant à résoudre par simple
+expérimentation.
+
+La notion d'{\em invariant} (c'est-à-dire pour notre \robot\ la
+description de ses positions et orientations possibles au début du
+corps des boucles) est due à Turing
+\footnote{\ \href{https://en.wikipedia.org/wiki/Alan_Turing}{Alan Turing}, informaticien anglais.} en 1949, oubliée, puis redécouverte pat
+Naur%
+\footnote{\ \href{https://en.wikipedia.org/wiki/Peter_Naur}{Peter Naur}, informaticien danois.} en 1966 et Floyd%
+\footnote{\ \href{https://en.wikipedia.org/wiki/Robert_W._Floyd}{Robert Floyd}, informaticien américain.} en 1967.
+Elle repose
+sur un raisonnement par récurrence~: si l'invariant est vrai quand on
+arrive pour la première fois dans la boucle (c'est-à-dire que la
+position et l'orientation du \robot\ est conforme à la description qui en
+est faite dans l'invariant) et si, en supposant que l'invariant soit vrai au
+début de l'exécution du corps de la boucle, il reste encore vrai après
+l'exécution de ce corps de boucle alors l'invariant est toujours vrai au
+début de chaque itération dans la boucle et l'est encore quand
+on sort de la boucle. La notion s'applique aussi bien aux procédures~: on
+peut utiliser un
+{\em invariant d'entrée} décrivant les positions et orientations du
+\robot\ avant l'appel et un {\em invariant de sortie} décrivant
+ces positions et orientations après l'appel, de sorte que le corps de la
+procédure soit compréhensible sans avoir à consulter tous les points
+d'appel pour savoir dans quelles conditions la procédure est appelée.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+L'ordinateur peut être utilisé pour manipuler des programmes, en
+particulier pour découvrir automatiquement des invariants de forme
+simple en chaque point d'un programme. C'est l'objet de
+l'{\em interprétation abstraite} des programmes
+\cite{CousotIA}. Pour le \robot, par l'exemple, une forme simple
+d'invariant est constituée par l'ensemble de ses orientations possibles,
+en ignorant la position de son crayon, ses coordonnées sur
+l'écran, etc. Les orientations possibles du \robot\ concret peuvent être
+calculées en exécutant le programme avec un \robot\ abstrait qui
+exécute les commandes du \robot\ concret sans bouger
+mais en changeant simplement d'orientation. Pour ce \robot\ abstrait
+la commande {\idt av} ne fait rien car elle ne change pas l'orientation du
+\robot\ concret$\:$; la commande {\idt vd} a le même effet que
+{\idt pqtd}$\:$; etc. Pendant l'exécution abstraite les orientations
+possibles du \robot\ abstrait sont notées comme commentaire
+en chaque point du programme. L'exécution abstraite du programme
+s'arrête après stabilisation des résultats. Par exemple, pour le programme {\idt FriseDeN\_2} (page
+\pageref{prog:FriseDeN_2}), on trouve~:
+
+\input{python/FriseDeN_2_Abstrait.tex}
+
+La règle des signes est un exemple d'interprétation abstraite utilisée
+en mathématiques. Le signe d'une expression peut être
+calculé en utilisant le signe des variables, qui remplace leurs valeurs,
+grâce aux opérations abstraites comme $\oplus + \oplus = \oplus$,
+$\oplus - \ominus = \oplus$, $\oplus \times \ominus = \ominus$, etc. Le prix
+à payer pour cette simplification est évidemment l'imprécision des
+résultats, comme pour $\oplus + \ominus$.
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

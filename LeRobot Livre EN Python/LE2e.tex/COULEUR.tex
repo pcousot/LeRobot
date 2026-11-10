@@ -1,0 +1,239 @@
+\section{Black and white}
+The \robot\ can colour in its drawings.
+We will start with black and white colouring. The command {\idt paint()}
+lets black paint escape from the back of the \robot. The paint
+spreads over the largest possible part of the screen bounded by a black line.
+An example is given in figure \ref{fig:peinyy} below.
+\begin{figure}[htbp]
+ \includevspacePostScript[2.9cm]{PeintureYinYang}{0.95}{0.95}
+ \caption{Steps in painting a drawing}\label{fig:peinyy}
+\end{figure}
+We start by drawing the outline of the area to be painted, then we place the \robot\ in the area to be
+painted or on its edge
+so
+that the back of the \robot, through which the paint escapes, is in the area to be painted.
+The paint spreads line by line above,
+to the left of, to the right of and below the back point of the \robot. The area covered is the largest one
+containing
+the back of the
+\robot\ and
+bounded by a continuous black line. The \robot\ can paint without moving, whether its pen is up or down.
+\needspace{20\baselineskip}
+\begin{exemple}[Yin Yang]{\rm
+ The program below draws the Chinese Yin Yang symbol:
+
+ % figure et programme insecables (a un saut de page, la figure disparaissait)
+ \noindent\begin{minipage}{\linewidth}
+ \vbox to 0pt{\vspace*{25mm}\includePostScript{YinYang}{0.95}{0.95}}
+ \input python/YinYang.tex
+ \end{minipage}
+\noindent $\Box$ }\end{exemple}
+
+A frequent mistake is to leave a hole in the boundary of the area to be painted through
+which the paint will leak. A hole of a single pixel is enough to cause a leak. In case of a leak, we can
+stop the painting by pressing one of the keys
+\begin{picture}(12,12)(0, 2) %touche d'echappement
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny esc}}
+  \end{picture}\hspace{0.3ex} or
+  \begin{picture}(12,12)(0, 2) %touche §
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny \S}}
+  \end{picture}\hspace{0.3ex} or
+  \begin{picture}(12,12)(0, 2) %touche #
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny \#}}
+  \end{picture}\hspace{0.3ex}. The \robot\ goes on drawing.
+  Press one of these keys at least a second time to stop it for good.
+
+\section{Colour}
+
+To draw and paint, the \robot\ has pens in the colours white, yellow, blue, violet, green,
+red, indigo and black. The command {\idt pc} (\underline{p}en \underline{c}olour) chooses the colour of the pen, which is given as a parameter. For example, after the command {\idt pc(red)}
+all lines and painting are in red. The command {\idt pc(black)} returns
+to black lines and painting. The colour names {\idt white}, {\idt yellow}, {\idt blue},
+{\idt violet}, {\idt green}, {\idt red}, {\idt indigo} and {\idt black} are constants
+declared by {\idt LibRobot}, which stand for the colour numbers $0$, $1$, $2$, \ldots, $7$
+(in this order): {\idt pc(red)} is therefore the same thing as {\idt pc(5)}, but much more
+readable. As we saw in chapter 9, the command {\idt pw(n)} chooses
+the thickness of the pen; it is independent of its colour.
+
+On a colour screen, the \robot\ draws and paints with the colours of the first
+line below.
+
+When we do not have a colour screen but a screen with several levels of grey,
+each pixel of which can be more or less dark, the
+colours are represented by greys, in the order white,
+yellow, blue, violet, green, red, indigo and black from lightest to darkest.
+
+When we only have a black and white screen, the colours are represented by
+grey shades made of patterns of white dots and black dots side by side. The order is
+again white,
+yellow, blue, violet, green, red, indigo and black from lightest to darkest. The darker the shades,
+the denser the small dots used to represent them on the screen, as
+can be seen on the second line below:\\[1.8cm]
+\includePostScript{CouleursCouleur}{0.95}{0.95}\ \\[1.8cm]
+\includePostScript{Couleurs}{0.95}{0.95}\ \\
+
+When painting, the edges of the pattern must be drawn with no possible leak, in any colour except white.
+
+\needspace{30\baselineskip} % la fleur et le debut du programme sur la meme page
+\begin{exemple}[Flower in colour]{\rm
+ The program below paints the flower opposite in colour:\\[5cm]
+ \includePostScript{FLeurStyliseeCouleur}{0.95}{0.95}%
+ \vspace*{-5cm}
+ \input python/StylizedFlowerColour.tex
+\noindent $\Box$ }\end{exemple}
+
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercices}{Write \python\ programs to draw and colour in black and white:
+
+\tiret the tilings of the square of figure \ref{fig:pavac} below;
+
+\tiret the mosaics of the Hall of the Abencerrages (14th century) of the Al\-ham\-bra,
+the residence of the Moorish kings in Granada, Andalusia, as they were copied
+by the artist Escher in 1936 \cite{escher1} (figure \ref{fig:mosAlham} on page \pageref{fig:mosAlham}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.3cm]{Pavages.DuCarre}{0.95}{0.95}
+ \caption{Tilings of the square}\label{fig:pavac}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.6cm]{MosaiqueAlhambra123}{0.95}{0.95}
+ \caption{Mosaics of the Alhambra}\label{fig:mosAlham}
+\end{figure}
+\begin{exercices}{Write \python\ programs to draw and colour in col\-our:
+
+\tiret the ball and the three-colour tiling of figure \ref{fig:balpav} (page \pageref{fig:balpav});
+
+\tiret the mosaic of the Al\-ham\-bra \cite{escher1} of figure \ref{fig:mosai4}
+        (page \pageref{fig:mosai4});
+
+\tiret the tiling of disjoint squares of figure \ref{fig:pdcc} (page \pageref{fig:pdcc});
+
+\tiret the tilings of figures
+\ref{fig:PVdV} (page \pageref{fig:PVdV}),
+\ref{fig:PVdV1l} (page \pageref{fig:PVdV1l}),
+\ref{fig:PVdV2l} (page \pageref{fig:PVdV2l})
+and
+\ref{fig:PVdV4l} (page \pageref{fig:PVdV4l})
+using the ornamental motif by N. J. van de Vecht as it is
+painted in figure \ref{fig:mVdV} (page \pageref{fig:mVdV}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+\includevspacePostScript[4.4cm]{BallePavageCouleur}{0.95}{0.95}
+ \caption{Ball, three-colour tiling}\label{fig:balpav}
+\end{figure}
+\vfill
+\begin{figure}[htbp]
+ \includevspacePostScript[5.6cm]{MosaiqueAlhambra4}{0.95}{0.95}
+ \caption{Mosaic of the Alhambra in colour}\label{fig:mosai4}
+\end{figure}
+\begin{figure}[htbp]
+\vspace*{\textwidth}%
+\vspace*{25mm}%
+\includevspacePostScript[8.8cm]{PavageDis.Car.Cou}{0.95}{0.95}%
+\vspace*{-\textwidth}%
+\vspace*{-25mm}%
+\caption{Tiling of disjoint squares in colour}\label{fig:pdcc}
+\end{figure}
+\begin{exercice}{What is the motif used to make the black and white tiling of figure \ref{fig:pavhexond}
+(page \pageref{fig:pavhexond})?
+\noindent $\Box$}\end{exercice}
+\begin{figure}[htbp]
+ \includevspacePostScript[13.7cm]{PavageHexagonalOndule}{0.95}{0.95}
+ \caption{Tiling of the plane in black and white}\label{fig:pavhexond}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corrige}{
+We give one program; the others are in the folder {\idt book/\allowbreak 12\_painting}:
+\input python/AlhambraMosaic3.tex
+\noindent $\Box$}\end{corrige}
+\begin{corrige}{
+The motif of the black and white tiling of the plane of figure \ref{fig:pavhexond}
+(page \pageref{fig:pavhexond}) is given in figure \ref{fig:motpavhexond}
+(page \pageref{fig:motpavhexond}).
+\noindent $\Box$}\end{corrige}
+\begin{figure}[htbp]
+ \includevspacePostScript[7.4cm]{MotifDuPavageHexagonalOndule}{0.95}{0.95}
+ \caption{Motif of the tiling of figure \protect{\ref{fig:pavhexond}}}\label{fig:motpavhexond}
+\end{figure}
+\begin{corrige}{
+We give one program; the others are in the folder {\idt book/\allowbreak 12\_painting}:
+\label{prog:BalleEnCouleur}
+\input python/ColourBall.tex
+\noindent $\Box$}\end{corrige}
+
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+
+We can imagine that, to paint, the \robot\ places a seed on the screen, behind
+its stopping point. If a seed is placed on a pixel of the screen that is already coloured, then
+this seed disappears. In particular, if the initial seed placed by the \robot\ is on a non-white pixel,
+the painting stops immediately.
+If the seed is placed on a white pixel of the screen, then the seed disappears, the white pixel on
+which it was is painted in the colour of the
+pen and four new seeds are placed to the east, to the west, to the north and to the south of the pixel that
+has just been painted. The painting is finished when all the seeds have disappeared.
+
+This painting algorithm is therefore based on the physical representation of the drawing on the screen and
+not on the logical representation which would be obtained by recording all the commands
+executed by the \robot. As a result, leaks sometimes occur that cannot be explained logically but
+that are due to the difference between the logical and physical representations.
+
+Let us take the example of a circle. Mathematically a circle is a continuous line made up
+of an infinite set of dimensionless points. On a computer screen the circle will be
+represented by a discontinuous line made up of a finite set of ``points'' the size
+of a pixel. The mathematical and computer notions of circle are therefore completely
+different.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+ The approximation is acceptable when the size of the pixels is very small compared with
+the diameter of the circle, in the same way as a pair of compasses draws circles that
+give a good picture of the mathematical object.
+However, for very small circles, we
+get some aberrations, visible in the figure below, where the circles shown
+in the small frame at the top left of the figure have been enlarged eight times.
+Note in particular that the very small circles are square!
+
+\includehvspacePostScript[9.8cm,5.2cm]{LoupeCercles}{0.75}{0.75}
+
+\vspace*{1mm}
+On screens with rectangular pixels, circles look
+like ellipses. The program must therefore correct the distortion by
+logically drawing ellipses in order to obtain circles on
+the screen. Circles are closed in the sense that every pixel painted on
+the circle has at least one painted neighbouring pixel in one of the eight
+directions of the compass rose. This is not the case for the
+very elongated ellipses that can be seen in the figure below:
+\vspace*{1mm}
+
+\includehvspacePostScript[9.7cm,4.0cm]{LoupeEllipses}{0.75}{0.75}
+
+The holes in the boundary of the elongated ellipses are points where the paint leaks
+when we want to paint the inside of the ellipse. To avoid these leaks one would have to use
+more complex colouring algorithms based on the logical rather than the physical structure of the
+drawing.
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

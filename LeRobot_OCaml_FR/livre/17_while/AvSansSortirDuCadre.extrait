@@ -1,0 +1,4 @@
+(* Avancer si cela ne fait pas sortir le robot du cadre *)
+let avSansSortir () =
+  if not (tb ()) then
+    av ()

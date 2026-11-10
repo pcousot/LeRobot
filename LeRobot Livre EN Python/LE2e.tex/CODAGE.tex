@@ -1,0 +1,640 @@
+The memory of a computer contains nothing but zeros and ones. So we must be able to
+represent all the information we want to store as sequences of zeros and
+ones. This translation of information into binary is called {\em binary coding}. The digits
+0 and 1 used to represent information are called {\em bits}. We shall
+begin by studying other, older forms of coding.
+
+\section{Morse code}
+The electric telegraph, the ancestor of our telephone, was invented in 1837 by
+the American \href{https://en.wikipedia.org/wiki/Samuel_Morse}{Samuel Morse} \cite{bertho}. The sending telegraph operator has a key, which is a simple spring
+lever used to send short signals (called dots) and long signals (called
+dashes) separated by silences or blanks (corresponding to the absence of a signal). The signal is
+carried along an electric wire, the return path being through the earth. Each
+movement of the key closes the circuit and causes a short or long movement of the receiver,
+which reproduces the signals
+on a paper tape. To send a message, one first shortens it into {\em telegraphic
+style}, then translates each sign (letter, digit, punctuation mark, \ldots) into
+a sequence of dots and dashes separated by blanks according to the {\em Morse code} of figure
+\ref{fig:codemorse} (page \pageref{fig:codemorse}). Seven blanks are left at the end of each word.
+Various other codes are used to mark the beginning and the end of the message, to signal errors,
+etc. Morse's telegraph could transmit about 25 words a minute.
+\begin{figure}[t]
+\vspace{9.3cm}%
+\includePostScript{CodeMorse}{0.95}{0.95}%
+% \vspace{8.8cm} %8.9cm donne la figure sur une seule page !
+ \caption{Morse code}\label{fig:codemorse}
+\end{figure}
+
+\vspace{5.0cm}
+
+\section{Number systems}
+\index{Decimal number system}
+Our way of coding the natural numbers (positive or zero) is a positional, decimal number system.
+It is a decimal system because we use the ten digits 0, 1, \ldots, 9, which are of
+Indo-Arabic origin. It is a positional system because each digit in a number represents a
+value that depends on its position in the number. For example in 1789, the 1 represents 1000,
+the 7 represents 700, the 8 represents 80 and the 9 represents 9. So we have $1789 = 1000 + 700
++ 80 + 9 = (1 \times 10^{3}) +  (7 \times 10^{2}) +  (8 \times 10^{1}) + (9 \times 10^{0})$.
+For the digits after the decimal point we use the inverses. For example $0.147= (1\times 10^{-1})+
+(4\times 10^{-2})+(7\times 10^{-3})=\frac{1}{10}+\frac{4}{100}+\frac{7}{1000}=\frac{100}{1000}+\frac{40}{1000}+\frac{7}{1000}=\frac{147}{1000}$.
+Mathematicians, ancient and modern, have invented many other ways of coding numbers.
+Figure \ref{fig:code1-9} (page \pageref{fig:code1-9}) shows different ways of coding the number
+123,456,789, some of them going back to ancient civilisations \cite{guitel}. The superiority of
+the positional, decimal coding of the natural numbers does not come from the choice of base ten but
+from the ease with which the usual arithmetic operations can be carried out,
+for example with an abacus (long in use, and now gone from
+primary schools).
+
+\begin{figure}[htbp]
+ \includevspacePostScript[18.0cm]{Codages123456789}{0.95}{0.95}
+ \caption{Coding of 123,456,789 in Babylonian, Egyptian, Greek, Roman,\label{fig:code1-9}}
+ \centering{hexadecimal, decimal, octal, ternary and binary number systems}
+\end{figure}
+
+
+\section{Binary coding}
+
+All the information stored in the computer's memory or on disk must
+be represented by sequences of zeros and ones. On microcomputers,
+as they are designed today, the length of these sequences of bits must be a multiple
+of 8. Depending on their length they are given special names, such as {\em byte} for a sequence
+of 8 bits, {\em half-word} for a sequence of 16 bits, {\em word} for 32 bits and {\em double word}
+for 64.
+
+To show that any information can be represented by a sequence of bits (provided
+we know the code), we shall take the example of integers, then that of characters and
+of texts typed on the keyboard.
+
+\subsection{Natural numbers}
+
+\index{Binary number system}
+To represent positive integers by a sequence of bits, it is enough to write them in base
+2. For example:
+\[\begin{array}{lll}
+147 & = &128 +  16 + 2 + 1 \\
+       & = & (1 \times 2^{7}) + (0 \times 2^{6}) + (0 \times 2^{5}) + (1 \times 2^{4}) + (0 \times 2^{3}) + (0 \times 2^{2}) \\
+       &    & + (1 \times 2^{1}) + (1 \times 2^{0})
+\end{array}\]
+is written: \[10010011\] in base two. More generally, the
+ number written: \[a_{n}a_{n-1} \ldots a_{1}a_{0}\]
+ in base two (where each of $a_{n} \ldots a_{0}$ is 0 or 1)
+ is equal to:
+\[(a_{n} \times 2^{n}) + (a_{n-1} \times 2^{n-1}) + \ldots
++ (a_{1} \times 2^{1}) + (a_{0} \times 2^{0})\]
+(where $2^{n}$ is equal to $2$ multiplied by itself $n$ times if $n>0$, and $2^{0} = 1$).
+With this convention we can therefore code
+ on one byte the natural numbers between 0 (00000000) and 255 (11111111).
+
+\subsection{Characters ({\sc ascii} code)}
+\index{Character}
+ The \python\ programs we write are sequences of characters. Each time
+ we press a key on the keyboard, the code of the corresponding character is entered into the
+ computer's memory. The characters corresponding to the digits, to the lower-case
+ or upper-case letters and to common characters such as $+$, $\ast$,
+ $($, $)$, \ldots\ are called
+ ``printable'' characters. Some other characters, which
+cannot be written, are called ``special'' characters. This is the case, for
+example, of the ``control character'' and the ``escape character'',
+which are obtained by pressing the keys
+%touche Ctrl
+\begin{picture}(22,12)(0, 2)
+\put(0,0){\framebox(22,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny Ctrl}}
+\end{picture}\hspace{0.3ex}
+and
+%Esc (touche d'echappement)
+\begin{picture}(14,12)(0, 2)
+\put(0,0){\framebox(14,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny Esc}}
+\end{picture}\hspace{0.3ex}
+respectively.
+These characters (printable or special) are often represented on one byte (8 bits) according to
+an international code called the {\sc ascii} code. The printable characters whose
+{\sc ascii} code lies between 32 and
+126 are given in table \ref{tab:ascii} below. For example, the {\sc ascii} code 65 of the
+character {\cha $\scriptstyle '$A$\scriptstyle '$} is obtained from this table by adding the number 64 of the row
+containing the character {\cha $\scriptstyle '$A$\scriptstyle '$} to the number 1 of the column
+of this character.
+
+\index{ASCII code@{\sc ascii} code}\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{@{}|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|@{}} \cline{2-17}
+\multicolumn{1}{c|}{$+$}       &  \tiny \ 0  & \tiny \ 1 & \tiny \ 2 &\tiny \ 3 &\tiny \ 4 &\tiny \ 5 &\tiny \ 6 &\tiny \ 7
+        &\tiny \ 8 &\tiny \ 9 & \tiny 10 &\tiny 11&\tiny 12 &\tiny 13 &\tiny 14 &\tiny 15 \\ \hline
+\tiny 32    &  \blanc & \texttt{!} & \texttt{"} & \texttt{\#} & \texttt{\$} & \texttt{\%} & \texttt{\&} & \texttt{'}
+        & \texttt{(} & \texttt{)} & \texttt{*} & \texttt{+} & \texttt{,} & \texttt{-} & \texttt{.} & \texttt{/} \\ \hline
+\tiny 48    & \texttt{0} & \texttt{1} & \texttt{2} & \texttt{3} & \texttt{4} & \texttt{5} & \texttt{6} & \texttt{7}
+        & \texttt{8} & \texttt{9} & \texttt{:} & \texttt{;} & \texttt{<} & \texttt{=} & \texttt{>} & \texttt{?} \\ \hline
+\tiny 64    & \texttt{@} & \texttt{A} & \texttt{B} & \texttt{C} & \texttt{D} & \texttt{E} & \texttt{F} & \texttt{G}
+         & \texttt{H} & \texttt{I} & \texttt{J} & \texttt{K} & \texttt{L} & \texttt{M} & \texttt{N} & \texttt{O} \\ \hline
+\tiny 80     & \texttt{P} & \texttt{Q} & \texttt{R} & \texttt{S} & \texttt{T} & \texttt{U} & \texttt{V} & \texttt{W}
+         & \texttt{X} & \texttt{Y} & \texttt{Z} & \texttt{[} & \texttt{$\backslash$} & \texttt{]} & \texttt{\^{ } } & \texttt{\_} \\ \hline
+\tiny 96     & \texttt{`} & \texttt{a} & \texttt{b} & \texttt{c} & \texttt{d} & \texttt{e} & \texttt{f} & \texttt{g}
+         & \texttt{h} & \texttt{i} & \texttt{j} & \texttt{k} & \texttt{l} & \texttt{m} & \texttt{n} & \texttt{o} \\ \hline
+\tiny 112  & \texttt{p} & \texttt{q} & \texttt{r} & \texttt{s} & \texttt{t} & \texttt{u} & \texttt{v} & \texttt{w}
+         & \texttt{x} & \texttt{y} & \texttt{z} & \texttt{\{} & \texttt{|} & \texttt{\}} & \texttt{\~{ }} &  \multicolumn{1}{c}{}\\ \cline{1-16}
+\end{tabular}
+\end{center}
+\caption{Characters with {\sc ascii} codes between 32 and 126\label{tab:ascii}}
+\end{table}
+
+When we say that the character {\cha $\scriptstyle '$A$\scriptstyle '$} has {\sc ascii} code 65, we mean
+that this character is represented in the computer's memory by the byte
+01000001, which also represents the number 65 written in base two. Notice that
+the character zero has code 48. The integer 0 (coded in the machine on one byte as 00000000) therefore
+has a code different from that of the character zero {\cha $\scriptstyle '$0$\scriptstyle '$} (coded in the machine as 00110000). Table
+\ref{tab:asciispec} (page \pageref{tab:asciispec}) shows the {\sc ascii} codes of a few
+special characters.
+
+ \begin{table}[htbp]
+\begin{center}
+\begin{tabular}{@{}|c|c|c|c|c|@{}} \hline
+{\sc ascii} code & 8 &  13 & 27 & 127 \\ \hline
+Keyboard key \rule[-3mm]{0mm}{8mm}&
+%touche d'effacement 8
+\framebox[11.mm][l]{$\leftarrow$~~~}
+&
+\framebox[11.mm][l]{$\hookleftarrow$~~~}
+&
+%Esc (touche d'echappement) 27
+\begin{picture}(14,12)(0, 2)
+\put(0,-1){\framebox(14,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny Esc}}
+\end{picture}
+&
+%touche Del
+\begin{picture}(14,12)(0, 2)
+\put(0,-1){\framebox(14,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny Del}}
+\end{picture}
+\\ \hline
+\end{tabular}
+\end{center}
+\caption{{\sc ascii} codes of a few special characters\label{tab:asciispec}}
+\end{table}
+
+Accented letters such as {\cha $\scriptstyle '$é$\scriptstyle '$} or
+{\cha $\scriptstyle '$ç$\scriptstyle '$} (used in French) do not appear in the {\sc ascii} code, which was designed
+for the English language. Today they are coded according to the international code
+{\sc unicode}, which can represent the characters of all the world's writing systems.
+In the {\sc utf-8} format used by \python\ for the text of programs, {\sc ascii} characters are coded
+on one byte as above, and the other characters on two, three or four bytes.
+For example the letter {\cha $\scriptstyle '$é$\scriptstyle '$} is coded by the two bytes
+11000011 10101001.
+
+\subsection{Text}
+
+A text (such as a \python\ program) is a sequence of characters. The code
+of a text in the machine is the sequence of the codes of the characters that make it up. For example
+the text {\cha "Python"} will be represented in the machine by the sequence of the {\sc ascii} codes of the characters
+ {\cha $\scriptstyle '$P$\scriptstyle '$}, {\cha $\scriptstyle '$y$\scriptstyle '$}, {\cha $\scriptstyle '$t$\scriptstyle '$},
+ {\cha $\scriptstyle '$h$\scriptstyle '$}, {\cha $\scriptstyle '$o$\scriptstyle '$}, {\cha $\scriptstyle '$n$\scriptstyle '$},
+  that is, according to table \ref{tab:ascii}
+(page \pageref{tab:ascii}),
+the sequence 80 (01010000),
+121 (01111001), 116 (01110100), 104 (01101000), 111 (01101111), 110 (01101110).
+The code of the text {\cha "Python"} is therefore
+01010000 01111001 01110100 01101000 01101111 01101110.
+
+\subsection{Character strings}
+\index{Character string}
+
+A program can make the computer handle booleans and integers, but
+also texts, all coded in binary. So as not to confuse the text of the program
+with the texts handled by the program, we shall call the latter ``character
+strings''.
+
+\subsubsection{Use and notation in \protect\python:}
+In \python\ we can handle texts as long as we like, which are called
+``character strings''. They have type {\idt str} (short for {\idt string}). A character string is written between
+straight double quotes, as for example:
+\begin{center}
+{\cha "This\ is\ a\ character\ string"}
+\end{center}
+While it is easy to pick out an identifier or an integer in the text of a
+program, it is harder to recognise a text inside this text! The quotes therefore
+mark off the part of the text that forms the character string from the rest of the program. But this causes
+a problem if the character string contains a double quote. That is why the convention is to put
+a backslash {\cha \char92} in front of the double quotes inside a character string,
+as in:
+\begin{center}
+{\cha "The\ \char92"Python\char92"\ language"}.
+\end{center}
+A character string consisting of a single double quote is therefore written
+{\cha "\char92""} and a string consisting of a single backslash is written
+{\cha "\char92\char92"}. In \python, a character string can also be written between
+single quotes (apostrophes), as in {\cha \textquotesingle{}The\ "Python"\ language\textquotesingle{}}, which avoids
+having to put a backslash in front of the double quotes. \python\ has no special type
+for characters (\underline{char}acters, often called {\em char} in other languages): the character
+{\cha $\scriptstyle '$A$\scriptstyle '$} is simply the character string {\cha "A"}, of length 1.
+
+\subsubsection{Concatenation of character strings:}
+\index{Concatenation}
+If $c_{1}$ and $c_{2}$ are character
+strings then $c_{1}$\ {\idt +}\ $c_{2}$ is the character
+string obtained by concatenating (that is, putting end to end) the character
+strings $c_{1}$ and $c_{2}$. Several strings can be concatenated:
+$c_{1}$\ {\idt +}\ $c_{2}$\ {\idt +}\ \ldots\ {\idt +}\ $c_{n}$ (so the {\idt +} sign, which
+adds two numbers, puts two character strings end to end). For example:
+\begin{center}
+{\cha "The\ "}\ {\idt +}\ {\cha "\char92""}\ {\idt +}\ {\cha "Python"}\ {\idt +}\ {\cha "\char92""}\
+{\idt +}\ {\cha "\ language"}
+\end{center}
+is equal to the character string that is also written:
+\begin{center}
+{\cha "The\ \char92"Python\char92"\ language"}
+\end{center}
+
+\subsubsection{Writing on the robot's drawing and below it:}
+Whether its pen is up or down, the \robot\ can write character strings,
+without moving and without changing its orientation. It can write in the drawing window or in the
+message box located below the drawing window.
+
+The command {\idt label($c$)} tells the \robot\ to write the character string $c$ to the right of the point
+where it stands in its drawing window.
+The command {\idt message($c$)} tells the \robot\ to write the character string $c$ in the
+box provided below the window in which it moves. This erases the previous message
+displayed in this
+box. To give the user time to read the message, one can, if necessary, use the procedure
+{\idt markPause()}, which waits until the user presses a key or clicks the mouse
+button before continuing. The command {\idt clearMessage()} erases this message. The commands {\idt textFont},
+{\idt textStyle} and {\idt textSize} of the {\idt LibRobot} library let you choose a font,
+a style or a character size other than the standard one (on some computers, they have
+no effect).
+
+If $n$ is an integer then {\idt str($n$)} is the character
+string denoting this integer in the usual decimal
+notation (the {\idt LibRobot} library also offers {\idt intToString($n$)},
+which does the same thing). If $b$ is a boolean then {\idt boolToString($b$)} is
+{\cha "True"}
+if $b$ is equal to {\mcl True}, and
+{\cha "False"}
+if $b$ is equal to {\mcl False} (as does {\idt str($b$)}).
+For example if {\idt x} is an integer parameter of a procedure equal to 17 then the
+command:
+\begin{center}
+{\idt label(}{\cha "The\ value\ of\ x\ is\ "}\ {\idt +\ str(x)\ +}\ {\cha "."}{\idt )}
+\end{center}
+writes the concatenation of the character strings
+{\cha "The\ value\ of\ x\ is\ "},
+{\cha "17"}
+and {\cha "."}, that is:
+\begin{center}
+{\idt The value of x is 17.}
+\end{center}
+to the right of the \robot. Notice that the conversion {\idt str(x)} is essential: without it,
+\python\ would refuse to add an integer to a character string and would stop the program with
+the message {\idt TypeError: can only concatenate str (not "int") to str}.
+If {\idt b} is a boolean parameter of a procedure equal to {\mcl True} then the
+command:
+\begin{center}
+{\idt message(}{\cha "b\ =\ "}\ {\idt +\ boolToString(b))}
+\end{center}
+writes the concatenation of the character strings
+{\cha "b\ =\ "}
+and {\cha "True"}, that is:
+\begin{center}
+{\idt b = True}
+\end{center}
+in the message box.
+
+
+\section{Music}
+
+This section is meant for musicians who know how to read music, that is, the way
+music is coded. The \robot\ can play music, in a
+rather limited way it must be said, since it can only play the piano with one finger. To
+code music for the \robot\ we have procedures with parameters. So all we
+need is to set up the correspondence with classical music theory
+\cite{solfege} to define how to write music for the \robot.
+
+\subsection{Note values}
+
+The procedure {\idt note(p, d)} plays
+on the computer's loudspeaker a note of pitch {\idt p} and
+value (duration) {\idt d}. The pitch of the note is coded by an integer {\idt p} as shown in figure
+\ref{fig:codenotes} (page \pageref{fig:codenotes}).
+\begin{figure}[htbp]
+%\includevspacePostScript[13.4cm]{CodageNotes}{0.95}{0.95}
+ \input{CodageNotes.tex}
+ \caption{Coding the pitch of musical notes by integers}\label{fig:codenotes}
+\end{figure}
+The value of the note gives its duration, which is coded by a constant {\idt d} that can be {\idt whole} (whole note),
+{\idt dotted\_whole} (dotted whole note),
+{\idt half} (half note),
+{\idt dotted\_half} (dotted half note),
+{\idt half\_triplet} (half-note triplet),
+{\idt quarter} (quarter note),
+{\idt dot\-ted\_\-quar\-ter} (dotted quarter note),
+{\idt quar\-ter\_\-trip\-let} (quarter-note triplet),
+ {\idt eighth} (eighth note),
+ {\idt dotted\_eighth} (dotted eighth note),
+{\idt eighth\_\-trip\-let} (eighth-note triplet),
+{\idt sixteenth} (sixteenth note),
+{\idt dot\-ted\_\-six\-teenth} (dotted sixteenth note) or
+{\idt thir\-ty\_\-sec\-ond} (thirty-second note). These constants, declared in the {\idt LibRobot} library,
+are numbers written with a decimal point (as we shall explain in chapter 19), which
+give the duration of the note in beats: a {\idt quarter} is worth {\idt 1.0},
+an {\idt eighth} is worth {\idt 0.5}, a {\idt whole} is worth {\idt 4.0}, etc.
+The relative duration of a {\idt dot\-ted\_\-whole} is
+one and a half times that of a
+ {\idt whole}. The relative duration of a {\idt whole} is twice that of a
+ {\idt half}, three times that of a {\idt half\_\-trip\-let}, \ldots\
+Other note values can be defined, for example
+{\idt sixty\_fourth = 0.0625} (sixty-fourth note).
+
+ \subsection{Tempo}
+
+ The tempo,
+ that is, the degree of speed or slowness with which the piece of music must be played,
+ determines the absolute duration of the different note values. The tempo is set
+ by the procedure {\idt metronome($n$)}, which gives the number $n$ of beats of the
+ metronome per minute, a quarter note being played on each beat. For example
+ {\idt metronome(60)} means that 60 quarter notes must be played per minute. Tempos
+ are usually given by Italian terms (adagio, allegro, prestissimo, \ldots) which
+ are placed at the beginning of a piece, above the staff. They are defined
+ in the {\idt LibRobot} library by the following constant declarations:
+
+\input python/Tempos.tex
+
+\subsection{Notes}
+
+\noindent The numbering of the notes in figure \ref{fig:codenotes} (page \pageref{fig:codenotes}) is
+not easy to remember. That is why we shall code the notes by
+an integer expression over constants that are easy to remember.
+
+A note is defined by its name $n$ (namely C, D, E, F, G, A, B), its possible
+accidental $a$ (that is, a sign that changes the sound of the note it is attached to,
+which can be the flat $\flat$ (which lowers the note by a semitone),
+the sharp $\sharp$ (which raises the note by a semitone) or
+the natural $\natural$ (which cancels the effect of the sharp or the flat)) and
+its octave $o$ (which tells to which series of notes with the same name this note belongs).
+We code the octaves from low to high by the integers -3, -2, \ldots, 3, 4,
+octave 0 starting with the C (middle C) at the centre of the piano keyboard. The
+following constants are declared in the {\idt LibRobot} library:
+
+\input python/Notes.tex
+
+\noindent The number of the note as defined in figure \ref{fig:codenotes}
+(page \pageref{fig:codenotes}) is given by the value of the integer expression
+$o \ast {\idt octave} + n + a$. If the note has no accidental, its code is simply
+$o \ast {\idt octave} + n$. For example the C in the middle of the piano keyboard corresponds to
+$o = 0$, $n = ${\idt C}, that is $0 \ast ${\idt octave}$ + 0 = 0$. The D sharp one octave higher
+has code $1 \ast ${\idt octave}$ + ${\idt D}$ + ${\idt sharp}$
+= 1 \ast 12 + 2 + 1 = 15$. The neighbouring D flat
+has code $1 \ast ${\idt octave}$ + ${\idt D}$ + ${\idt flat}$
+= 1 \ast 12 + 2 + (-1) = 13$. When the pitch of a note is given by an expression,
+we simply write this expression as the first parameter of {\idt note}, as in {\idt note(D + octave + sharp, quarter)}.
+
+\subsection{Rests}
+
+The procedure {\idt rest($s$)} interrupts the sound for a relative duration set by
+the rest value $s$, which can be one of the constants
+  {\idt whole\_rest},
+  {\idt dotted\_half\_rest},
+  {\idt half\_rest},
+  {\idt quarter\_rest},
+  {\idt dot\-ted\_\-quar\-ter\_\-rest}\footnote{\ It is not customary to dot the quarter rest.},
+  {\idt eighth\_\-rest},
+  {\idt dotted\_eighth\_rest},
+  {\idt sixteenth\_rest}
+or  {\idt thirty\_second\_rest}.
+
+\subsection{Dynamics}
+
+Dynamics are the different degrees of loudness through which one or more sounds, a passage
+or a whole piece can go. The procedure {\idt dynamics($n$)} sets the dynamics with which
+the rest of the piece must be played. The possible dynamics terms $n$ are, from the softest to the loudest:
+{\idt pia\-nis\-sis\-si\-mo},
+{\idt pia\-nis\-si\-mo},
+{\idt piano},
+{\idt mezzo\_piano} (or {\idt mezza\_voce}),
+{\idt mezzo\_forte},
+{\idt forte},
+{\idt fortissimo} or
+{\idt for\-tis\-sis\-si\-mo}.
+
+\begin{exemple}[Au clair de la lune]{\rm
+``Au clair de la lune'' (``By the light of the moon''), said to have been composed by the musician Jean-Baptiste Lully,
+is probably the most famous of all French children's songs:
+
+%\includevspacePostScript[4.7cm]{AuClairDeLaLune}{0.95}{0.95}
+\input{python/AuClairDeLaLuneChanson.tex}
+
+\noindent The program below makes the computer play it. To
+save space, we have written two notes per line, with the corresponding syllables
+of the (French) lyrics in comments (those of the first and second lines of verse are separated by a
+slash {\cmt /}):
+
+ \input python/AuClairDeLaLune.tex
+\noindent $\Box$ }\end{exemple}
+
+
+\newpage
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercices}{\ \\
+\vspace{-\baselineskip}
+
+\sloppy
+\tiret  Write procedures {\idt startOfTransmission}, {\idt a}, \ldots, {\idt z}, {\idt c0},
+\ldots, {\idt c9} (digits), {\idt fullStop}, {\idt comma},
+ {\idt semicolon}, {\idt colon}, {\idt questionMark},
+ {\idt exclamationMark}, {\idt hyphen}, {\idt apostrophe},
+  {\idt slash},
+ {\idt error}, {\idt endOfTransmission}, {\idt endOfWord} and
+ {\idt newLine} (go to the next line), then use them to code
+ messages in Morse, each sign of the plain message being coded by calling one
+ of these procedures. For example ``{\em coded message}'' will be translated into the sequence of instructions
+`` {\ttfamily\idt c(); o(); d(); e(); d(); endOfWord(); newLine();
+ m(); e(); s(); s(); a(); g(); e(); endOfWord()}''. You can add sound by using the following procedures
+ of the \robot:
+ \begin{list}{$\scriptscriptstyle\bullet$}{
+}
+   \item {\idt beep()} produces a short sound;
+   \item {\idt longBeep()} produces a long sound;
+   \item {\idt delay({\rm\em t})} waits for {\em t} seconds ({\em t} can be a number written with a decimal point, as in {\idt delay(0.5)}).
+ \end{list}
+
+ \tiret Before the invention of electricity, France used the optical (semaphore) telegraph invented in
+ 1793 by Citizen Claude Chappe. The telegraph consists of three articulated wooden arms
+ at the top of a mast set up on a tower on a hilltop or on a church steeple.
+ As soon as he sees through his telescope a sign of activity at the nearest station, the {\em telegraph operator}
+ hurries to work the arms of his own machine in turn to pass on the message (without understanding it)
+  to the next station. Step by step the message reaches its destination. It is in a
+  way an improved version of the smoke signals of the American Indians! After a first
+  trial on 12 July 1793, the first line was opened between Paris and Lille on 17 August 1794
+  \cite{bertho}. The signals of Chappe's optical telegraph could be decoded
+  according to several codes. The alphabetic code is given in figure \ref{fig:chappe} (page
+  \pageref{fig:chappe}). Write a program that displays the signals successively, one by one,
+  and sends the message ``Paris est tranquille et les bons citoyens sont contents''
+  (``Paris is calm and the good citizens are content''),
+  which Bonaparte had broadcast immediately after the coup d'état of 18 Brumaire (9--10 November
+  1799).
+
+  To leave the signal visible for some time, use the procedure
+  {\idt delay({\rm\em t})}, which waits for {\rm\em t} seconds. To clear the screen
+  between signals, use the procedure {\idt bg(white)}, which paints the background of the screen
+  white (or another colour, depending on the parameter) and puts the \robot\ back in its initial state
+  (visible at the centre of the screen, facing north, black pen of width 1 down, with a movement
+  grid of (12~$\times$~12)).
+
+  \tiret Write a \python\ program that translates the letters of the alphabet into the phonetic alphabet
+  according to the international code of table \ref{tab:alphone} (page \pageref{tab:alphone}).
+
+   \tiret Write a \python\ program that encrypts and decrypts messages using a simple
+   secret code, obtained for example by a permutation of the letters of the alphabet.
+
+\noindent $\Box$}\end{exercices}
+\begin{exercices}{\ \\
+\vspace{-\baselineskip}
+
+\tiret What is the 16-bit binary representation of the number written 127
+in base 10?
+
+\tiret What is the decimal notation of the positive integer represented
+in binary on 16 bits by 0011010101010101?
+
+\tiret What text is represented in {\sc ascii} code by the following bytes:
+01000100 01100101 01110011 01100011 01100001
+01110010 0111\-0100 0110\-0101 0111\-0011?
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[9.6cm]{TelegrapheChappe}{0.95}{0.95}
+ \caption{Alphabet of Chappe's optical telegraph}\label{fig:chappe}
+\end{figure}
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{@{}|l|l||l|l||l|l||l|l||l|l|@{}} \hline
+A & Alpha   & B  & Bravo & C & Charlie & D & Delta   & E  & Echo \\\hline
+F & Foxtrot  & G & Golf   & H  & Hotel & I & India & J & Juliet \\\hline
+K  & Kilo & L & Lima & M & Mike   & N  & November & 0 & Oscar \\\hline
+P & Papa   & Q  & Quebec & R & Romeo  & S & Sierra   & T  & Tango \\\hline
+U & Uniform & V & Victor   & W  & Whiskey & X & Xray & Y & Yankee   \\\hline
+Z  & Zulu &   \multicolumn{8}{c}{}   \\\cline{1-2}
+\end{tabular}
+\end{center}
+\caption{International phonetic alphabet}\label{tab:alphone}
+\end{table}
+\begin{exercice}{Songs are an inexhaustible source of exercises
+ \cite{boutet}, \cite{sabatier1}, \cite{sabatier2}, \cite{sabatier3}.
+ For example, write
+\python\ programs to play {\em Green\-sleeves\/} (figure \ref{fig:Greensleeves}, page \pageref{fig:Greensleeves})
+and {\em O Tannenbaum\/} (figure \ref{fig:Tannenbaum}, page \pageref{fig:Tannenbaum}).
+You can also scroll the score line by line on the screen
+while it is being played by the computer, drawing the staff
+and the notes as in figure \ref{fig:RepNotes} (page \pageref{fig:RepNotes}).
+\noindent $\Box$}\end{exercice}
+\begin{figure}[htbp]
+ %\includevspacePostScript[12.4cm]{Greensleeves}{0.95}{0.95}
+ \input{python/GreensleevesChanson.tex}
+ \caption{Greensleeves (Irish song)}\label{fig:Greensleeves}
+\end{figure}
+\begin{figure}[htbp]
+ %\includevspacePostScript[2.8cm]{OTannenbaum}{0.95}{0.95}
+ \input{python/OTannenbaumChanson.tex}
+ \caption{O Tannenbaum (``O Christmas Tree'', German song)}\label{fig:Tannenbaum}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[2.3cm]{EcrireEtJouerMus}{0.95}{0.95}
+ \caption{Staff and notes drawn on the computer screen}\label{fig:RepNotes}
+\end{figure}
+\begin{corrige}{
+We give one program, the others being in the folder {\idt book/\allowbreak 18\_coding}:
+\input python/MorseCode1.tex
+
+The same folder contains various possible improvements of this program, in particular
+automatic line wrapping ({\idt MorseCode2}).
+The procedures {\idt a}, \ldots, {\idt z} and {\idt c0}, \ldots, {\idt c9} have
+lower-case names because the custom in \python\ is to begin procedure names with a lower-case letter,
+names beginning with a capital letter usually being reserved for something else.
+\noindent $\Box$}\end{corrige}
+\begin{corriges}{\ \\
+\vspace{-\baselineskip}
+
+\tiret The 16-bit binary representation of 127 is
+00\-00\-00\-00\-01\-11\-11\-11.
+
+\tiret The number represented by the half-word 0011010101010101 is written
+13653 in base 10.
+
+\tiret The sequence of bytes 01000100 01100101 01110011 01\-10\-00\-11 01\-10\-00\-01
+01\-11\-00\-10 01110100 01100101 01110011,
+that is, in decimal notation, 68 101 115 99 97 114 116 101 115,
+represents the character string
+{\cha $\scriptstyle '$Descartes\idt $\scriptstyle '$}.
+
+\noindent $\Box$}\end{corriges}
+\begin{corrige}{
+We give one program, many other songs being programmed in the folder
+{\idt book/\allowbreak 18\_coding} and in its sub-folder {\idt songs}:
+\input python/OTannenbaum.tex
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+
+In addition, we explain two representations of signed integers, the second
+being the more widely used.
+
+\paragraph*{Sign-and-magnitude representation of signed integers:\ }
+\index{Binary number system}
+To code a signed integer (positive or negative) on $n$ bits, one can reserve one bit
+for the sign and code the absolute value of the integer on the remaining $n - 1$ bits.
+Let us adopt the convention
+of putting the sign first, choosing 0 for the sign $+$ and 1 for the sign $-$.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+The code of
+$-10$ on one byte will be 10001010, that is, 1 for the sign followed by 0001010 for the absolute value $10$
+of $-10$. With
+this convention one can code on one byte the integers between $-127$ (11111111) and $127$
+(01111111). The integer zero is represented by 00000000 ($+0$) or by 10000000 ($-0$).
+
+\paragraph*{Two's complement representation of signed integers:\ }
+In the two's complement representation on $n$ bits, the positive numbers
+strictly less than $2^{n-1}$ are
+represented as before in base 2 on $n-1$ bits, the first (sign) bit being
+zero. A negative number $-x$
+such that $x \leq 2^{n-1}$ is represented by a first sign bit equal to 1 followed by the
+representation of the positive number $p < 2^{n-1}$ such that $-x = -2^{n-1} + p$,
+coded
+on $n - 1$ bits. For example, to code $-1$ on
+one byte, we write $-1 = -128 + 127$ and code 127 on 7 bits, which gives 1111111, which we
+precede by 1 to get 11111111. With this convention we can also code
+$-128 = -128 + 0$, which gives the code 10000000. This method makes it possible to
+code on one byte all the signed integers between $-128$ and $+127$. \index{Integer}On 16 bits, one can
+code the integers between $-32768$ and $32767$, which were the integers
+of the first microcomputers. On 32 bits one can code the integers between
+$-2\,147\,483\,648$ and $2\,147\,483\,647$. This representation leads to very simple algorithms
+for addition and subtraction. Moreover the algorithm for coding a negative number
+$-x$ is also simple. We code the positive number $x$ on $n$ bits, then invert the bits,
+0 into 1 and 1 into 0, then add 1. For example to code $-127$, we code 127 as 01111111, then
+invert all the bits, which gives 10000000, and add 1 to get 10000001.
+The integers of type {\idt int}
+in \python\ are not limited to 32 or 64 bits: \python\ uses as many bits as
+needed (within the limits of the computer's memory), so that {\idt 2 ** 100}
+(2 multiplied by itself 100 times) is exactly
+$1\,267\,650\,600\,228\,229\,401\,496\,703\,205\,376$.
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage                 % Si on termine le chapitre par une page blanche
+\thispagestyle{empty}
+

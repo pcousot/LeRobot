@@ -1,0 +1,358 @@
+\section{Size of the robot's movement grid in polar coordinates}
+The horizontal size $X$ and vertical size $Y$ of a square of the \robot's movement
+grid can be set in Cartesian coordinates by the commands
+{\idt gsX(}$X${\idt )} and {\idt gsY(}$Y${\idt )}, as shown in figure \ref{fig:lgrt} below.
+
+\begin{figure}[h]
+ \includevspacePostScript[4.0cm]{LgrtExplique}{0.95}{0.95}
+ \parbox{13.7cm}{\caption{The \protect\robot's movement grid defined by}\label{fig:lgrt}}
+ \centering{{\idt gsX(}$X${\idt );\ gsY(}$Y${\idt )}\ or\ {\idt gsRT(}$R${\idt ,} $T${\idt )}\Large\strut}
+\end{figure}
+
+The size of a square of the grid can also be set in {\em polar
+coordinates} \index{Polar coordinates}by the command
+{\idt gsRT(}$R${\idt ,} $T${\idt )}, giving the length $R$ of the diagonal of this square measured
+in pixels and
+the angle $T$, in degrees, that this diagonal makes with a horizontal line,
+as illustrated in figure \ref{fig:lgrt} above. The command {\idt gsRT} has two
+parameters, which are integers or rational numbers, as in {\idt gsRT(50, 70)} or
+{\idt gsRT(50.5, 22.5)}.
+
+\begin{exemple}[Isosceles triangle]{\rm
+The program below draws an isosceles triangle with two angles equal
+to 70 degrees and two sides equal to 50 pixels:
+
+{\raggedright
+ %\vspace{\baselineskip}
+ \vbox to 0pt{\includevspacePostScript[4cm]{TriangleIsocele}{0.95}{0.95}}%
+ \input python/IsoscelesTriangle.tex
+ }
+\noindent $\Box$ }
+\end{exemple}
+
+\section{Rotations}
+\index{Rotation}The command {\idt rot(}{\em t}{\idt )} makes the \robot\ perform a \underline{rot}ation of {\em t} degrees,
+{\em t} being an integer or rational expression (for example {\idt rot(15)}, {\idt rot(-90)} or {\idt rot(22.5)}).
+If the value of the expression {\em t} is positive, the robot turns on the spot
+{\em counterclockwise}\index{Positive direction}\footnote{\ The counterclockwise direction is what mathematicians
+call the {\em positive} (or {\em trigonometric}) {\em direction}.}. If the value of the expression {\em t} is negative, it turns on
+the spot clockwise. This command does not change the position of the \robot\ but it changes
+its orientation. The length of the segment drawn by the next {\idt fd()} also stays the same. To achieve this, the size of the
+grid square must be changed accordingly. This is illustrated in figure \ref{fig:rtexp}
+(page \pageref{fig:rtexp}), which shows a grid square in dotted lines before and after successive rotations of
+15 degrees (the \robot\ starting each time from the lower left corner of the square, and the rotation being followed by an {\idt fd()} to show
+that the length of the segment drawn does not change). In this figure, the
+successive diagrams are arranged from top to bottom and from left to right.
+\begin{figure}[htbp]
+ \includevspacePostScript[17.7cm]{RTexplique}{0.95}{0.95}
+ \caption{Successive rotations and moves {\idt rot(15);\ fd()}}\label{fig:rtexp}
+\end{figure}
+
+When using the command {\idt rot}, we advise you to avoid the commands {\idt etr()},
+{\idt qtr()}, {\idt tetr()}, \ldots, {\idt fne()}, {\idt fse()}, \ldots, replacing them by {\idt rot} with a suitable
+parameter (only the commands {\idt fn()}, {\idt fs()}, \ldots\ are useful for absolute orientations).
+By using the command {\idt rot} exclusively, there is no need to take
+into account the changes of coordinate system that it causes.
+\begin{exemple}[Pentagon]{\rm
+The program below draws a pentagon by repeating five times the drawing of a segment followed
+by a rotation of $(360 / 5) = 72$ degrees:
+
+ {\raggedright
+ \vbox to 0pt{\includevspacePostScript[6cm]{Pentagone_2}{0.95}{0.95}}%
+ \input python/Pentagon_2.tex
+ \vspace{1.6cm}% le listing Python est plus court que la figure placee a cote
+ }
+\noindent $\Box$ }\end{exemple}
+\begin{exemple}[Rosette of pentagons]{\rm
+The rosette below is obtained by superimposing ten pentagons, each turned by 36 degrees from the previous one:
+
+ {\raggedright
+% \vspace{\baselineskip}
+ \vbox to 0pt{\includevspacePostScript[6cm]{RosaceDePentagones}{0.95}{0.95}}%
+ \input python/PentagonsRosette.tex
+ }
+\noindent $\Box$ }\end{exemple}
+
+\section{Translations}
+\index{Translation}
+Whatever the orientation of the \robot, the expression {\idt valFdl()}, of type {\idt float}, has as its value the length
+ (measured in pixels) of a segment that would be drawn by an {\idt fd()}.
+
+ To draw a segment of a different length, one can use the command {\idt fdl(}$E${\idt )}
+ (\underline{f}orwar\underline{d} by a \underline{l}ength), which
+ takes as parameter an expression $E$ (integer or rational) whose value is the
+ length of this segment
+ in pixels. If this value is positive, the segment is drawn moving forward in the
+ current direction of the \robot. If this value is negative, it is drawn moving backward. The \robot\
+ is moved to the end of the segment and does not change its orientation. The size
+ of a grid square is changed to allow this move (if the pen is up)
+ or this drawing (if the pen is down). Consequently, the segment can be extended
+ by a segment of the same length using an {\idt fd()} command.
+
+ For example, the sequence of commands {\idt fdl(20);\ rot(90);\ fd();\
+rot(90);\ fd();\ rot(90);\ fd()} draws a square with sides of
+20 pixels.
+\begin{exemple}[Polygonal Greek key]{\rm
+The polygonal frieze below is obtained by replacing the drawing
+of each side of the polygon by that of the Greek key (meander):
+
+\vspace{\baselineskip}
+
+\includevspacePostScript[6.5cm]{GrecquePolygonale}{0.95}{0.95}
+\input python/PolygonalGreekKey.tex
+\noindent $\Box$ }\end{exemple}
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %-----------------------------------------------------------
+%%% EXOS lgrt
+\begin{exercices}{Write \python\ programs using the command {\idt gsRT}
+to make the following drawings:
+
+\tiret an equilateral triangle;
+
+\tiret the pentagon, the crosses or the spider's web of figure \ref{fig:PtCrCrTa} (page \pageref{fig:PtCrCrTa});
+
+\tiret the geometric patterns after Horemis \cite{horemis} of figure \ref{fig:horemis} (page \pageref{fig:horemis});
+
+\tiret the coloured tilings of figure \ref{fig:pavtrilo} (page \pageref{fig:pavtrilo}).
+
+The very many tilings given by Grünbaum and Shephard \cite{grunbaum} are the source
+of countless exercises.
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[3.1cm]{PtCrCrTa}{0.95}{0.95}
+ \caption{Pentagon, crosses and spider's web}\label{fig:PtCrCrTa}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[6.0cm]{Horemis}{0.95}{0.95}
+ \caption{Geometric patterns after Horemis}\label{fig:horemis}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[3.2cm]{EtoilesORCVSpi}{0.95}{0.95}
+ \caption{Stars, decorated octagon and spirolateral}\label{fig:etocsp}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[10.2cm]{PavagesTriLos}{0.95}{0.95}
+ \caption{Tilings with triangles, rhombuses and squares}\label{fig:pavtrilo}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.4cm]{RosacesPolygonales}{0.95}{0.95}
+ \caption{Polygonal rosettes}\label{fig:rospol}
+\end{figure}
+%%% EXOS rot
+\begin{exercices}{Write \python\ programs using the command {\idt rot}
+to make the following drawings:
+
+\tiret the stars, the decorated octagon or the spirolateral curve of order 3 at 135 degrees of figure
+         \ref{fig:etocsp} (page \pageref{fig:etocsp}), the latter being obtained by moving forward once, then twice, then
+		 three times, turning by 135 degrees each time, and repeating these moves until
+		 the curve closes up;
+
+\tiret the regular polygons of figure
+         \ref{fig:polyreg} (page \pageref{fig:polyreg}), the number of sides being a parameter of the drawing
+		 procedure;
+
+\tiret the stars of figure
+         \ref{fig:etoiles} (page \pageref{fig:etoiles}), the number of points being a parameter of the drawing
+		 procedure;
+
+\tiret the protractor of figure
+         \ref{fig:rapport} (page \pageref{fig:rapport}), using
+		 the command {\idt label(\allowbreak intToString(}{\em e}{\idt ))}, which writes the value of the integer expression {\em e}
+		 to the right of the current position of the \robot\ (the irregularity of the graduations
+		 is due to rounding errors in integer screen coordinates, which make it impossible to
+		 draw straight lines of arbitrary slope);
+
+\tiret the tiling of the plane with hexagons or stars of figure
+         \ref{fig:pavhexeto} (page \pageref{fig:pavhexeto});
+
+\tiret the Escher-style \cite{escher1} tiling of the disc and of the triangle of figure
+         \ref{fig:pavdistri} (page \pageref{fig:pavdistri});
+
+\tiret the tiling of the disc using Voderberg's tile \cite{voderberg} of figure
+         \ref{fig:voder1} (page \pageref{fig:voder1});
+
+\tiret the spirals using Voderberg's tile \cite{voderberg} of
+         figure \ref{fig:voder2} (page \pageref{fig:voder2}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[7.3cm]{PolygonesReguliers}{0.95}{0.95}
+ \caption{Regular polygons}\label{fig:polyreg}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[1.9cm]{Etoiles}{0.95}{0.95}
+ \caption{Stars}\label{fig:etoiles}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[6.8cm]{Rapporteur}{0.95}{0.95}
+ \caption{Protractor graduated in degrees}\label{fig:rapport}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[6.0cm]{PavageHexagonesEtoiles}{0.95}{0.95}
+ \caption{Tiling of the plane with hexagons and stars}\label{fig:pavhexeto}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[9.7cm]{PavageDisqueTriangle}{0.95}{0.95}
+ \caption{Escher-style tiling of the disc and of the triangle}\label{fig:pavdistri}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[6.5cm]{Voderberg1}{0.95}{0.95}
+ \caption{Voderberg's tile and tiling of the disc}\label{fig:voder1}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[6.2cm]{Voderberg2}{0.95}{0.95}
+ \caption{Voderberg spirals}\label{fig:voder2}
+\end{figure}
+%%% EXOS developpements de solides
+\begin{exercices}{Write \python\ programs using the commands {\idt gsRT} and {\idt rot}
+to draw the nets of the following solids:
+
+\tiret the Platonic solids (regular cube, tetrahedron, octahedron, dodecahedron and
+icosahedron) of figure \ref{fig:platon} (page \pageref{fig:platon});
+
+\tiret the great and small rhombicuboctahedra and the truncated tetrahedron of figure
+\ref{fig:devsol} (page \pageref{fig:devsol}).
+
+The nets of solids given by Cundy and Rollett \cite{cundy}
+are the source of many exercises.
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.5cm]{SolidesDePlaton}{0.95}{0.95}
+ \caption{Nets of the Platonic solids}
+ \label{fig:platon}
+\end{figure}
+\begin{figure}[htbp]
+\includevspacePostScript[6.0cm]{DevelopSolides}{0.95}{0.95}
+\caption{Nets of the great and small rhombicuboctahedra}\label{fig:devsol}
+\centering{and of the truncated tetrahedron}
+\end{figure}
+
+%%% EXOS rot + fdl + drawToReal
+\begin{exercices}{Write \python\ programs using the commands {\idt rot}
+and {\idt fdl} to make the following drawings:
+
+\tiret the polygonal rosettes of figure \ref{fig:rospol} (page \pageref{fig:rospol});
+
+\tiret the ``jolygons'' (from the French {\em joli}, ``pretty'', and {\em polygone}) of figure \ref{fig:jgones} (page \pageref{fig:jgones}), obtained by drawing
+successive segments whose length decreases by 5\,\% each time, two successive segments making
+an angle of $\theta$ degrees; $\theta$ being chosen equal to 15, 60, 72, 76, 89, 92,
+118, 175 and 144 degrees respectively
+for the jolygons
+%de la figure \ref{fig:jgones} (page \pageref{fig:jgones})
+taken from left
+to right and from top to bottom;
+
+\tiret the plane curves of figure \ref{fig:courbpo} (page \pageref{fig:courbpo}),
+defined by a polar equation, as follows:
+ \begin{list}{$\scriptscriptstyle\bullet$}{
+}
+   \item the limaçon of Pascal, $\rho = a + b \cos{\theta}$ with
+   $a \neq 0$, $b \neq 0$ and $\theta \in [0, 2\pi]$ (in the example, $a = 40$ and $b = 80$),
+   \item the three-petalled rhodonea (rose curve), $\rho = a \cos{n \theta}$ with
+    $a = 60$, $n = 3$ and $\theta \in [0, \pi]$,
+   \item Moritz's curve, $\rho = a \cos{\frac{9}{10} \theta}$ with
+    $a = 60$ and $\theta \in [-10 \pi, 10 \pi]$;
+   \end{list}
+
+\tiret the plane curves defined by the Cartesian equations $y = \sin{x}, x \in [-2\pi, 2\pi]$
+  (figure \ref{fig:sin} below) and $y = \cos{x}, x \in [-2\pi, 2\pi]$, using the commands {\idt moveToReal}
+  and {\idt drawToReal} (\underline{move to} and \underline{draw to} a point with \underline{real}-number coordinates). The command {\idt drawToReal(x, y)},
+  where {\idt x} and {\idt y} are rational expressions,
+  draws a segment (if the pen is down) from the current position of the
+  \robot\ to the point with Cartesian coordinates $(x,\ y)$ and moves the \robot\ to
+  this new position $(x,\ y)$. The command {\idt moveToReal(x, y)} does the
+  same without drawing. The functions {\idt sin} and {\idt cos} and the constant {\idt pi}
+  are explained in the addendum of chapter \ref{ch:rec}.
+   Many other examples of curve drawing are given in \cite{LT}.
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.7cm]{Sinus}{0.95}{0.95}
+ \caption{Cartesian curve $y = \sin{x}, x \in [-2\pi, 2\pi]$}\label{fig:sin}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[12.0cm]{Jolygones}{0.95}{0.95}
+ \caption{Jolygons at 15, 60, 72, 76, 89, 92, 118, 175 and 144 degrees}\label{fig:jgones}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.3cm]{CourbesPolaires}{0.95}{0.95}
+ \caption{Limaçon of Pascal, three-petalled rhodonea, Moritz's curve}\label{fig:courbpo}
+\end{figure}
+%%% CORRIGES lgrt
+\begin{corrige}{
+We give the program that draws the spider's web of figure \ref{fig:PtCrCrTa}
+(page \pageref{fig:PtCrCrTa}), the other programs being in the folder
+{\idt book/\allowbreak 20\_polar\_grid}:
+\input python/SpiderWeb.tex
+\noindent $\Box$}\end{corrige}
+%%% CORRIGES rot
+\begin{corrige}{
+We give the procedure that draws a regular polygon with $n$ sides (figure \ref{fig:polyreg},
+page \pageref{fig:polyreg}), the other programs being in the folder
+{\idt book/\allowbreak 20\_polar\_grid}:
+\input python/RegularPolygon.tex
+\noindent $\Box$}\end{corrige}
+%%% CORRIGES developpements de solides
+\begin{corrige}{
+We give the program that draws the net of the truncated tetrahedron, the other
+programs being in the folder {\idt book/\allowbreak 20\_polar\_grid}:
+\input python/TruncatedTetrahedron.tex
+\noindent $\Box$}\end{corrige}
+%%% CORRIGES rot + fdl
+\begin{corrige}{
+We give the program that draws the jolygon at 175 degrees; the other jolygons are obtained by changing the
+value of the constant {\idt angle}. The other programs are in the folder
+{\idt book/\allowbreak 20\_polar\_grid}.
+\input python/Jolygon175.tex
+\noindent $\Box$}\end{corrige}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+The command {\idt gsRT(r, t)} sets the length {\idt r} of the diagonal of a grid
+square (in pixels) and the angle {\idt t}, in degrees, that this diagonal makes
+with a horizontal line. It is equivalent to:
+\begin{center}
+{\idt gsX(r * cos(t / 180 * pi))}\\
+{\idt gsY(r * sin(t / 180 * pi))}
+\end{center}
+but avoids using trigonometric functions.
+The angle {\idt t}, between 0 and 90, defines the north-east orientation, which coincides with east when {\idt t} is {\idt 0}
+and with north when {\idt t} is {\idt 90}.
+
+The command {\idt rot(t)} makes the \robot\ turn on the spot through an angle of {\idt t} degrees to the left,
+in the positive (trigonometric) direction, that is counterclockwise, if {\idt t} $> 0$, and to the right, clockwise,
+if {\idt t} $ < 0$. The command {\idt fdl(l)} makes the \robot\ move straight forward (if {\idt l} $> 0$)
+or backward (if {\idt l} $< 0$) by {\idt l} times the length of the side of a pixel
+of the screen.
+
+These commands {\idt rot} and {\idt fdl} are directly inspired by the ``turtle'' graphics of
+{\sc logo}. They change the coordinate system and the orientation of the \robot\ so as to remain compatible
+with the use of Cartesian or polar coordinates.
+
+The {\sc logo} language was designed by Seymour Papert at the end of the 1970s \cite{logo}.
+It has many similarities with {\sc lisp}
+\cite{lisp}, in particular the interpretation of data representing instructions,
+dynamic scoping of identifiers and the list structure.
+Interpreting data as programs entails some subtleties in
+writing programs (such as the use of the {\idt quote} function, \cite{wilson}) which are not
+within the reach of all beginners in computer science.
+Dynamic scoping of identifiers \cite{wilson}
+has largely been abandoned, and the list structure
+is almost always supplemented by arrays in modern {\sc lisp}s such as
+{\sc common lisp}, which in this follow the languages descended from {\sc algol 60}
+\cite{algol60}, such as \pascal\ or {\sc ada}. The \python\ language also offers
+both lists and arrays, does not interpret its data as
+instructions (unless explicitly asked to) and uses static scoping of identifiers.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage                 % Si on termine le chapitre par une page blanche
+\thispagestyle{empty}

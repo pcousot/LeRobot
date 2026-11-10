@@ -1,0 +1,13 @@
+open LibRobot
+
+let () =
+  ...
+  (* 10 *)
+  vg (); (* ERREUR : vd *)
+  vg (); pqtd (); pqtd (); av (); av (); av ();
+  pqtd (); av (); av (); pqtd (); av (); vd (); vg ();
+  ...
+  (* Dessiner le ventre *)
+  vg (); pqtg (); (* ERREUR : pqtd *) av (); av (); av ();
+  ...
+  st ()

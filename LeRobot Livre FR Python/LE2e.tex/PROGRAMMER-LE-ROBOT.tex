@@ -1,0 +1,292 @@
+
+Jusqu'à présent nous avons utilisé l'ordinateur pour
+piloter le \robot\ en mode {\em interactif}\index{Mode interactif} ou
+{\em conversationnel}\index{Mode conversationnel}. Dans ce mode de fonctionnement 
+nous tapons sur une touche du clavier de l'ordinateur, qui transmet
+une commande au \robot\ que celui-ci exécute immédiatement à moins que par erreur
+nous tentions de le faire sortir du cadre auquel cas il répond par
+un \raisebox{0.25ex}{$\scriptscriptstyle \boldmath\ll$}~%
+bip-bip%
+~\raisebox{0.25ex}{$\scriptscriptstyle \boldmath\gg$}. 
+Nous recommençons ainsi, en corrigeant les fautes de pilotage au fur et à mesure que
+le dessin se construit, jusqu'à ce que nous
+indiquions à l'ordinateur que le dessin est terminé. 
+
+\smallskip
+
+Alors que la commande interactive du \robot\ correspond à l'exécution
+im\-mé\-dia\-te d'une tâche, la commande programmée du \robot\ consiste
+à séparer la description de la tâche de ses exécutions ultérieures. 
+
+\smallskip
+
+Plus
+généralement, l'idée de la {\em programmation}\index{Programmation} est la suivante~: 
+pour faire quelque chose, le {\em programmeur} écrit un {\em programme}\index{Programme}
+(dans un certain {\em langage}\index{Langage de programmation}) qui décrit avec précision comment 
+effectuer cette chose. Ensuite il demande à un {\em ordinateur}\index{Ordinateur} d'exécuter
+le programme, en suivant exactement les instructions données par le
+programme. Autrement dit, au lieu de faire la chose
+lui-même tout de suite, le programmeur explique à un ordinateur comment 
+le faire à sa place plus tard$\:$! On évite ainsi d'avoir à réaliser
+des tâches longues et répétitives, à condition de savoir 
+décrire ces tâches con\-ve\-na\-ble\-ment.
+
+\smallskip
+
+S'il s'est trompé, le programmeur
+doit corriger ses fautes en modifiant le programme. C'est ce qu'on appelle 
+{\em déboguer}\index{Déboguer} le programme. Le {\em déboguage}\index{Déboguage}
+du programme consiste à trouver puis à éliminer les {\em bogues}\index{Bogue} c'est-à-dire les 
+erreurs se manisfestant à l'exécution par des anomalies de fonctionnement (comme par 
+exemple {\idt pqtg()} au lieu de {\idt pqtd()} ou {\idt st()} oublié à la fin du programme)%
+\footnote{\ Nous utilisons le vocabulaire recommandé par la commission
+ministérielle de ter\-mi\-no\-lo\-gie \cite{terminologie-info}. La bogue est
+la traduction homonymique en français du mot américain {\em bug}\index{Bug} qui 
+désigne les petits insectes nuisibles et plus familièrement les microbes 
+et autres virus aussi bien que les petites choses qui clochent comme les erreurs 
+dans les programmes. La bogue désignant en français l'enveloppe piquante
+de la châtaigne, l'idée de désagrément est conservée. L'enveloppe fait
+également penser à la coquille typographique. La traduction
+ne garde pas l'idée de petit grain de sable aux conséquences dramatiques
+du mot américain.}.
+Le principe de fonctionnement des ordinateurs commandé par un programme a des 
+analogies avec de nombreuses activités humaines
+comme le montre la table \hbox{ci-dessous~:}
+
+\begin{table}[htbp]
+\begin{center}
+\small
+\begin{tabular}{@{}|p{25mm}|p{30mm}|p{30mm}|p{30mm}|@{}}
+\hline
+{\em Programmeur } & {\em Programme } & {\em Ordinateur } & {\em Dessin }  \\ 
+\hline \hline
+Chef-cui\-si\-nier & Re\-cet\-te de cui\-si\-ne & Cui\-si\-niers & Re\-pas\\
+Com\-po\-si\-teur & Œu\-vre mu\-si\-ca\-le & Mu\-si\-ciens & Con\-cert \\
+Au\-teur & Tex\-te d'une piè\-ce de thé\-â\-tre  & Ac\-teurs & Re\-pré\-sen\-ta\-tion \hfill thé\-â\-tra\-le \\
+Cho\-ré\-gra\-phe & Cho\-ré\-gra\-phie & Dan\-seurs & Bal\-let \\
+Réa\-li\-sa\-teur & Film & Pro\-jec\-teur \hfill ci\-né\-ma\-to\-gra\-phi\-que & Sé\-an\-ce de ci\-né\-ma \\
+Tis\-se\-rand & Car\-tes per\-fo\-rées & Mé\-tier \hfill à \hfill tis\-ser jac\-quard & Tis\-su jac\-quard\\
+%Ma\^\i\-tre-Êcu\-yer & Tex\-te de re\-pri\-se & Ca\-va\-lier et che\-val & Re\-pri\-se \hfill de dres\-sa\-ge \\
+Chef de pis\-te & Plan du par\-cours & Ca\-va\-lier et che\-val & Par\-cours de saut d'obs\-ta\-cles \\
+\hline
+\end{tabular}
+\end{center}
+%\label{tab:act-prog}
+\caption{Exemples d'activités programmées}
+\end{table}
+
+Nous allons maintenant apprendre à programmer les ordinateurs
+en \python. Le pilotage du \robot\ pour faire des dessins sera notre 
+principale application. Pour faire nos dessins dans
+ce mode de fonctionnement programmé, nous procédons comme suit~:
+\begin{enumerate}
+\item Nous commençons par écrire un programme \python\ où nous 
+in\-di\-quons quelle est la séquence de commandes que le \robot\ devra 
+exécuter pour réaliser le dessin que nous avons en tête ou que
+nous avons pré\-a\-la\-ble\-ment dessiné sur une feuille de papier
+quadrillé. Ce programme est écrit avec l'aide de l'ordinateur
+(avec un éditeur de texte) qui le conserve sur disque dans un fichier dont le nom se termine 
+par {\idt .py}, par exemple {\idt Carre.py}.
+\item  Ensuite nous demandons à un programme de l'ordinateur, l'{\em in\-ter\-pré\-teur}\index{Interpréteur} 
+\python, de lire ce programme, de vérifier qu'il est correctement écrit et de 
+le traduire dans le {\em langage machine}\index{Langage machine} de l'ordinateur 
+(ou dans une forme qui en est très proche). On dit que l'interpréteur 
+{\em interprète}\index{Interpréter} le programme. Le programme traduit et le programme
+\python\ ori\-gi\-nal sont équivalents en ce sens qu'ils décrivent 
+exactement la même séquence de commandes pour le \robot. Ils sont
+simplement écrits dans des langages différents.
+\item  Enfin l'interpréteur fait {\em exécuter}\index{Exécution} le 
+programme traduit par l'ordinateur. Ce faisant, l'ordinateur pilote le \robot\ en lui
+demandant d'exé\-cu\-ter les commandes dans l'ordre où nous les avons 
+inscrites dans le programme \python\ ori\-gi\-nal. 
+\end{enumerate}
+Les deux dernières étapes se font avec une seule commande, tapée dans
+une fenêtre de terminal (voir le chapitre suivant)~:
+{\idt ./robot.sh Carre.py} fait interpréter le programme {\idt Carre.py}, 
+c'est-à-dire le fait vérifier, traduire puis exécuter. On peut aussi faire glisser 
+l'icône du fichier {\idt Carre.py} sur celle de l'application {\idt LeRobotPython.app}.
+
+{ %1
+\newcommand{\touche}[1]{{
+\begin{picture}(12,12)(0, 2)
+\put(0,0){\framebox(12,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny #1}}
+\end{picture}\hspace{0.3ex}}}
+\begin{exemple}[Carré]{\rm
+Soit à dessiner le carré ci-contre. Le programme
+\python\ sera le suivant~:
+
+{\raggedright 
+ \vspace{\baselineskip}
+\vspace*{1.3cm}%
+\includevspacePostScript[-\baselineskip]{PetitCarre}{0.95}{0.95}%
+\vspace*{-1.3cm}%
+ \input python/Carre.tex
+ }
+\noindent Quand il exécute ce programme, 
+l'ordinateur transmet au \robot\ l'ordre d'exécuter la séquence
+ de commandes {\idt av()} puis {\idt av()} puis
+{\idt pqtd()} puis {\idt av()} \ldots\ et enfin {\idt pqtd()} exactement comme si 
+nous avions tapé au clavier \touche{A} puis successivement \touche{A},
+\touche{+}, \touche{A}, \touche{A}, \touche{+}, \touche{A}, \touche{A},
+ \touche{+}, \touche{A}, \touche{A} et enfin \hbox{\touche{+}\@.} La dernière commande
+ {\idt st()} indique à l'ordinateur qu'il doit attendre que nous tapions
+ sur la touche d'échappement \touche{Esc} pour terminer l'exécution du
+ programme (une autre touche fait redessiner le dessin). Ceci nous laisse le temps de contempler à loisir le dessin
+ du \robot\ avant qu'il ne disparaisse. Le dessin n'est pas perdu puisqu'il
+ suffit d'exécuter à nouveau le programme pour le reproduire.
+ \noindent $\Box$ }\end{exemple}
+ } %1
+
+On constate sur ce premier exemple que le langage \python, bien que
+conçu aux Pays-Bas par Guido van Rossum au {\sc Cwi} (Centre de mathématiques 
+et d'informatique d'Amsterdam), utilise des mots
+anglais comme `{\mcl from}' (qui signifie `de', `depuis') et `{\mcl import}' 
+(qui signifie `importer')~: la première ligne du programme importe depuis la bibliothèque
+{\idt LibRobot} toutes ses commandes, ce que désigne l'étoile `{\idt *}'. 
+L'informatique conserve les traces de son origine 
+anglo-\hbox{saxonne$\:$!}
+
+Pour l'instant il nous suffit de savoir
+que l'ordinateur qui exécute ce programme demande au \robot\ d'exécuter 
+les commandes figurant après la ligne `{\mcl from}~{\idt LibRobot}~{\mcl import}~{\idt *}', 
+les unes après les autres, ligne après ligne, et de gauche à droite sur chaque ligne. 
+Chaque commande est suivie de {\idt ()}, qui veut dire qu'elle ne demande 
+aucune précision supplémentaire pour être exécutée. Les
+points-virgules qui séparent les commandes d'une même ligne peuvent être compris comme 
+signifiant `puis'. Il n'y a pas de point-virgule à la fin d'une ligne~: le passage 
+à la ligne suivante suffit à dire `puis'. La ligne qui commence par le signe 
+`{\cmt \#}' est un commentaire, que l'ordinateur ignore (nous y reviendrons au chapitre suivant).
+  
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercice}{
+%\label{exo:trouver-cocotte}
+Exécuter le programme {\idt Des\-si\-ner} de commande 
+interactive du \robot\ et lui donner les ordres décrits par 
+le programme \python\ suivant (la correspondance entre les touches du
+clavier et les commandes du \robot\ est donnée par la table
+\ref{tab:cmd-inter} page \pageref{tab:cmd-inter})~:
+\input python/Inconnu.tex
+\noindent Quel dessin avez-vous demandé au \robot\ de réaliser$\:$?
+\noindent $\Box$}\end{exercice}
+\begin{exercice}{
+%\label{exo:corriger-E}
+Nous voudrions que le programme ci-dessous dessine la lettre {\tt E} majuscule 
+\hbox{ci-contre~:}
+
+{\raggedright 
+\vspace{\baselineskip}
+\vspace*{3cm}%
+\includevspacePostScript[-\baselineskip]{E-epaisse}{0.95}{0.95}
+\vspace*{-3cm}%
+ \label{prog:LettreEavecBogues}
+ \input python/LettreEavecBogues.tex
+ }
+\noindent Ce programme erroné contient deux bogues. Pouvez-vous les trouver$\:$?
+\noindent $\Box$}\end{exercice}
+\begin{exercice}{
+%\label{exo:exec-stegosaure}
+Exécuter le programme \python\ {\idt Stegosaure} figurant dans le dossier
+{\idt livre} qui accompagne ce livre.
+\noindent $\Box$}\end{exercice}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corrige}{
+%\label{cor:trouver-cocotte} 
+Une cocotte en papier.
+\noindent $\Box$}\end{corrige}
+\begin{corrige}{
+%\label{cor:corriger-E} 
+Le programme {\idt LettreEavecBogues} de la page \pageref{prog:LettreEavecBogues} 
+contient deux bogues~:\\
+\begin{minipage}[t]{115mm}
+\begin{enumerate}
+\item la commande {\idt pqtd()} de la troisième ligne
+devrait être une commande {\idt pqtg()},
+\item il manque une commande {\idt av()} à l'avant-dernière ligne. 
+\end{enumerate}
+Le résultat de l'exécution de ce programme est reproduit ci-contre
+(le \robot\ étant placé dans sa position finale).
+Le programme débogué qui dessine correctement la lettre {\tt E} épaisse est le suivant (les corrections sont 
+sou\-li\-gnées)~:
+\end{minipage}
+\hfill
+\begin{minipage}[t]{17mm}
+\vspace{3.2cm}\includePostScript{lettre-e-avec-bogues}{0.95}{0.95}%
+\hspace{-1.7cm}  % 1.7cm de large
+\end{minipage}
+\input python/LettreE.tex
+\noindent $\Box$}\end{corrige}
+\begin{corrige}{
+%\label{cor:exec-stegosaure}
+Le programme \python\ {\idt Ste\-go\-sau\-re} est rangé dans le
+fichier {\idt Stegosaure.py} du dossier {\idt livre/\allowbreak 04\_ecriture\_compil\_execution}.
+Dans une fenêtre de terminal, placée dans le dossier {\idt LeRobot\_Python\_FR}, il suffit de 
+taper la commande
+\begin{center}
+{\idt ./robot.sh livre/04\_ecriture\_compil\_execution/Stegosaure.py}
+\end{center}
+qui fait interpréter le programme \python\ {\idt Stegosaure.py}~: la fenêtre du \robot\ s'ouvre 
+et le stégosaure est dessiné. On obtient le même résultat en faisant glisser l'icône du 
+fichier {\idt Stegosaure.py} sur celle de l'application {\idt LeRobotPython.app}.
+
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+Nous devons à Seymour Papert, l'auteur de {\sc Logo} \cite{logo}, la diffusion de l'idée 
+d'utiliser le dessin pour apprendre les concepts de base de la programmation. Cependant
+l'introduction d'un quadrillage nous évite l'usage des angles et des longueurs comptées en 
+pixels\@%
+\footnote{\ Le {\em pixel}\index{Pixel} est le plus petit
+élément de l'écran graphique qui peut être allumé (blanc), éteint (noir) ou
+colorié avec des luminosités et des couleurs plus ou moins nombreuses selon
+la qualité de l'écran.}. Le quadrillage permet de tracer très facilement
+des arcs de
+cercles, ce qui n'est pas immédiat en {\sc Logo}.
+
+L'idée d'utiliser un 
+quadrillage pour faire des dessins géométriques n'est pas nouvelle. On la connaît à 
+l'école depuis longtemps (voir \cite{thevenet1} par exemple). On la retrouve,
+à la base d'exercices de programmation graphique, dans
+de nombreux ouvrages informatiques de haut niveau comme en \TeX\@\footnote{\ \TeX\ ou plutôt sa variante \LaTeX\ 
+\cite{lamport1} est le langage de programmation que nous avons utilisé pour
+composer ce livre.}\ par exemple (voir \cite{knuth1} pages 389--390). 
+Le quadrillage
+élimine les problèmes de représentation
+discrète sur un écran fini de concepts mathématiques continus. Par conséquent
+nos segments ressemblent à des segments tels qu'on les dessine sur le papier 
+(et non pas à des traits juxtaposés en escalier), nos
+cercles ressemblent à des cercles (et non pas
+à des carrés comme cela arrive sur les écrans graphiques pour des cercles trop
+petits).  Certes l'emploi de grands carreaux limite les possibilités 
+de dessin. La programmation n'en est que plus facile si nous tirons avantage
+des formes géométriques pour induire la structure des programmes.
+Une fois que les notions de base seront acquises nous pourrons faire varier la taille de la grille
+de sorte qu'en passant à la limite fixée par les pixels de l'écran
+nous retrouverons toutes les possibilités offertes par les écrans graphiques actuels 
+à haute résolution. 
+
+Dans le chapitre suivant nous commençons à écrire nos premiers
+programmes \python. Les algorithmes\@\footnote{\ Un {\em algorithme} est la
+description d'un enchaînement d'opérations sur des ob\-jets pour 
+accomplir une tâche. Ce mot a pour origine la version latine du nom du 
+mathématicien et astronome persan al-Khwarizmi du IX\raisebox{0.7ex}{\tiny ème} 
+siècle de notre ère.
+Son traité {\em Al-Jabr wa l-muqabala} enseigne comment résoudre algorithmiquement
+les équations du premier et second degré à cœfficients numériques.
+Le terme d'{\em algèbre\/} dérive du titre même de ce traité.
+} restent très simples puisqu'ils
+consistent à codifier le mouvement de la main qui dessine.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

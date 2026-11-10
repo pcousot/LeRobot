@@ -1,0 +1,35 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ le\ tableau\ d\textquotesingle{}un\ tournoi\ de\ tennis}}\par
+\vspace{\neglskip}\mbox{\blc {\idt l\ =\ 5\ \ }{\cmt \#\ Longueur\ d\textquotesingle{}un\ trait\ horizontal}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ un\ tableau\ pour\ un\ tournoi\ de\ n\ joueurs}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ tableau(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Pointe\ de\ l\textquotesingle{}accolade,\ pour\ le\ vainqueur}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt avf(l)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ n\ \char62{}\ 1:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Branche\ supérieure\ de\ l\textquotesingle{}accolade}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pqtg();\ avf(n);\ pqtd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Sous{-}tableau\ supérieur,\ contenant\ la}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ moitié\ des\ joueurs}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt tableau(n\ //\ 2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Revenir\ au\ centre\ de\ l\textquotesingle{}accolade}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt lc();\ pqtg();\ avf({-}n);\ pqtd();\ bc()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Branche\ inférieure\ de\ l\textquotesingle{}accolade}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pqtd();\ avf(n);\ pqtg()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Sous{-}tableau\ inférieur,\ contenant\ le}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ reste\ des\ joueurs}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt tableau(n\ {-}\ n\ //\ 2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Revenir\ au\ centre\ de\ l\textquotesingle{}accolade}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt lc();\ pqtd();\ avf({-}n);\ pqtg();\ bc()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Revenir\ à\ l\textquotesingle{}extrémité\ de\ la\ pointe}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt avf({-}l)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt lg(3);\ pe();\ tableau(16);\ st()}}\par
+
+\medskip }

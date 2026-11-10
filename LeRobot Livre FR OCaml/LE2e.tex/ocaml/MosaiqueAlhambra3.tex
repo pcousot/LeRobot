@@ -1,0 +1,85 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Mosaïque\ de\ l\textquotesingle{}Alhambra\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ tailleGrille\ =\ 3.\ \ \ }{\cmt (*\ pixels\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ largeurMotif\ =\ 4\ \ \ \ }{\cmt (*\ fois\ la\ taille\ de\ la\ grille\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ hauteurMotif\ =\ 6\ \ \ \ }{\cmt (*\ fois\ la\ taille\ de\ la\ grille\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ tailleLigne\ =\ 7\ \ \ \ \ }{\cmt (*\ motifs\ d\textquotesingle{}une\ ligne\ impaire\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ nombreDeLignes\ =\ 12\ }{\cmt (*\ pair\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ un\ motif\ en\ forme\ de\ 8,\ en\ partant\ et\ en}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt arrivant\ à\ l\textquotesingle{}extrémité\ de\ la\ pointe\ inférieure}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt gauche,\ avec\ le\ robot\ orienté\ vers\ le\ nord.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ motif\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 2\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Côté\ gauche/droit\ (au\ dessus/dessous\ de\ la}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt pointe\ inférieure).\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt phtd\ ();\ av\ ();\ phtg\ ();\ avf\ (hauteurMotif\ {-}\ 4);}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt phtg\ ();\ av\ ();\ pqtd\ ();\ av\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Dessus/dessous\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt phtd\ ();\ avf\ (largeurMotif\ {-}\ 2);\ phtd\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Haut/bas\ du\ côté\ droit/gauche\ (en\ dessus/dessous}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt de\ la\ pointe\ supérieure/inférieure).\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt av\ ();\ phtd\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\cmt (*\ Colorier\ et\ tourner\ le\ robot\ dans\ l\textquotesingle{}orientation}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\cmt initiale.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt pqtg\ ();\ peindre\ ();\ pqtd\ ()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Passer\ de\ la\ pointe\ inférieure\ gauche\ d\textquotesingle{}un\ motif\ à}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt celle\ du\ motif\ suivant\ sur\ la\ même\ ligne}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt horizontale\ à\ droite.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ motifSuivant\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lc\ ();\ pqtd\ ();\ avf\ (2\ *\ largeurMotif);\ pqtg\ ();\ bc\ ()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ une\ ligne\ horizontale\ comportant}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt tailleLigne\ motifs.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ligneImpaire\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ tailleLigne\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt motif\ ();\ motifSuivant\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ une\ ligne\ comportant\ (tailleLigne\ {-}\ 1)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt motifs.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ lignePaire\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ tailleLigne\ {-}\ 1\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt motif\ ();\ motifSuivant\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Revenir\ sur\ la\ pointe\ inférieure\ gauche\ du\ premier}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt motif\ d\textquotesingle{}une\ ligne.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ retourDebutDeLigne\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lc\ ();\ pqtg\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt avf\ (2\ *\ largeurMotif\ *\ tailleLigne\ {-}\ largeurMotif);}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt pqtd\ ();\ bc\ ()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Passer\ de\ la\ pointe\ inférieure\ gauche\ d\textquotesingle{}un\ motif\ à}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt celle\ du\ motif\ à\ la\ verticale\ sur\ la\ ligne}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt suivante.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ligneSuivante\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lc\ ();\ avf\ ({-}\ (hauteurMotif\ {-}\ 2));\ bc\ ()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Paver\ avec\ un\ nombre\ de\ lignes\ égal\ à}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt nombreDeLignes.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ pavage\ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ nombreDeLignes\ /\ 2\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ligneImpaire\ ();\ retourDebutDeLigne\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ligneSuivante\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lignePaire\ ();\ retourDebutDeLigne\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt ligneSuivante\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\cmt (*\ Placer\ le\ robot\ à\ la\ pointe\ inférieure\ gauche\ du}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\cmt motif\ gauche\ de\ la\ première\ ligne.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt lc\ ();\ lg\ tailleGrille;\ ag\ ();\ eh\ ();\ pdt\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt avf\ hauteurMotif;\ pqtg\ ();\ av\ ();\ pqtg\ ();\ bc\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt pavage\ ();\ st\ ()}}\par
+
+\medskip }

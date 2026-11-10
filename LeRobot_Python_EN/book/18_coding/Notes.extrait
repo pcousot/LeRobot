@@ -1,0 +1,14 @@
+# Notes
+C = 0
+D = 2
+E = 4
+F = 5
+G = 7
+A = 9
+B = 11
+# Accidentals
+flat = -1
+natural = 0
+sharp = 1
+# Octaves
+octave = 12

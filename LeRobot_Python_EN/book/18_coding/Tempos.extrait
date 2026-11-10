@@ -1,0 +1,12 @@
+largo = 50
+lento = 56
+larghetto = 60
+adagio = 70
+andante = 85
+andantino = 95
+moderato = 110
+allegretto = 115
+allegro = 130
+vivace = 150
+presto = 175
+prestissimo = 200

@@ -1,0 +1,452 @@
+En \ocaml, une procédure peut appeler une autre procédure précédemment 
+déclarée. Une procédure peut également s'appeler elle-même. On dit
+alors qu'elle est {\em récursive}. Il faut alors la déclarer avec
+{\mcl let rec} au lieu de {\mcl let} (de l'anglais {\em \underline{rec}ursive}). Les procédures récursives \index{Récursif}sont utiles
+pour faire des dessins comme ceux de la figure \ref{fig:desrec} (page
+\pageref{fig:desrec}). Ces dessins récursifs ont la particularité de se
+retrouver indéfiniment en réduction à l'intérieur d'eux-mêmes (exactement
+comme l'image infinie obtenue dans deux miroirs se faisant face). Comme en pratique il n'est 
+pas possible de dessiner un trait plus petit qu'un pixel de l'écran, le tracé s'arrête 
+pour les dessins très petits.
+\begin{figure}[htbp]
+ \includevspacePostScript[18.5cm]{DessinsRecursifs}{0.95}{0.95}
+ \caption{Dessins récursifs}\label{fig:desrec}
+\end{figure}
+
+\section{Récursivité simple}
+
+La structure des dessins récursifs simples se comprend par {\em récurrence} \index{Récurrence}sur la taille du dessin.
+Il faut d'abord comprendre la {\em base\/}, c'est-à-dire comment faire un dessin de taille 0 (ou 1). 
+Ensuite il faut comprendre l'{\em induction\/}, c'est-à-dire 
+comment construire un dessin de taille $n$ en utilisant des dessins identiques de tailles $n-1$, 
+$n-2$, \ldots strictement inférieures à $n$.  
+
+Prenons l'exemple des pavés récursifs
+de la figure \ref{fig:pavec} (page \pageref{fig:pavec}).
+\begin{figure}[htbp]
+ \includevspacePostScript[6.8cm]{PavesRecursifs}{0.95}{0.95}
+ \caption{Pavés récursifs}\label{fig:pavec}
+\end{figure}
+Un pavé de taille 0 est réduit à un point (plus précisément un pixel de l'écran).
+Un pavé de taille $n$ est constitué d'un pavé de taille $n - 1$
+entouré d'un carré de côté $n$ fois la taille du quadrillage, comme expliqué à la
+figure \ref{fig:indpavec} (page \pageref{fig:indpavec}).
+\begin{figure}[htbp]
+ \includevspacePostScript[8.3cm]{InductionPavesRecursifs}{0.95}{0.95}
+ \caption{Règle de construction récurrente des pavés récursifs}\label{fig:indpavec}
+\end{figure}
+La procédure récursive {\idt pave} de dessin d'un pavé récursif reçoit en paramètre la taille {\idt n}
+du pavé. Si {\idt n} est nul, elle dessine un point. Si {\idt n} est strictement positif alors
+elle dessine un carré de côté {\idt n} puis s'appelle récursivement pour dessiner un
+pavé de taille {\idt n - 1}.
+\ \\
+\input ocaml/PavesRecursifs.tex
+\noindent Le mot-clé {\mcl rec} indique au compilateur que le nom {\idt pave} peut être
+utilisé dans le corps de la procédure {\idt pave} elle-même. Si on l'oublie, le compilateur
+signale `{\tt Unbound value pave}' (valeur {\idt pave} inconnue) en désignant l'appel
+{\idt pave (n - 1)} et suggère `{\tt If this is a recursive definition, you should add the rec
+keyword}' (s'il s'agit d'une définition récursive, il faut ajouter le mot-clé {\mcl rec}).
+
+
+Le dessin des pavés récursifs peut se faire {\em itérativement}, c'est-à-dire en utilisant 
+une boucle ``for'' ou ``while''. Ce serait plus difficile avec des dessins comme le tableau d'un tournoi
+de tennis représenté à la figure \ref{fig:tabtour} ci-dessous.
+\begin{figure}[htbp]
+ \includevspacePostScript[4.3cm]{Tournoi1-2-4-8-16}{0.95}{0.95}%
+ \caption{Règle de construction récurrente d'un tableau\label{fig:tabtour}}
+ \centering{de tournoi de tennis}
+\end{figure}
+
+Un tableau de tournoi de tennis ne comprenant qu'un seul inscrit comporte un trait horizontal
+prévu pour écrire le nom de cet inscrit qui est également le vainqueur. Un tableau de tournoi de 
+tennis comprenant {\idt n} ins\-crits s'obtient en traçant un trait horizontal
+prévu pour écrire le nom du vainqueur en face de la pointe d'une accolade reliant les 
+sous-tableaux servant à désigner les finalistes. Chacun des sous-tableaux contient à peu près
+le même nombre de joueurs c'est-à-dire respectivement {\idt n / 2} et
+{\idt n - n / 2} joueurs (rappelons que {\idt /} est la division entière). La procédure récursive de dessin du tableau d'un 
+tournoi de {\idt n} joueurs est donnée ci-dessous et illustrée dans le cas {\idt n = 11}.
+
+ {
+ %\vspace{\baselineskip}
+ \vbox to 0pt{\vspace*{3cm}\includevspacePostScript[3cm]{Tournoi11}{0.95}{0.95}}%
+ \input ocaml/TableauDeTournoi.tex
+ }
+\section{Invariants}
+\index{Invariant}Quand on écrit une procédure récursive il est important de réfléchir à l'{\em in\-va\-riant\/} 
+de cette procédure c'est-à-dire aux hypothèses que doivent satisfaire les paramètres
+effectifs de la procédure et le \robot\ pour que le dessin soit correct. Prenons l'exemple d'un
+arbre binaire (voir la figure \ref{fig:arbin} ci-dessous), une structure de base de la
+programmation, que nous avons déjà rencontrée sous la forme du tableau de tournoi de tennis. 
+\begin{figure}[htbp]
+ \includevspacePostScript[6.6cm]{ArbreBinaire}{0.95}{0.95}
+ \caption{Règle de construction récurrente d'un arbre binaire}\label{fig:arbin}
+\end{figure}
+
+\noindent La procédure de dessin d'un arbre binaire est la suivante~:
+
+\input ocaml/ArbreBinaire.tex
+
+Le premier invariant est que le paramètre {\idt l} de la procédure {\idt arbre} doit être 
+supérieur ou égal à 1. C'est
+vrai pour l'appel principal puisque {\idt l} $=$ 32. Un appel quelconque
+ne fait des appels supplémentaires que si {\idt l} $>$ 1. Comme 
+{\idt l} $\geq 2$, on a
+$(${\idt l / 2}$) \geq 1$ et l'invariant est vrai quand on appelle récursivement la 
+procédure pour dessiner le sous-arbre gauche. Comme 
+{\idt l} $= (2 \ast (${\idt l / 2}$))$ 
+si {\idt l} est pair et 
+{\idt l} $= (2 \ast (${\idt l / 2}$)) + 1$
+si {\idt l} est impair, on a
+{\idt l} $\geq (2 \ast (${\idt l / 2}$))$ donc 
+$(${\idt l} $- (${\idt l / 2}$)) \geq$ $(${\idt l / 2}$)$ de sorte que
+$(${\idt l} $- (${\idt l / 2}$)) \geq 1$
+puisque $(${\idt l / 2}$) \geq 1$. L'invariant est donc également vrai quand on appelle 
+récursivement la 
+procédure {\idt arbre} pour dessiner le sous-arbre droit. Comme l'invariant est vrai pour l'appel principal
+et qu'il reste vrai pour tous les appels suivants, il est toujours vrai.
+
+On vérifierait de la même façon l'invariant concernant le \robot, à savoir qu'avant et après
+le dessin de l'arbre binaire, le \robot\ se trouve placé à la racine de l'arbre, orienté vers le nord avec son
+crayon baissé.
+
+\section{Non-terminaison}
+Quand on utilise des procédures récursives, il peut arriver qu'elles s'appellent les unes les autres
+sans fin, exactement comme dans le cas de boucles ``while'' dont l'exécution ne se termine pas. L'exemple le
+plus simple est celui de la procédure {\idt boucler} ci-dessous.
+
+\label{prog:NonTerminaison}
+\input ocaml/NonTerminaison.tex
+Un appel de {\idt boucler ()} provoque immédiatement un nouvel appel de {\idt bou\-cler ()}, et ainsi
+de suite indéfiniment. Comme cet appel est la dernière chose que fait la procédure (on parle
+d'{\em appel terminal}), le compilateur \ocaml\ le remplace par un simple retour au début de la
+procédure~: le programme tourne alors sans fin, exactement comme une boucle ``while'' qui ne se
+termine pas, et il faut l'arrêter en tapant \framebox{ctrl}~\framebox{C} dans le terminal. Si l'appel
+récursif n'est pas terminal (par exemple si l'on écrit {\idt boucler ();\ av ()} dans le corps
+de la procédure), l'ordinateur utilise un peu de sa mémoire à chaque appel pour se souvenir de ce
+qui reste à faire ensuite. Il finit par se produire une erreur quand il n'y a plus
+suffisamment de mémoire disponible pour faire l'appel suivant. Cette erreur est signalée 
+par le message `{\tt Fatal error:\ exception Stack\_overflow}' (débordement de la pile) avant l'arrêt
+de l'exécution du programme. En général 
+l'erreur est moins flagrante et ne se produit que pour certaines valeurs des paramètres.
+
+\section{Récursivité mutuelle}
+Considérons les serpentines de la figure \ref{fig:serprec} (page \pageref{fig:serprec}). Il y en a
+de deux sortes.  Les serpentines 
+{\idt E$\scriptscriptstyle n$} ont 
+une hauteur $n$ et se dessinent à partir de leur coin inférieur ouest, en traçant un trait 
+horizontal d'ouest en est puis un trait vertical pour passer à l'est de l'étage supérieur. 
+Les serpentines {\idt W$\scriptscriptstyle n$} ont une hauteur $n$ et se dessinent 
+à partir de leur coin inférieur est, en traçant un trait horizontal d'est en ouest puis un trait
+vertical pour passer à l'ouest de l'étage supérieur.  
+\begin{figure}[htbp]
+ \includevspacePostScript[4.4cm]{SerpentineRecursive}{0.95}{0.95}
+ \caption{Règle de construction récurrente d'une serpentine}\label{fig:serprec}
+\end{figure}
+
+\noindent Les procédures {\idt serpentineE} et {\idt serpentineW} dans le programme ci-dessous
+dessinent respectivement une serpentine {\idt E$\scriptscriptstyle n$} et 
+{\idt W$\scriptscriptstyle n$}, leur paramètre formel {\idt n} ayant pour valeur effective
+la hauteur $n$ de la serpentine à dessiner. 
+\input ocaml/SerpentineRecursive.tex
+\noindent Une serpentine
+{\idt E$\scriptscriptstyle 0$} ou {\idt W$\scriptscriptstyle 0$} de hauteur nulle étant vide, 
+les procédures {\idt serpentineE} et {\idt serpentineW} ne font rien quand la valeur $n$ de leur 
+paramètre {\idt n} est négative ou nulle. 
+Pour dessiner une serpentine {\idt E$\scriptscriptstyle n$} ou {\idt W$\scriptscriptstyle n$} dont la 
+hauteur $n \geq 1$ est la valeur effective de leur paramètre formel {\idt n}, les procédures 
+{\idt serpentineE} et {\idt serpentineW} dessinent la 
+base puis au-dessus une serpentine {\idt W$\scriptscriptstyle n-1$} 
+ou {\idt E$\scriptscriptstyle n-1$} dont  la hauteur est la valeur de {\idt n - 1}. Comme
+la procédure {\idt serpentineE} appelle la procédure {\idt serpentineW} et que la procédure
+{\idt serpentineW} appelle la procédure {\idt serpentineE}, on dit que ces procédures sont
+{\em mutuellement récursives\/}.
+
+\index{Identificateur}Quand on utilise des procédures mutuellement récursives en \ocaml, il faut
+respecter la règle que {\em tout identificateur doit être déclaré avant d'être
+utilisé}. Si l'on déclarait {\idt serpentineE} puis {\idt serpentineW} par deux
+{\mcl let rec} séparés, le compilateur signalerait `{\tt Unbound value serpentineW}' dans le corps de
+{\idt serpentineE}, puisque {\idt serpentineW} n'est pas encore déclarée. C'est pourquoi on
+déclare les deux procédures {\em en même temps}~: la première avec {\mcl let rec} et la seconde
+avec {\mcl and} (``et'' en anglais) à la place du {\mcl let}. Chacune peut alors appeler
+l'autre (et elle-même).
+
+De manière générale, les déclarations de procédures mutuellement
+ré\-cur\-si\-ves ont  la forme suivante~:
+
+\vfill
+
+\index{Procédure}
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em Déclaration de procédures mutuellement récursives~:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+
+\mbox{\blc\ \ \ \cmt (*\ \small\rm Spécification de la première procédure\ \cmt *)}\par 
+\mbox{\blc\ \ \ \mcl let rec\idt\ nomDeLaProcedure$_{1}$%
+\footnote{\ Un nom de procédure est un identificateur.}%
+\ paramFormel$_{1}^{1}$\footnote{\ Un paramètre formel est un identificateur.}\ paramFormel$_{1}^{2}$\ \dots\ =}\par 
+\mbox{\blc\ \ \ \ \ \small\rm \ldots\ Instructions du corps de la procédure%
+\footnote{\ Y compris les appels des procédures {\idt nom\-De\-La\-Pro\-ce\-du\-re$_{1}$} et
+{\idt nom\-De\-La\-Pro\-ce\-du\-re$_{2}$}.}%
+\footnote{\ Les expressions figurant dans ces instructions peu\-vent utiliser les paramètres formels
+{\idt paramFormel$_{1}^{1}$}, {\idt paramFormel$_{1}^{2}$}, \ldots\ de la procédure
+{\idt nom\-De\-La\-Pro\-ce\-du\-re$_{1}$}. }
+ (séparées par des `$;$') \ldots}\par 
+
+\medskip
+
+\mbox{\blc\ \ \ \cmt (*\ \small\rm Spécification de la seconde procédure\ \cmt *)}\par 
+\mbox{\blc\ \ \ \mcl and\idt\ nomDeLaProcedure$_{2}$%
+\ paramFormel$_{2}^{1}$\ paramFormel$_{2}^{2}$\ \dots\ =}\par 
+\mbox{\blc\ \ \ \ \ \small\rm \ldots\ Instructions du corps de la procédure%
+\footnote{\ Les expressions figurant dans ces instructions peuvent utiliser les paramètres formels
+{\idt paramFormel$_{2}^{1}$}, {\idt paramFormel$_{2}^{2}$}, \ldots\ de la procédure
+{\idt nom\-De\-La\-Pro\-ce\-du\-re$_{2}$}.}
+ (séparées par des `$;$') \ldots}\par 
+\medskip}
+\end{minipage}\\ \hline 
+\end{tabular}
+\end{center}
+
+\noindent On peut de même déclarer ensemble trois procédures ou plus, en les séparant par des {\mcl and}.
+
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercice}{L'exercice consiste à dessiner des {\em fractales} \cite{mandelbrot1}
+\cite{mandelbrot2}, c'est-à-dire
+des dessins que l'on retrouve à l'infini, en réduction à l'intérieur d'eux-mêmes.
+
+\tiret  Écrire une procédure \ocaml\ récursive pour construire une courbe de Von Koch\/%
+\footnote{\ Von Koch, mathématicien suédois, 1870--1924.}, comme
+indiqué à la de la figure \ref{fig:segvonkoch} (page \pageref{fig:segvonkoch}). La courbe $K_{0}$
+est un segment de droite.  La courbe $K_{1}$ est obtenue en divisant le segment   $K_{0}$ en trois segments 
+égaux et en remplaçant celui du milieu par un triangle équilatéral sans base.
+La courbe $K_{n}$ est obtenue de même en divisant en trois chacun des segments de la courbe
+ $K_{n-1}$. Écrire un programme de dessin d'un flocon de Von Koch, obtenu en fragmentant ainsi vers l'extérieur
+ les côtés d'un triangle équilatéral. Faire de même pour un anti-flocon de Von Koch pour lequel la 
+ fragmentation se fait vers l'intérieur du triangle équilatéral initial. Utiliser diverses fragmentations
+ d'un segment pour obtenir d'autres types de flocons comme ceux de la figure \ref{fig:flocvonkoch} 
+ (page \pageref{fig:flocvonkoch}).
+
+\tiret Programmer les dessins des motifs récursifs de la figure \ref{fig:desrec} 
+(page \pageref{fig:desrec}).
+
+\tiret Écrire un programme \ocaml\ de dessin des 
+carrés (figure \ref{fig:carsierp}  page \pageref{fig:carsierp}),
+triangles (figure \ref{fig:trisierp}  page \pageref{fig:trisierp}) et
+pentagones (figure \ref{fig:pensierp}  page \pageref{fig:pensierp}) de Sierpinski\/%
+\footnote{\ Waclaw Sierpinski, mathématicien polonais, 1882--1969.}.
+
+\tiret Dessiner les végétaux de la figure \ref{fig:vege}  (page \pageref{fig:vege}).
+
+\tiret Dessiner les carrés de Sedgewick \cite{sedgewick1} de la figure \ref{fig:sedgew}  (page \pageref{fig:sedgew}).
+
+\tiret Dessiner la courbe du dragon de la figure \ref{fig:dragon}  (page \pageref{fig:dragon})
+selon les règles de construction de
+la figure \ref{fig:consdragon}  (page \pageref{fig:consdragon}). La courbe du dragon d'ordre $n$ est celle
+que l'on observe en regardant par la tranche une feuille de papier qui a été repliée $n$ fois
+sur elle-même puis dépliée à angles droits.
+
+\tiret Dessiner la courbe de Hilbert\/%
+\footnote{\ David Hilbert, mathématicien allemand, 1862--1943.}
+de la figure \ref{fig:hilbert}  (page \pageref{fig:hilbert}) selon les règles de construction de
+la figure \ref{fig:conshilbert}  (page \pageref{fig:conshilbert}).
+
+\tiret Dessiner la courbe de Peano\/%
+\footnote{\ Giuseppe Peano, mathématicien italien, 1858--1932.}
+ de la figure \ref{fig:peano}  (page \pageref{fig:peano}) selon les règles de construction de
+la figure \ref{fig:conspeano}  (page \pageref{fig:conspeano}).
+
+\tiret Écrire une procédure \ocaml\ qui écrit en base 2 un nombre passé en paramètre
+en remarquant que l'écriture binaire $\beta(n)$ d'un nombre $n$ est définie par~:
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+  \item $\beta(-n) = -\beta(n)$ si $-n < 0$$\:$;
+  \item $\beta(0) = 0$$\:$;
+ \item $\beta(1) = 1$$\:$;
+ \item $\beta(n) = \beta(n $\ {\idt /}\ $ 2) \beta(n$\ {\mcl mod}\ $2)$ si $n > 1$.
+\end{list}
+Faire de même en bases 3, 8 et 16 (en utilisant les digits {\idt A}, {\idt B}, {\idt C}, {\idt D},
+{\idt E}, {\idt F} pour dénoter respectivement les nombres 10, 11, 12, 13, 14, 15 et 
+``{\idt ecrire} {\cha "d"}{\idt ; translater (1, 0)}'' 
+pour écrire le digit \mbox{\cha d}).
+
+\noindent $\Box$}\end{exercice}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.1cm]{SegmentsVonKoch}{0.95}{0.95}
+ \caption{Courbe de Von Koch}\label{fig:segvonkoch}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[2.4cm]{RegleDragon}{0.95}{0.95}
+ \caption{Règles de construction de la courbe du dragon}\label{fig:consdragon}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.0cm]{RegleConsHilbert}{0.95}{0.95}
+ \caption{Règles de construction des courbes de Hilbert}\label{fig:conshilbert}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[18.2cm]{FloconsVonKoch}{0.95}{0.95}
+ \caption{Flocons de Von Koch}\label{fig:flocvonkoch}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[18.3cm]{CarreDeSierpinsky}{0.95}{0.95}
+ \caption{Carrés de Sierpinski}\label{fig:carsierp}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[16.0cm]{TriangleDeSierpinsky}{0.95}{0.95}
+ \caption{Triangles de Sierpinski}\label{fig:trisierp}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[16.0cm]{PentagoneSierpinski}{0.95}{0.95}
+ \caption{Pentagones de Sierpinski}\label{fig:pensierp}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[12.5cm]{Vegetaux}{0.95}{0.95}
+ \caption{Végétaux fractals}\label{fig:vege}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[14.0cm]{Sedgewick}{0.95}{0.95}
+ \caption{Étoile fractale de Sedgewick}\label{fig:sedgew}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[7.2cm]{Dragon}{0.95}{0.95}
+ \caption{Courbes du dragon d'ordre 1, 2, \ldots, 8, 10 et 12}\label{fig:dragon}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[17.5cm]{Hilbert}{0.95}{0.95}
+ \caption{Courbes de Hilbert d'ordres 1 à 6}\label{fig:hilbert}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[12.5cm]{RegleConsPeano}{0.95}{0.95}
+ \caption{Règles de construction des courbes de Peano}\label{fig:conspeano}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[12.2cm]{Peano}{0.95}{0.95}
+ \caption{Courbes de Peano}\label{fig:peano}
+\end{figure}
+\pagebreak[3]
+\begin{corriges}{
+\renewcommand{\carrenoir}{\hspace{-4mm}\rule{1.5mm}{1.5mm}\hspace{2.5mm}}
+Nous donnons deux programmes, les autres se trouvant dans le dossier {\idt livre/\allowbreak 21\_recursivite}~:
+\label{prog:SegmentDeVonKoch}
+\input ocaml/SegmentDeVonKoch.tex
+\pagebreak[3]
+\input ocaml/ConversionDecimalEnBinaire.tex
+\renewcommand{\carrenoir}{}
+\noindent $\Box$}\end{corriges}
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+ Les langages {\sc algol60} \cite{algol60} puis {\sc lisp} \cite{lisp} furent les premiers à 
+ introduire l'usage de la récursivité. La polémique initiale sur l'efficacité des procédures
+ récursives est maintenant dépassée, les techniques de compilation étant bien au point. 
+ L'idée de récursivité fut à la base de nombreux progrès en informatique, que ce soit les 
+ structures de données récursives (comme les arbres), les
+ algorithmes récursifs (comme les algorithmes rapides de tri) ou plus récemment, la
+ programmation fonctionnelle, dont \ocaml\ est un exemple.
+
+La façon la plus simple de comprendre une procédure 
+ récursive est d'imaginer qu'à chaque appel l'ordinateur exécute une nouvelle {\em copie} de la
+ procédure. 
+
+ Pour montrer que cette succession d'appels se termine, il suffit de montrer qu'il
+ existe une fonction entière de la valeur des paramètres qui est po\-si\-ti\-ve et
+ décroit strictement lors d'appels successifs. 
+ Par exemple la procédure {\idt segment}
+ du programme {\idt SegmentDeVonKoch} (page \pageref{prog:SegmentDeVonKoch}) doit être
+ appelée avec un paramètre {\idt n} positif ou nul. Si c'est le cas, les appels récursifs sont de la forme
+ {\idt  segment (n - 1)} avec {\idt n} $> 0$ de sorte que lors d'appels successifs les paramètres
+ effectifs décroissent strictement en restant positifs. Ceci n'est pas possible indéfiniment.
+ Par conséquent la procédure {\idt segment} ne boucle pas quand elle est appelée avec un 
+ paramètre initial positif ou nul.
+
+\index{Fonction} Les {\em fonctions} sont aux expressions ce que les procédures sont aux instructions. En
+ \ocaml, une déclaration de fonction s'écrit comme une déclaration de procédure, mais son corps est
+ une expression dont la valeur est le résultat de la fonction appliquée à ses paramètres. Les procedures
+ sont simplement des fonctions dont on s'intéresse pas au résultat, qui est dénoté \texttt{()}, la seule
+ valeur de type \texttt{unit}.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+ 
+ 
+ Par exemple, une constante est une fonction sans paramètres de sorte 
+ qu'une déclaration comme~:
+ 
+\smallskip
+\mbox{\blc  \blk\idt  \mcl let\idt \ tailleGrille\ =\ 15}\par 
+\smallskip
+
+\noindent peut être remplacée par une déclaration de fonction~:
+
+\smallskip
+\mbox{\blc  \blk\idt  \mcl let\idt \ tailleGrille\ ()\ =\ 15}\par 
+\smallskip
+ 
+\noindent qui s'utilise en écrivant {\idt tailleGrille ()}, comme {\idt valLgX ()}.
+Comme second exemple considérons le calcul de $2^{n}$ avec $n \geq 0$ en observant pour la base
+que $2^{0} = 1$ et pour l'induction que $2^{n} = 2 \ast 2^{n-1}$~:
+
+\smallskip
+\mbox{\blc  \blk\idt  \mcl let rec\idt \ deuxPuissance\ n\ =}\par 
+\mbox{\blc  \blk\blk\idt  \mcl if\idt \ n\ =\ 0\ \mcl then\idt \ 1}\par 
+\mbox{\blc  \blk\blk\idt  \mcl else\idt \ 2\ *\ deuxPuissance\ (n\ {-}\ 1)}\par 
+\smallskip
+
+%\vspace{\abovedisplayskip}
+%\end{minipage}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\noindent \framebox[\textwidth]{
+%\begin{minipage}{\myparboxwidth}
+%\setlength{\parindent}{2em}
+%\small \sf
+%\vspace{\abovedisplayskip}
+\noindent Après cette déclaration, l'expression {\idt deuxPuissance 2} vaut 4 et
+l'ex\-pres\-sion {\idt deuxPuissance (deuxPuissance 2)} vaut 16 (le programme
+{\idt DeuxPuissance} du dossier {\idt livre/\allowbreak 21\_recursivite} dessine la valeur de
+{\idt deuxPuissance 16}). Ici {\mcl if}\ldots{\mcl then}\ldots{\mcl else} choisit entre deux
+expressions, et non entre deux instructions.
+
+ En \ocaml\ on peut utiliser les fonctions trigonométriques {\idt sin} (sinus),
+ {\idt cos} (cosinus), {\idt tan} (tangente) et {\idt atan} (arc tangente). Les angles sont exprimés en
+ radians (un angle de $d$ degrés vaut {\idt d /.\ 180.\ *.\ pi} radians, la constante {\idt pi}
+ valant $\pi \simeq 3.14159$). Comme pour les
+ fonctions {\idt exp} (exponentielle) et
+ {\idt log} (logarithme népérien), le
+  paramètre est de type {\idt float} (un entier {\idt n} doit être converti par
+  {\idt float\_of\_int n}) et le
+résultat est de type {\idt float}. Pour la puissance, on utilise
+ {\idt a ** x} qui vaut $a^{x} = e^{x \ln a}$. On pourrait définir soi-même la fonction tangente par~:
+ 
+{
+\parindent \parindentprog
+\medskip
+\mbox{\blc  \blk\idt  \mcl let\idt \ tg\ x\ =\ sin\ x\ /.\ cos\ x}\par 
+}
+
+\noindent Quand {\idt cos x} vaut {\idt 0.}, la division ne provoque pas d'erreur~: son résultat est
+{\idt infinity} (l'infini) ou {\idt neg\_infinity} (moins l'infini).
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+

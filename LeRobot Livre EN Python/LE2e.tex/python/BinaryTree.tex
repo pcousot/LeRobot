@@ -1,0 +1,58 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ binary\ tree}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ tree\ with\ l\ leaves,\ root\ at\ the\ top,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ the\ leaves\ at\ the\ bottom,\ assuming\ that\ l\ \char62{}=\ 1,}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ the\ tree\ being\ reduced\ to\ a\ point\ when\ l\ =\ 1.\ Before}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ and\ after\ the\ drawing,\ the\ robot\ must\ be\ placed\ at\ the}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ root\ of\ the\ tree,\ facing\ north\ with\ its\ pen}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ down.}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ tree(l):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ l\ ==\ 1:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Draw\ a\ tree\ reduced\ to\ a\ single\ point\ (without}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ changing\ the\ position\ and\ orientation\ of\ the\ robot)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt dp()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ With\ the\ robot\ placed\ at\ the\ root\ of\ the\ tree,}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ facing\ north\ with\ its\ pen\ down,\ draw}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ the\ south{-}west\ branch}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt tetl();\ fdn(l)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Turn\ the\ robot\ to\ face\ north}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt tetr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Draw\ the\ left\ subtree\ having\ l\ /\ 2\ \char62{}=\ 1}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ leaves,\ the\ robot\ being\ placed\ at\ the\ root\ of\ the}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ subtree,\ facing\ north\ with\ its\ pen}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ down}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt tree(l\ //\ 2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Given\ that\ the\ robot\ is\ placed\ at\ the\ root\ of\ the}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ left\ subtree,\ facing\ north\ with\ its\ pen}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ down,\ go\ back\ to\ the\ root\ of\ the\ tree,\ without}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ drawing\ anything}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pu();\ etr();\ fdn(l)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ With\ the\ robot\ placed\ at\ the\ root\ of\ the\ tree,}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ facing\ north{-}east\ with\ its\ pen\ up,}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ draw\ the\ south{-}east\ branch}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pd();\ qtr();\ fdn(l)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Turn\ the\ robot\ to\ face\ north}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt tetl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Draw\ the\ right\ subtree\ having\ l\ {-}\ l\ /\ 2\ \char62{}=\ 1}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ leaves,\ the\ robot\ being\ placed\ at\ the\ root\ of\ the}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ subtree,\ facing\ north\ with\ its\ pen}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ down}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt tree(l\ {-}\ l\ //\ 2)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Place\ the\ robot\ at\ the\ root\ of\ the\ tree,\ facing}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ north\ with\ its\ pen\ down}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pu();\ etl();\ fdn(l);\ etr();\ pd()}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gsX(2);\ gsY(3);\ gt();\ tree(32);\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

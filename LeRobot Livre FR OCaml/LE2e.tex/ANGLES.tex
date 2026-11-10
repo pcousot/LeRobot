@@ -1,0 +1,356 @@
+\section{Dimensions de la grille de déplacement du robot en coordonnées polaires}
+Les dimensions horizontales $X$ et verticales $Y$ d'un carreau de la grille de dé\-pla\-ce\-ment du
+\robot\ peuvent être définies en coordonnées cartésiennes par les commandes
+{\idt lgX} $X$ et {\idt lgY} $Y$ comme indiqué à la figure \ref{fig:lgrt} ci-dessous.
+
+\begin{figure}[h]
+ \includevspacePostScript[4.0cm]{LgrtExplique}{0.95}{0.95}
+ \parbox{13.7cm}{\caption{Grille de déplacement du \protect\robot\ définie par}\label{fig:lgrt}} 
+ \centering{{\idt lgX} $X${\idt ;\ lgY} $Y$\ ou\ {\idt lgRT (}$R${\idt ,} $T${\idt )}\Large\strut} 
+\end{figure}
+
+On peut également définir les dimensions d'un carreau du quadrillage en {\em coordonnées
+polaires} \index{Coordonnées polaires}par la commande
+{\idt lgRT (}$R${\idt ,} $T${\idt )} en donnant la longueur $R$ de la diagonale de ce carreau mesurée
+en pixels et
+l'angle $T$  exprimé en degrés que fait cette diagonale avec une horizontale
+comme illustré à la figure \ref{fig:lgrt} ci-dessus. La commande {\idt lgRT} a un seul
+paramètre, qui est une paire formée de deux nombres rationnels (de type {\idt float}) séparés par une virgule et
+placés entre parenthèses, comme dans {\idt lgRT (50., 70.)}.
+
+\begin{exemple}[Triangle isocèle]{\rm
+Le programme ci-dessous dessine un triangle isocèle ayant deux angles égaux
+à 70 degrés et deux côtés égaux à 50 pixels~:
+
+{\raggedright 
+ %\vspace{\baselineskip}
+ \vbox to 0pt{\includevspacePostScript[4cm]{TriangleIsocele}{0.95}{0.95}}%
+ \input ocaml/TriangleIsocele.tex
+ }
+\noindent $\Box$ }
+\end{exemple}
+
+\section{Rotations}
+\index{Rotation}La commande {\idt rt} {\em t} fait effectuer au \robot\ une \underline{r}o\underline{t}ation de {\em t} degrés,
+{\em t} étant une expression rationnelle (par exemple {\idt rt 15.} ou {\idt rt (-90.)}).
+Si la valeur de l'expression rationnelle {\em t} est positive alors le pivotement sur place se fait dans le sens 
+{\em contraire} des aiguilles d'une montre\index{Sens trigonométrique}\footnote{\ Sens contraire des aiguilles d'une montre que les mathématiciens
+appellent {\em sens trigonométrique}.}. Si la valeur de l'expression rationnelle {\em t} est négative alors le pivotement sur 
+place se fait dans le sens des ai\-guil\-les d'une montre. Cette commande ne change pas la position du \robot\ mais elle change
+son orientation. La longueur du segment tracé par le prochain {\idt av ()} reste également inchangée. Pour ce faire la taille du 
+carreau du quadrillage doit être convenablement modifiée. Ceci est illustré sur la figure \ref{fig:rtexp} 
+(page \pageref{fig:rtexp}) qui montre  un carreau du quadrillage en pointillés avant et après des rotations successives de
+15 degrés (le \robot\ partant à chaque fois du coin inférieur gauche du carreau et la rotation étant suivie d'un {\idt av ()} pour montrer 
+que la longueur du segment tracé ne change pas). Sur cette figure, les 
+schémas successifs sont disposés de haut en bas et de gauche à droite.
+\begin{figure}[htbp]
+ \includevspacePostScript[17.7cm]{RTexplique}{0.95}{0.95}
+ \caption{Rotations et déplacements successifs {\idt rt 15.;\ av ()}}\label{fig:rtexp}
+\end{figure}
+
+Quand on utilise la commande {\idt rt}, nous conseillons d'éviter les commandes {\idt phtd ()}, 
+{\idt pqtd ()},  {\idt p3htd ()}, \ldots, {\idt pne ()}, {\idt pse ()}, \ldots en les remplaçant par {\idt rt} avec un paramètre
+approprié (seules les commandes {\idt pn ()}, {\idt ps ()}, \ldots sont utiles pour les positionnements absolus). 
+En utilisant exclusivement la commande {\idt  rt}, il n'est pas nécessaire de tenir 
+compte des changements de repères  qu'elle induit. 
+\begin{exemple}[Pentagone]{\rm
+Le programme ci-dessous dessine un pentagone en répétant cinq fois le tracé d'un segment suivi
+d'une rotation de $(360 / 5) = 72$ degrés~:
+
+ {\raggedright 
+ \vbox to 0pt{\includevspacePostScript[6cm]{Pentagone_2}{0.95}{0.95}}%
+ \input ocaml/Pentagone_2.tex
+ }
+\noindent $\Box$ }\end{exemple}
+\begin{exemple}[Rosace de pentagones]{\rm
+La rosace ci-dessous est obtenue par superposition de dix pentagones tournés successivement de 36 degrés~:
+
+ {\raggedright 
+% \vspace{\baselineskip}
+ \vbox to 0pt{\includevspacePostScript[6cm]{RosaceDePentagones}{0.95}{0.95}}%
+ \input ocaml/RosaceDePentagones.tex
+ }
+\noindent $\Box$ }\end{exemple}
+
+\section{Translations}
+\index{Translation}
+Quelle que soit l'orientation du \robot, l'expression  {\idt valLgTl ()} de type {\idt float} a pour valeur la longueur
+ (mesurée en pixels) d'un segment qui serait tracé par un {\idt av ()}. 
+ 
+ Pour tracer un segment d'une longueur différente, on peut utiliser la commande {\idt tl} $E$ qui 
+ prend en paramètre une expression rationnelle $E$ (de type {\idt float}) dont la valeur est la 
+ longueur de ce segment 
+ comptée en pixels. Si cette valeur est positive, le segment est tracé en avançant dans la 
+ direction courante du \robot. Si cette valeur est négative, le tracé se fait en reculant. Le \robot\
+ est déplacé à l'extrémité du segment et ne change pas son orientation. Les dimensions
+ d'un carreau du quadrillage sont changées pour permettre ce déplacement (si le crayon est levé)
+ ou ce tracé (si le crayon est baissé). Par conséquent, le segment peut être prolongé
+ par un segment d'égale longueur en utilisant une commande {\idt av ()}.
+ 
+ Par exemple, la séquence de commandes {\idt tl 20.;\ rt 90.;\ av ();\ 
+rt 90.;\ av ();\ rt 90.;\ av ()} trace un carré de côté
+20 pixels.
+\begin{exemple}[Grecque polygonale]{\rm
+La frise polygonale ci-dessous est ob\-te\-nue en remplaçant le tracé
+d'un côté du polygone par celui de la grecque~:
+
+\vspace{\baselineskip}
+
+\includevspacePostScript[6.5cm]{GrecquePolygonale}{0.95}{0.95}
+\input ocaml/GrecquePolygonale.tex
+\noindent $\Box$ }\end{exemple}
+\noindent \rule{137mm}{0.1mm} %-----------------------------------------------------------
+%%% EXOS lgrt
+\begin{exercices}{Écrire des programmes \ocaml\  utilisant la commande {\idt lgRT}
+pour réaliser les dessins suivants~:
+
+\tiret un triangle équilatéral$\:$;
+
+\tiret le pentagone, les croix ou la toile d'araignée de la figure \ref{fig:PtCrCrTa} (page \pageref{fig:PtCrCrTa})$\:$;
+
+\tiret les motifs géométriques d'après Horemis \cite{horemis} de la figure \ref{fig:horemis} (page \pageref{fig:horemis})$\:$;
+
+\tiret les pavages coloriés de la figure \ref{fig:pavtrilo} (page \pageref{fig:pavtrilo}).
+
+Les très nombreux pavages donnés par Grünbaum et Shephard \cite{grunbaum} sont la source
+d'innombrables exercices.
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[3.1cm]{PtCrCrTa}{0.95}{0.95}
+ \caption{Pentagone, croix et toile d'araignée}\label{fig:PtCrCrTa}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[6.0cm]{Horemis}{0.95}{0.95}
+ \caption{Motifs géométriques d'après Horemis}\label{fig:horemis}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[3.2cm]{EtoilesORCVSpi}{0.95}{0.95}
+ \caption{Étoiles, octogone décoré et spirolatérale}\label{fig:etocsp}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[10.2cm]{PavagesTriLos}{0.95}{0.95}
+ \caption{Pavages de triangles, losanges et carrés}\label{fig:pavtrilo}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.4cm]{RosacesPolygonales}{0.95}{0.95}
+ \caption{Rosaces polygonales}\label{fig:rospol}
+\end{figure}
+%%% EXOS rt
+\begin{exercices}{Écrire des programmes \ocaml\  utilisant la commande {\idt rt}
+pour réaliser les dessins suivants~:
+
+\tiret les étoiles, l'octogone décoré ou la courbe spirolatérale d'ordre 3 à 135 degrés de la figure 
+         \ref{fig:etocsp} (page \pageref{fig:etocsp}), cette dernière étant obtenue en avançant une, puis deux, puis
+		 trois fois, en tournant à chaque fois de 135 degrés et en répétant ces déplacements jusqu'à ce que
+		 la courbe soit fermée$\:$;
+
+\tiret les polygones réguliers de la figure 
+         \ref{fig:polyreg} (page \pageref{fig:polyreg}), le nombre de côtés étant un paramètre de la procédure
+		 de dessin$\:$;
+
+\tiret les étoiles de la figure 
+         \ref{fig:etoiles} (page \pageref{fig:etoiles}), le nombre de branches étant un paramètre de la procédure
+		 de dessin$\:$;
+
+\tiret le rapporteur de la figure 
+         \ref{fig:rapport} (page \pageref{fig:rapport}), en utilisant la commande
+		 {\idt ecrire (entierEnChaine} {\em e}{\idt )} qui écrit la valeur de l'expression entière {\em e}
+		 à droite de la position courante du \robot\ (l'irrégularité des graduations
+		 est due aux erreurs d'arrondi en coordonnées d'écran entières qui ne permettent pas de
+		 représenter des droites de pentes quelconques)$\:$;
+
+\tiret le pavage du plan avec des hexagones ou des étoiles de la figure 
+         \ref{fig:pavhexeto} (page \pageref{fig:pavhexeto})$\:$;
+
+\tiret le pavage à la Escher \cite{escher1} du disque et du triangle de la figure 
+         \ref{fig:pavdistri} (page \pageref{fig:pavdistri})$\:$;
+
+\tiret le pavage du disque utilisant le pavé de Voderberg \cite{voderberg} de la figure 
+         \ref{fig:voder1} (page \pageref{fig:voder1})$\:$;
+
+\tiret les spirales utilisant le pavé de Voderberg \cite{voderberg} de la 
+         figure \ref{fig:voder2} (page \pageref{fig:voder2}).
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[7.3cm]{PolygonesReguliers}{0.95}{0.95}
+ \caption{Polygones réguliers}\label{fig:polyreg}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[1.9cm]{Etoiles}{0.95}{0.95}
+ \caption{Étoiles}\label{fig:etoiles}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[6.8cm]{Rapporteur}{0.95}{0.95}
+ \caption{Rapporteur gradué en degrés}\label{fig:rapport}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[6.0cm]{PavageHexagonesEtoiles}{0.95}{0.95}
+ \caption{Pavage du plan avec des hexagones et des étoiles}\label{fig:pavhexeto}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[9.7cm]{PavageDisqueTriangle}{0.95}{0.95}
+ \caption{Pavage à la Escher du disque et du triangle}\label{fig:pavdistri}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[6.5cm]{Voderberg1}{0.95}{0.95}
+ \caption{Pavé et pavage du disque de Voderberg}\label{fig:voder1}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[6.2cm]{Voderberg2}{0.95}{0.95}
+ \caption{Spirales de Voderberg}\label{fig:voder2}
+\end{figure}
+%%% EXOS developpements de solides
+\begin{exercices}{Écrire des programmes \ocaml\  utilisant les commandes {\idt lgRT} et {\idt rt} 
+pour réaliser les développements des solides suivants~:
+
+\tiret solides de Platon (cube, tétraèdre, octaèdre, dodécaèdre et iso\-ca\-è\-dre
+ré\-gu\-liers) de la figure \ref{fig:platon} (page \pageref{fig:platon})$\:$;
+
+\tiret les grand et petit rhombicuoctaèdres et le tétraèdre tronqué de la figure 
+\ref{fig:devsol} (page \pageref{fig:devsol}).
+
+Les développements des solides donnés par Cundy et Rollett \cite{cundy} 
+sont la source de nombreux exercices.
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.5cm]{SolidesDePlaton}{0.95}{0.95}
+ \caption{Développements des solides de Platon}
+ \label{fig:platon}
+\end{figure}
+\begin{figure}[htbp]
+\includevspacePostScript[6.0cm]{DevelopSolides}{0.95}{0.95}
+\caption{Développements des grand et petit rhombicuoctaèdres}\label{fig:devsol}
+\centering{et du tétraèdre tronqué}
+\end{figure}
+
+%%% EXOS rt + tl + tracer
+\begin{exercices}{Écrire des programmes \ocaml\  utilisant les commandes {\idt rt}
+et {\idt tl} pour réaliser les dessins suivants~:
+
+\tiret les rosaces polygonales de la figure \ref{fig:rospol} (page \pageref{fig:rospol})$\:$;
+
+\tiret les ``jolygones'' de la figure \ref{fig:jgones} (page \pageref{fig:jgones}) obtenus en traçant des
+segments successifs dont la longueur diminue à chaque fois de 5 \%, deux segments successifs faisant
+un angle de $\theta$ degrés$\:$; $\theta$ étant choisi respectivement égal à 15, 60, 72, 76, 89, 92,
+118, 175 et 144 degrés
+pour les jolygones 
+%de la figure \ref{fig:jgones} (page \pageref{fig:jgones}) 
+considérés de gauche
+à droite et de haut en bas$\:$;
+
+\tiret les courbes planes de la figure \ref{fig:courbpo} (page \pageref{fig:courbpo})
+définies par une équation polaire, comme suit~:
+ \begin{list}{$\scriptscriptstyle\bullet$}{
+}
+   \item le limaçon de Pascal, $\rho = a + b \cos{\theta}$ avec
+   $a \neq 0$, $b \neq 0$ et $\theta \in [0, 2\pi]$ (sur l'exemple, $a = 40$ et $b = 80$),
+   \item le rhodone\ae\ à trois pétales, $\rho = a \cos{n \theta}$ avec 
+    $a = 60$, $n = 3$ et $\theta \in [0, \pi]$,
+   \item la courbe de Moritz, $\rho = a \cos{\frac{9}{10} \theta}$ avec 
+    $a = 60$ et $\theta \in [-10 \pi, 10 \pi]$$\:$;
+   \end{list}
+
+\tiret les courbes planes définies par les équations cartésiennes $y = \sin{x}, x \in [-2\pi, 2\pi]$
+  (figure \ref{fig:sin} ci-dessous) et  $y = \cos{x}, x \in [-2\pi, 2\pi]$ en utilisant les commandes {\idt deplacerReel} 
+  et {\idt tracerReel}. La commande {\idt tracerReel (x, y)},
+  où {\idt x} et {\idt y} sont des expressions rationnelles,
+  trace un segment (si le crayon est baissé) de la position courante du
+  \robot\ au point de coordonnées cartésiennes $(x,\ y)$ et déplace le \robot\ dans
+  cette nouvelle position  $(x,\ y)$. La commande {\idt deplacerReel (x, y)} fait de
+  même sans tracer. Les fonctions {\idt sin} et {\idt cos} et la constante {\idt pi}
+  sont expliquées dans l'addenda du chapitre \ref{ch:rec}.
+   De nombreux autres exemples de tracés de courbes sont donnés dans \cite{LT}.
+
+\noindent $\Box$}\end{exercices}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.7cm]{Sinus}{0.95}{0.95}
+ \caption{Courbe cartésienne $y = \sin{x}, x \in [-2\pi, 2\pi]$}\label{fig:sin}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[12.0cm]{Jolygones}{0.95}{0.95}
+ \caption{Jolygones à 15, 60, 72, 76, 89, 92, 118, 175 et 144 degrés}\label{fig:jgones}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[5.3cm]{CourbesPolaires}{0.95}{0.95}
+ \caption{Limaçon de Pascal, rhodone\ae\ à trois pétales, courbe de Moritz}\label{fig:courbpo}
+\end{figure}
+%%% CORRIGES lgrt
+\begin{corrige}{
+Nous donnons le programme de dessin de la toile d'araignée de la figure \ref{fig:PtCrCrTa} 
+(page \pageref{fig:PtCrCrTa}), les autres programmes se trouvant dans le dossier
+{\idt livre/\allowbreak 20\_grille\_polaire}~:
+\input ocaml/ToileDaraignee.tex
+\noindent $\Box$}\end{corrige}
+%%% CORRIGES rt
+\begin{corrige}{
+Nous donnons la procédure de dessin d'un polygone régulier de $n$ côtés (figure \ref{fig:polyreg}, 
+page \pageref{fig:polyreg}), les autres programmes se trouvant  dans le dossier
+{\idt livre/\allowbreak 20\_grille\_polaire}~:
+\input ocaml/PolygoneRegulier.tex
+\noindent $\Box$}\end{corrige}
+%%% CORRIGES developpements de solides
+\begin{corrige}{
+Nous donnons le programme de dessin du développement du té\-traè\-dre tron\-qué, les autres 
+programmes se trouvant  dans le dossier {\idt livre/\allowbreak 20\_grille\_polaire}~:
+\input ocaml/TetraedreTronque.tex
+\noindent $\Box$}\end{corrige}
+%%% CORRIGES rt + tl
+\begin{corrige}{
+Nous donnons le programme de dessin du jolygone à 175 degrés, les autres jolygones sont obtenus en changeant la
+valeur de la constante {\idt angle}. Les autres programmes se trouvent  dans le dossier
+{\idt livre/\allowbreak 20\_grille\_polaire}.
+\input ocaml/Jolygone175.tex
+\noindent $\Box$}\end{corrige}
+
+\clearpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+La commande {\idt lgRT (r, t)} définit la longueur {\idt r} de la diagonale d'un carreau du
+quadrillage (exprimée en pixels) et l'angle {\idt t} exprimé en degrés que fait cette diagonale 
+avec une horizontale.  Elle est équivalente à~:
+\begin{center}
+{\idt lgX (r *.\ cos (t /.\ 180.\ *.\ pi));}\\
+{\idt lgY (r *.\ sin (t /.\ 180.\ *.\ pi))} 
+\end{center}
+mais évite l'emploi des fonctions trigonométriques.
+L'angle {\idt t}, compris entre 0 et 90,  définit l'orientation nord-est qui est confondue avec l'est quand {\idt t = 0.}
+et avec le nord quand {\idt t = 90.}
+
+La commande {\idt rt t} fait pivoter le \robot\ sur place d'un angle de {\idt t} degrés à gauche,
+dans le sens trigonométrique ou sens inverse des aiguilles d'une montre, si {\idt t} $> 0$, et à droite, dans le sens des aiguilles
+d'une montre, si {\idt t} $ < 0$. La commande {\idt tl l} fait avancer (si {\idt l} $> 0$)
+ou reculer (si {\idt l} $< 0$) le \robot\ tout droit de {\idt l} fois la taille d'un côté d'un pixel
+de l'écran.
+
+Ces commandes {\idt rt} et {\idt tl} sont directement inspirées du graphisme ``tortue'' de 
+{\sc logo}. Elles changent le repère et l'orientation du \robot\ pour rester compatibles
+avec l'emploi de coordonnées cartésiennes ou polaires.
+
+Le langage {\sc logo} fut conçu par Seymour Papert à la fin des années 1970 \cite{logo}.
+Il présente de nombreuses similitudes avec {\sc lisp}
+\cite{lisp}, en particulier l'interprétation de données représentant des instructions,
+la portée dynamique des identificateurs et la structure de liste.
+L'interprétation des données comme des programmes implique quelques subtilités dans
+l'écriture des programmes (comme l'emploi de la fonction {\idt quote}, \cite{wilson}) qui ne sont pas
+à la portée de tous les débutants en informatique.
+La portée dynamique des identificateurs \cite{wilson}
+est largement abandonnée et la structure de liste
+est presque toujours complétée par des tableaux dans les  {\sc lisp} modernes comme
+{\sc common lisp} qui suivent en cela les langages descendant d'{\sc algol 60} 
+\cite{algol60} comme \pascal\ ou {\sc ada}. Le langage \ocaml, issu de {\sc ml}, offre
+lui aussi à la fois les listes et les tableaux, mais n'interprète pas ses données comme
+des instructions et utilise la portée statique des identificateurs.
+ 
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
+\newpage                 % Si on termine le chapitre par une page blanche
+\thispagestyle{empty}

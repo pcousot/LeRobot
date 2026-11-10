@@ -1,0 +1,28 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ frieze\ of\ tildes}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ tilde{-}shaped\ pattern\ \char126{}}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ tilde():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt etr();\ fd();\ etr();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr();\ fd();\ fd();\ qtl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd();\ etl();\ fd()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gl()}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(10):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt tilde()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Back\ up\ to\ the\ next\ tilde\textquotesingle{}s\ start}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ tetl();\ fd();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Turn\ the\ robot\ to\ face\ north}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtr()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

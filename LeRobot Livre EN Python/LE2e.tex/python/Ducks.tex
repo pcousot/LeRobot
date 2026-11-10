@@ -1,0 +1,41 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ ducks}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ duck\ on\ a}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ grid\ of\ size\ l\ without\ changing}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ the\ original\ grid}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ duck(l):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Remember\ the\ dimensions\ of\ the\ original\ grid}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lX\ =\ valGsX();\ lY\ =\ valGsY()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ a\ duck\ with\ a\ grid\ of\ size\ l}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(l)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fdn(19)\ \ }{\cmt \#\ Waterline}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gsX(3\ *\ l);\ gsY(7\ *\ l);\ etl()\ \ }{\cmt \#\ Tail}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt fd();\ ht();\ gsX(4\ *\ l);\ gsY(2\ *\ l);\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gsX(6\ *\ l);\ gsY(3\ *\ l);\ tetr();\ cl()\ \ }{\cmt \#\ Back}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gsX(4\ *\ l);\ gsY(l);\ cl();\ ht()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(l);\ fdn(2);\ gs(3\ *\ l);\ cl();\ cl()\ \ }{\cmt \#\ Head}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pu();\ qtl();\ fd();\ dc();\ ht();\ fd()\ \ }{\cmt \#\ Eye}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtl();\ pd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gsX(2\ *\ l);\ gsY(l);\ fd();\ etr();\ fd()\ \ }{\cmt \#\ Beak}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt qtl();\ fd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gsX(2\ *\ l);\ gsY(6\ *\ l);\ fd()\ \ }{\cmt \#\ Breast}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt etl()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Place\ the\ robot\ at\ the\ rear\ of\ the\ duck}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gs(l);\ fdn(18)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Restore\ the\ original\ grid}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt gsX(lX);\ gsY(lY)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gs(6);\ fe();\ duck(3);\ fd();\ duck(2);\ fd()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt duck(1);\ fd();\ duck(1);\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

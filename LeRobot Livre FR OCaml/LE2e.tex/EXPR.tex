@@ -1,0 +1,361 @@
+Un ordinateur est capable de faire des {\em additions} $(15 + 3) = 18$, des {\em soustractions} 
+$(15 - 3) = 12$, 
+des {\em multiplications} $(15 \ast 3) = 45$ et des {\em divisions} d'entiers $(15 \;/\; 3) = 5$. 
+Si la division ne tombe pas juste,
+le résultat est le quotient entier. Le reste est donné
+par l'opération {\em modulo} notée {\mcl mod}. Par exemple 
+$(17 \;/\; 3) = 5$ et $(17 \;${\mcl mod}$\; 3) = 2$ car la division du dividende $17$
+par le diviseur $3$ donne le quotient $5$ et le reste $2$. En mathématiques on utilise une croix
+`$\times$' pour noter la multiplication tandis qu'en \ocaml\ on utilise l'astérisque $\ast$.
+On évite ainsi de confondre le signe multiplié `$\times$' avec la lettre {\idt x} minuscule.
+De même on utilise la barre oblique `$/$' pour la division entière plutôt que le signe
+`$\div$' qui ne figure pas sur les claviers d'ordinateurs.
+Nous verrons plus tard qu'\ocaml\ utilise d'autres opérateurs pour calculer avec des 
+nombres à virgule.
+
+Pour faire un calcul comportant plusieurs opérations, on utilise des pa\-ren\-thè\-ses. Par exemple
+$((2 \ast 3) - 1)$ est égal à 5. Le calcul commence par l'évaluation de l'expression 
+entre parenthèses la plus intérieure. 
+Par exemple $((((5 + 1) \ast 3) - 4) \;/\; 2) = (((6 \ast 3) - 4) \;/\; 2) = 
+((18 - 4) \;/\; 2) = (14 \;/\; 2) = 7$.  
+
+\index{Expression entière}Dans ces {\em expressions entières}
+nous pouvons également utiliser la valeur des compteurs de boucles ``for''. Par exemple 
+lors des itérations successives dans le corps de la boucle
+``{\idt  {\mcl for}\ i\ =\ 1\ {\mcl to}\ 5\ {\mcl do}\ \ldots\ {\mcl done}}'',
+le compteur {\idt i} vaut $1$, puis $2$, puis $3$, puis $4$ et enfin $5$. 
+Dans ce corps de boucle l'expression $((2 \ast ${\idt  i}$) - 1)$ vaut donc successivement 
+$((2 \ast 1) - 1) = 1$, $((2 \ast 2) - 1) = 3$, $((2 \ast 3) - 1) = 5$, $((2 \ast 4) - 1) = 7$ et enfin
+$((2 \ast 5) - 1) = 9$.
+
+\begin{exemple}[Pyramide]
+Pour dessiner la pyramide ci-après, nous pouvons commencer par le sommet et dessiner de
+haut en bas des rectangles successifs de longueurs 1, 3, 5, 7, 9. La longueur du
+côté du {\idt i}$^{\rm\grave{e}me}$ rectangle à partir du sommet est 
+donc $((2\;\ast\;${\idt  i}$) - 1)$. Dans le programme, cette expression est écrite
+après le mot {\mcl to} pour indiquer le nombre d'itérations de la boucle qui dessine un côté
+du rectangle.
+
+\pagebreak[3]
+\vspace*{22mm}%
+\includePostScript{Pyramide}{0.95}{0.95}%
+\vspace*{-22mm}%
+\input ocaml/Pyramide.tex
+\end{exemple}
+
+%\pagebreak
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercice}{ Compléter le programme {\idt PiquetsEnDentsDeScie}, en remplaçant les
+points de suspension `{\idt ...}' par une expression entière, pour
+ob\-te\-nir l'alignement de piquets représenté ci-après~:
+\clearpage
+
+\raggedright{
+\vspace*{20mm}%
+\includePostScript{PiquetsEnDentsDeScie}{0.95}{0.95}\ \\%
+}
+
+
+\input ocaml/PiquetsEnDentsDeScie.tex
+\noindent $\Box$}\end{exercice}
+\begin{exercice}{ Écrire des programmes \ocaml\ de commande du \robot\ pour réaliser les
+dessins géométriques de la figure  \ref{fig:spcf} (page  \pageref{fig:spcf}). $\Box$}\end{exercice}
+\begin{exercice}{{\bf (Difficile)} Compléter le programme {\idt VaguesDePiquets} pour
+des\-si\-ner l'alignement de piquets représenté ci-dessous~:
+
+\pagebreak[3]
+\raggedright{
+\vspace{0.5cm}
+
+\includevspacePostScript[2.0cm]{VaguesDePiquets}{0.95}{0.95}
+}
+
+\input ocaml/VaguesDePiquets.tex
+\noindent $\Box$}\end{exercice}
+\begin{figure}[hb]%[htbp]
+ \includevspacePostScript[9.3cm]{SpiralesEtQuad}{0.95}{0.95}
+\caption{Grecque, spirales, pavage triangulaire et carré à franges}
+ \label{fig:spcf}
+\end{figure}
+
+\clearpage
+
+\begin{exercice}{{\bf (Difficile)}
+\begin{enumerate}
+\item Écrire un programme \ocaml\ pour dessiner le pavage de Nicomaque\@%
+\footnote{\ Nicomaque de Gérase, mathématicien grecque, env. I$^{\rm er}$ siècle après J.-C.}
+représenté à la figure
+\ref{fig:Nicomaque}  page \pageref{fig:Nicomaque} en utilisant des boucles
+``for'' imbriquées dépendantes. Décrire les invariants de
+boucles par des commentaires dans le programme. Le pavage de Nicomaque est obtenu par 10 
+couronnes constituées de carrés dont les longueurs des côtés
+sont respectivement 1, 2, 3, 4, \ldots, 10.
+
+\item Calculer la surface du carré de deux façons différentes
+suggérées par la figure \ref{fig:Nicomaque2}  
+page \pageref{fig:Nicomaque2}~:
+ \begin{enumerate}
+  \item en calculant la longueur du demi-côté du carré obtenue en additionnant
+        celles des carrés du pavage,
+  \item en calculant la surface du quart du grand carré délimité par
+   les diagonales de ce grand carré (voir cette partie en vert à la
+   figure \ref{fig:Nicomaque2}, page \pageref{fig:Nicomaque2}), la surface de ce quart de grand carré
+   étant obtenue par addition des surfaces des petits carrés le constituant.
+ \end{enumerate}
+\item En déduire l'égalité~:
+\[ 1^{3} + 2^{3} + 3^{3} + 4^{3} + \ldots + 10^{3} = (1 + 2 + 3 + 4 + \ldots + 10)^{2}\]
+\end{enumerate}
+\noindent $\Box$}\end{exercice}
+\begin{figure}[htbp]
+ \includevspacePostScript[11.7cm]{Nicomaque}{0.95}{0.95}
+ \caption{Pavage de Nicomaque (Échelle $\frac{1}{4})$}
+ \label{fig:Nicomaque}
+\end{figure}
+
+\begin{corrige} {L'expression entière manquante dans le programme {\idt Piquets\-En\-Dents\-De\-Scie} est~:
+\begin{center}
+$(1 + ((${\idt i}$ - 1)\;${\mcl mod}$\;5))$
+\end{center}
+qui prend successivement les valeurs $1$, $2$, $3$, $4$, $5$, $1$, $2$, $3$, \dots quand {\idt i} prend les
+valeurs $1$, $2$, $3$, $4$, $5$, $6$, $7$, $8$, \ldots
+\noindent $\Box$}\end{corrige}
+\begin{corrige} {Nous donnons un programme, les autres se trouvant dans le dossier
+{\idt livre/\allowbreak 08\_expressions\_entieres}~:
+\input ocaml/SpiraleTrapezoidale.tex
+\noindent $\Box$}\end{corrige}
+\begin{corrige} {L'expression entière manquante dans le programme {\idt VaguesDePiquets} est la suivante~:
+\begin{center}
+$(((6-${\idt j}$)\ast ((${\idt i}$+1)\;${\mcl mod}$\;2))+(${\idt j}$\ast(${\idt i}$\;${\mcl mod}$\;2)))$
+\end{center}
+Quand {\idt i} est impair, $((${\idt i}$+1)\;${\mcl mod}$\;2) = 0$ et $(${\idt i}$\;${\mcl mod}$\;2) = 1$
+donc l'expression vaut {\idt j}. Quand {\idt i} est pair, $((${\idt i}$+1)\;${\mcl mod}$\;2) = 1$ et 
+$(${\idt i}$\;${\mcl mod}$\;2) = 0$ donc l'expression vaut $(6-${\idt j}$)$.
+$\Box$}\end{corrige}
+\begin{corrige}{\hfill
+\input ocaml/PavageDeNicomaque.tex
+\begin{figure}[htbp]
+ \includevspacePostScript[12.1cm]{Nicomaque2}{0.95}{0.95}
+ \caption{Côté et surface du carré de Nicomaque (Échelle $\frac{1}{4}$)}
+ \label{fig:Nicomaque2}
+\end{figure}
+En partageant un côté du grand carré en deux, la longueur de ce
+demi-côté est la somme $(1 + 2 + \ldots + 10)$ des longueurs des carrés 
+de tailles 1, 2, 3, \ldots, 10 du pavage. Ceci apparaît clairement sur la
+figure \ref{fig:Nicomaque2}  page \pageref{fig:Nicomaque2} grâce à la
+réglette que nous avons placée en dessous à droite du grand carré.
+La surface du grand carré est donc le carré de la longueur du côté soit~:
+\[(2 \times (1 + 2 + \ldots + 10))^{2} = 4 \times (1 + 2 + \ldots + 10)^{2}\]
+
+Si l'on partage le grand carré selon les diagonales, on obtient un
+triangle comme on le voit en vert à
+la figure \ref{fig:Nicomaque2} (page \pageref{fig:Nicomaque2}). Ce triangle
+contient 1 carré de longueur de côté 1, 2 carrés de longueur de 
+côté 2, \ldots, 10 carrés de longueur de côté 10. Sa surface est
+donc $1 \times 1^{2} + 2 \times 2^{2} + \ldots + 10  \times  10^{2}$ soit
+$1^{3} + 2^{3} + \ldots + 10^{3}$. En faisant pivoter 4 fois ce triangle, on
+recouvre entièrement le grand carré. La surface du grand carré est 
+donc~:
+\[4 \times (1^{3} + 2^{3} + \ldots + 10^{3})\]
+
+Le résultat est le même quelle que soit la façon de calculer la surface 
+du carré de Nicomaque. Par conséquent~:
+\[4 \times (1^{3} + 2^{3} + \ldots + 10^{3}) = 4 \times (1 + 2 + \ldots + 10)^{2}\]
+soit~:
+\[ 1^{3} + 2^{3} + \ldots + 10^{3} = (1 + 2 + \ldots + 10)^{2}\]
+
+Une autre démonstration de cette identité a été proposée par Al-Karagi\/\@\footnote{\ Al-Karagi,
+fin X$^{\rm\grave{e}me}$ -- début XI$^{\rm\grave{e}me}$ siècle, mathématicien persan.} et repose sur le pavage du carré en 
+équerres comme illustré ci-dessous~:
+
+\begin{figure}[htbp]
+ \includevspacePostScript[6.3cm]{AlKaragi}{0.95}{0.95}
+ \caption{Pavage de Al-Karagi}
+ %\label{fig:AlKaragi}
+\end{figure}
+
+\noindent L'aire de l'équerre extérieure de petit côté 10 vaut~:
+\begin{center}
+$\begin{array}{ll}
+(2 \times 10 \times (1 + 2 + \ldots + 10))  - 10^{2} & = 2 \times 10 \times \frac{10 \times (10 +1)}{2} - 10^{2}\\
+& = -10^{3} + 10^{2} - 10^{2} = 10^{3}
+\end{array}$
+\end{center}
+L'aire de l'équerre de petit côté 9 est $9^{3}$, celle de l'équerre de petit côté 8 est $8^{3}$,  \ldots, 
+l'aire du petit carré est $1 = 1^{3}$. 
+Par conséquent, l'aire du grand carré qui
+est la somme des aires du petit carré et des équerres est $1^{3} + 2^{3} + \ldots + 10^{3}$.
+D'autre part, la longueur du côté du grand carré est $(1 + 2 + \ldots + 10)$ donc sa surface est
+$(1 + 2 + \ldots + 10)^{2}$. Comme l'aire du grand carré est la même quelque soit la façon 
+de la calculer, on obtient~:
+\[ 1^{3} + 2^{3} + \ldots + 10^{3} = (1 + 2 + \ldots + 10)^{2}\]
+Pour justifier que $(1 + 2 + \ldots + 10) = \frac{10 \times (10 +1)}{2}$, on utilise un rectangle de
+largeur 10 et de longueur  (10 +1) dont la moitié est pavée comme suit~:
+
+\begin{figure}[htbp]
+ \includevspacePostScript[4.3cm]{S1p2p3Etc}{0.95}{0.95}
+ \caption{Cacul de $1 + 2 + 3 + \ldots + 10$}
+ %\label{fig:1+2+3etc}
+\end{figure}
+
+Une autre justification géométrique de l'égalité 
+$1^{3} + 2^{3} + \ldots + 10^{3} = (1 + 2 + \ldots + 10)^{2}$ proposée par S. Go\-lomb
+\cite{golomb1} est illustrée ci-dessous~: 
+%à la figure \ref{fig:golomb} (page \pageref{fig:golomb}).
+
+\begin{figure}[htbp]
+ \includevspacePostScript[6.0cm]{Golomb}{0.95}{0.95}
+ \caption{Pavage de Golomb}
+ \label{fig:golomb}
+\end{figure}
+
+\noindent La longueur du côté du grand carré est bien $(1 + 2 + \ldots + 10)$ donc sa surface est
+$(1 + 2 + \ldots + 10)^{2}$. Cette surface est égale à la somme des surfaces des carrés
+constituant le pavage soit 1 carré de côté 1, 2 carrés de côté 2, \ldots, 10
+carrés de côté 10. On 
+remarque que pour les carrés de longueur de côté paire montrés en jaune sur la figure, 
+il y a un 
+recouvrement de deux petits carrés figuré en rouge. Mais chacun de ces petits carrés 
+est adjacent à une région non couverte de même taille montrée en blanc. On peut donc
+enlever un des deux petits carrés qui se recouvrent pour boucher le trou et obtenir un pavage parfait.
+ La surface est donc égale à $1^{3} + 2^{3} + \ldots + 10^{3}$. 
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+\indent \index{Expression entière}Pour simplifier l'apprentissage de la syntaxe d'\ocaml\ nous écrivons les expressions 
+entières avec des parenthèses.  Les expressions entières {\em unaires} (avec
+un seul {\em opérande} $E$) sont de la forme $(-E)$ où $-$ est l'{\em opérateur} de signe moins.
+Les expressions entières {\em binaires} (avec un {\em opérande} gauche $E_1$ et un opérande 
+droit  $E_2$) sont  de la forme $(E_1\,$ {\mcl op} $\,E_2)$ où {\mcl op} est l'un des 
+{\em opérateurs} d'addition $+$, de soustraction $-$, de multiplication $\ast$, de division
+entière $/$ ou de reste de la division entière {\mcl mod} (modulo). 
+Les opérandes $E$, $E_1$ et $E_2$ sont une cons\-tan\-te entière (positive comme $1$, $17345$
+(sans blancs), \ldots
+ou négative comme $-10$, $-5247$, \ldots), une variable (pour l'instant un compteur de 
+boucle ``for'' comme {\idt i}) ou une
+{\em sous-expression} entière de la forme que nous venons de décrire. 
+
+Le calcul de la valeur d'une expression s'appelle l'{\em évaluation} de l'expression. Les règles
+d'évaluation des expressions complètement parenthésées sont très simples. La valeur d'une
+constante est l'entier qui est dénoté par cette constante. La valeur d'une variable {\idt i} utilisée
+comme compteur dans le corps $C$ d'une boucle {\mcl for\ \idt i\ =\ 1\ \mcl to\ \idt 
+$n$\mcl\ do\ $C$\ done} (où $n \geq 1$ est une constante entière) est successivement 1 puis 2
+puis \dots puis $n$ lors des itérations successives dans la boucle. La valeur d'une expression $(-E)$
+s'obtient en calculant la valeur $v$ de l'expression $E$ puis en lui appliquant le signe moins. La
+valeur d'une expression $(E_1\,$ {\mcl op} $\,E_2)$ s'obtient en calculant d'abord la valeur 
+$v_1$ de l'expression $E_1$ puis en calculant la valeur $v_2$ de l'expression $E_2$ puis en
+calculant la valeur $v_1\,$ {\mcl op} $\,v_2$ du résultat. Les mêmes règles d'évaluation
+s'appliquent aux sous-expressions $E$, $E_1$ et $E_2$.
+
+\indent Pour éviter les lourdeurs d'écriture, on peut suivre en \ocaml\ la pratique courante en
+mathématiques qui consiste à utiliser des {\em règles de priorité} (on dit aussi {\em règles
+de précédence}) permettant d'éliminer
+certaines parenthèses redondantes.  
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+Les règles d'évaluation des expressions entières sont
+définies et illustrées ci-après~:
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item En \ocaml\ comme en mathématiques, l'expression
+entière $10 - 10 - 10$ vaut $((10 - 10) - 10)$ soit $-10$.  De même $ 2 \ast 7 \,/
+\, 3\,${\mcl mod}$\, 2$ vaut $(((2 \ast 7) \,/\, 3)\,${\mcl mod}$\, 2)$ soit $0$. 
+Dans les deux cas la règle est que des opérateurs de même {\em priorité} (à savoir $+$ et 
+$-$ d'une part$\:$; $\ast$, $/$ et {\mcl mod} d'autre part) s'évaluent de gauche à droite. 
+\item L'expression $8 + - 2 \ast 3$ vaut $(8 + ((-2) \ast 3))$ soit $2$.  De même 
+\hbox{$1 - 5\,/\,2$}
+vaut $(1 - (5\,/\,2))$ soit $-1$. La règle est qu'en présence d'opérateurs de
+priorités différentes, on commence par évaluer les opérateurs de plus forte priorité. 
+En \ocaml\ les priorités sont les suivantes~:
+\end{list}
+
+\vspace{-6pt}
+
+\begin{center}
+\hspace{1.0cm}\begin{tabular}{|l|l|l|} \hline
+\multicolumn{3}{|l|}{\em Priorité des opérateurs entiers} \\ \hline \hline
+$-$ (unaire)                                & opérateurs unaires & priorité forte \\ \hline
+$\ast$\ $/$\ {\mcl mod} & opérateurs multiplicatifs & priorité moyenne \\ \hline
+$+$, $-$ (binaires) & opérateurs additifs & priorité faible \\ \hline
+\end{tabular}
+\end{center}
+
+\vspace{-6pt}
+
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item L'expression $(8 + - 2) \ast 3$ vaut $((8 + (- 2)) \ast 3)$ soit $18$.  De même 
+\hbox{$(1 - 5)\,/\,2$} vaut $((1 - 5)\,/\,2)$ soit $-2$. Dans les deux cas on 
+commence par l'évaluation des sous-expressions entre parenthèses.
+\end{list}
+
+\smallskip
+
+\noindent De manière équivalente, l'ordre d'évaluation des expressions peut être défini
+en indiquant à quels opérateurs sont liés les opérandes d'une expression~:
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item Un opérande figurant entre deux opérateurs de priorités différentes est lié à l'opérateur
+de plus forte priorité (donc $2 + 3 \ast 5 = (2 + (3 \ast 5))$).
+\item Un opérande figurant entre deux opérateurs de même priorité est lié à l'opérateur
+de gauche (donc $2 - 3 - 5 = ((2 - 3) - 5)$).
+\item Les expressions entre parenthèses sont évaluées avant d'être utilisées comme opérandes.
+\end{list}
+
+\smallskip
+
+Les règles d'évaluation des expressions changent d'un langage de programmation à l'autre.
+Par exemple en {\sc apl} \cite{iverson1}, il n'y a pas de priorités d'opérateurs (car il y en a
+trop dans le langage pour qu'on puisse espérer s'en souvenir) et les expressions sont associatives 
+à droite de sorte que $10 - 10 - 10 = (10 - (10 - 10)) = (10 - 0) = 10$ . Cette règle contraire
+à la tradition mathématique a l'avantage que l'analyse grammaticale des expressions est grandement
+simplifiée pour l'ordinateur. 
+
+Les langages de programmation plus classiques qu'{\sc apl} sui\-vent la convention
+mathématique d'évaluation de gauche à droite avec priorités.
+
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+Cependant certains langages possèdent beaucoup d'opérateurs.
+Par exemple le langage {\sc C} \cite{kernighan1} comprend 43 opérateurs différents répartis en
+15 niveaux de prio\-ri\-té.
+Les priorités des opérateurs ne sont donc pas faciles à retenir. 
+
+De plus les règles changent d'un langage à 
+l'autre ce qui rend la vie difficile aux informaticiens
+pratiquant journellement plusieurs langages. Pour ne pas se tromper ils utilisent des parenthèses
+redondantes,
+ce que nous conseillons aux débutants de faire.
+
+Signalons enfin qu'en \ocaml\ la valeur des expressions entières doit être comprise entre deux
+valeurs minimale et maximale, appelées {\idt min\_int} et {\idt max\_int}, qui sont
+$-4611686018427387904$ et $4611686018427387903$ sur les ordinateurs actuels (elles étaient
+$-32768$ et $32767$ sur les premiers ordinateurs personnels). Au-delà, le calcul donne un
+résultat faux sans prévenir~: par exemple $(${\idt max\_int}$ + 1)$ vaut {\idt min\_int}$\:$!
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,59 @@
+from LibRobot import *
+
+# Build a magic square of odd order
+
+# Read from the keyboard the (odd) order n of the square
+def readOrder():
+    write("Order of the magic square (odd), n = ")
+    n = readInt()
+    if n > 0 and n % 2 == 1:
+        return n
+    else:
+        return readOrder()
+
+# Put the robot at the bottom left corner of the square:
+# one step above and to the right of the window's corner
+def origin():
+    gb(); gl(); translate(1, 1)
+
+# Write the text s centred on the robot's position
+# (technical procedure that uses the graphics library
+# directly)
+def writeCentred(s):
+    Principal.wait()
+    def doIt():
+        w, h = Graphics.text_size(s)
+        x = Robot.pixel(valX())
+        y = Robot.pixel(valY())
+        Principal.draw(False)
+        cx, cy = Graphics.current_point()
+        Graphics.moveto(x - w // 2, y - h // 2 + 1)
+        Graphics.draw_string(s)
+        Graphics.moveto(cx, cy)
+        Principal.draw(True)
+    record(doIt)
+
+# Display the element c at the centre of cell (i, j)
+def display(i, j, c):
+    origin(); translate(2 * i - 1, 2 * j - 1)
+    writeCentred(str(c))
+
+n = readOrder()
+# Draw the matrix in the robot's window
+gs(20); hideRobot()
+for k in range(n + 1):
+    origin(); translate(2 * k, 0); fn(); fdn(2 * n)
+    origin(); translate(0, 2 * k); fe(); fdn(2 * n)
+# Fill in the magic square
+# Row i and column j of the cell to fill
+i = (n + 1) // 2
+j = n
+display(i, j, 1)
+for c in range(2, n * n + 1):
+    if c % n != 1:
+        i = i % n + 1
+        j = j % n + 1
+    else:
+        j -= 1
+    display(i, j, c)
+st()

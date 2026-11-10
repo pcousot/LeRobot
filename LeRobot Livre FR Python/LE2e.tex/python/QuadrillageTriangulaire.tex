@@ -1,0 +1,34 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ un\ quadrillage\ triangulaire}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Dessiner\ 10\ lignes\ de\ carrés\ juxtaposés}}\par
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ horizontalement}}\par
+\vspace{\neglskip}\mbox{\blc {\idt pqtd()}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ 11):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Dessiner\ une\ ligne\ de\ i\ carrés\ juxtaposés}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ horizontalement,\ en\ partant\ en\ haut\ à\ gauche\ et}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ en\ arrivant\ en\ haut\ à\ droite,\ le\ robot\ étant}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ dans\ les\ deux\ cas\ orienté\ vers\ l\textquotesingle{}est.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(i):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Dessiner\ un\ carré,\ en\ partant\ du\ coin}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ supérieur\ gauche\ et\ en\ arrivant\ au\ coin}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ supérieur\ droit,\ le\ robot\ étant\ dans\ les\ deux}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ cas\ orienté\ vers\ l\textquotesingle{}est.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl for}{\idt \ k\ }{\mcl in}{\idt \ range(4):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\idt av();\ pqtd()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt av()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Revenir,\ sans\ dessiner,\ au\ début\ de\ la\ ligne}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ suivante,\ le\ robot\ étant\ orienté\ vers\ l\textquotesingle{}est\ au}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ départ\ et\ à\ l\textquotesingle{}arrivée.}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt lc();\ pdt()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(i):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt av()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtg();\ av();\ pqtg();\ bc()}}\par
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\medskip }

@@ -1,0 +1,29 @@
+# Definition of the command gl
+def toWestEdge():
+    pu(); fw()
+    while not tb():
+        fd()
+
+def farWest():
+    if tn():
+        toWestEdge(); fn()
+    elif tne():
+        toWestEdge(); fne()
+    elif te():
+        toWestEdge(); fe()
+    elif tse():
+        toWestEdge(); fse()
+    elif ts():
+        toWestEdge(); fs()
+    elif tsw():
+        toWestEdge(); fsw()
+    elif tw():
+        toWestEdge()
+    else:
+        toWestEdge(); fnw()
+
+def gl():
+    if valPd():
+        farWest(); pd()
+    else:
+        farWest()

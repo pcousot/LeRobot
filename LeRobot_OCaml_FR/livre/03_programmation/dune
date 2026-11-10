@@ -1,0 +1,4 @@
+; Programmes du chapitre 3 du livre "Premieres lecons de programmation en OCaml"
+(executables
+ (names Carre Inconnu LettreE LettreEavecBogues)
+ (libraries lerobot))

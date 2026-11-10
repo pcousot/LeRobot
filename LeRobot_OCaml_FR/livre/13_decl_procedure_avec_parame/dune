@@ -1,0 +1,4 @@
+(executables (names CarrePointille SpiraleSegmentee HeliceEnCouleur
+  Arabesque CarresInscrits CarresInscritsPeints Chenille Croix3branches
+  LogoEnCouleur MacintoshSE Pirogue)
+ (libraries lerobot) (flags (:standard -w -35)))

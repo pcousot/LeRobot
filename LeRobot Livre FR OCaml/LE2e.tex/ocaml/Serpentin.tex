@@ -1,0 +1,28 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Dessiner\ un\ serpentin\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ dessinSerpentin\ l\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 2\ *\ l\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ i\ \char60{}=\ l\ }{\mcl then}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt lg\ (float\_of\_int\ i)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt lg\ (float\_of\_int\ (2\ *\ l\ +\ 1\ {-}\ i));}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ i\ }{\mcl mod}{\idt \ 2\ =\ 1\ }{\mcl then}{\idt \ }{\mcl begin}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\cmt (*\ Demi{-}cercle\ supérieur\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt vd\ ();\ vd\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl end}{\idt \ }{\mcl else}{\idt \ }{\mcl begin}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\cmt (*\ Demi{-}cercle\ inférieur\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt vg\ ();\ vg\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl end}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt ag\ ();\ dessinSerpentin\ 13;\ st\ ()}}\par
+
+\medskip }

@@ -1,0 +1,232 @@
+\section{Nombres rationnels}
+Les paramètres de procédures et les constantes que nous avons utilisés jusqu'à
+présent ont des valeurs entières. En \python, on dit qu'ils sont de {\em type}\index{Type}
+{\idt int} (de l'anglais \underline{int}eger, entier). Contrairement à beaucoup
+d'autres langages, \python\ n'impose pas de limite à la taille des entiers~: {\idt 2 ** 100}
+(2 à la puissance 100) vaut $1\,267\,650\,600\,228\,229\,401\,496\,703\,205\,376$, ce qui laisse
+de la marge pour compter les côtés d'un polygone ou les carreaux d'une grille. Ils sont codés
+en base deux dans la mémoire de l'ordinateur, sur autant de bits qu'il le faut.
+
+Nous pouvons également utiliser en \python\ des nombres décimaux avec une virgule comme {\idt 3.14159} appelés flottants (de type \texttt{float}). Ils
+s'écrivent selon la convention anglo-saxonne  avec un point à la place de notre
+virgule. Les mathématiciens appellent ces nombres des {\em nombres rationnels}\index{Rationnel}. En \python, on
+distingue les nombres entiers des nombres rationnels par la présence du point. Par exemple
+{\idt 1000} est un entier alors que {\idt 1000.0} est un nombre rationnel, que l'on peut
+aussi écrire {\idt 1000.} sans chiffre après le point. De même {\idt .5} est permis, mais
+il est plus lisible d'écrire {\idt 0.5}.
+
+Les nombres entiers et rationnels sont codés de manières différentes dans la mémoire
+de l'ordinateur. Les nombres rationnels sont de type {\idt float}\footnote{\ De
+l'anglais {\em floating point number}, nombre à virgule flottante. L'ordinateur
+garde en mémoire un nombre fixe de chiffres significatifs et la position de la virgule
+(qui ``flotte'' parmi ces chiffres). Ce ne sont pas des nombres
+réels puisque les nombres de type {\idt float} ne peuvent pas avoir une infinité de chiffres
+différents de zéro après la virgule$\:$!}.
+
+\section{Paramètres de type ``float''}
+En \python, on n'indique pas le type des paramètres d'une
+procédure~: un même paramètre peut recevoir, d'un appel à l'autre, un entier ou un
+rationnel, et c'est seulement pendant l'exécution, quand la valeur est utilisée,
+que \python\ vérifie qu'elle convient (on dit que \python\ est un langage à
+{\em typage dynamique}\index{Typage dynamique}). Par exemple, dans la procédure~:
+
+\begin{center}
+{\mcl def}\ {\idt arc(l):\ lg(l);\ vd()}
+\end{center}
+
+\noindent le paramètre formel {\idt l} (lire la lettre $\ell$ et non le chiffre $1$) est passé à la commande {\idt lg} du \robot\ qui
+attend un nombre, entier ou rationnel.
+
+Le paramètre effectif correspondant peut donc être indifféremment un entier, comme dans
+{\idt arc(100)}, ou un nombre rationnel, écrit avec un point, comme dans {\idt arc(66.666666667)}~:
+\python\ transforme de lui-même l'entier {\idt 100} en rationnel {\idt 100.0}
+quand c'est nécessaire. Si l'on veut faire cette transformation soi-même, on utilise la
+fonction {\idt float}\index{float}~: si {\idt n} est un entier,
+{\idt float(n)} est le nombre rationnel correspondant (par exemple
+{\idt float(3)} vaut {\idt 3.0}). C'est rarement utile.
+
+Les procédures de commande du \robot\ {\idt lg}, {\idt lgX} et {\idt lgY} (ainsi que
+{\idt lgRT}, {\idt rt} et {\idt tl} que nous verrons au chapitre suivant) acceptent des paramètres
+rationnels. C'est pourquoi on peut écrire {\idt lg(20)} aussi bien que {\idt lg(20.5)}.
+Les commandes {\idt avf}, {\idt cf}, {\idt ec}, {\idt deplacer} ou {\idt tracer}
+ont au contraire des paramètres entiers~: {\idt avf(2.5)} arrête le programme avec le message
+`{\tt TypeError:\ 'float' object cannot be interpreted as an integer}'
+(un objet de type {\idt float} ne peut pas être interprété comme un entier).
+
+\begin{exemple}[Spirale arithmétique]{\rm
+La spirale ci-dessous est constituée d'arcs de cercles de rayons successifs
+$100$$\:$; $100 / 1.5$ = $66.666\ldots$$\:$; $66.666\ldots / 1.5$ = $44.444\ldots$$\:$;
+$44.444\ldots / 1.5$ = $29.629\ldots$$\:$; etc~:
+
+ {\raggedright
+ \hbox to 0pt{\hspace*{2cm}\vbox to 0pt{\includevspacePostScript[4cm]{SpiraleArithmetique}{0.8}{0.8}}}
+ \input python/SpiraleArithmetique.tex
+ }
+\noindent $\Box$ }\end{exemple}
+
+\section{Expressions rationnelles}\index{Expression rationnelle (réelle)}
+L'addition, la soustraction, la multiplication et la division de nombres rationnels se
+notent {\idt +}, {\idt -}, {\idt *} et {\idt /}, c'est-à-dire comme pour les entiers. Par exemple
+{\idt (((2 * (10.3 + 0.7)) - 1.0) / 3)} vaut {\idt 7.0}
+
+Quand une opération porte sur un entier et un rationnel, \python\ transforme l'entier en
+rationnel et le résultat est un rationnel~: {\idt 2 * 3.5} vaut {\idt 7.0}.
+Quand les deux opérandes sont entiers, {\idt +}, {\idt -} et {\idt *} donnent un entier.
+La division, elle, demande de l'attention~: {\idt /} donne {\em toujours} un rationnel,
+même entre deux entiers. Ainsi {\idt 7 / 2} vaut {\idt 3.5} et {\idt 6 / 2} vaut {\idt 3.0}.
+La division entière, qui donne un entier, se note {\idt //}~: {\idt 7 // 2} vaut {\idt 3}.
+Grâce à ces deux notations, le lecteur du programme sait toujours quelle division est faite.
+Comme {\idt 6 / 2} est un rationnel, {\idt avf(6 / 2)} est refusé par la commande {\idt avf}
+qui attend un entier~; il faut écrire {\idt avf(6 // 2)}.
+
+Si $r$ est un nombre, {\idt sqrt($r$)} est sa racine carrée $\sqrt{r}$ (de l'anglais
+\underline{sq}uare \underline{r}oo\underline{t}, racine carrée),
+{\idt $r$ ** 2} est son carré $r^{2}$ (que l'on peut aussi écrire {\idt $r$ * $r$}),
+{\idt abs($r$)} est sa valeur \underline{abs}olue (pour un entier comme pour un rationnel),
+{\idt int($r$)} est sa partie entière obtenue en supprimant les chiffres après la virgule
+(on dit qu'elle est tronquée) et {\idt round($r$)} est l'entier le plus proche (de
+l'anglais \underline{round}, arrondir). Les résultats de {\idt int} et de {\idt round}
+sont des entiers. Par exemple
+{\idt int(0.3)} = {\idt int(0.5)} = {\idt int(0.9)} = {\idt 0} tandis que
+{\idt round(0.3)} = {\idt 0} et {\idt round(0.5)} = {\idt round(0.9)} = {\idt 1}\footnote{\ Le
+{\idt round} d'origine de \python\ arrondit les demis vers l'entier pair le plus proche
+({\idt round(0.5)} vaut {\idt 0} et {\idt round(2.5)} vaut {\idt 2}). La bibliothèque du
+\robot\ le remplace par un {\idt round} qui arrondit les demis à l'opposé de zéro, comme
+Pascal et \ocaml~: {\idt round(2.5)} vaut {\idt 3} et {\idt round(-2.5)} vaut {\idt -3}.}.
+La fonction {\idt sqrt} est fournie par la bibliothèque du \robot\ (ligne
+{\mcl from}\ {\idt LibRobot}\ {\mcl import}\ {\idt *}), les autres font partie de \python.
+Comme pour les procédures, l'argument d'une fonction est toujours placé entre
+parenthèses~: {\idt sqrt(x + 1)}.
+
+Dans une expression rationnelle, on peut utiliser la longueur horizontale {\idt valLgX()} et la
+longueur verticale {\idt valLgY()} d'un carreau de la grille de déplacement du \robot. Par exemple
+{\idt lgX(valLgX() * 2)} double la taille horizontale d'un carreau de la grille.
+
+\begin{exemple}[Spirale d'or]{\rm
+La spirale d'or ci-dessous est constituée d'arcs de cercles successifs dont les rayons
+ont pour rapport le {\em nombre d'or\/}
+$\Phi = \frac{1}{2}(1 + \sqrt{5}) \simeq 1.618033989$. Pour les tenants d'esthétique
+traditionnelle, la spirale d'or constituerait une figure géométrique très harmonieuse
+à l'œil.
+
+{\raggedright
+ \vbox to 0pt{\includevspacePostScript[4cm]{SpiraleDor}{0.95}{0.95}}
+ \input python/SpiraleDor.tex
+ }
+\noindent $\Box$ }\end{exemple}
+
+\section{Erreurs d'arrondi}
+Pour les nombres réels\index{Réel}, qui ont un nombre infini de chiffres après la virgule, comme
+$\frac{1}{3} = 0.3333333333333333\ldots$ ou $\pi = 3.1415926535897932\ldots$
+l'ordinateur ne peut garder dans sa mémoire que quelques chiffres après la virgule, ce
+qui conduit, comme pour une calculette, à des erreurs d'arrondi dans les calculs. Par
+exemple en ma\-thé\-ma\-ti\-ques on a~:
+\[\left(\left(\left(\left(\left(\sqrt{\sqrt{\sqrt{\sqrt{\sqrt{2}}}}}\right)^{2}\right)^{2}\right)^{2}\right)^{2}\right)^{2} =
+\left(\left(\left(\left(\sqrt{\sqrt{\sqrt{\sqrt{2}}}}\right)^{2}\right)^{2}\right)^{2}\right)^{2} =
+\] \[\left(\left(\left(\sqrt{\sqrt{\sqrt{2}}}\right)^{2}\right)^{2}\right)^{2} =
+\left(\left(\sqrt{\sqrt{2}}\right)^{2}\right)^{2} =
+\left(\sqrt{2}\right)^{2} =
+2\]
+tandis que l'ordinateur trouve  que~:
+\begin{center}
+{\idt ((((sqrt(sqrt(sqrt(sqrt(sqrt(2))))) ** 2)\hspace*{6em}}\\
+{\idt \hspace*{6em}** 2) ** 2) ** 2) ** 2\ = 1.9999999999999964}
+\end{center}
+
+\noindent De même, il trouve que {\idt 0.1 + 0.2} vaut
+{\idt 0.30000000000000004} (le programme {\idt ErreursDarrondi} du dossier
+{\idt livre/\allowbreak 19\_expressions\_rationnelles} fait ces deux calculs).
+
+\noindent  On retrouve des problèmes d'arrondi similaires avec la grille de dé\-pla\-ce\-ment du \robot. De
+manière idéale, les coordonnées cartésiennes du \robot\ devraient être réelles.
+L'ordinateur en conserve en mémoire une approximation rationnelle. Sur l'écran elles doivent
+être arrondies à l'entier le plus proche pour correspondre à un pixel de l'écran.
+
+\noindent \rule{137mm}{0.1mm} %---------------------------------------------
+\begin{exercice}{Écrire des programmes \python\  pour réaliser les motifs de la figure
+ci-dessous (seul le motif central qui utilise les fonc\-tions tri\-go\-no\-mé\-tri\-ques in\-tro\-dui\-tes
+dans l'addenda du chapitre \ref{ch:rec}  est difficile).
+\noindent $\Box$}\end{exercice}
+\begin{figure}[htbp]
+ \includevspacePostScript[4.6cm]{MotifsDeBeard}{0.95}{0.95}
+ \caption{Motifs de Horemis et Beard$\:$; spirale de Baravelle}\label{fig:beard}
+\end{figure}
+\vfill
+\begin{corrige}{
+Nous donnons un programme, les autres se trouvant dans le dossier
+{\idt livre/\allowbreak 19\_expressions\_rationnelles}~:
+\label{prog:CarresImbriquesPeints}
+\input python/CarresImbriquesPeints.tex
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+Les nombres rationnels sont souvent qualifiés de réels par abus de langage. Ils
+peuvent se noter en utilisant la {\em notation scientifique}\index{Notation scientifique}, qui
+consiste à faire
+suivre la partie fractionnaire par un facteur d'échelle formé de la lettre {\idt e} ou
+{\idt E} (qui se lit ``dix à la puissance'') suivie d'un exposant.
+
+\noindent Par exemple $-3.0${\idt e}$2$ = $-300.0$,
+$3.0${\idt e}$0$ = $3.0$ et $3.0${\idt e}$-2$ = $0.03$. Un nombre rationnel ne contient pas de blanc. Par conséquent
+$-3.0\hspace{0.3ex}\blanc\hspace{0.3ex}${\idt e}$\hspace{0.3ex}\blanc\hspace{0.3ex}2$ est erroné. En \python, les
+nombres de type {\idt float} sont représentés avec 15 à 16 chiffres significatifs en base 10, le plus petit
+rationnel strictement positif (sans perte de chiffres significatifs) étant de l'ordre de
+$2.2${\idt e}$-308$ et le plus grand de l'ordre de $1.8${\idt e}$308$. Au-delà, le résultat
+d'un calcul vaut {\idt inf} (l'infini)~: {\idt 1e308 * 10} vaut {\idt inf}.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\smallskip
+
+\index{Expression rationnelle (réelle)}\index{Expression entière}La valeur d'une expression arithmétique
+peut être de type {\idt int} ou {\idt float}, selon les règles suivantes~:
+\begin{list}{$\scriptscriptstyle\bullet$}{
+}
+\item les constantes entières (sans point) et les opérateurs $+$, $-$, $\ast$, {\idt //},
+{\idt \%}, $\ast\ast$ (avec un exposant positif) et {\idt abs}\footnote{\ Nous utilisons des typographies différentes
+pour les {\em mots-clés}\index{Identificateur réservé} (comme {\mcl def}
+ou {\mcl for})
+et les {\em identificateurs prédéfinis}\index{Identificateur prédéfini}
+(comme {\idt sqrt} ou {\idt abs}). Les identificateurs introduits dans un programme \python\
+(comme les noms de constantes, de procédures, etc.) doivent être
+différents des mots-clés mais peuvent être identiques aux identificateurs prédéfinis. Cette
+pratique est déconseillée car les programmes qui changent le sens habituel des identificateurs
+prédéfinis sont illisibles.} appliqués à des entiers donnent un résultat entier
+de type {\idt int}, de même que {\idt int} et {\idt round} qui
+s'appliquent à un rationnel$\:$;
+\item les constantes rationnelles (avec un point ou un exposant {\idt e} ou
+{\idt E}), la division {\idt /} et la fonction {\idt sqrt} donnent un résultat rationnel
+de type {\idt float}, de même que {\idt float} qui s'applique à un entier$\:$;
+\item les opérateurs $+$, $-$, $\ast$, $\ast\ast$ et {\idt abs} appliqués à des rationnels,
+ou à un entier et un rationnel, donnent un résultat rationnel.
+\end{list}
+Une expression qui mélange les deux, comme {\idt 1 + 2.5}, est donc permise~: l'entier est
+transformé en rationnel et le résultat {\idt 3.5} est rationnel.
+
+\smallskip
+
+En \python, le type des paramètres n'est pas déclaré. \python\ transforme de lui-même
+un entier en rationnel quand il le faut, mais jamais un rationnel en entier~: c'est au
+programmeur de le demander avec {\idt int} ou {\idt round}, par exemple
+{\idt avf(round(x))}. On peut indiquer le type attendu d'un paramètre formel lors de la
+déclaration de la procédure, comme dans {\mcl def}\ {\idt arc(l:\ float):\ lg(l);\ vd()},
+ce qui n'est pas nécessaire (\python\ ne le vérifie pas) mais peut aider le lecteur du programme.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

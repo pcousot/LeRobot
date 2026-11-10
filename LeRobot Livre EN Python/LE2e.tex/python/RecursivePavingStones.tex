@@ -1,0 +1,25 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ recursive\ tiles}}\par
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ pavingStone(n):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl if}{\idt \ n\ ==\ 0:}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Draw\ a\ square\ of\ side\ 0}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt dp()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt \#\ Draw\ a\ square\ of\ side\ n}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl else}{\idt :}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fdn(n);\ qtr();\ fdn(n);\ qtr();\ fdn(n);\ qtr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fdn(n);\ qtr()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Tile\ the\ inside}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pavingStone(n\ {-}\ 1)}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\idt gb();\ gl();\ pavingStone(10);\ st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

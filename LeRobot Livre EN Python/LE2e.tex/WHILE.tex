@@ -1,0 +1,346 @@
+\section{Is the robot at the edge of the frame?}
+We saw in the previous chapter that the boolean functions {\idt tn()}, {\idt tne()}, {\idt te()}, {\idt tse()}, {\idt ts()},
+ {\idt tsw()}, {\idt tw()}, {\idt tnw()} can be used in ``if''
+ statements to find out the orientation of the \robot. Another boolean function,
+ {\idt tb()} (\underline{t}est \underline{b}order), makes it possible to test whether
+ the \robot\ is at the edge (the border) of the frame. More precisely {\idt tb()} is {\mcl True}
+ if the supposed execution of the command {\idt fd()} would take
+ the \robot\ out of the frame in which it moves.  The boolean expression
+ {\idt tb()} is {\mcl False} if the supposed execution
+ of the command {\idt fd()} moves the \robot\ only inside the frame in which it moves.
+For example, we can
+ define a command {\idt fdWithoutLeaving()} which orders the \robot\ to execute an {\idt fd()} if this does not
+ take it out of the frame:
+
+\input python/FdWithoutLeavingTheFrame.tex
+
+{\sloppy\noindent The empty parentheses of {\mcl not}\ {\idt tb()} are indispensable.
+If we forget them and write {\mcl not}\ {\idt tb}, \python\ reports no error,
+but the program does not do what we want: {\idt tb} without parentheses denotes the
+function itself, and not the value computed by calling it. Now \python\ considers
+that a function, like any value that is not zero or empty, counts as {\mcl True}.
+The expression {\mcl not}\ {\idt tb} is therefore always {\mcl False} and the \robot\
+never moves forward, whether it is at the edge of the frame or not. This is an error that is hard to find
+since nothing reports it!\par}
+
+%\pagebreak
+\section{``while'' loop}
+
+ A ``while'' loop makes it possible to repeat the execution of a sequence of in\-struc\-tions zero
+or more times, testing at each iteration whether to stop or to continue. The English word
+``while'' means here `as long as'. The ``while'' loop makes it possible to
+repeat the execution of a sequence of instructions as long as the value of a boolean expression
+is {\mcl True}. For example, the following program draws a horizontal line across the middle
+of the screen by orienting the \robot\ towards the east and repeating {\idt fd()} as long as the \robot\ does not leave
+the frame:
+
+ \input python/HorizontalLine.tex
+
+The result of the execution of this program is shown reduced in the figure below,
+the frames in which the \robot\ moves and in which error messages are displayed being dotted:
+
+ \vspace{0.4cm}
+
+ \includevspacePostScript[4.4cm]{TraitHorizontal}{0.95}{0.95}
+
+ \vspace{0.4cm}
+
+\noindent  A ``while'' loop always has the following form:
+
+\index{While loop@``while'' loop}\index{Boolean expression}
+\begin{center}
+\begin{tabular}{@{}|p{12.5cm}|@{}} \hline
+{\em ``while'' loop:}\\ \hline \hline
+\begin{minipage}[t]{12.5cm}
+{\medskip
+\mbox{\blc\ \ \ {\mcl while}\hspace{0.3em}\blanc\hspace{0.3em} {\small\rm Boolean expression} \hspace{0.3em}\blanc\hspace{0.3em}{\idt :}}\par
+\mbox{\blc\ \ \ \ \ \ \ \small\rm  \ldots\ Repeated instructions (indented) \ldots}\par
+\medskip}
+\end{minipage}\\ \hline
+\end{tabular}
+\end{center}
+
+\noindent The sequence of instructions which is repeated as long as the value of
+the {Boolean expression} is {\mcl True} is called the {\em body of
+the loop}\index{Loop body}. As for the ``for'' loop, the {\mcl while} line
+ends with a colon {\idt :} and the instructions of the body of
+the loop are indented (shifted to the right), the loop ending at the
+first instruction which is no longer indented.
+If the {Boolean expression} is {\mcl False} when the execution of the
+``while'' loop begins then this execution ends immediately without the body of the loop being
+executed. If the {Boolean expression} is always {\mcl True} at each iteration
+then the execution of the ``while'' loop never ends!
+One can still stop the computer by switching off the power. More re\-com\-mend\-able methods are explained
+below.
+
+\underline{A serious error} is to write a loop body which does not
+change the value of the Boolean expression. For example if we write
+{\mcl while}\ {\mcl not}\ {\idt tb():\ qtr()}, the \robot\
+turns on the spot without ever getting closer to the edge, and the computer loops forever.
+
+We preferably use ``for'' loops (whose execution always terminates), reserving
+the use of ``while'' loops for the case where the number of it\-er\-a\-tions cannot be computed by an integer expression before
+starting to execute the body of the loop.
+
+\begin{exemple}[Frame]{\rm The program below draws a frame a\-round a drawing:
+
+ {\raggedright
+
+ \vspace{0.4cm}
+
+ \includevspacePostScript[4.4cm]{TracerCadre}{0.95}{0.95}
+
+ \vspace{0.4cm}
+
+\input python/DrawFrame.tex
+ }
+\noindent $\Box$ }\end{exemple}
+
+All the programs we had written until now terminated. This means that
+ any execution of the program takes a finite time, which sometimes seems long, but we can be sure that by waiting long
+ enough, we will always be able to
+ observe a result. If for example we have lifted the pen of the \robot\ and forgotten to lower it
+ afterwards, the result is a blank sheet but the execution of the program terminates all
+ the same.
+
+ With the ``while'' loop, we can write programs whose execution does not terminate.  This is
+ the case for the following program:
+
+ \input python/Loop1.tex
+
+ \noindent The \robot\ turns in the centre of the screen, as long as the computer is running and nobody intervenes.
+ It can be stopped by pressing, in the window of the \robot, one of the keys
+ \begin{picture}(12,12)(0, 2) %escape key
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny esc}}
+  \end{picture}\hspace{0.3ex},
+  \begin{picture}(12,12)(0, 2) %key §
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny \S}}
+  \end{picture}\hspace{0.3ex} or
+  \begin{picture}(12,12)(0, 2) %key #
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny \#}}
+  \end{picture}\hspace{0.3ex}.  The execution of the program ends because before
+executing a command, the \robot\ checks whether the user has pressed one of
+these keys to ask it to stop.
+
+  On the other hand, if we execute the following \python\ program:
+
+ \input python/Loop2.tex
+
+ \noindent the execution loops without stopping even if we press the stop keys
+  \begin{picture}(12,12)(0, 2) %escape key
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny esc}}
+  \end{picture}\hspace{0.3ex},
+  \begin{picture}(12,12)(0, 2) %key §
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny \S}}
+  \end{picture}\hspace{0.3ex} or
+  \begin{picture}(12,12)(0, 2) %key #
+  \put(0,0){\framebox(12,12)[lb]{}}
+  \put(1.5,2){\makebox(0,0)[lb]{\tiny \#}}
+  \end{picture}\hspace{0.3ex}
+since the \robot\ receives
+  no command while the computer executes this loop, whose body
+  is reduced to {\mcl pass}, an instruction which does nothing (\python\ requires
+  at least one instruction in the body of a loop and {\mcl pass} serves
+  that purpose).
+
+  To stop the execution of this program, one must go back to the terminal window
+  in which it was launched, for example with the command:
+  \begin{center}{\idt ./robot.sh book/17\_while/Loop2.py}\end{center}
+  \noindent hold down the control key
+\begin{picture}(22,12)(0, 2) %Ctrl key
+\put(0,0){\framebox(22,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny Ctrl}}
+\end{picture}\hspace{0.3ex}
+and press the key
+\begin{picture}(12,12)(0, 2) %key C
+\put(0,0){\framebox(12,12)[lb]{}}
+\put(1.5,2){\makebox(0,0)[lb]{\tiny C}}
+\end{picture}\hspace{0.3ex}. The operating system of the computer then interrupts
+the program, whatever it is doing (and the window of the \robot\ closes).
+
+If the program was launched by dragging its icon onto the application \texttt{LeRobotPythonEN.app}, a terminal
+window opens, which can be selected with the mouse in order to type Ctrl+C.
+
+%  On the first Macintosh computers, for which this book was originally written, one
+%  had to press the interrupt key (marked with a circle)
+%  located on the side of the computer (figure \ref{fig:interrupt}) while avoiding
+%  the reset key (marked with a triangle), which amounted to switching the
+%  Macintosh off and on again.
+%
+%\begin{figure}[htbp]
+%  \includevspacePostScript[2.9cm]{Interrupt}{0.95}{0.95}
+%  \caption{Reset and interrupt keys of the first Macintosh computers}\label{fig:interrupt}
+%\end{figure}
+
+\clearpage
+\needspace{6\baselineskip}\noindent \rule{137mm}{0.1mm}\par\nopagebreak %---------------------------------------------
+\begin{exercices}{Write \python\ programs using ``while'' loops to produce the following
+drawings:
+
+\tiret  the frieze of figure \ref{fig:FriTri} below;
+% (page \pageref{fig:FriTri});
+
+\tiret  the grid of the stopping points of the \robot\ of figure \ref{fig:DgQuGr} (page \pageref{fig:DgQuGr}),
+without of course using the command {\idt dg()};
+
+\tiret  the square grid of figure \ref{fig:DgQuGr} (page \pageref{fig:DgQuGr});
+
+\tiret  the lattice of figure \ref{fig:DgQuGr} (page \pageref{fig:DgQuGr}) obtained by superimposing two
+square grids, one of which is turned by an eighth turn.
+
+In all cases the drawing must be as large as possible and fit inside the frame set for the
+movements of the \robot\ on the computer screen.
+
+\noindent $\Box$}\end{exercices}
+
+\vspace*{-1ex}%
+\begin{exercice}{Define the commands {\idt gl()},  {\idt gr()},  {\idt gt()} and  {\idt gb()} by procedures containing
+``while'' loops (use the boolean function {\idt valPd()} which is {\mcl True} if and
+only if the pen of the \robot\ is down).
+\noindent $\Box$}\end{exercice}
+
+\begin{figure}[htbp]
+ \includevspacePostScript[4.4cm]{FriseDeTriangles}{0.9}{0.9}
+ \caption{Frieze of triangles (on a reduced screen)}\label{fig:FriTri}
+\end{figure}
+\begin{figure}[htbp]
+ \includevspacePostScript[14.6cm]{DgQuadGrillage}{0.95}{0.95}
+ \caption{Stopping points, square grid and lattice on a reduced screen}\label{fig:DgQuGr}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\vspace*{-1ex}%
+\begin{corrige}{
+We give one program, the others being in the folder {\idt book/\allowbreak 17\_while}:
+\input python/FriezeOfTriangles.tex
+\noindent $\Box$}\end{corrige}
+\begin{corrige}{
+We give the solution for the command {\idt gl}, the others being in the program
+{\idt GlGrGtGb} of the folder {\idt book/\allowbreak 17\_while}:
+\enlargethispage{2\baselineskip}
+\input python/GlGrGtGb.tex
+\noindent $\Box$}\end{corrige}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\section*{Addenda}
+
+ In other programming languages, such as \pascal, there is another form of
+ unbounded repetition, the ``repeat'' loop.
+ It has the following form:
+
+ \index{While loop@``while'' loop}
+\begin{center}
+\begin{minipage}{10cm}
+{\raggedright
+\mcl repeat\\
+\blc\ \ \small\rm  \ldots\ Repeated instructions (separated by `$;$') \ldots\\
+\mcl until\hspace{0.3em}\blanc\hspace{0.3em} \small\rm Boolean expression\\
+}\end{minipage}
+\end{center}
+
+\noindent The body of the loop is repeated ({\idt repeat}) until ({\idt until}) the value of
+ the {\small\rm Boolean expression} is equal to {\idt true}. It is therefore always executed
+ at least once.
+%\vspace{\abovedisplayskip}
+%\end{minipage}
+%}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\noindent \framebox[\textwidth]{
+%\begin{minipage}{\myparboxwidth}
+%\setlength{\parindent}{2em}
+%\small \sf
+%\vspace{\abovedisplayskip}
+\indent The ``repeat'' loop does not exist in \python, but it can always be expressed
+with a ``while'' loop. A ``repeat'' loop:
+ {
+\parindent \parindentprog
+\medskip
+
+\pagebreak[3]
+\mbox{\blc  \blk\mcl repeat}\par
+\mbox{\blc  \blk\blk\small\rm Body of the loop}\par
+\mbox{\blc  \blk\mcl until {\small\rm Boolean expression}}\par
+
+\medskip }
+
+\noindent can be written in \python\ with a ``while'' loop as follows:
+{
+\parindent \parindentprog
+\medskip
+
+\mbox{\blc  \blk\small\rm Body of the loop}\par
+\mbox{\blc  \blk\mcl while\ not\ \small\rm Boolean expression\idt :}\par
+\mbox{\blc  \blk\blk\small\rm Body of the loop}\par
+
+\medskip }
+
+\noindent but the body of the loop must then be written twice. In \python\ one often
+prefers to write a ``while'' loop whose test is always
+{\mcl True} and which is exited with the instruction {\mcl break}\index{break},
+which immediately terminates the execution of the loop:
+{
+\parindent \parindentprog
+\medskip
+
+\mbox{\blc  \blk\mcl while\ True\idt :}\par
+\mbox{\blc  \blk\blk\small\rm Body of the loop}\par
+\mbox{\blc  \blk\blk\mcl if\ \small\rm Boolean expression\idt :}\par
+\mbox{\blc  \blk\blk\blk\mcl break}\par
+
+\medskip }
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent \framebox[\textwidth]{
+\begin{minipage}{\myparboxwidth}
+\setlength{\parindent}{2em}
+\small \sf
+\vspace{\abovedisplayskip}
+\noindent  Likewise, a ``while'' loop:
+
+{
+\parindent \parindentprog
+\medskip
+
+\mbox{\blc  \blk\mcl while\ \small\rm Boolean expression\idt :}\par
+\mbox{\blc  \blk\blk\small\rm Body of the loop}\par
+
+\medskip }
+
+\noindent could be rewritten with a ``repeat'' loop as follows:
+
+{
+\parindent \parindentprog
+\medskip
+
+\mbox{\blc  \blk\mcl if\ \small\rm Boolean expression\ \mcl then}\par
+\mbox{\blc  \blk\blk\mcl repeat}\par
+\mbox{\blc  \blk\blk\blk\small\rm Body of the loop}\par
+\mbox{\blc  \blk\blk\mcl until\ not\ \idt (\small\rm Boolean expression\idt )}\par
+
+\medskip }
+
+The use of one or the other form of iteration depends only on whether the body of the loop
+may never be executed (``while'' loop) or must always be executed at least once
+(``repeat'' loop). The designers of \python\ decided that the ``while'' loop was enough.
+
+\vspace{\abovedisplayskip}
+\end{minipage}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

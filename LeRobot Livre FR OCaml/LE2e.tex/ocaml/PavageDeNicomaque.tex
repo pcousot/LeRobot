@@ -1,0 +1,57 @@
+{
+\parindent \parindentprog
+\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl open}{\idt \ LibRobot}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt (*\ Paver\ un\ carré\ à\ l\textquotesingle{}aide\ de\ couronnes\ successives}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt constituées\ de\ carrés\ de\ tailles\ 1,\ 2,\ 3,\ ...\ en}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt partant\ du\ centre.\ *)}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl let}{\idt \ ()\ =}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl for}{\idt \ i\ =\ 1\ }{\mcl to}{\idt \ 4\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Dessiner\ les\ 4\ côtés\ de\ la\ i{-}ème\ couronne\ en\ les}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt pavant\ avec\ des\ carrés\ de\ taille\ i.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ =\ 1\ }{\mcl to}{\idt \ 4\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\cmt (*\ Dessiner\ un\ côté\ de\ la\ i{-}ème\ couronne,\ pavé\ de}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk{\cmt i\ carrés\ de\ longueur\ de\ côté\ i,\ le\ robot}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk{\cmt partant\ du\ premier\ carré\ et\ arrivant\ au}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk{\cmt dernier\ carré\ dans\ le\ même\ coin\ et\ dans\ la}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk{\cmt même\ direction\ qu\textquotesingle{}au\ départ.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\cmt (*\ Dessiner\ i\ {-}\ 1\ carrés\ de\ la\ i{-}ème\ couronne\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\mcl for}{\idt \ k\ =\ 1\ }{\mcl to}{\idt \ i\ {-}\ 1\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt (*\ Dessiner\ un\ carré\ de\ longueur\ i,\ le\ robot}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\cmt partant\ et\ arrivant\ au\ même\ coin\ et\ dans\ la}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\cmt même\ direction.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl for}{\idt \ l\ =\ 1\ }{\mcl to}{\idt \ 4\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk{\mcl for}{\idt \ m\ =\ 1\ }{\mcl to}{\idt \ i\ }{\mcl do}{\idt \ av\ ()\ }{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk{\idt pqtd\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt (*\ Avancer\ jusqu\textquotesingle{}au\ carré\ suivant\ de\ la\ i{-}ème}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk\blk{\cmt couronne.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pqtd\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl for}{\idt \ l\ =\ 1\ }{\mcl to}{\idt \ i\ }{\mcl do}{\idt \ av\ ()\ }{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pqtg\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\cmt (*\ Dessiner\ le\ i{-}ème\ carré\ de\ longueur\ i\ de\ la}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk{\cmt i{-}ème\ couronne.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\mcl for}{\idt \ k\ =\ 1\ }{\mcl to}{\idt \ 4\ }{\mcl do}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\mcl for}{\idt \ l\ =\ 1\ }{\mcl to}{\idt \ i\ }{\mcl do}{\idt \ av\ ()\ }{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt pqtd\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\cmt (*\ Pivoter\ d\textquotesingle{}un\ quart\ de\ tour\ pour\ placer\ le}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk{\cmt robot\ au\ début\ du\ côté\ suivant\ de\ la\ i{-}ème}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk\blk{\cmt couronne.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk{\idt pqtd\ ()}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\cmt (*\ Rejoindre\ le\ point\ de\ départ\ de\ la\ (i\ +\ 1){-}ème}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt couronne.\ *)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtg\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ =\ 1\ }{\mcl to}{\idt \ i\ }{\mcl do}{\idt \ av\ ()\ }{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt pqtd\ ();}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ j\ =\ 1\ }{\mcl to}{\idt \ i\ }{\mcl do}{\idt \ av\ ()\ }{\mcl done}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\mcl done}{\idt ;}}\par
+\vspace{\neglskip}\mbox{\blc \blk{\idt st\ ()}}\par
+
+\medskip }

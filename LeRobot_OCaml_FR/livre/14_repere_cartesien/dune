@@ -1,0 +1,4 @@
+(executables (names LigneDeCarres1 LigneDeCarres2 PavageQuadrilateres
+  MotifPavageQuadrilateres MosaiqueAlhambra5 Apprendre_Repere
+  Apprendre_Translation)
+ (libraries lerobot) (flags (:standard -w -35)))

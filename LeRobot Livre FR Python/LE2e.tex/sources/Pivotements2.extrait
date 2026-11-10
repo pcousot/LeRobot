@@ -1,0 +1,11 @@
+# Fait pivoter le robot sur place de 3 huitièmes de
+#   tour à droite
+def p3htd():
+    pqtd(); phtd()
+# Fait pivoter le robot sur place de 3 huitièmes de
+#   tour à gauche
+def p3htg():
+    pqtg(); phtg()
+# Fait pivoter le robot sur place d'un demi-tour
+def pdt():
+    pqtd(); pqtd()

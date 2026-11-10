@@ -1,0 +1,30 @@
+{
+\parindent \parindentprog
+\parskip 0pt
+\nopagebreak\medskip
+
+\carrenoir
+\vspace{\neglskip}\mbox{\blc {\mcl from}{\idt \ LibRobot\ }{\mcl import}{\idt \ *}}\par
+\nopagebreak
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\cmt \#\ Draw\ a\ singular\ propeller}}\par
+\vspace{\neglskip}\mbox{\blc {\idt xbase\ =\ 13\ \ }{\cmt \#\ Width\ of\ the\ base\ grid}}\par
+\vspace{\neglskip}\mbox{\blc {\idt ybase\ =\ 8\ \ }{\cmt \#\ Height\ of\ the\ base\ grid}}\par
+\vspace{\neglskip}\mbox{\blc {\idt numberOfLeaves\ =\ 8\ \ }{\cmt \#\ Leaves\ of\ a\ blade}}\par
+\vspace{\neglskip}\mbox{\blc {\idt numberOfBlades\ =\ 4\ \ }{\cmt \#\ Blades\ of\ the\ propeller}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl def}{\idt \ blade():}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\mcl for}{\idt \ i\ }{\mcl in}{\idt \ range(1,\ numberOfLeaves\ +\ 1):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ Draw\ a\ quarter\ of\ an\ ellipse,\ of\ size}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ (xbase\ *\ i,\ ybase\ *\ i),\ without\ changing}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\cmt \#\ the\ initial\ orientation\ of\ the\ robot}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt gsX(xbase\ *\ i)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt gsY(ybase\ *\ i)}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk\blk\blk{\idt fd();\ qtl();\ fd();\ qtl();\ cl();\ qtl()}}\par
+\vspace{0.3\baselineskip}
+\vspace{\neglskip}\mbox{\blc {\mcl for}{\idt \ j\ }{\mcl in}{\idt \ range(numberOfBlades):}}\par
+\vspace{\neglskip}\mbox{\blc \blk\blk{\idt blade();\ qtr()}}\par
+\nopagebreak
+\vspace{\neglskip}\mbox{\blc {\idt st()}}\par
+
+\nopagebreak\medskip }\nopagebreak

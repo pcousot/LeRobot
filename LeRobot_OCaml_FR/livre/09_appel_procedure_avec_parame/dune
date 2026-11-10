@@ -1,0 +1,6 @@
+; Programmes du livre "Premieres lecons de programmation en OCaml"
+; (-w -35 : un compteur de boucle "for" peut ne pas servir dans le corps)
+(executables
+ (names Arabesque1 Cristal8Branches CubeEnPerspective EchelleDeJacob EpaisseurCrayon Lunettes Spirolaterale90oDordre5 Spirolaterale90oDordre7 Spirolaterale90oDordre9 StriesOctogonales)
+ (libraries lerobot)
+ (flags (:standard -w -35)))

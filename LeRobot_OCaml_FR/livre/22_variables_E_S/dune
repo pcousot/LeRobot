@@ -1,0 +1,1 @@
+(executables (names BateauAVoilesComplet CalculerTailleFenetreRobot Canards CarreMagique ChienComplet CourbeDeSierpinski CourbesDeSierpinski DessinerCadreAuBord Factorielle NumerationBabylonienne NumerationEgyptienne NumerationGrecque NumerationRomaine ) (libraries lerobot) (flags (:standard -w -35)))
