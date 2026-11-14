@@ -81,6 +81,47 @@ the aperiodic monotile of David Smith (2022), and its mirror image.
 aperiodic monotile that never needs turning over, and a tiling of the
 window by 204 Spectres (positions found by `tools/spectre/search.py`).
 
+## Checking the drawings
+
+The drawings are the specification: a program of `book/` is correct when
+it draws what it has always drawn. `check.sh` shows the drawings one by
+one for a person to look at; `tools/regress.py` compares them, pixel for
+pixel, with the references kept in `tools/reference/`, without anyone
+watching.
+
+```sh
+python3 tools/regress.py --update             # record the references (once)
+python3 tools/regress.py                      # check every program
+python3 tools/regress.py 20_polar_grid        # check one chapter
+python3 tools/regress.py --diffs /tmp/diffs   # write the drawings that moved
+```
+
+`tools/reference/` is **not in the repository**: the references must be
+recorded once, on the machine that is to be believed, and committed.
+Until then `regress.py` says `SANS REF` for every program, and the
+check on pull requests fails. Recording them is one command; looking at
+a few of the drawings afterwards (`tools/reference/*.png`) is worth the
+minute it takes, since everything later is compared against them.
+
+It runs the programs as `capture_all.py` does (hidden window, answers
+from `tools/answers/`, `LEROBOT_MUET=1`), and ends with a count. A
+program whose drawing moved is named with the number of pixels and where
+they are; `--diffs` writes the new drawing with those pixels in red, so a
+change can be looked at instead of guessed at.
+
+When a drawing changes **on purpose**, look at it, then `--update`, and
+commit the changed PNGs together with the change that caused them: the
+drawing moving is then part of the history, where it can be seen.
+
+`LEROBOT_SEED=n` fixes the draw of `random()`, so the programs that use
+it draw the same thing twice; `regress.py` sets it. Programs that cannot
+draw the same twice at all (the clock, the endless loops) are listed, with
+the reason, in `VARIABLES` at the top of the script.
+
+The same check runs on every pull request
+(`.github/workflows/drawings.yml`), on Linux under Xvfb; when it fails it
+keeps the drawings that moved as an artifact to download.
+
 ## How it is made
 
 The robot is the French library: `LibRobotFR.py`, `LeRobotFR.py` and the
