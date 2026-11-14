@@ -1,0 +1,11 @@
+# Code owners for LeRobot.
+#
+# A code owner is asked for review automatically when a pull request
+# touches a file they own. GitHub honours an entry only for someone who
+# already has write access to the repository, so adding a name here is a
+# request, not a grant.
+
+# The English Python edition and its book.
+/LeRobot_Python_EN/           @progscratchm @ThibaultC
+/LeRobot_Manual_Python_EN/    @progscratchm @ThibaultC
+/LeRobot\ Livre\ EN\ Python/  @progscratchm @ThibaultC
