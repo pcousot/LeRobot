@@ -736,6 +736,18 @@ def retirer(nom):
     _poses.pop(nom, None)
 
 
+def _rvb(v):
+    """Les trois composantes d'un pixel de PhotoImage.get().
+
+    Tk ne repond pas la meme chose selon sa version : une chaine
+    "255 0 0" (Tk 8.5), un triplet (Tk 8.6), ou un quadruplet RVBA
+    (Tk 9). On ramene les trois premieres composantes.
+    """
+    if isinstance(v, str):
+        v = v.split()
+    return tuple(int(c) for c in v[:3])
+
+
 def sauver_png(fichier, avec_robot=True):
     """enregistre le dessin (sans les textes) dans un fichier PNG, avec le
     robot s'il est visible"""
@@ -748,7 +760,7 @@ def sauver_png(fichier, avec_robot=True):
                 for i in range(icone.width()):
                     x, y = X + i, Y + j
                     if 0 <= x < _W and 0 <= y < _H and not icone.transparency_get(i, j):
-                        r, g, b = icone.get(i, j)
+                        r, g, b = _rvb(icone.get(i, j))
                         k = (y * _W + x) * 3
                         img[k:k + 3] = bytes((r, g, b))
     brut = b"".join(b"\0" + bytes(img[y * _W * 3:(y + 1) * _W * 3]) for y in range(_H))
