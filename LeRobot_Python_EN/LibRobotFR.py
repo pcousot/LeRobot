@@ -42,7 +42,11 @@ import Peinture
 import Son
 from Utile import Stop
 
-_random.seed()
+# LEROBOT_SEED=n fixe le tirage au sort, pour que les programmes qui
+# utilisent random () redessinent exactement la meme chose (verification
+# automatique). Sans elle, le tirage est imprevisible, comme avant.
+_graine = os.environ.get("LEROBOT_SEED")
+_random.seed(int(_graine) if _graine else None)
 
 # enregistrement d'une commande (pour que st () la rejoue) : enreg (faire)
 enreg = LeRobot._enreg

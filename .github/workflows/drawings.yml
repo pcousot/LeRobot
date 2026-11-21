@@ -1,0 +1,56 @@
+# Checks that the programs of the book still draw the same.
+#
+# The drawings are the specification: this runs every program of
+# LeRobot_Python_EN/book with a hidden window and compares each drawing,
+# pixel for pixel, with the reference in tools/reference/.
+#
+# When a drawing changes on purpose, look at it first, then record it:
+#
+#   python3 tools/regress.py --diffs /tmp/diffs   # see what moved
+#   python3 tools/regress.py --update             # accept it
+#
+# and commit the changed PNGs with the change that caused them.
+#
+# The references are not in the repository yet: record them once with
+# --update and commit tools/reference/, or this check fails with
+# SANS REF for every program.
+
+name: drawings
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  drawings:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      # The robot draws with Tk; Xvfb gives it a display to open its
+      # (hidden) window on.
+      - name: Install Tk and Xvfb
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-tk xvfb
+
+      - name: Check the drawings
+        working-directory: LeRobot_Python_EN
+        run: xvfb-run -a python3 tools/regress.py --diffs "$RUNNER_TEMP/diffs"
+
+      # The drawings that moved, with the moved pixels in red, so a
+      # failure can be looked at rather than guessed at.
+      - name: Keep the drawings that changed
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: changed-drawings
+          path: ${{ runner.temp }}/diffs
+          if-no-files-found: ignore
